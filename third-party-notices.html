@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'"
+    />
+    <meta name="description" content="Data sources and third-party software notices for Jason Wang's project portfolio." />
+    <title>Sources &amp; licences — Jason Wang</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="legal-page">
+      <a class="legal-page__back" href="./">← Back to projects</a>
+      <p class="eyebrow">Publication record</p>
+      <h1>Sources &amp; licences.</h1>
+      <p class="hero__lede">
+        The portfolio separates Jason's project work from the data, software and typefaces that make the
+        demonstrations possible.
+      </p>
+
+      <h2>MorphBrain atlas reference</h2>
+      <p>
+        The GW21–36 playback uses weekly white-matter surfaces derived from the Developing Human Connectome
+        Project spatio-temporal surface atlas of the fetal brain. The source atlas is a population-average
+        reference released under the CC0 1.0 Public Domain Dedication; it is not subject MRI and is not the
+        molecular model developing.
+      </p>
+      <p>
+        Source: <a href="https://doi.org/10.12751/g-node.qj5hs7">Karolis et al., Developing Human Connectome
+        Project spatio-temporal surface atlas of the fetal brain</a>.
+      </p>
+
+      <h2>Model Morpher recording</h2>
+      <p>
+        The recorded DG-to-root example uses Allen Mouse Brain Common Coordinate Framework meshes delivered by
+        BrainGlobe as <code>allen_mouse_25um</code> v1.2. Image/data credit: Allen Institute. This is a
+        noncommercial research demonstration.
+      </p>
+      <ul>
+        <li><a href="https://atlas.brain-map.org/atlas?atlas=602630314">Allen Mouse CCF atlas viewer</a></li>
+        <li><a href="https://doi.org/10.1016/j.cell.2020.04.007">Wang et al. 2020, Allen Mouse Brain Common Coordinate Framework</a></li>
+        <li><a href="https://doi.org/10.21105/joss.02668">Claudi et al. 2020, BrainGlobe Atlas API</a></li>
+        <li><a href="https://alleninstitute.org/legal/citation-policy">Allen Institute citation policy</a> and <a href="https://alleninstitute.org/legal/terms-of-use">terms of use</a></li>
+      </ul>
+
+      <h2>Bundled software and fonts</h2>
+      <p>
+        The MorphBrain browser build includes React, three.js, React Three Fiber, Drei, Zustand and their
+        transitive open-source dependencies. The geometry decoder is Google Draco, licensed under Apache-2.0.
+        Source Sans 3, DM Mono and Spectral are licensed under the SIL Open Font License 1.1.
+      </p>
+      <p>
+        Package-level copyright notices and licence texts are preserved in the
+        <a href="./THIRD_PARTY_NOTICES.txt">complete third-party notice</a>. The shared licence texts are also
+        available under <a href="./licenses/">the licences directory</a>.
+      </p>
+
+      <p class="boundary-note">
+        Portfolio-specific writing, media and presentation are not offered under an open-source licence. Each
+        third-party component remains governed by its own terms.
+      </p>
+    </main>
+  </body>
+</html>

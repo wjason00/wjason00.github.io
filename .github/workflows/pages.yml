@@ -1,0 +1,45 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+      - name: Assemble public artifact
+        shell: bash
+        run: |
+          mkdir -p _site
+          cp index.html 404.html styles.css script.js favicon.svg robots.txt sitemap.xml third-party-notices.html THIRD_PARTY_NOTICES.txt .nojekyll _site/
+          cp -R assets demos licenses _site/
+      - name: Verify publication boundary
+        shell: bash
+        run: |
+          test -z "$(find _site -type f \( -name '*.modes.bin' -o -name '*.map' \) -print -quit)"
+          test "$(du -sm _site | cut -f1)" -lt 12
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

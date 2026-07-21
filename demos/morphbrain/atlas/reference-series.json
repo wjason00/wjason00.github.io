@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "asset": "registered-atlas-reference-transforms-v1",
+  "atlas": {
+    "dataset": "dHCP fetal surface atlas",
+    "doi": "10.12751/g-node.qj5hs7",
+    "license": "CC0-1.0",
+    "template": "population-average",
+    "surface": "white-matter",
+    "coordinateFrame": "x=Right, y=Superior, z=Anterior",
+    "sourceUnits": "millimetres",
+    "correspondence": "registered-template-location-not-material-particle",
+    "topologyId": "dhcp-fetal-wm-raw-u32-sha256:062ad949e99c4a0919985cc857bc6a5f044b12d31e2e8958e61210ab4ed86b9d"
+  },
+  "dataGate": {
+    "pialUsed": false,
+    "midthicknessUsed": false,
+    "corticalThicknessUsed": false,
+    "reason": "The official atlas README advises against those released products because of pial-estimation bias; this series uses only the stated-unaffected white surface."
+  },
+  "displayEncoding": {
+    "axisOrder": "x,z,y",
+    "normalisation": "centroid-and-max-radius-per-week",
+    "physicalReconstruction": "positionMm = displayPosition * radiusMmPerUnit + centroidMm",
+    "precision": "inverse transform is exact before GLB compression and approximate after Draco quantisation"
+  },
+  "counts": {
+    "weeks": 16,
+    "vertices": 64984,
+    "faces": 129960,
+    "components": 2
+  },
+  "frames": [
+    {
+      "week": 21,
+      "glb": "week-21.glb",
+      "glbSha256": "323a806559aa64d79ca045d08a1108c95618118b7e11d8a9d36ad0f27693fba4",
+      "sourceFiles": [
+        {
+          "name": "fetal.week21.left.wm.surf.gii",
+          "sha256": "8c9b267edaa47bcc93a759f6dcf1ff24015380c3f8cfe4f5dae01a7e3c17507b"
+        },
+        {
+          "name": "fetal.week21.right.wm.surf.gii",
+          "sha256": "ef5388fa12ab41de519f10df3ccccc43f850d3d496728eb54d37f1fbad253d5b"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.488996341028843,
+          6.831398977934126,
+          -4.6494995940806
+        ],
+        "radiusMmPerUnit": 38.471432206144996
+      },
+      "physicalSurfaceAreaMm2": 10120.108194173681
+    },
+    {
+      "week": 22,
+      "glb": "week-22.glb",
+      "glbSha256": "578161a1f3624e45449299f35f2c3835736afa8dfb39a8e6f9604a9c9c0aef61",
+      "sourceFiles": [
+        {
+          "name": "fetal.week22.left.wm.surf.gii",
+          "sha256": "ef37cbe6ee5cd5594c01704dbcb79f44737071c77fc72cf4dc44ea2ab94a7e82"
+        },
+        {
+          "name": "fetal.week22.right.wm.surf.gii",
+          "sha256": "1eaaebad3ab789bc8ff86bb0f30d13c41caa6da56cc426111788288c22c03218"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.4956745004148864,
+          6.886969491349502,
+          -4.692570704785914
+        ],
+        "radiusMmPerUnit": 38.77903175694227
+      },
+      "physicalSurfaceAreaMm2": 10289.10974331325
+    },
+    {
+      "week": 23,
+      "glb": "week-23.glb",
+      "glbSha256": "7ad4d0f63887274c21d6ee0bc9efb7a78a83dc8bee003ed68ad9c31c0c22a315",
+      "sourceFiles": [
+        {
+          "name": "fetal.week23.left.wm.surf.gii",
+          "sha256": "db2d5c4b0898c39eb17e6a19ea8c47cebdd3611b501d8ef7fd70f5c96dfa3f47"
+        },
+        {
+          "name": "fetal.week23.right.wm.surf.gii",
+          "sha256": "a906e9e2f48084269f7d5a5435ffe2949e6b7bb3c40d466e5e12b278f306f5ad"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.5128768966949433,
+          7.010188176342892,
+          -4.802127165053131
+        ],
+        "radiusMmPerUnit": 39.46738207881175
+      },
+      "physicalSurfaceAreaMm2": 10713.46429134005
+    },
+    {
+      "week": 24,
+      "glb": "week-24.glb",
+      "glbSha256": "9687864568affa80b7db3ff4908362b24df63d29c11f63417dd767ed08c527ce",
+      "sourceFiles": [
+        {
+          "name": "fetal.week24.left.wm.surf.gii",
+          "sha256": "90a26ba0db34c5ae24b9dcdf38a529c0d4ce917c8aa2814e57c8f620e6a17adc"
+        },
+        {
+          "name": "fetal.week24.right.wm.surf.gii",
+          "sha256": "f7d46c8e5e5fd569517769b6013afd81ffe98d1fc2c48eb3a11fcbf221c1da9f"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.5342926535213612,
+          7.224025341036854,
+          -4.991037727826108
+        ],
+        "radiusMmPerUnit": 40.63630784947893
+      },
+      "physicalSurfaceAreaMm2": 11492.135264951337
+    },
+    {
+      "week": 25,
+      "glb": "week-25.glb",
+      "glbSha256": "ce758614f63afff262e53b1ac8465661b20f17afc39d582c73f0506b89acfec4",
+      "sourceFiles": [
+        {
+          "name": "fetal.week25.left.wm.surf.gii",
+          "sha256": "ee7a73d3edc42ea5bfaf2505af6668dfd37cc1475d7ae5ee010c0d5267152522"
+        },
+        {
+          "name": "fetal.week25.right.wm.surf.gii",
+          "sha256": "7e07ad45dd7976d0c73fb75aab97cee592b0ca4f2183eaaf1fc4bf681a781f3f"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.6022280404990068,
+          7.4770973570356745,
+          -5.24750018087197
+        ],
+        "radiusMmPerUnit": 42.168977391581144
+      },
+      "physicalSurfaceAreaMm2": 12513.729281742364
+    },
+    {
+      "week": 26,
+      "glb": "week-26.glb",
+      "glbSha256": "c4607037a96b558a62582bd10334f6715dac1757554f7cfe3a14b054ce48de81",
+      "sourceFiles": [
+        {
+          "name": "fetal.week26.left.wm.surf.gii",
+          "sha256": "2d6b00b573e7fce99ab6b32fe5bfc2599fd2dc19fa8ab02b82ba3e26d6d37d10"
+        },
+        {
+          "name": "fetal.week26.right.wm.surf.gii",
+          "sha256": "2128ab8d64dad8b9b3be0a412cb98c007452b19bca93f966210aa04be2dae134"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.7287127094924313,
+          7.807211732826565,
+          -5.633000344639643
+        ],
+        "radiusMmPerUnit": 44.15450774787285
+      },
+      "physicalSurfaceAreaMm2": 13937.203945034964
+    },
+    {
+      "week": 27,
+      "glb": "week-27.glb",
+      "glbSha256": "f82094e63b44ad57d684cc5049afafa7452ecaf77bb913b8a48a8f83154180d4",
+      "sourceFiles": [
+        {
+          "name": "fetal.week27.left.wm.surf.gii",
+          "sha256": "9fcac7db604ff884872c18054c30ba6e6817b07df5422b645adafe722895b27c"
+        },
+        {
+          "name": "fetal.week27.right.wm.surf.gii",
+          "sha256": "173c7b2a6e5dc0bdd7508cf500bc160337324a1e0d0d393357eba8776cd60e66"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.9117935095439778,
+          8.257399152740163,
+          -6.139581530092162
+        ],
+        "radiusMmPerUnit": 46.54412853080717
+      },
+      "physicalSurfaceAreaMm2": 15976.37048537925
+    },
+    {
+      "week": 28,
+      "glb": "week-28.glb",
+      "glbSha256": "044986424dcad8edf8daffc3021d65892832643cea66830814d5740a2cac8148",
+      "sourceFiles": [
+        {
+          "name": "fetal.week28.left.wm.surf.gii",
+          "sha256": "a4c50f9115a0a2bcb573e487c9efae0802692dc0dd53ccdadc907f79892cba54"
+        },
+        {
+          "name": "fetal.week28.right.wm.surf.gii",
+          "sha256": "df5f988a70de7ecedd70d1122f1779fee19ca10b52ce54b72bbce0c145e76b81"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          1.9894409596226195,
+          8.593296291076763,
+          -6.60875831461994
+        ],
+        "radiusMmPerUnit": 48.326364186876596
+      },
+      "physicalSurfaceAreaMm2": 17898.839247985907
+    },
+    {
+      "week": 29,
+      "glb": "week-29.glb",
+      "glbSha256": "960c5d600d596796ff8c7a6d4eb258370454d0c30139bcfc5c2df556acabeae5",
+      "sourceFiles": [
+        {
+          "name": "fetal.week29.left.wm.surf.gii",
+          "sha256": "2e53e9d5969cdb5b7a4a09cfc63b1951ccbac8d834b1889459590a708ba9994b"
+        },
+        {
+          "name": "fetal.week29.right.wm.surf.gii",
+          "sha256": "ca079b79b042684baa4ac8faf1f183241c5056cc3dfc2c5a3528bd305bd2687c"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.085265816509935,
+          8.946410374077479,
+          -7.0983286746113885
+        ],
+        "radiusMmPerUnit": 49.947585726488725
+      },
+      "physicalSurfaceAreaMm2": 20090.743416740745
+    },
+    {
+      "week": 30,
+      "glb": "week-30.glb",
+      "glbSha256": "73649d3243752bf6bebc252cda7c9a67806102a87bdbdd714bda2c4a81df2c2b",
+      "sourceFiles": [
+        {
+          "name": "fetal.week30.left.wm.surf.gii",
+          "sha256": "a45378a4bb51829bd96724ea8644daebe24f0fb8cd8681f3d054fff729e296f6"
+        },
+        {
+          "name": "fetal.week30.right.wm.surf.gii",
+          "sha256": "a3a57a97e0bdf7b714dade9486fbfa5cc50c556648349cb4bf5ee816831cf110"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.142545209813323,
+          9.262822813491828,
+          -7.575366721803956
+        ],
+        "radiusMmPerUnit": 51.87219697123685
+      },
+      "physicalSurfaceAreaMm2": 22709.320092148515
+    },
+    {
+      "week": 31,
+      "glb": "week-31.glb",
+      "glbSha256": "87c9d5eadccb06f5bc4dcb38e5816f834f149f60c105f216f55fb85d042bbc68",
+      "sourceFiles": [
+        {
+          "name": "fetal.week31.left.wm.surf.gii",
+          "sha256": "bf946bd457ead3492c1ccce737afa4565dd2fe194a5312feed876df222ae0102"
+        },
+        {
+          "name": "fetal.week31.right.wm.surf.gii",
+          "sha256": "fc3c15b04f7b8823088a621de9e139c24b47804643894304049041b1c4838d88"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.180080248435834,
+          9.553057397095918,
+          -8.002224760754478
+        ],
+        "radiusMmPerUnit": 53.464625797178826
+      },
+      "physicalSurfaceAreaMm2": 25403.40944127586
+    },
+    {
+      "week": 32,
+      "glb": "week-32.glb",
+      "glbSha256": "53c24ec5f30160414e74c0ddef1efd9d520cb5016561e3a6cbc42c24b676fa46",
+      "sourceFiles": [
+        {
+          "name": "fetal.week32.left.wm.surf.gii",
+          "sha256": "cfe9a8669190c052776ac4673e45d401b82794fc2bdefacaeccbf172c63404ed"
+        },
+        {
+          "name": "fetal.week32.right.wm.surf.gii",
+          "sha256": "c93b108d9c2529dfa20639fffc340e30ca4e12a49683302dfaf602e6d8553bfb"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.267826984397464,
+          9.807359274750501,
+          -8.355465735416466
+        ],
+        "radiusMmPerUnit": 54.67573682749263
+      },
+      "physicalSurfaceAreaMm2": 27859.293747152038
+    },
+    {
+      "week": 33,
+      "glb": "week-33.glb",
+      "glbSha256": "4f2545666dbcb624763d9f908f32b0f7554b686d9fa8d62ca26811ce728d8542",
+      "sourceFiles": [
+        {
+          "name": "fetal.week33.left.wm.surf.gii",
+          "sha256": "e4a7cab5763d937b5ba170d3276bc102b5ccc547a97e264c18988371758037a7"
+        },
+        {
+          "name": "fetal.week33.right.wm.surf.gii",
+          "sha256": "974ca9b8ed48d1c48ec770bea75b01d3b6732112bada530cd02f2b5d3d2def01"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.3713456920910008,
+          10.057850862330442,
+          -8.676605317601037
+        ],
+        "radiusMmPerUnit": 55.66212161930573
+      },
+      "physicalSurfaceAreaMm2": 30200.89124315333
+    },
+    {
+      "week": 34,
+      "glb": "week-34.glb",
+      "glbSha256": "e03362f3bd2c5074fc5144a2f54b26c1b4a19241eb6014fafa2f176473d5ddb2",
+      "sourceFiles": [
+        {
+          "name": "fetal.week34.left.wm.surf.gii",
+          "sha256": "baba5dbe5e1727408ae1c902d8ebb76706d187e54310c53f446d56f47ac63d80"
+        },
+        {
+          "name": "fetal.week34.right.wm.surf.gii",
+          "sha256": "0ca0226c1d052c47577420ffa1a23f9af233783be10b0680670e44d1f4e02267"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.489749384680215,
+          10.299532451942317,
+          -8.966522329540346
+        ],
+        "radiusMmPerUnit": 56.44488025407019
+      },
+      "physicalSurfaceAreaMm2": 32327.065271757237
+    },
+    {
+      "week": 35,
+      "glb": "week-35.glb",
+      "glbSha256": "9b043cd79a106623d042e56257b0430da9abc017ea9ab803d45cd7a4ee6ca366",
+      "sourceFiles": [
+        {
+          "name": "fetal.week35.left.wm.surf.gii",
+          "sha256": "9cf7f229609ecaa9dcfef6c93cc922420b0863743a84012d55a8aec400ce9f3a"
+        },
+        {
+          "name": "fetal.week35.right.wm.surf.gii",
+          "sha256": "1cfb0eeb0adc9ccab64a9f270272b8baa249a4c865ac71e9dfa61412b49b1e4b"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.5499643370136584,
+          10.502743036348615,
+          -9.205499553261532
+        ],
+        "radiusMmPerUnit": 56.99695330897294
+      },
+      "physicalSurfaceAreaMm2": 34052.703048322524
+    },
+    {
+      "week": 36,
+      "glb": "week-36.glb",
+      "glbSha256": "050b2b27215786bc8260cc95ba5c9551a4be70490cc5852958aca239dde6a531",
+      "sourceFiles": [
+        {
+          "name": "fetal.week36.left.wm.surf.gii",
+          "sha256": "4aae90b9789413d7d0fef14352c2cd9d64751989a1ff08fb07abc302d07792ea"
+        },
+        {
+          "name": "fetal.week36.right.wm.surf.gii",
+          "sha256": "be84f1971207ce7ac2271a859443379320443211753012fb162999a8d1888f57"
+        }
+      ],
+      "anatomicalStructures": {
+        "left": "CortexLeft",
+        "right": "CortexRight"
+      },
+      "displayTransform": {
+        "centroidMm": [
+          2.584355535413774,
+          10.648409795611101,
+          -9.369726323627003
+        ],
+        "radiusMmPerUnit": 57.36064594093808
+      },
+      "physicalSurfaceAreaMm2": 35318.93236764685
+    }
+  ],
+  "generator": {
+    "script": "build_atlas_reference_manifest.py",
+    "python": "3.13.14",
+    "numpy": "1.26.4",
+    "nibabel": "5.4.2"
+  }
+}

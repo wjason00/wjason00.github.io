@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
+    />
+    <meta
+      name="description"
+      content="Jason Wang's project portfolio: MorphBrain, Model Morpher and Morphliner, with interactive and recorded demonstrations."
+    />
+    <meta name="theme-color" content="#f1efe7" />
+    <meta property="og:title" content="Jason Wang — computational neuroscience and graphics systems" />
+    <meta
+      property="og:description"
+      content="Three projects exploring developmental models, atlas data and 3D mesh transformation."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wjason00.github.io/" />
+    <title>Jason Wang — Projects</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#projects">Skip to projects</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Jason Wang, back to top">
+        <span class="wordmark__mark" aria-hidden="true">JW</span>
+        <span>Jason Wang</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#through-line">Through-line</a>
+        <a href="#about">About</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <span aria-hidden="true">◐</span>
+        <span class="theme-toggle__label">Theme</span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow">Computational neuroscience × graphics systems</p>
+          <h1 id="hero-title">Making hidden processes inspectable.</h1>
+          <p class="hero__lede">
+            I build research and creative tools for things that are difficult to see directly:
+            morphogen fields, population-atlas change and transitions between 3D forms.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#projects">Explore the demos</a>
+            <a class="button button--quiet" href="https://github.com/wjason00" target="_blank" rel="noreferrer">
+              GitHub profile <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__map" aria-label="Three connected projects">
+          <article class="hero-node hero-node--brain">
+            <span class="hero-node__index">01</span>
+            <strong>MorphBrain</strong>
+            <small>mechanism → readout</small>
+          </article>
+          <article class="hero-node hero-node--morpher">
+            <span class="hero-node__index">02</span>
+            <strong>Model Morpher</strong>
+            <small>SDF → surface</small>
+          </article>
+          <article class="hero-node hero-node--liner">
+            <span class="hero-node__index">03</span>
+            <strong>Morphliner</strong>
+            <small>timeline → export</small>
+          </article>
+          <span class="hero-connector hero-connector--one" aria-hidden="true"></span>
+          <span class="hero-connector hero-connector--two" aria-hidden="true"></span>
+        </div>
+
+        <dl class="hero__facts" aria-label="Portfolio summary">
+          <div><dt>Focus</dt><dd>scientific software</dd></div>
+          <div><dt>Current study</dt><dd>Neuroscience, UCL</dd></div>
+          <div><dt>Working method</dt><dd>model · test · disclose</dd></div>
+        </dl>
+      </section>
+
+      <section class="projects" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="projects-title">Three projects, three honest demonstrations.</h2>
+          <p>
+            Each preview states what is computed, what is recorded and what remains outside the model.
+          </p>
+        </div>
+
+        <article class="project project--brain" id="morphbrain">
+          <div class="project__copy">
+            <div class="project__topline">
+              <span class="project__number">01</span>
+              <span class="status status--active">Active research prototype</span>
+            </div>
+            <p class="project__date">2026–present</p>
+            <h3>MorphBrain</h3>
+            <p class="project__summary">
+              An interactive developmental-neuroscience demonstrator. Its patterning view, called World A,
+              solves deterministic SHH/BMP reaction–diffusion fields and passes them through a project-authored
+              broad positional decoder.
+            </p>
+            <ul class="project__facts-list">
+              <li><strong>Computed:</strong> two scalar concentration fields on a fixed coronal grid.</li>
+              <li><strong>Readout:</strong> broad dorsal, intermediate and ventral positional identity.</li>
+              <li><strong>Separate data view:</strong> CC0 population-average dHCP surfaces, GW21–36.</li>
+            </ul>
+            <p class="boundary-note">
+              The atlas is reference playback, not the molecular model developing. Decoder constants and the
+              120-step horizon are illustrative rather than fitted biological parameters. The weekly white-matter
+              surfaces come from the
+              <a href="https://doi.org/10.12751/g-node.qj5hs7" target="_blank" rel="noreferrer">dHCP fetal surface atlas (CC0)</a>.
+            </p>
+            <div class="tag-list" aria-label="MorphBrain technologies">
+              <span>TypeScript</span><span>React</span><span>finite differences</span><span>three.js</span>
+            </div>
+          </div>
+
+          <div class="project__demo">
+            <div
+              class="demo-frame iframe-demo"
+              data-demo-kind="iframe"
+              data-demo-src="./demos/morphbrain/"
+              data-demo-title="MorphBrain interactive demonstration"
+            >
+              <div class="demo-poster">
+                <img
+                  src="./assets/morphbrain/morphbrain-world-a.webp"
+                  alt="MorphBrain World A reference run showing SHH and BMP fields beside a broad positional identity map"
+                  width="1200"
+                  height="750"
+                />
+                <div class="demo-poster__veil" aria-hidden="true"></div>
+                <div class="demo-poster__copy">
+                  <span class="demo-kicker">Real application · loads on request</span>
+                  <strong>Run the World A experiment</strong>
+                  <span>Set sources, run the deterministic solver, replay checkpoints, then inspect the separate atlas.</span>
+                </div>
+              </div>
+              <div class="demo-toolbar">
+                <button class="button button--demo demo-load" type="button">Load interactive demo</button>
+                <a class="text-link" href="./demos/morphbrain/" target="_blank" rel="noreferrer">
+                  Open full screen <span aria-hidden="true">↗</span>
+                </a>
+                <span class="demo-status" role="status" aria-live="polite">Poster loaded · no GPU view active</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project--morpher" id="model-morpher">
+          <div class="project__copy">
+            <div class="project__topline">
+              <span class="project__number">02</span>
+              <span class="status">Desktop prototype</span>
+            </div>
+            <p class="project__date">December 2025</p>
+            <h3>Model Morpher</h3>
+            <p class="project__summary">
+              A Python prototype for transitioning between meshes with different topology by interpolating
+              signed-distance fields and reconstructing each intermediate surface with marching cubes.
+            </p>
+            <ul class="project__facts-list">
+              <li><strong>Pipeline:</strong> mesh repair → SDF sampling → interpolation → isosurface extraction.</li>
+              <li><strong>Compute:</strong> CPU and conditional PyTorch/CUDA paths.</li>
+              <li><strong>Recorded example:</strong> Allen Mouse CCF structures selected through BrainGlobe.</li>
+            </ul>
+            <p class="boundary-note">
+              This is a recorded result from the desktop PyVista prototype; the Python/CUDA pipeline is not
+              running inside this web page.
+            </p>
+            <div class="project__links">
+              <a class="button button--quiet" href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">
+                View source <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div class="tag-list" aria-label="Model Morpher technologies">
+              <span>Python</span><span>PyTorch/CUDA</span><span>marching cubes</span><span>BrainGlobe</span>
+            </div>
+          </div>
+
+          <div class="project__demo">
+            <figure class="demo-frame video-demo">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="./assets/model-morpher/dentate-to-brain-poster.webp"
+                aria-describedby="model-morpher-caption"
+              >
+                <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption id="model-morpher-caption">
+                <span class="demo-kicker">Recorded desktop output · 17 seconds</span>
+                Dentate gyrus (DG) structure → root atlas mesh, recorded in the desktop prototype.
+                <span class="source-note" id="model-morpher-sources">
+                  Source mesh: Allen Mouse Brain Common Coordinate Framework, distributed here through
+                  BrainGlobe as <code>allen_mouse_25um</code> v1.2. Image/data credit: Allen Institute.
+                  <a href="https://atlas.brain-map.org/atlas?atlas=602630314" target="_blank" rel="noreferrer">Atlas</a>,
+                  <a href="https://doi.org/10.1016/j.cell.2020.04.007" target="_blank" rel="noreferrer">Wang et al. 2020</a>,
+                  <a href="https://doi.org/10.21105/joss.02668" target="_blank" rel="noreferrer">Claudi et al. 2020</a>,
+                  <a href="https://alleninstitute.org/legal/citation-policy" target="_blank" rel="noreferrer">citation policy</a>
+                  and <a href="https://alleninstitute.org/legal/terms-of-use" target="_blank" rel="noreferrer">noncommercial-use terms</a>.
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="project project--liner" id="morphliner">
+          <div class="project__copy">
+            <div class="project__topline">
+              <span class="project__number">03</span>
+              <span class="status status--active">In active development</span>
+            </div>
+            <p class="project__date">January 2026–present</p>
+            <h3>Morphliner</h3>
+            <p class="project__summary">
+              An ongoing browser-native 3D motion editor for arranging meshes on a timeline, computing SDF-based
+              transitions with GPU and CPU fallback paths, and exporting animation.
+            </p>
+            <ul class="project__facts-list">
+              <li><strong>Editor:</strong> timeline authoring, camera, lighting and materials.</li>
+              <li><strong>Engine:</strong> WebGPU/WGSL with a tested fallback chain.</li>
+              <li><strong>Output:</strong> browser-side still and animation export workflows.</li>
+            </ul>
+            <p class="boundary-note">
+              The preview uses recorded runtime frames. A public, read-only Morphliner embed is under consideration;
+              it is not presented here as a shipped feature.
+            </p>
+            <div class="project__links">
+              <a class="button button--quiet" href="https://morphliner.com" target="_blank" rel="noreferrer">
+                Visit Morphliner <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div class="tag-list" aria-label="Morphliner technologies">
+              <span>WebGPU/WGSL</span><span>React</span><span>three.js</span><span>media export</span>
+            </div>
+          </div>
+
+          <div class="project__demo">
+            <div
+              class="demo-frame sequence-demo"
+              data-demo-kind="sequence"
+              data-frames="./assets/morphliner/frame-10.webp|./assets/morphliner/frame-30.webp|./assets/morphliner/frame-50.webp|./assets/morphliner/frame-70.webp|./assets/morphliner/frame-90.webp"
+            >
+              <div class="sequence-stage">
+                <img
+                  class="sequence-image"
+                  src="./assets/morphliner/frame-10.webp"
+                  alt="Recorded Morphliner product-drop runtime at the first selected frame"
+                  width="1200"
+                  height="800"
+                />
+                <span class="sequence-badge">Recorded runtime frames</span>
+              </div>
+              <div class="sequence-controls">
+                <button class="sequence-play" type="button" aria-label="Play recorded Morphliner frame sequence">Play</button>
+                <label>
+                  <span>Preview position</span>
+                  <input class="sequence-range" type="range" min="0" max="4" step="1" value="0" />
+                </label>
+                <output class="sequence-output">Frame 1 of 5</output>
+              </div>
+              <details class="embed-note">
+                <summary>How a future interactive embed fits here</summary>
+                <p>
+                  This frame sequence already sits behind a versioned demo boundary. A future read-only Morphliner
+                  player can replace it with a lazy, sandboxed iframe while the project copy and page layout stay unchanged.
+                </p>
+              </details>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="through-line" id="through-line" aria-labelledby="through-line-title">
+        <div class="section-heading section-heading--compact">
+          <p class="eyebrow">The through-line</p>
+          <h2 id="through-line-title">Related questions, deliberately separate claims.</h2>
+        </div>
+        <ol class="question-chain">
+          <li>
+            <span>01</span>
+            <div><strong>Model Morpher</strong><p>Can unlike meshes transition through a shared signed-distance representation?</p></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><strong>Morphliner</strong><p>Can mesh transition become a reliable, browser-native editing and export workflow?</p></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><strong>MorphBrain</strong><p>Can a scientific interface make computed mechanism, authored interpretation and observed atlas data unmistakably distinct?</p></div>
+          </li>
+        </ol>
+        <p class="through-line__boundary">
+          MorphBrain does not currently reuse Model Morpher’s SDF/marching-cubes path. Its atlas viewer uses
+          registered vertex interpolation, and its molecular intervention does not deform that atlas.
+        </p>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">Neuroscience student, software builder.</h2>
+        </div>
+        <div class="about__copy">
+          <p>
+            I am a UCL neuroscience student interested in developmental systems, scientific computing and tools
+            that let researchers inspect assumptions instead of hiding them behind a polished output.
+          </p>
+          <div class="about__links">
+            <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Jason Wang</span>
+      <span>Built as a lightweight static portfolio.</span>
+      <a class="site-footer__legal" href="./third-party-notices.html">Sources &amp; licences</a>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

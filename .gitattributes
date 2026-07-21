@@ -1,0 +1,11 @@
+*.glb binary
+*.mp4 binary
+*.wasm binary
+*.woff binary
+*.woff2 binary
+*.webp binary
+
+demos/morphbrain/assets/* linguist-generated=true -diff
+demos/morphbrain/draco/* linguist-vendored=true -diff
+THIRD_PARTY_NOTICES.txt linguist-generated=true -diff
+licenses/*.txt linguist-vendored=true -diff
