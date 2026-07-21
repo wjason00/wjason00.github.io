@@ -5,8 +5,9 @@ separate Model Morpher and Morphliner demonstrations.
 
 ## Demonstrations
 
-- MorphBrain is an interactive production build loaded on request. The allowlist includes the application bundles,
-  GW21–36 atlas GLBs and Draco decoder only; parked eigenmode and mechanics assets are excluded.
+- MorphBrain is an interactive production build loaded on request. The current World-A replay stops on a declared
+  numerical tolerance rather than a fixed iteration count. The allowlist includes the application bundles, GW21–36
+  atlas GLBs and Draco decoder only; parked eigenmode and mechanics assets are excluded.
 - Model Morpher uses a compressed recording from the public desktop prototype, with same-page Allen Mouse CCF
   and BrainGlobe attribution.
 - Morphliner reuses the exact video and poster from the live waitlist hero. The slot can later move to the iframe
