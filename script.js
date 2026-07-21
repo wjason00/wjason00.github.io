@@ -142,6 +142,7 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
   const range = demo.querySelector('.sequence-range');
   const output = demo.querySelector('.sequence-output');
   const playButton = demo.querySelector('.sequence-play');
+  const keyButtons = [...demo.querySelectorAll('.sequence-keyframes button[data-frame]')];
   const startIndex = Number(demo.dataset.startIndex || 0);
   let timer = null;
 
@@ -154,6 +155,11 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
     range.setAttribute('aria-valuetext', `Frame ${safeIndex + 1} of ${frames.length}`);
     const phase = safeIndex === 0 ? 'Source' : safeIndex === frames.length - 1 ? 'Authored finish' : 'Transition';
     output.textContent = `${phase} · frame ${safeIndex + 1} of ${frames.length}`;
+    keyButtons.forEach((button) => {
+      const isCurrent = Number(button.dataset.frame) === safeIndex;
+      button.classList.toggle('is-current', isCurrent);
+      button.setAttribute('aria-pressed', String(isCurrent));
+    });
   }
 
   function pause() {
@@ -166,7 +172,7 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
   }
 
   function play() {
-    if (timer !== null || !range) return;
+    if (timer !== null || !range || !frames.length) return;
     if (playButton) {
       playButton.textContent = 'Pause';
       playButton.setAttribute('aria-label', 'Pause recorded Morphliner frame sequence');
@@ -180,6 +186,13 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
   range?.addEventListener('input', () => {
     pause();
     updateFrame(range.value);
+  });
+
+  keyButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      pause();
+      updateFrame(button.dataset.frame);
+    });
   });
 
   playButton?.addEventListener('click', () => {
@@ -197,5 +210,10 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
     observer.observe(demo);
   }
 
+  if (range) range.max = String(Math.max(0, frames.length - 1));
+  frames.forEach((src) => {
+    const preload = new Image();
+    preload.src = src;
+  });
   updateFrame(startIndex);
 });

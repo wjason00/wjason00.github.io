@@ -276,12 +276,17 @@
               <li><strong>Output:</strong> browser-side still and animation export workflows.</li>
             </ul>
             <p class="boundary-note">
-              The preview uses recorded runtime frames. A public, read-only Morphliner embed is under consideration;
-              it is not presented here as a shipped feature.
+              The mini editor below is a read-only portfolio preview built from recorded runtime output. It shows
+              the interaction honestly without presenting the private authoring application as an embedded product.
             </p>
             <div class="project__links">
-              <a class="button button--quiet" href="https://morphliner.com" target="_blank" rel="noreferrer">
-                Visit Morphliner <span aria-hidden="true">↗</span>
+              <a
+                class="button button--quiet"
+                href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Join the Morphliner waitlist <span aria-hidden="true">↗</span>
               </a>
             </div>
             <div class="tag-list" role="group" aria-label="Morphliner technologies">
@@ -291,39 +296,67 @@
 
           <div class="project__demo">
             <div
-              class="demo-frame sequence-demo"
+              class="demo-frame sequence-demo morphliner-preview"
               data-demo-kind="sequence"
               data-frames="./assets/morphliner/frame-10.webp|./assets/morphliner/frame-30.webp|./assets/morphliner/frame-50.webp|./assets/morphliner/frame-70.webp|./assets/morphliner/frame-90.webp"
               data-start-index="2"
             >
-              <div class="sequence-stage">
-                <img
-                  class="sequence-image"
-                  src="./assets/morphliner/frame-50.webp"
-                  alt="Recorded Morphliner product-drop runtime at the middle of a cube-to-capsule transition"
-                  width="1200"
-                  height="800"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span class="sequence-badge">Recorded SDF transition</span>
-                <span class="sequence-story">Cube <span aria-hidden="true">→</span> computed morph <span aria-hidden="true">→</span> capsule reveal</span>
+              <div class="morphliner-preview__bar">
+                <div class="morphliner-preview__brand">
+                  <span class="morphliner-preview__mark" aria-hidden="true">M</span>
+                  <strong>Morphliner</strong>
+                  <span>Portfolio preview</span>
+                </div>
+                <span class="morphliner-preview__mode">Read-only · recorded output</span>
               </div>
-              <div class="sequence-controls">
-                <button class="sequence-play" type="button" aria-label="Play recorded Morphliner frame sequence">Play</button>
-                <label>
-                  <span>Preview position</span>
-                  <input class="sequence-range" type="range" min="0" max="4" step="1" value="2" />
-                </label>
-                <output class="sequence-output">Transition · frame 3 of 5</output>
+
+              <div class="morphliner-preview__workspace">
+                <div class="morphliner-preview__rail" aria-hidden="true">
+                  <span class="is-active">3D</span><span>FX</span><span>TXT</span>
+                </div>
+                <div class="sequence-stage">
+                  <img
+                    class="sequence-image"
+                    src="./assets/morphliner/frame-50.webp"
+                    alt="Recorded Morphliner product-drop runtime at the middle of a cube-to-capsule transition"
+                    width="1200"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="sequence-badge">SDF transition</span>
+                  <span class="sequence-story">Cube <span aria-hidden="true">→</span> computed morph <span aria-hidden="true">→</span> capsule</span>
+                </div>
               </div>
-              <details class="embed-note">
-                <summary>How a future interactive embed fits here</summary>
-                <p>
-                  This frame sequence already sits behind a versioned demo boundary. A future read-only Morphliner
-                  player can replace it with a lazy, sandboxed iframe while the project copy and page layout stay unchanged.
-                </p>
-              </details>
+
+              <div class="morphliner-preview__timeline">
+                <div class="morphliner-preview__timeline-head">
+                  <span>Shape transition · 6.0 s</span>
+                  <output class="sequence-output">Transition · frame 3 of 5</output>
+                </div>
+                <div class="sequence-controls">
+                  <button class="sequence-play" type="button" aria-label="Play recorded Morphliner frame sequence">Play</button>
+                  <label>
+                    <span>Scrub the recorded transition</span>
+                    <input class="sequence-range" type="range" min="0" max="4" step="1" value="2" />
+                  </label>
+                </div>
+                <div class="sequence-keyframes" role="group" aria-label="Jump to a recorded Morphliner keyframe">
+                  <button type="button" data-frame="0">Source mesh</button>
+                  <button type="button" data-frame="2">Computed morph</button>
+                  <button type="button" data-frame="4">Authored finish</button>
+                </div>
+              </div>
+
+              <div class="morphliner-preview__footer">
+                <p><strong>Preview the workflow here.</strong> Join the waitlist for access to the full editor.</p>
+                <a
+                  class="button morphliner-preview__cta"
+                  href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=demo_cta&amp;utm_campaign=morphliner_waitlist"
+                  target="_blank"
+                  rel="noreferrer"
+                >Join the waitlist <span aria-hidden="true">↗</span></a>
+              </div>
             </div>
           </div>
         </article>
