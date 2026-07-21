@@ -98,10 +98,15 @@ document.querySelectorAll('.video-demo').forEach((demo) => {
   const playButton = demo.querySelector('.video-play');
   const range = demo.querySelector('.video-range');
   const output = demo.querySelector('.video-time');
+  const recordingLabel = demo.dataset.recordingLabel || 'recorded result';
   if (!video || !playButton || !range || !output) return;
 
   demo.classList.add('is-enhanced');
   video.controls = false;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches && video.autoplay) {
+    video.removeAttribute('autoplay');
+    video.pause();
+  }
 
   function updateVideoControls() {
     const duration = Number.isFinite(video.duration) ? video.duration : 0;
@@ -110,7 +115,7 @@ document.querySelectorAll('.video-demo').forEach((demo) => {
     range.setAttribute('aria-valuetext', `${formatTime(video.currentTime)} of ${formatTime(duration)}`);
     output.textContent = `${formatTime(video.currentTime)} / ${formatTime(duration)}`;
     playButton.textContent = video.paused ? 'Play' : 'Pause';
-    playButton.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} recorded Model Morpher result`);
+    playButton.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} ${recordingLabel}`);
   }
 
   playButton.addEventListener('click', () => {
@@ -134,86 +139,4 @@ document.querySelectorAll('.video-demo').forEach((demo) => {
   video.addEventListener('pause', updateVideoControls);
   video.addEventListener('ended', updateVideoControls);
   updateVideoControls();
-});
-
-document.querySelectorAll('.sequence-demo').forEach((demo) => {
-  const frames = (demo.dataset.frames || '').split('|').filter(Boolean);
-  const image = demo.querySelector('.sequence-image');
-  const range = demo.querySelector('.sequence-range');
-  const output = demo.querySelector('.sequence-output');
-  const playButton = demo.querySelector('.sequence-play');
-  const keyButtons = [...demo.querySelectorAll('.sequence-keyframes button[data-frame]')];
-  const startIndex = Number(demo.dataset.startIndex || 0);
-  let timer = null;
-
-  function updateFrame(index) {
-    if (!frames.length || !image || !range || !output) return;
-    const safeIndex = Math.max(0, Math.min(frames.length - 1, Number(index)));
-    image.src = frames[safeIndex];
-    image.alt = `Recorded Morphliner cube-to-capsule transition at selected frame ${safeIndex + 1} of ${frames.length}`;
-    range.value = String(safeIndex);
-    range.setAttribute('aria-valuetext', `Frame ${safeIndex + 1} of ${frames.length}`);
-    const phase = safeIndex === 0 ? 'Source' : safeIndex === frames.length - 1 ? 'Authored finish' : 'Transition';
-    output.textContent = `${phase} · frame ${safeIndex + 1} of ${frames.length}`;
-    keyButtons.forEach((button) => {
-      const isCurrent = Number(button.dataset.frame) === safeIndex;
-      button.classList.toggle('is-current', isCurrent);
-      button.setAttribute('aria-pressed', String(isCurrent));
-    });
-  }
-
-  function pause() {
-    if (timer !== null) window.clearInterval(timer);
-    timer = null;
-    if (playButton) {
-      playButton.textContent = 'Play';
-      playButton.setAttribute('aria-label', 'Play recorded Morphliner frame sequence');
-    }
-  }
-
-  function play() {
-    if (timer !== null || !range || !frames.length) return;
-    if (playButton) {
-      playButton.textContent = 'Pause';
-      playButton.setAttribute('aria-label', 'Pause recorded Morphliner frame sequence');
-    }
-    timer = window.setInterval(() => {
-      const next = (Number(range.value) + 1) % frames.length;
-      updateFrame(next);
-    }, 900);
-  }
-
-  range?.addEventListener('input', () => {
-    pause();
-    updateFrame(range.value);
-  });
-
-  keyButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      pause();
-      updateFrame(button.dataset.frame);
-    });
-  });
-
-  playButton?.addEventListener('click', () => {
-    if (timer === null) play(); else pause();
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) pause();
-  });
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries[0]?.isIntersecting) pause();
-    }, { threshold: 0.05 });
-    observer.observe(demo);
-  }
-
-  if (range) range.max = String(Math.max(0, frames.length - 1));
-  frames.forEach((src) => {
-    const preload = new Image();
-    preload.src = src;
-  });
-  updateFrame(startIndex);
 });

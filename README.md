@@ -9,8 +9,8 @@ separate Model Morpher and Morphliner demonstrations.
   GW21–36 atlas GLBs and Draco decoder only; parked eigenmode and mechanics assets are excluded.
 - Model Morpher uses a compressed recording from the public desktop prototype, with same-page Allen Mouse CCF
   and BrainGlobe attribution.
-- Morphliner uses five recorded runtime frames. The slot can later move to the iframe protocol documented in
-  `demos/EMBED_CONTRACT.md`.
+- Morphliner reuses the exact video and poster from the live waitlist hero. The slot can later move to the iframe
+  protocol documented in `demos/EMBED_CONTRACT.md`.
 - The public CV is a one-page copy of the current research CV with the private phone number removed. The social
   preview card is site-specific and derived from the real MorphBrain World A interface.
 
