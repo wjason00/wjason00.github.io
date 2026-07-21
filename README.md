@@ -1,6 +1,7 @@
 # Jason Wang — project portfolio
 
-Static GitHub Pages portfolio for MorphBrain, Model Morpher and Morphliner.
+Static GitHub Pages portfolio led by Jason's computational developmental-neuroscience work in MorphBrain, with
+separate Model Morpher and Morphliner demonstrations.
 
 ## Demonstrations
 
@@ -10,6 +11,8 @@ Static GitHub Pages portfolio for MorphBrain, Model Morpher and Morphliner.
   and BrainGlobe attribution.
 - Morphliner uses five recorded runtime frames. The slot can later move to the iframe protocol documented in
   `demos/EMBED_CONTRACT.md`.
+- The public CV is a one-page copy of the current research CV with the private phone number removed. The social
+  preview card is site-specific and derived from the real MorphBrain World A interface.
 
 The portfolio shell has no runtime dependencies, analytics, external fonts or CDN resources. The MorphBrain
 sub-application bundles its own open-source runtime and fonts; data and software notices are published with the site.

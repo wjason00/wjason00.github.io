@@ -34,36 +34,106 @@ function unloadIframeDemo(demo) {
   if (activeIframeDemo === demo) activeIframeDemo = null;
 }
 
-document.querySelectorAll('.iframe-demo').forEach((demo) => {
+function loadIframeDemo(demo) {
+  if (!demo || demo.classList.contains('is-loaded')) return;
+
+  if (activeIframeDemo && activeIframeDemo !== demo) unloadIframeDemo(activeIframeDemo);
+
   const button = demo.querySelector('.demo-load');
   const status = demo.querySelector('.demo-status');
+  const iframe = document.createElement('iframe');
+  iframe.src = demo.dataset.demoSrc;
+  iframe.title = demo.dataset.demoTitle || 'Interactive project demonstration';
+  iframe.loading = 'eager';
+  iframe.allow = 'fullscreen';
+  iframe.referrerPolicy = 'no-referrer';
+  iframe.tabIndex = 0;
+  iframe.addEventListener('load', () => {
+    if (status) status.textContent = 'Interactive demo loaded · unload to release the 3D view';
+    iframe.focus({ preventScroll: true });
+  }, { once: true });
+
+  demo.insertBefore(iframe, demo.querySelector('.demo-toolbar'));
+  demo.classList.add('is-loaded');
+  if (button) button.textContent = 'Unload demo';
+  if (status) status.textContent = 'Loading bounded application…';
+  activeIframeDemo = demo;
+}
+
+document.querySelectorAll('.iframe-demo').forEach((demo) => {
+  const button = demo.querySelector('.demo-load');
 
   button?.addEventListener('click', () => {
     if (demo.classList.contains('is-loaded')) {
       unloadIframeDemo(demo);
       return;
     }
-
-    if (activeIframeDemo && activeIframeDemo !== demo) unloadIframeDemo(activeIframeDemo);
-
-    const iframe = document.createElement('iframe');
-    iframe.src = demo.dataset.demoSrc;
-    iframe.title = demo.dataset.demoTitle || 'Interactive project demonstration';
-    iframe.loading = 'eager';
-    iframe.allow = 'fullscreen';
-    iframe.referrerPolicy = 'no-referrer';
-    iframe.tabIndex = 0;
-    iframe.addEventListener('load', () => {
-      if (status) status.textContent = 'Interactive demo loaded · unload to release the 3D view';
-      iframe.focus({ preventScroll: true });
-    }, { once: true });
-
-    demo.insertBefore(iframe, demo.querySelector('.demo-toolbar'));
-    demo.classList.add('is-loaded');
-    button.textContent = 'Unload demo';
-    if (status) status.textContent = 'Loading bounded application…';
-    activeIframeDemo = demo;
+    loadIframeDemo(demo);
   });
+});
+
+document.querySelectorAll('.demo-jump').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const targetId = link.dataset.demoTarget;
+    const demo = targetId ? document.getElementById(targetId) : null;
+    if (!demo) return;
+
+    event.preventDefault();
+    loadIframeDemo(demo);
+    demo.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'center',
+    });
+  });
+});
+
+function formatTime(value) {
+  if (!Number.isFinite(value)) return '0:00';
+  const seconds = Math.max(0, Math.floor(value));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+}
+
+document.querySelectorAll('.video-demo').forEach((demo) => {
+  const video = demo.querySelector('video');
+  const playButton = demo.querySelector('.video-play');
+  const range = demo.querySelector('.video-range');
+  const output = demo.querySelector('.video-time');
+  if (!video || !playButton || !range || !output) return;
+
+  demo.classList.add('is-enhanced');
+  video.controls = false;
+
+  function updateVideoControls() {
+    const duration = Number.isFinite(video.duration) ? video.duration : 0;
+    const progress = duration > 0 ? (video.currentTime / duration) * 100 : 0;
+    range.value = String(progress);
+    range.setAttribute('aria-valuetext', `${formatTime(video.currentTime)} of ${formatTime(duration)}`);
+    output.textContent = `${formatTime(video.currentTime)} / ${formatTime(duration)}`;
+    playButton.textContent = video.paused ? 'Play' : 'Pause';
+    playButton.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} recorded Model Morpher result`);
+  }
+
+  playButton.addEventListener('click', () => {
+    if (video.paused) {
+      video.play().catch(() => updateVideoControls());
+    } else {
+      video.pause();
+    }
+  });
+
+  range.addEventListener('input', () => {
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    video.pause();
+    video.currentTime = (Number(range.value) / 100) * video.duration;
+    updateVideoControls();
+  });
+
+  video.addEventListener('loadedmetadata', updateVideoControls);
+  video.addEventListener('timeupdate', updateVideoControls);
+  video.addEventListener('play', updateVideoControls);
+  video.addEventListener('pause', updateVideoControls);
+  video.addEventListener('ended', updateVideoControls);
+  updateVideoControls();
 });
 
 document.querySelectorAll('.sequence-demo').forEach((demo) => {
@@ -72,16 +142,18 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
   const range = demo.querySelector('.sequence-range');
   const output = demo.querySelector('.sequence-output');
   const playButton = demo.querySelector('.sequence-play');
+  const startIndex = Number(demo.dataset.startIndex || 0);
   let timer = null;
 
   function updateFrame(index) {
     if (!frames.length || !image || !range || !output) return;
     const safeIndex = Math.max(0, Math.min(frames.length - 1, Number(index)));
     image.src = frames[safeIndex];
-    image.alt = `Recorded Morphliner product-drop runtime at selected frame ${safeIndex + 1} of ${frames.length}`;
+    image.alt = `Recorded Morphliner cube-to-capsule transition at selected frame ${safeIndex + 1} of ${frames.length}`;
     range.value = String(safeIndex);
     range.setAttribute('aria-valuetext', `Frame ${safeIndex + 1} of ${frames.length}`);
-    output.textContent = `Frame ${safeIndex + 1} of ${frames.length}`;
+    const phase = safeIndex === 0 ? 'Source' : safeIndex === frames.length - 1 ? 'Authored finish' : 'Transition';
+    output.textContent = `${phase} · frame ${safeIndex + 1} of ${frames.length}`;
   }
 
   function pause() {
@@ -125,5 +197,5 @@ document.querySelectorAll('.sequence-demo').forEach((demo) => {
     observer.observe(demo);
   }
 
-  updateFrame(0);
+  updateFrame(startIndex);
 });

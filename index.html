@@ -9,17 +9,27 @@
     />
     <meta
       name="description"
-      content="Jason Wang's project portfolio: MorphBrain, Model Morpher and Morphliner, with interactive and recorded demonstrations."
+      content="Jason Wang studies how the developing brain takes shape through transparent computational models, atlas-grounded data and scientific software."
     />
     <meta name="theme-color" content="#f1efe7" />
-    <meta property="og:title" content="Jason Wang — computational neuroscience and graphics systems" />
+    <link rel="canonical" href="https://wjason00.github.io/" />
+    <meta property="og:title" content="Jason Wang — computational developmental neuroscience" />
     <meta
       property="og:description"
-      content="Three projects exploring developmental models, atlas data and 3D mesh transformation."
+      content="Inspectable models of brain development, atlas-grounded data and related geometry systems."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wjason00.github.io/" />
-    <title>Jason Wang — Projects</title>
+    <meta property="og:image" content="https://wjason00.github.io/assets/og-portfolio.png" />
+    <meta property="og:image:alt" content="Jason Wang's computational developmental neuroscience portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jason Wang — computational developmental neuroscience" />
+    <meta
+      name="twitter:description"
+      content="Inspectable models of brain development, atlas-grounded data and related geometry systems."
+    />
+    <meta name="twitter:image" content="https://wjason00.github.io/assets/og-portfolio.png" />
+    <title>Jason Wang — Computational Developmental Neuroscience</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
@@ -34,6 +44,7 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#projects">Projects</a>
+        <a href="#evidence">Evidence</a>
         <a href="#through-line">Through-line</a>
         <a href="#about">About</a>
       </nav>
@@ -46,53 +57,70 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__copy">
-          <p class="eyebrow">Computational neuroscience × graphics systems</p>
-          <h1 id="hero-title">Making hidden processes inspectable.</h1>
+          <p class="eyebrow">Computational developmental neuroscience</p>
+          <h1 id="hero-title">How does the developing brain take shape?</h1>
           <p class="hero__lede">
-            I build research and creative tools for things that are difficult to see directly:
-            morphogen fields, population-atlas change and transitions between 3D forms.
+            I study how molecular signals and physical constraints pattern developing tissue, then build
+            inspectable models that keep computed mechanisms, authored assumptions and atlas data distinct.
           </p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#projects">Explore the demos</a>
-            <a class="button button--quiet" href="https://github.com/wjason00" target="_blank" rel="noreferrer">
-              GitHub profile <span aria-hidden="true">↗</span>
+            <a class="button button--primary demo-jump" href="#morphbrain-demo" data-demo-target="morphbrain-demo">
+              Run the MorphBrain experiment
+            </a>
+            <a class="button button--quiet" href="./assets/jason-wang-cv.pdf">
+              Read my CV <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
 
-        <div class="hero__map" aria-label="Three connected projects">
-          <article class="hero-node hero-node--brain">
-            <span class="hero-node__index">01</span>
-            <strong>MorphBrain</strong>
-            <small>mechanism → readout</small>
-          </article>
-          <article class="hero-node hero-node--morpher">
-            <span class="hero-node__index">02</span>
-            <strong>Model Morpher</strong>
-            <small>SDF → surface</small>
-          </article>
-          <article class="hero-node hero-node--liner">
-            <span class="hero-node__index">03</span>
-            <strong>Morphliner</strong>
-            <small>timeline → export</small>
-          </article>
-          <span class="hero-connector hero-connector--one" aria-hidden="true"></span>
-          <span class="hero-connector hero-connector--two" aria-hidden="true"></span>
-        </div>
+        <a class="hero__spotlight demo-jump" href="#morphbrain-demo" data-demo-target="morphbrain-demo">
+          <img
+            src="./assets/morphbrain/morphbrain-world-a.webp"
+            alt="MorphBrain World A showing SHH and BMP fields beside a broad positional identity map"
+            width="1200"
+            height="750"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <span class="hero__spotlight-veil" aria-hidden="true"></span>
+          <span class="hero__spotlight-copy">
+            <span class="demo-kicker">World A · real deterministic solver</span>
+            <strong>Change a supported source condition and inspect what the model does.</strong>
+            <span>One click loads the bounded experiment; the atlas remains explicitly separate.</span>
+            <span class="hero__spotlight-action">Run the experiment <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
 
-        <dl class="hero__facts" aria-label="Portfolio summary">
-          <div><dt>Focus</dt><dd>scientific software</dd></div>
+        <dl class="hero__facts">
+          <div><dt>Focus</dt><dd>developmental neuroscience</dd></div>
           <div><dt>Current study</dt><dd>Neuroscience, UCL</dd></div>
           <div><dt>Working method</dt><dd>model · test · disclose</dd></div>
         </dl>
       </section>
 
+      <section class="evidence-strip" id="evidence" aria-labelledby="evidence-title">
+        <div class="evidence-strip__heading">
+          <p class="eyebrow">Evidence at a glance</p>
+          <h2 id="evidence-title">Scientific curiosity, tested through problems.</h2>
+        </div>
+        <ul class="evidence-strip__list">
+          <li><strong>Gold</strong><span>British Biology Olympiad · top 5%</span></li>
+          <li><strong>Gold</strong><span>Intermediate Biology Olympiad · top 5%</span></li>
+          <li><strong>Top 30</strong><span>Oxford University Computing Challenge · nationally</span></li>
+          <li><strong>Top 0.5%</strong><span>Reply Challenge · global team coding</span></li>
+        </ul>
+        <a class="button button--quiet evidence-strip__cv" href="./assets/jason-wang-cv.pdf">
+          CV as PDF <span aria-hidden="true">↓</span>
+        </a>
+      </section>
+
       <section class="projects" id="projects" aria-labelledby="projects-title">
         <div class="section-heading">
           <p class="eyebrow">Selected work</p>
-          <h2 id="projects-title">Three projects, three honest demonstrations.</h2>
+          <h2 id="projects-title">Three questions, led by the science.</h2>
           <p>
-            Each preview states what is computed, what is recorded and what remains outside the model.
+            MorphBrain leads with the developmental question. The geometry systems show how I test
+            representations and build inspectable tools; each keeps a separate claim boundary.
           </p>
         </div>
 
@@ -105,9 +133,9 @@
             <p class="project__date">2026–present</p>
             <h3>MorphBrain</h3>
             <p class="project__summary">
-              An interactive developmental-neuroscience demonstrator. Its patterning view, called World A,
-              solves deterministic SHH/BMP reaction–diffusion fields and passes them through a project-authored
-              broad positional decoder.
+              MorphBrain asks how an explicitly defined molecular condition changes a broad positional fate map,
+              and where an honest developmental model must stop. World A solves deterministic SHH/BMP
+              reaction–diffusion fields and passes them through a project-authored positional decoder.
             </p>
             <ul class="project__facts-list">
               <li><strong>Computed:</strong> two scalar concentration fields on a fixed coronal grid.</li>
@@ -120,13 +148,14 @@
               surfaces come from the
               <a href="https://doi.org/10.12751/g-node.qj5hs7" target="_blank" rel="noreferrer">dHCP fetal surface atlas (CC0)</a>.
             </p>
-            <div class="tag-list" aria-label="MorphBrain technologies">
+            <div class="tag-list" role="group" aria-label="MorphBrain technologies">
               <span>TypeScript</span><span>React</span><span>finite differences</span><span>three.js</span>
             </div>
           </div>
 
           <div class="project__demo">
             <div
+              id="morphbrain-demo"
               class="demo-frame iframe-demo"
               data-demo-kind="iframe"
               data-demo-src="./demos/morphbrain/"
@@ -138,6 +167,8 @@
                   alt="MorphBrain World A reference run showing SHH and BMP fields beside a broad positional identity map"
                   width="1200"
                   height="750"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div class="demo-poster__veil" aria-hidden="true"></div>
                 <div class="demo-poster__copy">
@@ -166,8 +197,9 @@
             <p class="project__date">December 2025</p>
             <h3>Model Morpher</h3>
             <p class="project__summary">
-              A Python prototype for transitioning between meshes with different topology by interpolating
-              signed-distance fields and reconstructing each intermediate surface with marching cubes.
+              Model Morpher asks whether anatomical meshes with different topology can transition through a
+              shared implicit representation. The Python prototype interpolates signed-distance fields and
+              reconstructs each intermediate surface with marching cubes.
             </p>
             <ul class="project__facts-list">
               <li><strong>Pipeline:</strong> mesh repair → SDF sampling → interpolation → isosurface extraction.</li>
@@ -183,7 +215,7 @@
                 View source <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div class="tag-list" aria-label="Model Morpher technologies">
+            <div class="tag-list" role="group" aria-label="Model Morpher technologies">
               <span>Python</span><span>PyTorch/CUDA</span><span>marching cubes</span><span>BrainGlobe</span>
             </div>
           </div>
@@ -200,6 +232,14 @@
                 <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
                 Your browser does not support embedded video.
               </video>
+              <div class="video-controls" role="group" aria-label="Model Morpher recording controls">
+                <button class="video-play" type="button" aria-label="Play recorded Model Morpher result">Play</button>
+                <label>
+                  <span>Playback position</span>
+                  <input class="video-range" type="range" min="0" max="100" step="0.1" value="0" />
+                </label>
+                <output class="video-time">0:00 / 0:17</output>
+              </div>
               <figcaption id="model-morpher-caption">
                 <span class="demo-kicker">Recorded desktop output · 17 seconds</span>
                 Dentate gyrus (DG) structure → root atlas mesh, recorded in the desktop prototype.
@@ -226,8 +266,9 @@
             <p class="project__date">January 2026–present</p>
             <h3>Morphliner</h3>
             <p class="project__summary">
-              An ongoing browser-native 3D motion editor for arranging meshes on a timeline, computing SDF-based
-              transitions with GPU and CPU fallback paths, and exporting animation.
+              Morphliner tests whether implicit-surface transformation can become a reliable browser-native
+              authoring workflow. It arranges meshes on a timeline, computes SDF-based transitions with GPU and
+              CPU fallback paths, and exports animation.
             </p>
             <ul class="project__facts-list">
               <li><strong>Editor:</strong> timeline authoring, camera, lighting and materials.</li>
@@ -243,7 +284,7 @@
                 Visit Morphliner <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div class="tag-list" aria-label="Morphliner technologies">
+            <div class="tag-list" role="group" aria-label="Morphliner technologies">
               <span>WebGPU/WGSL</span><span>React</span><span>three.js</span><span>media export</span>
             </div>
           </div>
@@ -253,24 +294,28 @@
               class="demo-frame sequence-demo"
               data-demo-kind="sequence"
               data-frames="./assets/morphliner/frame-10.webp|./assets/morphliner/frame-30.webp|./assets/morphliner/frame-50.webp|./assets/morphliner/frame-70.webp|./assets/morphliner/frame-90.webp"
+              data-start-index="2"
             >
               <div class="sequence-stage">
                 <img
                   class="sequence-image"
-                  src="./assets/morphliner/frame-10.webp"
-                  alt="Recorded Morphliner product-drop runtime at the first selected frame"
+                  src="./assets/morphliner/frame-50.webp"
+                  alt="Recorded Morphliner product-drop runtime at the middle of a cube-to-capsule transition"
                   width="1200"
                   height="800"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <span class="sequence-badge">Recorded runtime frames</span>
+                <span class="sequence-badge">Recorded SDF transition</span>
+                <span class="sequence-story">Cube <span aria-hidden="true">→</span> computed morph <span aria-hidden="true">→</span> capsule reveal</span>
               </div>
               <div class="sequence-controls">
                 <button class="sequence-play" type="button" aria-label="Play recorded Morphliner frame sequence">Play</button>
                 <label>
                   <span>Preview position</span>
-                  <input class="sequence-range" type="range" min="0" max="4" step="1" value="0" />
+                  <input class="sequence-range" type="range" min="0" max="4" step="1" value="2" />
                 </label>
-                <output class="sequence-output">Frame 1 of 5</output>
+                <output class="sequence-output">Transition · frame 3 of 5</output>
               </div>
               <details class="embed-note">
                 <summary>How a future interactive embed fits here</summary>
@@ -287,20 +332,20 @@
       <section class="through-line" id="through-line" aria-labelledby="through-line-title">
         <div class="section-heading section-heading--compact">
           <p class="eyebrow">The through-line</p>
-          <h2 id="through-line-title">Related questions, deliberately separate claims.</h2>
+          <h2 id="through-line-title">Scientific questions first; related systems stay separate.</h2>
         </div>
         <ol class="question-chain">
           <li>
             <span>01</span>
-            <div><strong>Model Morpher</strong><p>Can unlike meshes transition through a shared signed-distance representation?</p></div>
+            <div><strong>MorphBrain</strong><p>How can molecular patterning be explored without confusing a model, an authored decoder and observed atlas data?</p></div>
           </li>
           <li>
             <span>02</span>
-            <div><strong>Morphliner</strong><p>Can mesh transition become a reliable, browser-native editing and export workflow?</p></div>
+            <div><strong>Model Morpher</strong><p>Which implicit representations let unlike anatomical surfaces transition without shared topology?</p></div>
           </li>
           <li>
             <span>03</span>
-            <div><strong>MorphBrain</strong><p>Can a scientific interface make computed mechanism, authored interpretation and observed atlas data unmistakably distinct?</p></div>
+            <div><strong>Morphliner</strong><p>Can those transformation methods become inspectable, reliable tools for authoring and export in the browser?</p></div>
           </li>
         </ol>
         <p class="through-line__boundary">
@@ -312,14 +357,17 @@
       <section class="about" id="about" aria-labelledby="about-title">
         <div>
           <p class="eyebrow">About</p>
-          <h2 id="about-title">Neuroscience student, software builder.</h2>
+          <h2 id="about-title">A neuroscience student investigating how brains take shape.</h2>
         </div>
         <div class="about__copy">
           <p>
-            I am a UCL neuroscience student interested in developmental systems, scientific computing and tools
-            that let researchers inspect assumptions instead of hiding them behind a polished output.
+            I am a first-year UCL neuroscience student interested in developmental systems, mechanistic modelling
+            and scientific computing. I am looking for research opportunities where I can test biological
+            questions with transparent, reproducible models and learn from experimental evidence.
           </p>
           <div class="about__links">
+            <a href="mailto:jason.wang.25@ucl.ac.uk">Email <span aria-hidden="true">↗</span></a>
+            <a href="./assets/jason-wang-cv.pdf">CV <span aria-hidden="true">↓</span></a>
             <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
             <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
