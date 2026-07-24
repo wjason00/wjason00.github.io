@@ -522,6 +522,11 @@ h1 {
   .site-footer > span:nth-child(2), .site-footer__legal { display: none; }
 }
 
+@media (max-height: 520px) {
+  .hero { padding-top: clamp(24px, 7vh, 38px); }
+  .hero__copy { align-self: start; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
