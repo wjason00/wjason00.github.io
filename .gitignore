@@ -3,3 +3,35 @@ output/
 _site/
 Thumbs.db
 .DS_Store
+
+# ---------------------------------------------------------------------------
+# This site is PUBLIC. Restricted research data must never enter this repository.
+# Only publicly-licensed, non-identifiable atlas products belong here — the
+# MorphBrain demo assets are CC0-1.0 dHCP fetal surface atlas derivatives
+# (see third-party-notices.html). Raw subject MRI is confidential and
+# non-redistributable.
+# Nothing currently tracked matches these patterns; they are prevention, not cleanup.
+# ---------------------------------------------------------------------------
+
+# Neuroimaging volume formats
+*.nii
+*.nii.gz
+*.dcm
+*.mgz
+*.mgh
+
+# Neuroimaging surface / tractography formats
+# NB: *.gii also blocks atlas GIFTIs. Nothing tracked matches today (published
+# meshes are .glb). If an atlas GIFTI is ever published deliberately, whitelist
+# it by path (e.g. !demos/morphbrain/atlas/**/*.gii) rather than dropping the rule.
+*.gii
+*.surf.gii
+*.trk
+
+# Diffusion gradient tables
+*.bval
+*.bvec
+
+# BIDS subject / session directories
+sub-*/
+ses-*/
