@@ -1,21 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; style-src 'self'; img-src 'self' data:" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'"
+    />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="That page does not exist on Jason Wang's project portfolio." />
+    <meta name="theme-color" content="#f1efe7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
     <title>Page not found — Jason Wang</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="/theme.js"></script>
+    <script src="/script.js" defer></script>
   </head>
   <body>
-    <main class="hero">
-      <div class="hero__copy">
-        <p class="eyebrow">404 / page not found</p>
-        <h1>This route does not exist.</h1>
-        <p class="hero__lede">Return to the project portfolio and its demonstrations.</p>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" id="top">
+      <a class="wordmark" href="/" aria-label="Jason Wang, portfolio home">
+        <span class="wordmark__mark" aria-hidden="true">JW</span>
+        <span class="wordmark__name">Jason Wang</span>
+      </a>
+      <nav class="site-nav" aria-label="Portfolio sections">
+        <a href="/#projects">Projects</a>
+        <a href="/#through-line">Through-line</a>
+        <a href="/#about">About</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <span class="theme-toggle__glyph" aria-hidden="true">◐</span>
+        <span class="theme-toggle__label">Theme</span>
+      </button>
+    </header>
+
+    <main class="error-page" id="main" tabindex="-1">
+      <p class="eyebrow">404 / page not found</p>
+      <h1>This route does not exist.</h1>
+      <p class="error-page__lede">
+        The address may be mistyped, or the page may have moved. The portfolio, its demonstrations and the
+        publication record are all still here.
+      </p>
+      <div class="error-page__links">
         <a class="button button--primary" href="/">Back to projects</a>
+        <a class="button button--quiet" href="/demos/morphbrain/">Open the MorphBrain demo</a>
+        <a class="button button--quiet" href="/third-party-notices.html">Sources &amp; licences</a>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__name">Jason Wang</p>
+      <p class="site-footer__note">Built as a lightweight static portfolio.</p>
+      <nav class="site-footer__links" aria-label="Site information">
+        <a href="/third-party-notices.html">Sources &amp; licences</a>
+        <a href="/">Portfolio home</a>
+      </nav>
+    </footer>
   </body>
 </html>

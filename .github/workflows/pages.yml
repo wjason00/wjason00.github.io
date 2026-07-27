@@ -29,14 +29,18 @@ jobs:
         shell: bash
         run: |
           mkdir -p _site
-          cp index.html 404.html styles.css script.js favicon.svg robots.txt sitemap.xml third-party-notices.html THIRD_PARTY_NOTICES.txt .nojekyll _site/
+          cp index.html 404.html styles.css theme.js script.js favicon.svg robots.txt sitemap.xml third-party-notices.html THIRD_PARTY_NOTICES.txt .nojekyll _site/
           cp -R assets demos licenses _site/
       - name: Verify publication boundary
         shell: bash
         run: |
           test -z "$(find _site -type f \( -name '*.modes.bin' -o -name '*.map' \) -print -quit)"
           test -z "$(find _site -type f \( -iname '*cv*.pdf' -o -iname '*resume*.pdf' \) -print -quit)"
+          test -z "$(find _site -type f \( -name '*.nii' -o -name '*.nii.gz' -o -name '*.mgz' -o -name '*.dcm' \) -print -quit)"
           test "$(du -sm _site | cut -f1)" -lt 12
+      - name: Check internal links resolve
+        shell: bash
+        run: node scripts/check-links.mjs _site
       - name: Upload static site
         uses: actions/upload-pages-artifact@v5
         with:

@@ -1,18 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' 'sha256-D9a4NFhPQ06GJ7fdtG5HdWMt8zOoStNVKx7Stybhv0A='; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
     />
     <meta
       name="description"
       content="Jason Wang studies how the developing brain takes shape through transparent computational models, atlas-grounded data and scientific software."
     />
-    <meta name="theme-color" content="#f1efe7" />
+    <meta name="author" content="Jason Wang" />
+    <meta name="theme-color" content="#f1efe7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://wjason00.github.io/" />
+    <meta property="og:site_name" content="Jason Wang" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:title" content="Jason Wang — computational developmental neuroscience" />
     <meta
       property="og:description"
@@ -21,6 +25,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wjason00.github.io/" />
     <meta property="og:image" content="https://wjason00.github.io/assets/og-portfolio.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Jason Wang's computational developmental neuroscience portfolio" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Jason Wang — computational developmental neuroscience" />
@@ -29,32 +36,42 @@
       content="Inspectable models of brain development, atlas-grounded data and related geometry systems."
     />
     <meta name="twitter:image" content="https://wjason00.github.io/assets/og-portfolio.png" />
+    <meta name="twitter:image:alt" content="Jason Wang's computational developmental neuroscience portfolio" />
     <title>Jason Wang — Computational Developmental Neuroscience</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./theme.js"></script>
     <script src="./script.js" defer></script>
+    <!--
+      Structured data is inline, so the CSP above carries its sha256 hash.
+      After editing this block, regenerate the hash with:
+        node scripts/csp-hash.mjs index.html
+      and paste the printed value into the script-src directive.
+    -->
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfilePage","url":"https://wjason00.github.io/","name":"Jason Wang — computational developmental neuroscience","inLanguage":"en-GB","mainEntity":{"@type":"Person","name":"Jason Wang","url":"https://wjason00.github.io/","jobTitle":"Neuroscience student","description":"Studies how the developing brain takes shape, using transparent computational models and atlas-grounded data.","alumniOf":{"@type":"CollegeOrUniversity","name":"University College London"},"knowsAbout":["developmental neuroscience","computational modelling","reaction-diffusion systems","signed distance fields","scientific software"],"sameAs":["https://github.com/wjason00","https://www.linkedin.com/in/-jasonwang/"]}}
+    </script>
   </head>
   <body>
-    <a class="skip-link" href="#projects">Skip to projects</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
-    <header class="site-header">
+    <header class="site-header" id="top">
       <a class="wordmark" href="#top" aria-label="Jason Wang, back to top">
         <span class="wordmark__mark" aria-hidden="true">JW</span>
-        <span>Jason Wang</span>
+        <span class="wordmark__name">Jason Wang</span>
       </a>
-      <nav class="site-nav" aria-label="Primary navigation">
+      <nav class="site-nav" aria-label="Sections of this page">
         <a href="#projects">Projects</a>
-        <a href="#evidence">Evidence</a>
         <a href="#through-line">Through-line</a>
         <a href="#about">About</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Switch colour theme">
-        <span aria-hidden="true">◐</span>
+        <span class="theme-toggle__glyph" aria-hidden="true">◐</span>
         <span class="theme-toggle__label">Theme</span>
       </button>
     </header>
 
-    <main id="top">
+    <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__copy">
           <p class="eyebrow">Computational developmental neuroscience</p>
@@ -80,7 +97,7 @@
         <a class="hero__spotlight demo-jump" href="#morphbrain-demo" data-demo-target="morphbrain-demo">
           <img
             src="./assets/morphbrain/morphbrain-world-a.webp"
-            alt="MorphBrain World A showing SHH and BMP fields beside a broad positional identity map"
+            alt=""
             width="1200"
             height="750"
             decoding="async"
@@ -90,7 +107,7 @@
           <span class="hero__spotlight-copy">
             <span class="demo-kicker">World A · real deterministic solver</span>
             <strong>Change a supported source condition and inspect what the model does.</strong>
-            <span>One click loads the bounded experiment; the atlas remains explicitly separate.</span>
+            <span class="hero__spotlight-detail">One click loads the bounded experiment; the atlas remains explicitly separate.</span>
             <span class="hero__spotlight-action">Run the experiment <span aria-hidden="true">→</span></span>
           </span>
         </a>
@@ -132,14 +149,14 @@
           </p>
         </div>
 
-        <article class="project project--brain" id="morphbrain">
+        <article class="project project--brain" id="morphbrain" aria-labelledby="morphbrain-title">
           <div class="project__copy">
             <div class="project__topline">
               <span class="project__number">01</span>
               <span class="status status--active">Active research prototype</span>
             </div>
             <p class="project__date">2026–present</p>
-            <h3>MorphBrain</h3>
+            <h3 id="morphbrain-title">MorphBrain</h3>
             <p class="project__summary">
               MorphBrain asks how an explicitly defined molecular condition changes a broad positional fate map,
               and where an honest developmental model must stop. World A solves deterministic SHH/BMP
@@ -158,9 +175,9 @@
               white-matter surfaces come from the
               <a href="https://doi.org/10.12751/g-node.qj5hs7" target="_blank" rel="noreferrer">dHCP fetal surface atlas (CC0)</a>.
             </p>
-            <div class="tag-list" role="group" aria-label="MorphBrain technologies">
-              <span>TypeScript</span><span>React</span><span>finite differences</span><span>three.js</span>
-            </div>
+            <ul class="tag-list" aria-label="MorphBrain technologies">
+              <li>TypeScript</li><li>React</li><li>finite differences</li><li>three.js</li>
+            </ul>
           </div>
 
           <div class="project__demo">
@@ -170,6 +187,7 @@
               data-demo-kind="iframe"
               data-demo-src="./demos/morphbrain/"
               data-demo-title="MorphBrain interactive demonstration"
+              tabindex="-1"
             >
               <div class="demo-poster">
                 <img
@@ -184,28 +202,40 @@
                 <div class="demo-poster__copy">
                   <span class="demo-kicker">Real application · loads on request</span>
                   <strong>Run the World A experiment</strong>
-                  <span>Set sources, run the deterministic solver, replay checkpoints, then inspect the separate atlas.</span>
+                  <span class="demo-poster__detail">Set sources, run the deterministic solver, replay checkpoints, then inspect the separate atlas.</span>
                 </div>
               </div>
+              <div class="demo-mount" id="morphbrain-demo-mount"></div>
               <div class="demo-toolbar">
-                <button class="button button--demo demo-load" type="button">Load interactive demo</button>
+                <button
+                  class="button button--demo demo-load"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="morphbrain-demo-mount"
+                >Load interactive demo</button>
                 <a class="text-link" href="./demos/morphbrain/" target="_blank" rel="noreferrer">
                   Open full screen <span aria-hidden="true">↗</span>
                 </a>
-                <span class="demo-status" role="status" aria-live="polite">Poster loaded · no GPU view active</span>
+                <p class="demo-status" role="status">Poster loaded · no GPU view active</p>
               </div>
+              <p class="demo-fallback">
+                This browser has no working WebGL context, so the solver cannot run inside the page. The poster
+                above is a real reference run, the written result is summarised beside it, and
+                <a href="./demos/morphbrain/" target="_blank" rel="noreferrer">the full-screen build</a>
+                still opens if you want to try it in another browser.
+              </p>
             </div>
           </div>
         </article>
 
-        <article class="project project--morpher" id="model-morpher">
+        <article class="project project--morpher" id="model-morpher" aria-labelledby="model-morpher-title">
           <div class="project__copy">
             <div class="project__topline">
               <span class="project__number">02</span>
               <span class="status">Desktop prototype</span>
             </div>
-            <p class="project__date">December 2025</p>
-            <h3>Model Morpher</h3>
+            <p class="project__date">January 2026</p>
+            <h3 id="model-morpher-title">Model Morpher</h3>
             <p class="project__summary">
               Model Morpher asks whether anatomical meshes with different topology can transition through a
               shared implicit representation. The Python prototype interpolates signed-distance fields and
@@ -225,9 +255,9 @@
                 View source <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div class="tag-list" role="group" aria-label="Model Morpher technologies">
-              <span>Python</span><span>PyTorch/CUDA</span><span>marching cubes</span><span>BrainGlobe</span>
-            </div>
+            <ul class="tag-list" aria-label="Model Morpher technologies">
+              <li>Python</li><li>PyTorch/CUDA</li><li>marching cubes</li><li>BrainGlobe</li>
+            </ul>
           </div>
 
           <div class="project__demo">
@@ -235,7 +265,9 @@
               <video
                 controls
                 playsinline
-                preload="metadata"
+                preload="none"
+                width="1026"
+                height="806"
                 poster="./assets/model-morpher/dentate-to-brain-poster.webp"
                 aria-describedby="model-morpher-caption"
               >
@@ -267,14 +299,14 @@
           </div>
         </article>
 
-        <article class="project project--liner" id="morphliner">
+        <article class="project project--liner" id="morphliner" aria-labelledby="morphliner-title">
           <div class="project__copy">
             <div class="project__topline">
               <span class="project__number">03</span>
               <span class="status status--active">In active development</span>
             </div>
             <p class="project__date">January 2026–present</p>
-            <h3>Morphliner</h3>
+            <h3 id="morphliner-title">Morphliner</h3>
             <p class="project__summary">
               Morphliner tests whether implicit-surface transformation can become a reliable browser-native
               authoring workflow. It arranges meshes on a timeline, computes SDF-based transitions with GPU and
@@ -299,9 +331,9 @@
                 Join the Morphliner waitlist <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <div class="tag-list" role="group" aria-label="Morphliner technologies">
-              <span>WebGPU/WGSL</span><span>React</span><span>three.js</span><span>media export</span>
-            </div>
+            <ul class="tag-list" aria-label="Morphliner technologies">
+              <li>WebGPU/WGSL</li><li>React</li><li>three.js</li><li>media export</li>
+            </ul>
           </div>
 
           <div class="project__demo">
@@ -312,7 +344,9 @@
                   loop
                   muted
                   playsinline
-                  preload="metadata"
+                  preload="none"
+                  width="1920"
+                  height="1080"
                   poster="./assets/morphliner/product-spotlight-pedestal.webp"
                   aria-describedby="morphliner-demo-caption"
                 >
@@ -394,10 +428,12 @@
     </main>
 
     <footer class="site-footer">
-      <span>Jason Wang</span>
-      <span>Built as a lightweight static portfolio.</span>
-      <a class="site-footer__legal" href="./third-party-notices.html">Sources &amp; licences</a>
-      <a href="#top">Back to top ↑</a>
+      <p class="site-footer__name">Jason Wang</p>
+      <p class="site-footer__note">Built as a lightweight static portfolio.</p>
+      <nav class="site-footer__links" aria-label="Site information">
+        <a href="./third-party-notices.html">Sources &amp; licences</a>
+        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      </nav>
     </footer>
   </body>
 </html>

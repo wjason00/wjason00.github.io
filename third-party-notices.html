@@ -1,23 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'"
     />
     <meta name="description" content="Data sources and third-party software notices for Jason Wang's project portfolio." />
+    <meta name="author" content="Jason Wang" />
+    <meta name="theme-color" content="#f1efe7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://wjason00.github.io/third-party-notices.html" />
+    <meta property="og:site_name" content="Jason Wang" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sources &amp; licences — Jason Wang" />
+    <meta property="og:description" content="Data sources and third-party software notices for Jason Wang's project portfolio." />
+    <meta property="og:url" content="https://wjason00.github.io/third-party-notices.html" />
     <title>Sources &amp; licences — Jason Wang</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./theme.js"></script>
+    <script src="./script.js" defer></script>
   </head>
   <body>
-    <main class="legal-page">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" id="top">
+      <a class="wordmark" href="./" aria-label="Jason Wang, portfolio home">
+        <span class="wordmark__mark" aria-hidden="true">JW</span>
+        <span class="wordmark__name">Jason Wang</span>
+      </a>
+      <nav class="site-nav" aria-label="Portfolio sections">
+        <a href="./#projects">Projects</a>
+        <a href="./#through-line">Through-line</a>
+        <a href="./#about">About</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <span class="theme-toggle__glyph" aria-hidden="true">◐</span>
+        <span class="theme-toggle__label">Theme</span>
+      </button>
+    </header>
+
+    <main class="legal-page" id="main" tabindex="-1">
       <a class="legal-page__back" href="./">← Back to projects</a>
       <p class="eyebrow">Publication record</p>
       <h1>Sources &amp; licences.</h1>
-      <p class="hero__lede">
+      <p class="legal-page__lede">
         The portfolio separates Jason's project work from the data, software and typefaces that make the
         demonstrations possible.
       </p>
@@ -59,10 +89,26 @@
         available under <a href="./licenses/">the licences directory</a>.
       </p>
 
+      <h2>The portfolio shell</h2>
+      <p>
+        The page you are reading loads no external fonts, scripts, analytics or CDN resources, and declares a
+        Content-Security-Policy that forbids them. Its own stylesheet and two small scripts are the entire
+        runtime; there are no third-party dependencies to disclose for the shell itself.
+      </p>
+
       <p class="boundary-note">
         Portfolio-specific writing, media and presentation are not offered under an open-source licence. Each
         third-party component remains governed by its own terms.
       </p>
     </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__name">Jason Wang</p>
+      <p class="site-footer__note">Built as a lightweight static portfolio.</p>
+      <nav class="site-footer__links" aria-label="Site information">
+        <a href="./licenses/">Licence texts</a>
+        <a href="./">Portfolio home</a>
+      </nav>
+    </footer>
   </body>
 </html>
