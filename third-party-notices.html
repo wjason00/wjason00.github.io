@@ -21,6 +21,9 @@
     <title>Sources &amp; licences — Jason Wang</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="preload" href="./assets/fonts/spectral-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/dm-mono-400.woff2" as="font" type="font/woff2" crossorigin />
     <script src="./theme.js"></script>
     <script src="./script.js" defer></script>
   </head>
@@ -81,7 +84,12 @@
       <p>
         The MorphBrain browser build includes React, three.js, React Three Fiber, Drei, Zustand and their
         transitive open-source dependencies. The geometry decoder is Google Draco, licensed under Apache-2.0.
-        Source Sans 3, DM Mono and Spectral are licensed under the SIL Open Font License 1.1.
+      </p>
+      <p>
+        Three typefaces are used site-wide and served from this domain: <strong>Source Sans 3</strong> for body
+        and interface text, <strong>Spectral</strong> for headings and the italic notes, and
+        <strong>DM Mono</strong> for labels, figures and the footer. All three are licensed under the
+        <a href="./licenses/OFL-1.1.txt">SIL Open Font License 1.1</a>.
       </p>
       <p>
         Package-level copyright notices and licence texts are preserved in the
@@ -91,9 +99,14 @@
 
       <h2>The portfolio shell</h2>
       <p>
-        The page you are reading loads no external fonts, scripts, analytics or CDN resources, and declares a
-        Content-Security-Policy that forbids them. Its own stylesheet and two small scripts are the entire
-        runtime; there are no third-party dependencies to disclose for the shell itself.
+        The page you are reading contacts no other host. There are no CDN resources, no analytics and no
+        external font services, and the Content-Security-Policy declared in its <code>&lt;head&gt;</code>
+        forbids them — fonts, styles, scripts and media may only be fetched from this domain.
+      </p>
+      <p>
+        Its own stylesheet, two small scripts and the self-hosted font files listed above are the entire
+        runtime. The fonts are the shell's only third-party dependency, and their licence is reproduced in
+        full alongside the others.
       </p>
 
       <p class="boundary-note">
