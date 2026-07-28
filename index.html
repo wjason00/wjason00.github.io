@@ -173,7 +173,7 @@
             <ul class="project__facts-list">
               <li><strong>Computed:</strong> two scalar concentration fields on a fixed coronal grid.</li>
               <li><strong>Readout:</strong> broad dorsal, intermediate and ventral positional identity.</li>
-              <li><strong>Stopping rule:</strong> field residual ≤ 10<sup>−4</sup> plus a five-step identity hold.</li>
+              <li><strong>Stopping rule:</strong> field residual at most 10<sup>−4</sup> plus a five-step identity hold.</li>
               <li><strong>Separate data view:</strong> CC0 population-average dHCP surfaces, GW21–36.</li>
             </ul>
             <p class="boundary-note">
@@ -250,7 +250,7 @@
               reconstructs each intermediate surface with marching cubes.
             </p>
             <ul class="project__facts-list">
-              <li><strong>Pipeline:</strong> mesh repair → SDF sampling → interpolation → isosurface extraction.</li>
+              <li><strong>Pipeline:</strong> mesh repair › SDF sampling › interpolation › isosurface extraction.</li>
               <li><strong>Compute:</strong> CPU and conditional PyTorch/CUDA paths.</li>
               <li><strong>Recorded example:</strong> Allen Mouse CCF structures selected through BrainGlobe.</li>
             </ul>
@@ -292,7 +292,7 @@
               </div>
               <figcaption id="model-morpher-caption">
                 <span class="demo-kicker">Recorded desktop output · 17 seconds</span>
-                Dentate gyrus (DG) structure → root atlas mesh, recorded in the desktop prototype.
+                Dentate gyrus (DG) structure morphed to root atlas mesh, recorded in the desktop prototype.
                 <span class="source-note" id="model-morpher-sources">
                   Source mesh: Allen Mouse Brain Common Coordinate Framework, distributed here through
                   BrainGlobe as <code>allen_mouse_25um</code> v1.2. Image/data credit: Allen Institute.
