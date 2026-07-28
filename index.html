@@ -83,25 +83,6 @@
 
     <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
-        <!--
-          Cortical folding backdrop. Sixteen registered dHCP atlas timepoints
-          (GW21-36) as ONE greyscale WebP sprite sheet used as a CSS mask, so
-          the tint comes from var(--brain) and re-themes for free.
-
-          Zero JS: the step animation and its full stop under
-          prefers-reduced-motion are both CSS, so it cannot fail open. Only
-          shown at >=981px and >=720px tall, where the hero grid has a genuine
-          empty field; narrow and short viewports never fetch the asset.
-
-          Regenerate with scripts/atlas-fold/ (see the README there).
-        -->
-        <figure class="hero__fold">
-          <span class="hero__fold-frames" aria-hidden="true"></span>
-          <figcaption class="hero__fold-caption">
-            Observed · dHCP fetal surface atlas, GW21–36 · population template, not model output
-          </figcaption>
-        </figure>
-
         <div class="hero__copy">
           <p class="eyebrow">Computational developmental neuroscience</p>
           <h1 id="hero-title">How does the developing brain <em>take shape</em>?</h1>

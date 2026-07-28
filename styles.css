@@ -500,18 +500,7 @@ main, .site-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto;
   min-height: calc(100svh - var(--header-h));
   padding: clamp(56px, 8vh, 104px) var(--inset) 20px;
   border-bottom: 1px solid var(--rule-strong);
-  /* Contains .hero__fold's z-index: -1 so the backdrop sits under the hero
-     copy but still above the body gradient. Without this it would fall
-     behind the page background and vanish. */
-  isolation: isolate;
 }
-
-/* ----------------------------------------------------- cortical fold -- */
-/* Hidden by default and only switched on where it is both affordable and
-   useful — see the block near the responsive rules below. Declaring the
-   mask there rather than here means narrow/short viewports never fetch
-   the sheet at all. */
-.hero__fold { display: none; }
 
 .hero__copy { align-self: center; max-width: 760px; }
 
@@ -708,116 +697,6 @@ h1 em {
     min-height: clamp(300px, 36vh, 430px);
   }
   .hero__facts { grid-column: 1 / -1; grid-row: 5; }
-}
-
-/* ------------------------------------------------- cortical fold backdrop -- */
-/*
-  Sixteen dHCP fetal atlas timepoints (GW21 smooth -> GW36 gyrified) in one
-  1600x1128 greyscale WebP, stepped as a 4x4 CSS mask. 64.9 KiB, no JS.
-
-  Three deliberate constraints:
-
-  1. LUMINANCE, NOT ALPHA. `mask-mode` defaults to `match-source`, which for a
-     raster means the alpha channel — a greyscale sheet with no alpha would
-     mask to a solid block. WebP stores alpha near-losslessly (379 KiB vs
-     65 KiB for the same sheet), so the mask rides in luminance and the mode
-     is set explicitly. Measured in-browser: luminance masking maps the sRGB
-     value straight to coverage (v/255, error <=1/255) with no linearisation,
-     so the sheet needs no gamma pre-compensation.
-
-  2. GATED, SO IT CANNOT FAIL OPEN. A browser with mask-image but no
-     mask-mode would paint a solid tinted rectangle over the hero copy. The
-     @supports test means such a browser gets no backdrop at all.
-
-  3. ONLY WHERE THERE IS ROOM. At >=981px the hero grid puts the lede and
-     buttons in column 1 rows 3-4 with row 4 as minmax(0, 1fr) and both items
-     align-self: start — so there is real empty field under them. Narrower or
-     shorter than this and there is not, so the asset is never requested.
-*/
-@media (min-width: 981px) and (min-height: 720px) {
-  @supports ((-webkit-mask-image: url("a.webp")) or (mask-image: url("a.webp"))) and
-            ((mask-mode: luminance) or (-webkit-mask-source-type: luminance)) {
-    .hero__fold {
-      display: block;
-      position: relative;
-      z-index: -1;
-      grid-column: 1;
-      grid-row: 3 / 5;
-      margin: 0;
-      /* Children are absolutely positioned, so this contributes no in-flow
-         height and cannot resize the rows. Guarantees zero layout shift. */
-      min-height: 0;
-      pointer-events: none;
-    }
-
-    .hero__fold-frames {
-      position: absolute;
-      left: 0;
-      bottom: 26px;
-      /* Sized from ONE length with the cell's own ratio, so each sprite cell
-         lands undistorted. Fitting a box of arbitrary shape instead would
-         stretch the brain. */
-      width: clamp(300px, 30vw, 500px);
-      aspect-ratio: 400 / 282;
-      /* Ceiling, measured — not guessed. Worst case is --faint text sitting
-         on the densest fold pixel. The base here is NOT --paper: the body's
-         teal radial already tints the hero to ~rgb(227,231,223), and against
-         that real base --faint reads 4.55 at 0.13 and 4.44 at 0.15. 0.12
-         measures 4.64 light / 5.09 dark. Raising this re-opens a WCAG AA
-         failure, so re-measure before touching it. */
-      opacity: 0.12;
-      background-color: var(--brain);
-      -webkit-mask-image: url("./assets/atlas/atlas-fold.webp");
-      mask-image: url("./assets/atlas/atlas-fold.webp");
-      -webkit-mask-size: 400% 400%;
-      mask-size: 400% 400%;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-position: 0% 0%;
-      mask-position: 0% 0%;
-      -webkit-mask-source-type: luminance;
-      mask-mode: luminance;
-      animation: hero-fold 28s step-end infinite;
-    }
-
-    .hero__fold-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      max-width: min(100%, 520px);
-      color: var(--faint);
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      pointer-events: auto;
-    }
-  }
-}
-
-/* Steps through the sheet cell by cell — no tween. reference-series.json
-   records the correspondence as "registered-template-location-not-material-
-   particle", so interpolating between weeks would depict tissue motion the
-   dataset explicitly disclaims. Sixteen real timepoints, then a dwell on
-   GW36 so the hero is still most of the time. */
-@keyframes hero-fold {
-  0%       { -webkit-mask-position: 0% 0%;             mask-position: 0% 0%; }             /* GW21 */
-  4.375%   { -webkit-mask-position: 33.333% 0%;        mask-position: 33.333% 0%; }        /* GW22 */
-  8.75%    { -webkit-mask-position: 66.667% 0%;        mask-position: 66.667% 0%; }        /* GW23 */
-  13.125%  { -webkit-mask-position: 100% 0%;           mask-position: 100% 0%; }           /* GW24 */
-  17.5%    { -webkit-mask-position: 0% 33.333%;        mask-position: 0% 33.333%; }        /* GW25 */
-  21.875%  { -webkit-mask-position: 33.333% 33.333%;   mask-position: 33.333% 33.333%; }   /* GW26 */
-  26.25%   { -webkit-mask-position: 66.667% 33.333%;   mask-position: 66.667% 33.333%; }   /* GW27 */
-  30.625%  { -webkit-mask-position: 100% 33.333%;      mask-position: 100% 33.333%; }      /* GW28 */
-  35%      { -webkit-mask-position: 0% 66.667%;        mask-position: 0% 66.667%; }        /* GW29 */
-  39.375%  { -webkit-mask-position: 33.333% 66.667%;   mask-position: 33.333% 66.667%; }   /* GW30 */
-  43.75%   { -webkit-mask-position: 66.667% 66.667%;   mask-position: 66.667% 66.667%; }   /* GW31 */
-  48.125%  { -webkit-mask-position: 100% 66.667%;      mask-position: 100% 66.667%; }      /* GW32 */
-  52.5%    { -webkit-mask-position: 0% 100%;           mask-position: 0% 100%; }           /* GW33 */
-  56.875%  { -webkit-mask-position: 33.333% 100%;      mask-position: 33.333% 100%; }      /* GW34 */
-  61.25%   { -webkit-mask-position: 66.667% 100%;      mask-position: 66.667% 100%; }      /* GW35 */
-  65.625%  { -webkit-mask-position: 100% 100%;         mask-position: 100% 100%; }         /* GW36 */
-  100%     { -webkit-mask-position: 100% 100%;         mask-position: 100% 100%; }         /* dwell */
 }
 
 /* -------------------------------------------------------------- evidence -- */
@@ -1310,15 +1189,6 @@ h1 em {
     .button:hover .ico--ne, .text-link:hover .ico--ne, .about__links a:hover .ico--ne { transform: translateY(0.02em); }
     .button:hover .ico--e { transform: none; }
   }
-  /* A full stop, not a fast-forward. The blanket animation-duration override
-     above would still leave an animation running; animation-name is what
-     actually removes it. Parks on GW36 — the last real timepoint and the
-     most legible frame — so the backdrop stays a still image. */
-  .hero__fold-frames {
-    animation: none !important;
-    -webkit-mask-position: 100% 100% !important;
-    mask-position: 100% 100% !important;
-  }
 }
 
 /* Higher-contrast environments: drop translucency and lean on solid rules.
@@ -1346,9 +1216,6 @@ h1 em {
   }
   .hero__spotlight-veil { background: linear-gradient(180deg, rgba(4, 8, 7, 0.35) 0%, rgba(4, 8, 7, 0.9) 45%, rgba(4, 8, 7, 0.98) 100%); }
   .demo-poster__veil { background: linear-gradient(180deg, rgba(5, 10, 8, 0.35) 0%, rgba(5, 10, 8, 0.9) 45%, rgba(5, 10, 8, 0.98) 100%); }
-  /* This mode exists to remove tinted washes behind text, and the fold
-     backdrop is one. Dropped entirely rather than dimmed. */
-  .hero__fold { display: none !important; }
 }
 
 @media print {
@@ -1357,7 +1224,7 @@ h1 em {
   main, .site-footer { width: 100%; }
   .hero { min-height: 0; grid-template-columns: 1fr; padding: 30px 0; }
   .hero__copy { display: block; }
-  .hero__spotlight, .hero__facts, .hero__fold { display: none !important; }
+  .hero__spotlight, .hero__facts { display: none; }
   .evidence-strip { grid-template-columns: 1fr; padding: 25px 0; background: #fff; }
   .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; padding: 35px 0; break-inside: avoid; }
   .through-line, .about { padding: 30px 0; break-inside: avoid; }
