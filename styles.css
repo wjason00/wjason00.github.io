@@ -151,7 +151,9 @@
   --s7: 48px;
   --s8: 64px;
   --s9: 96px;
-  --inset: clamp(20px, 5vw, 70px);
+  /* The horizontal shell: three containers use this pair, nothing else does. */
+  --measure: 1320px;
+  --gutter: clamp(20px, 4vw, 56px);
   /* Asymmetric bands: a section rule hugs the heading it introduces and sits
      far from the content it closes. Equidistant rules read as a stack of
      boxes; a 1:2.4 ratio reads as print. */
@@ -335,12 +337,18 @@ html:not(.js) .video-controls { display: none !important; }
 }
 .skip-link:focus { transform: translateY(0); }
 
+/* --------------------------------------------------------------- measure --
+   The only horizontal constraint on the site. Three containers held it three
+   ways and six sections re-inset on top, so the wordmark and footer sat 70px
+   outside the h1 and every section rule overshot its own content. One edge. */
+.site-header__inner, main, .site-footer { width: min(var(--measure), calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+
 /* ---------------------------------------------------------------- header -- */
 
-/* Full-bleed bar, constrained contents. The bar used to carry the 1320px clamp
+/* Full-bleed bar, constrained contents. The bar used to carry the width clamp
    itself, so its fill and bottom rule stopped short of the viewport edges and it
    read as a floating rectangle rather than as a header. The clamp now lives on
-   __inner; only the material spans the full width. */
+   __inner via the shared measure; only the material spans the full width. */
 .site-header {
   position: sticky;
   z-index: 30;
@@ -361,7 +369,6 @@ html:not(.js) .video-controls { display: none !important; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: var(--s3);
-  width: min(1320px, calc(100% - 40px));
   min-height: var(--header-h);
   margin: 0 auto;
   padding: 10px 0;
@@ -488,8 +495,6 @@ html:not(.js) .video-controls { display: none !important; }
   white-space: nowrap;
 }
 
-main, .site-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; }
-
 /* ------------------------------------------------------------------ hero -- */
 
 .hero {
@@ -498,7 +503,7 @@ main, .site-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto;
   grid-template-rows: minmax(0, 1fr) auto;
   gap: clamp(28px, 3vw, 44px) clamp(44px, 5vw, 82px);
   min-height: calc(100svh - var(--header-h));
-  padding: clamp(56px, 8vh, 104px) var(--inset) 20px;
+  padding-block: clamp(56px, 8vh, 104px) 20px;
   border-bottom: 1px solid var(--rule-strong);
 }
 
@@ -706,7 +711,7 @@ h1 em {
   grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.8fr) auto;
   gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  padding: var(--s7) var(--inset) calc(var(--s7) + var(--s2));
+  padding-block: var(--s7) calc(var(--s7) + var(--s2));
   /* The old mix of a *soft* token into paper computed to 1.04:1 — not a band,
      just paper. Mixing the decorative token gives a real one. */
   background: color-mix(in srgb, var(--brain) 13%, var(--paper));
@@ -757,11 +762,10 @@ h1 em {
 
 .projects { padding: var(--s9) 0 0; border-top: 2px solid var(--ink); }
 /* Centred display type aligned to nothing was the strongest template tell on
-   the page; everything else starts at the same inset. */
+   the page; everything else starts at the same edge. */
 .section-heading {
   max-width: none;
   margin: 0 0 clamp(56px, 6vw, 96px);
-  padding-inline: var(--inset);
   text-align: left;
 }
 .section-heading h2, .about h2 {
@@ -791,7 +795,6 @@ h1 em {
   gap: clamp(44px, 6vw, 94px);
   align-items: start;
   padding-block: var(--band-open) var(--band-close);
-  padding-inline: var(--inset);
   border-top: 1px solid var(--rule);
 }
 .project:first-of-type { border-top-color: var(--rule-strong); }
@@ -989,10 +992,9 @@ h1 em {
 
 .through-line {
   padding-block: var(--band-open) var(--band-close);
-  padding-inline: var(--inset);
   border-top: 1px solid var(--rule-strong);
 }
-.section-heading--compact { max-width: 900px; margin-bottom: var(--s8); padding-inline: 0; }
+.section-heading--compact { max-width: 900px; margin-bottom: var(--s8); }
 /* Rule-separated columns rather than panels. At 1.09:1 in dark mode the panel
    fill was invisible and the rounded container read as a UI widget dropped
    into a print layout; hairlines are the language this page already speaks. */
@@ -1038,7 +1040,6 @@ h1 em {
   gap: clamp(40px, 5vw, 72px);
   align-items: start;
   padding-block: var(--band-open) var(--band-close);
-  padding-inline: var(--inset);
   border-top: 1px solid var(--rule-strong);
 }
 /* Was six lines of 72px type in a 440px column, against a 171px copy block
@@ -1129,8 +1130,6 @@ h1 em {
 
 @media (max-width: 650px) {
   :root { --header-h: 60px; }
-  /* The bar itself stays full-bleed at every width; only its contents narrow. */
-  .site-header__inner, main, .site-footer { width: min(100% - 24px, 1320px); }
   .site-header__inner { gap: 10px; }
   .wordmark__name, .theme-toggle__label { display: none; }
   .theme-toggle { padding: 7px 10px; }
@@ -1138,7 +1137,7 @@ h1 em {
      had zero headroom at 390px. */
   .site-nav { gap: var(--s3); }
   .site-nav a { font-size: 0.62rem; letter-spacing: 0.04em; }
-  .hero { min-height: 0; gap: var(--s6); padding: var(--s7) 4px var(--s4); }
+  .hero { min-height: 0; gap: var(--s6); padding-block: var(--s7) var(--s4); }
   h1 { font-size: clamp(2.4rem, 11.5vw, 4rem); letter-spacing: -0.012em; }
   .hero__spotlight { min-height: 340px; border-radius: 16px; }
   .hero__spotlight::before { top: 14px; left: 14px; }
@@ -1148,16 +1147,15 @@ h1 em {
   .hero__facts div { padding: var(--s3) 0 0; border-right: 0; border-bottom: 1px solid var(--rule); }
   .hero__facts div:last-child { border-bottom: 0; }
   .hero__facts dd { font-size: 0.88rem; }
-  .evidence-strip { grid-template-columns: 1fr; padding: var(--s7) 8px; }
+  .evidence-strip { grid-template-columns: 1fr; padding-block: var(--s7); }
   .evidence-strip__list { grid-column: auto; grid-row: auto; grid-template-columns: 1fr 1fr; }
   .evidence-strip__list li { border-bottom: 1px solid var(--rule); }
   .evidence-strip__list li:nth-child(2) { border-right: 0; }
   .evidence-strip__list li:nth-child(n+3) { border-bottom: 0; }
   .evidence-strip__cv { justify-self: start; }
   .projects { padding-top: var(--s8); }
-  .section-heading { margin-bottom: var(--s7); padding-inline: 8px; }
-  .section-heading--compact { padding-inline: 0; }
-  .project { gap: var(--s6); padding-block: var(--s6) var(--s8); padding-inline: 8px; }
+  .section-heading { margin-bottom: var(--s7); }
+  .project { gap: var(--s6); padding-block: var(--s6) var(--s8); }
   .project__topline { align-items: flex-start; }
   .project h3 { font-size: 2.4rem; letter-spacing: -0.012em; }
   .demo-poster__copy { right: 18px; bottom: 18px; left: 18px; }
@@ -1167,10 +1165,9 @@ h1 em {
   .demo-mount iframe { min-height: 560px; }
   .video-controls { grid-template-columns: auto 1fr; }
   .video-time { grid-column: 1 / -1; }
-  .through-line, .about { padding-block: var(--s6) var(--s8); padding-inline: 8px; }
+  .through-line, .about { padding-block: var(--s6) var(--s8); }
   .site-footer { gap: var(--s1) var(--s5); padding: var(--s3) 0; }
   .site-footer__links { margin-left: 0; width: 100%; justify-content: space-between; }
-  .legal-page, .error-page { padding-inline: 8px; }
 }
 
 /* Landscape phones: the hero must not lock a full viewport of empty space. */
