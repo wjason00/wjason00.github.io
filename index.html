@@ -40,6 +40,14 @@
     <title>Jason Wang — Computational Developmental Neuroscience</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <!--
+      Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
+      is required even same-origin — fonts are always fetched in CORS mode, and a
+      preload without it lands in a separate cache partition and downloads twice.
+    -->
+    <link rel="preload" href="./assets/fonts/spectral-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/dm-mono-400.woff2" as="font" type="font/woff2" crossorigin />
     <script src="./theme.js"></script>
     <script src="./script.js" defer></script>
     <!--
@@ -75,7 +83,7 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__copy">
           <p class="eyebrow">Computational developmental neuroscience</p>
-          <h1 id="hero-title">How does the developing brain take shape?</h1>
+          <h1 id="hero-title">How does the developing brain <em>take shape</em>?</h1>
           <p class="hero__lede">
             I study how molecular signals and physical constraints pattern developing tissue, then build
             inspectable models that keep computed mechanisms, authored assumptions and atlas data distinct.
@@ -89,7 +97,7 @@
               href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio"
               aria-label="Request Jason Wang's CV by email"
             >
-              Request my CV <span aria-hidden="true">↗</span>
+              Request my CV <span class="ico ico--ne" aria-hidden="true"></span>
             </a>
           </div>
         </div>
@@ -108,7 +116,7 @@
             <span class="demo-kicker">World A · real deterministic solver</span>
             <strong>Change a supported source condition and inspect what the model does.</strong>
             <span class="hero__spotlight-detail">One click loads the bounded experiment; the atlas remains explicitly separate.</span>
-            <span class="hero__spotlight-action">Run the experiment <span aria-hidden="true">→</span></span>
+            <span class="hero__spotlight-action">Run the experiment <span class="ico ico--e" aria-hidden="true"></span></span>
           </span>
         </a>
 
@@ -135,7 +143,7 @@
           href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio"
           aria-label="Request Jason Wang's CV by email"
         >
-          CV available on request <span aria-hidden="true">↗</span>
+          CV available on request <span class="ico ico--ne" aria-hidden="true"></span>
         </a>
       </section>
 
@@ -165,7 +173,7 @@
             <ul class="project__facts-list">
               <li><strong>Computed:</strong> two scalar concentration fields on a fixed coronal grid.</li>
               <li><strong>Readout:</strong> broad dorsal, intermediate and ventral positional identity.</li>
-              <li><strong>Stopping rule:</strong> field residual ≤ 10⁻⁴ plus a five-step identity hold.</li>
+              <li><strong>Stopping rule:</strong> field residual ≤ 10<sup>−4</sup> plus a five-step identity hold.</li>
               <li><strong>Separate data view:</strong> CC0 population-average dHCP surfaces, GW21–36.</li>
             </ul>
             <p class="boundary-note">
@@ -214,7 +222,7 @@
                   aria-controls="morphbrain-demo-mount"
                 >Load interactive demo</button>
                 <a class="text-link" href="./demos/morphbrain/" target="_blank" rel="noreferrer">
-                  Open full screen <span aria-hidden="true">↗</span>
+                  Open full screen <span class="ico ico--ne" aria-hidden="true"></span>
                 </a>
                 <p class="demo-status" role="status">Poster loaded · no GPU view active</p>
               </div>
@@ -252,7 +260,7 @@
             </p>
             <div class="project__links">
               <a class="button button--quiet" href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">
-                View source <span aria-hidden="true">↗</span>
+                View source <span class="ico ico--ne" aria-hidden="true"></span>
               </a>
             </div>
             <ul class="tag-list" aria-label="Model Morpher technologies">
@@ -328,7 +336,7 @@
                 target="_blank"
                 rel="noreferrer"
               >
-                Join the Morphliner waitlist <span aria-hidden="true">↗</span>
+                Join the Morphliner waitlist <span class="ico ico--ne" aria-hidden="true"></span>
               </a>
             </div>
             <ul class="tag-list" aria-label="Morphliner technologies">
@@ -371,7 +379,7 @@
                   href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=demo_cta&amp;utm_campaign=morphliner_waitlist"
                   target="_blank"
                   rel="noreferrer"
-                >Join the waitlist <span aria-hidden="true">↗</span></a>
+                >Join the waitlist <span class="ico ico--ne" aria-hidden="true"></span></a>
               </figcaption>
             </figure>
           </div>
@@ -415,13 +423,13 @@
             questions with transparent, reproducible models and learn from experimental evidence.
           </p>
           <div class="about__links">
-            <a href="mailto:jason.wang.25@ucl.ac.uk">Email <span aria-hidden="true">↗</span></a>
+            <a href="mailto:jason.wang.25@ucl.ac.uk">Email <span class="ico ico--ne" aria-hidden="true"></span></a>
             <a
               href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio"
               aria-label="Request Jason Wang's CV by email"
-            >Request CV <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            >Request CV <span class="ico ico--ne" aria-hidden="true"></span></a>
+            <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub <span class="ico ico--ne" aria-hidden="true"></span></a>
+            <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn <span class="ico ico--ne" aria-hidden="true"></span></a>
           </div>
         </div>
       </section>
@@ -432,7 +440,7 @@
       <p class="site-footer__note">Built as a lightweight static portfolio.</p>
       <nav class="site-footer__links" aria-label="Site information">
         <a href="./third-party-notices.html">Sources &amp; licences</a>
-        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        <a href="#top">Back to top <span class="ico ico--n" aria-hidden="true"></span></a>
       </nav>
     </footer>
   </body>

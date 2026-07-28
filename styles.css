@@ -1,84 +1,216 @@
 /* ==========================================================================
    Jason Wang — portfolio
-   Editorial/print design language: warm paper, tight display type, mono
-   eyebrows, hairline rules, one accent per project, generous vertical rhythm.
+   Editorial/print design language: warm paper, serif display, mono eyebrows,
+   hairline rules, one accent per project, asymmetric vertical rhythm.
+
+   Three voices, no more:
+     --display  Spectral 600         headings, figures
+     --sans     Source Sans 3 400/600  body and UI
+     --mono     DM Mono 400/500      eyebrows, numbers, labels, footer
+   Spectral 400 italic is the "caveat voice" — boundary notes and the one
+   emphasised phrase in the hero.
 
    Colour tokens come in pairs: --brain / --morpher / --liner are *decorative*
-   (rules, dots, accents) while --accent-text is the only teal cleared for
-   body-size text. Decorative teal does not reach 4.5:1 on paper.
+   (rules, dots, accents) while --brain-ink / --morpher-ink / --liner-ink are
+   the only accent values cleared for body-size text. Each .project scopes
+   --accent and --accent-ink so section-level colour needs no new selectors.
    ========================================================================== */
+
+/* ----------------------------------------------------------------- fonts --
+   Self-hosted from @fontsource (the same OFL-1.1 packages the MorphBrain
+   build uses; see THIRD_PARTY_NOTICES.txt and licenses/OFL-1.1.txt). The CSP
+   is font-src 'self', so these load and no CDN is contacted at any point.
+   Only the weights that actually exist are declared — see the weight note in
+   the type scale below.
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/source-sans-3-400.woff2") format("woff2"),
+       url("./assets/fonts/source-sans-3-400.woff") format("woff");
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./assets/fonts/source-sans-3-600.woff2") format("woff2"),
+       url("./assets/fonts/source-sans-3-600.woff") format("woff");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/spectral-400.woff2") format("woff2"),
+       url("./assets/fonts/spectral-400.woff") format("woff");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./assets/fonts/spectral-600.woff2") format("woff2"),
+       url("./assets/fonts/spectral-600.woff") format("woff");
+}
+@font-face {
+  font-family: "Spectral";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/spectral-400-italic.woff2") format("woff2"),
+       url("./assets/fonts/spectral-400-italic.woff") format("woff");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/dm-mono-400.woff2") format("woff2"),
+       url("./assets/fonts/dm-mono-400.woff") format("woff");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./assets/fonts/dm-mono-500.woff2") format("woff2"),
+       url("./assets/fonts/dm-mono-500.woff") format("woff");
+}
+
+/* Metric-matched stand-ins so the swap from fallback to webfont barely moves
+   the line box. Numbers derived from the shipped binaries: Spectral x-height
+   450/1000, ascender 1059, descender -463; Source Sans 3 486/1024/-400. */
+@font-face {
+  font-family: "Spectral Fallback";
+  src: local("Georgia"), local("Times New Roman"), local("Times");
+  size-adjust: 93%;
+  ascent-override: 106%;
+  descent-override: 46%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Sans Fallback";
+  src: local("Segoe UI"), local("Helvetica Neue"), local("Arial");
+  size-adjust: 97%;
+  ascent-override: 102%;
+  descent-override: 40%;
+  line-gap-override: 0%;
+}
 
 :root {
   color-scheme: light;
   --paper: #f1efe7;
   --paper-soft: #f8f6ef;
-  --panel: rgba(255, 255, 251, 0.78);
+  --panel: rgba(255, 255, 251, 0.86);
+  --poster: #1b2420;
   --ink: #17201d;
-  --muted: #5c6660;
-  --faint: #5f6a63;
+  --muted: #4e5854;
+  --faint: #565f5a;
   --rule: rgba(23, 32, 29, 0.16);
-  --rule-strong: rgba(23, 32, 29, 0.3);
+  --rule-strong: rgba(23, 32, 29, 0.34);
   --brain: #327e78;
   --brain-soft: #dceae6;
-  --accent-text: #2d726d;
+  --brain-ink: #265f5b;
   --morpher: #b35334;
   --morpher-soft: #f0dfd5;
+  --morpher-ink: #95421f;
   --liner: #6a56b3;
   --liner-soft: #e4dff5;
+  --liner-ink: #5a45a4;
+  /* Page-level default accent; each .project overrides both below. */
+  --accent: var(--brain);
+  --accent-ink: var(--brain-ink);
   --focus: #176d87;
   --focus-contrast: #ffffff;
   --shadow: 0 22px 55px rgba(38, 45, 42, 0.1);
   --radius: 18px;
-  --header-h: 68px;
-  --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
-  --sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --header-h: 76px;
+
+  /* Type. Weight note: only 400/600 exist for Source Sans 3 and Spectral, and
+     only 400/500 for DM Mono. font-synthesis-weight is off below, so any other
+     value would silently render at 400 — never introduce one. */
+  --mono: "DM Mono", ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+  --sans: "Source Sans 3", "Sans Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Spectral", "Spectral Fallback", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  /* One alias, so the whole display column can revert to sans in a single
+     line if the serif ever needs pulling. */
+  --display: var(--serif);
+
+  /* Spacing. Real jumps between steps, so "tight", "group" and "break" read as
+     three different distances rather than a continuum of near-equal gaps. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --s9: 96px;
+  --inset: clamp(20px, 5vw, 70px);
+  /* Asymmetric bands: a section rule hugs the heading it introduces and sits
+     far from the content it closes. Equidistant rules read as a stack of
+     boxes; a 1:2.4 ratio reads as print. */
+  --band-open: clamp(40px, 4.5vh, 64px);
+  --band-close: clamp(88px, 11vh, 152px);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --paper: #111614;
-  --paper-soft: #171d1a;
-  --panel: rgba(25, 32, 29, 0.86);
+  --paper: #0e1613;
+  --paper-soft: #141f1b;
+  --panel: #1a2723;
+  --poster: #121a17;
   --ink: #edf1ed;
   --muted: #b6c0b9;
-  --faint: #9aa69e;
-  --rule: rgba(232, 240, 235, 0.14);
-  --rule-strong: rgba(232, 240, 235, 0.28);
+  --faint: #98a49c;
+  --rule: rgba(232, 240, 235, 0.2);
+  --rule-strong: rgba(232, 240, 235, 0.34);
   --brain: #73c5bb;
   --brain-soft: #173b38;
-  --accent-text: #7fd0c6;
+  --brain-ink: #7fd0c6;
   --morpher: #e98c68;
   --morpher-soft: #49291f;
+  --morpher-ink: #f0a184;
   --liner: #b4a5f5;
   --liner-soft: #30275a;
+  --liner-ink: #c3b7f7;
   --focus: #78d5e8;
   --focus-contrast: #06131a;
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
 /* Same palette for visitors who never touch the toggle. Duplicated rather
-   than using light-dark(), which would silently fail on older browsers. */
+   than using light-dark(), which would silently fail on older browsers.
+   Both copies must be edited together. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --paper: #111614;
-    --paper-soft: #171d1a;
-    --panel: rgba(25, 32, 29, 0.86);
+    --paper: #0e1613;
+    --paper-soft: #141f1b;
+    --panel: #1a2723;
+    --poster: #121a17;
     --ink: #edf1ed;
     --muted: #b6c0b9;
-    --faint: #9aa69e;
-    --rule: rgba(232, 240, 235, 0.14);
-    --rule-strong: rgba(232, 240, 235, 0.28);
+    --faint: #98a49c;
+    --rule: rgba(232, 240, 235, 0.2);
+    --rule-strong: rgba(232, 240, 235, 0.34);
     --brain: #73c5bb;
     --brain-soft: #173b38;
-    --accent-text: #7fd0c6;
+    --brain-ink: #7fd0c6;
     --morpher: #e98c68;
     --morpher-soft: #49291f;
+    --morpher-ink: #f0a184;
     --liner: #b4a5f5;
     --liner-soft: #30275a;
+    --liner-ink: #c3b7f7;
     --focus: #78d5e8;
     --focus-contrast: #06131a;
-    --shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
   }
 }
 
@@ -92,14 +224,20 @@ body {
     radial-gradient(circle at 88% 4%, color-mix(in srgb, var(--brain) 13%, transparent), transparent 30%),
     var(--paper);
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 16.5px;
   line-height: 1.55;
+  /* No face above 600 ships, so a faux-bold could only ever be a rendering
+     lie about a weight that does not exist. */
+  font-synthesis-weight: none;
+  font-synthesis-style: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 img, video, iframe { display: block; max-width: 100%; }
 button, input { font: inherit; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-a:hover { text-decoration-color: var(--accent-text); }
+a:hover { text-decoration-color: var(--accent-ink); }
 
 /* Two-tone ring so focus stays visible over paper, panels and dark posters. */
 :focus-visible {
@@ -127,6 +265,61 @@ html:not(.js) .theme-toggle,
 html:not(.js) .demo-load,
 html:not(.js) .video-controls { display: none !important; }
 
+/* ------------------------------------------------------------------ icons --
+   The latin subsets shipped here contain no arrow glyphs and no U+25D0, so
+   every ↗ / → / ↑ / ◐ would fall back mid-word to a system symbol font at a
+   different weight and optical size — visibly bolted on, right next to the
+   text it belongs to. Drawing them instead keeps them in currentColor, at the
+   surrounding text's optical size, in both themes, with no font dependency.
+
+   Base is a two-border chevron. Where masking is supported (everything since
+   ~2016) it is replaced by a real stemmed arrow: a data: URI used as a mask,
+   so the paint is still currentColor. The CSP allows this — img-src is
+   'self' data:, and no network request is made either way.
+   -------------------------------------------------------------------------- */
+
+.ico {
+  flex: none;
+  align-self: center;
+  width: 0.46em;
+  height: 0.46em;
+  margin-left: 0.5em;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transition: transform 180ms ease;
+}
+.ico--ne { transform: translateY(0.06em); }
+.ico--e { transform: translateY(0.04em) rotate(45deg); }
+.ico--n { transform: translateY(0.1em) rotate(-45deg); }
+
+@supports (mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000)) {
+  .ico {
+    width: 0.72em;
+    height: 0.72em;
+    margin-left: 0.34em;
+    background: currentColor;
+    border: 0;
+    -webkit-mask: var(--ico) center / contain no-repeat;
+    mask: var(--ico) center / contain no-repeat;
+  }
+  .ico--ne {
+    --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.2 11.8 11.6 4.4M5.6 4.4h6v6' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    transform: translateY(0.02em);
+  }
+  .ico--e {
+    --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.6 8h10.4M9.2 4.2 13 8l-3.8 3.8' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    transform: none;
+  }
+  .ico--n {
+    --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 13.4V3M4.2 6.8 8 3l3.8 3.8' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    transform: none;
+  }
+  .button:hover .ico--ne,
+  .text-link:hover .ico--ne,
+  .about__links a:hover .ico--ne { transform: translateY(0.02em) translate(1.5px, -1.5px); }
+  .button:hover .ico--e { transform: translateX(2px); }
+}
+
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -136,7 +329,7 @@ html:not(.js) .video-controls { display: none !important; }
   color: var(--paper);
   background: var(--ink);
   border-radius: 8px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   transform: translateY(-160%);
 }
@@ -151,78 +344,141 @@ html:not(.js) .video-controls { display: none !important; }
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 12px;
+  gap: var(--s3);
   width: min(1320px, calc(100% - 40px));
   min-height: var(--header-h);
   margin: 0 auto;
-  padding: 8px 0;
-  background: color-mix(in srgb, var(--paper) 87%, transparent);
+  padding: 10px 0;
+  /* --paper-soft is a distinct plane from --paper in both themes; the old
+     fill was the page colour, which is why the bar had no material and the
+     blur behind it was invisible. saturate() keeps the blur legible when the
+     hero's teal gradient scrolls underneath. */
+  background: color-mix(in srgb, var(--paper-soft) 84%, transparent);
   border-bottom: 1px solid var(--rule-strong);
-  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--paper-soft) 60%, transparent);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
 }
 /* Without blur support the translucent bar would let content read through. */
 @supports not (backdrop-filter: blur(4px)) {
-  .site-header { background: var(--paper); }
+  .site-header { background: var(--paper-soft); }
 }
 
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   width: fit-content;
   min-height: 44px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
   text-decoration: none;
 }
+/* A hairline ring around two grey letters reads as a form control. A filled
+   disc reads as a mark. */
 .wordmark__mark {
   display: grid;
   flex: none;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--rule-strong);
+  width: 32px;
+  height: 32px;
+  color: var(--paper);
+  background: var(--ink);
   border-radius: 50%;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   font-weight: 500;
+  letter-spacing: 0.04em;
+  text-indent: 0.04em;
+  transition: background 180ms ease;
 }
+.wordmark:hover .wordmark__mark { background: var(--accent-ink); }
+.wordmark__name { padding-bottom: 1px; }
 
 .site-nav {
   display: flex;
-  gap: 28px;
+  gap: var(--s5);
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
 .site-nav::-webkit-scrollbar { display: none; }
+/* Mono uppercase matches the vocabulary the rest of the page already uses for
+   eyebrows, project numbers and status pills — the nav being the one sans
+   element in the bar is what made the header look unrelated to the page. */
 .site-nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 650;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
   white-space: nowrap;
   text-decoration: none;
+  transition: color 180ms ease;
+}
+/* The old inset box-shadow drew on the 44px flex box, 14px below the
+   descender. Positioning against the text baseline reattaches it. */
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: calc(50% - 0.86em);
+  left: 0;
+  height: 2px;
+  background: var(--brain);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 200ms ease;
 }
 .site-nav a:hover { color: var(--ink); }
-.site-nav a[aria-current="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--brain); }
+.site-nav a:hover::after { transform: scaleX(0.4); }
+.site-nav a[aria-current="true"] { color: var(--ink); }
+.site-nav a[aria-current="true"]::after { transform: scaleX(1); }
 
 .theme-toggle {
   justify-self: end;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: var(--s2);
   min-height: 44px;
-  padding: 7px 12px;
+  padding: 6px 13px;
   color: var(--muted);
   background: transparent;
   border: 1px solid var(--rule);
   border-radius: 999px;
   cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
 }
-.theme-toggle:hover { color: var(--ink); border-color: var(--rule-strong); }
-.theme-toggle__label { font-size: 0.72rem; font-weight: 650; white-space: nowrap; }
+.theme-toggle:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border-color: var(--rule-strong);
+}
+/* font-size: 0 suppresses the ◐ text node, which has no glyph in any face
+   shipped here. The half-filled disc below is drawn instead. */
+.theme-toggle__glyph {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0;
+  transition: transform 300ms ease;
+}
+:root[data-theme="dark"] .theme-toggle__glyph { transform: rotate(180deg); }
+.theme-toggle__label {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
 main, .site-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto; }
 
@@ -232,40 +488,68 @@ main, .site-footer { width: min(1320px, calc(100% - 40px)); margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.92fr);
   grid-template-rows: minmax(0, 1fr) auto;
-  gap: clamp(34px, 4vw, 60px) clamp(44px, 5vw, 82px);
+  gap: clamp(28px, 3vw, 44px) clamp(44px, 5vw, 82px);
   min-height: calc(100svh - var(--header-h));
-  padding: clamp(64px, 9vh, 120px) clamp(20px, 5vw, 70px) 20px;
+  padding: clamp(56px, 8vh, 104px) var(--inset) 20px;
   border-bottom: 1px solid var(--rule-strong);
 }
 
 .hero__copy { align-self: center; max-width: 760px; }
+
+/* ---------------------------------------------------------- shared type -- */
+
 .eyebrow {
-  margin: 0 0 15px;
+  margin: 0 0 var(--s4);
   color: var(--faint);
   font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.13em;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
+/* The short rule above an eyebrow is the cheapest device on the page that
+   reads as authored rather than defaulted. */
+.hero .eyebrow::before,
+.evidence-strip .eyebrow::before,
+.section-heading .eyebrow::before,
+.about .eyebrow::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin-bottom: var(--s3);
+  background: var(--accent);
+}
+
 h1, h2, h3, p { margin-top: 0; }
+
+/* Serif tracking rule for the whole file: -0.018em at ~90px, -0.012em at
+   ~30px, normal below ~24px. Spectral's serifs already occupy the
+   sidebearings — the old -0.065em was grotesque tracking and would collide. */
 h1 {
-  max-width: 760px;
-  margin-bottom: 24px;
-  font-size: clamp(3rem, 6.1vw, 6.5rem);
-  font-weight: 650;
-  letter-spacing: -0.065em;
-  line-height: 0.9;
+  max-width: 700px;
+  margin-bottom: var(--s5);
+  font-family: var(--display);
+  font-size: clamp(2.9rem, 5.4vw, 5.6rem);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 0.98;
   text-wrap: balance;
 }
+h1 em {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.008em;
+}
 .hero__lede {
-  max-width: 660px;
-  margin-bottom: 30px;
+  max-width: 640px;
+  margin-bottom: var(--s5);
   color: var(--muted);
-  font-size: clamp(1.08rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.5vw, 1.28rem);
   line-height: 1.5;
   text-wrap: pretty;
 }
-.hero__actions, .project__links, .about__links { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero__actions, .project__links, .about__links { display: flex; flex-wrap: wrap; gap: var(--s3); }
 
 .button {
   display: inline-flex;
@@ -276,7 +560,8 @@ h1 {
   border: 1px solid var(--rule-strong);
   border-radius: 999px;
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.005em;
   line-height: 1;
   text-decoration: none;
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
@@ -290,7 +575,7 @@ h1 {
   align-self: center;
   min-height: 430px;
   color: #f7faf7;
-  background: #20302c;
+  background: var(--poster);
   border: 1px solid var(--rule-strong);
   border-radius: 24px;
   box-shadow: var(--shadow);
@@ -309,8 +594,9 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
   backdrop-filter: blur(8px);
 }
 .hero__spotlight img {
@@ -338,17 +624,20 @@ h1 {
   display: grid;
   gap: 6px;
 }
-.hero__spotlight-copy strong { max-width: 520px; font-size: clamp(1.3rem, 2.2vw, 2rem); line-height: 1.12; }
+.hero__spotlight-copy strong { max-width: 520px; font-size: clamp(1.25rem, 2.1vw, 1.9rem); font-weight: 600; line-height: 1.16; }
 .hero__spotlight-detail { max-width: 530px; color: rgba(247, 250, 247, 0.86); font-size: 0.78rem; }
 .hero__spotlight-action {
   justify-self: start;
-  margin-top: 8px;
-  padding: 9px 12px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: var(--s2);
+  padding: 9px 13px;
   color: #14201c;
   background: #f6faf6;
   border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 750;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .hero__facts {
@@ -358,100 +647,256 @@ h1 {
   margin: 0;
   border-top: 1px solid var(--rule);
 }
-.hero__facts div { padding: 16px 20px 0; border-right: 1px solid var(--rule); }
+.hero__facts div { padding: var(--s4) var(--s5) 0; border-right: 1px solid var(--rule); }
+.hero__facts div:first-child { padding-left: 0; }
 .hero__facts div:last-child { border-right: 0; }
-.hero__facts dt { color: var(--faint); font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; }
-.hero__facts dd { margin: 3px 0 0; font-size: 0.82rem; font-weight: 650; }
+.hero__facts dt {
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero__facts dd { margin: 5px 0 0; font-size: 0.84rem; font-weight: 600; }
+
+/* Full-width display band. In a 598px column the h1 was forced to four lines
+   and burned 316px of an 832px hero; given the whole measure it sets in two
+   and the lede shares a top edge with the spotlight. .hero__copy is a
+   semantically empty div, so display: contents promotes its children to grid
+   items without touching the markup. */
+@media (min-width: 981px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.86fr);
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  }
+  .hero__copy { display: contents; }
+  .hero__copy > .eyebrow { grid-column: 1 / -1; grid-row: 1; }
+  .hero__copy > h1 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    max-width: none;
+    margin-bottom: 0;
+    font-size: clamp(2.9rem, 5.1vw, 5.1rem);
+    line-height: 0.94;
+  }
+  .hero__lede { grid-column: 1; grid-row: 3; align-self: start; margin-bottom: var(--s5); }
+  .hero__actions { grid-column: 1; grid-row: 4; align-self: start; }
+  .hero__spotlight {
+    grid-column: 2;
+    grid-row: 3 / 5;
+    align-self: stretch;
+    min-height: clamp(300px, 36vh, 430px);
+  }
+  .hero__facts { grid-column: 1 / -1; grid-row: 5; }
+}
 
 /* -------------------------------------------------------------- evidence -- */
 
 .evidence-strip {
   display: grid;
-  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.6fr) auto;
+  grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.8fr) auto;
   gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  padding: 44px clamp(20px, 5vw, 70px);
-  background: color-mix(in srgb, var(--brain-soft) 54%, var(--paper));
+  padding: var(--s7) var(--inset) calc(var(--s7) + var(--s2));
+  /* The old mix of a *soft* token into paper computed to 1.04:1 — not a band,
+     just paper. Mixing the decorative token gives a real one. */
+  background: color-mix(in srgb, var(--brain) 13%, var(--paper));
   border-bottom: 1px solid var(--rule-strong);
 }
-.evidence-strip__heading .eyebrow { margin-bottom: 8px; }
-.evidence-strip__heading h2 { margin: 0; font-size: clamp(1.35rem, 2.1vw, 2.05rem); letter-spacing: -0.035em; line-height: 1.05; }
+.evidence-strip__heading .eyebrow { margin-bottom: var(--s2); }
+.evidence-strip__heading h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.12;
+}
 .evidence-strip__list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
   padding: 0;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 12px;
   list-style: none;
   overflow: hidden;
 }
-.evidence-strip__list li { display: grid; gap: 4px; align-content: start; min-height: 92px; padding: 15px; background: var(--panel); border-right: 1px solid var(--rule); }
+.evidence-strip__list li {
+  display: grid;
+  gap: var(--s1);
+  align-content: start;
+  padding: var(--s5) var(--s4) calc(var(--s5) + var(--s1));
+  background: var(--panel);
+  border-right: 1px solid var(--rule);
+}
 .evidence-strip__list li:last-child { border-right: 0; }
-.evidence-strip__list strong { color: var(--accent-text); font-size: 1rem; }
-.evidence-strip__list span { color: var(--muted); font-size: 0.7rem; line-height: 1.4; }
+/* The payload was 16px — identical to body copy — so nothing in the strip read
+   as evidence. Setting the figures as display type is the whole point of it. */
+.evidence-strip__list strong {
+  color: var(--accent-ink);
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  line-height: 1;
+}
+.evidence-strip__list span { color: var(--muted); font-size: 0.72rem; line-height: 1.45; }
 .evidence-strip__cv { white-space: nowrap; }
 
 /* -------------------------------------------------------------- projects -- */
 
-.projects { padding: 110px 0 0; }
-.section-heading { max-width: 780px; margin: 0 auto 80px; text-align: center; }
+.projects { padding: var(--s9) 0 0; border-top: 2px solid var(--ink); }
+/* Centred display type aligned to nothing was the strongest template tell on
+   the page; everything else starts at the same inset. */
+.section-heading {
+  max-width: none;
+  margin: 0 0 clamp(56px, 6vw, 96px);
+  padding-inline: var(--inset);
+  text-align: left;
+}
 .section-heading h2, .about h2 {
-  margin-bottom: 18px;
-  font-size: clamp(2.1rem, 4.8vw, 4.7rem);
-  font-weight: 620;
-  letter-spacing: -0.05em;
-  line-height: 0.98;
+  margin-bottom: var(--s4);
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -0.016em;
   text-wrap: balance;
 }
-.section-heading > p:last-child { color: var(--muted); font-size: 1.05rem; text-wrap: pretty; }
+/* Demoted to a deck register. It used to render *smaller* than the project
+   titles it introduces — an inverted hierarchy — and the fix is treatment,
+   not scale: the project titles should stay the largest non-hero type. */
+.section-heading h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  letter-spacing: -0.014em;
+  line-height: 1.1;
+}
+.section-heading > p:last-child { max-width: 62ch; color: var(--muted); font-size: 1.02rem; text-wrap: pretty; }
 
 .project {
   display: grid;
+  /* copy | demo. The odd-row order swap reordered content but not column
+     sizing, so the lead project got the *narrow* column for its demo and
+     148px of dead space above and below it. Swapping the track sizes with the
+     order keeps the demo in the wide column every time. */
   grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(44px, 6vw, 94px);
-  align-items: center;
-  min-height: 720px;
-  padding: 90px clamp(20px, 5vw, 70px);
-  border-top: 1px solid var(--rule-strong);
+  align-items: start;
+  padding-block: var(--band-open) var(--band-close);
+  padding-inline: var(--inset);
+  border-top: 1px solid var(--rule);
 }
+.project:first-of-type { border-top-color: var(--rule-strong); }
+.project:nth-of-type(odd) { grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr); }
 .project:nth-of-type(odd) .project__copy { order: 2; }
 .project:nth-of-type(odd) .project__demo { order: 1; }
-.project__copy { max-width: 510px; }
-.project__topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.project__number { font-family: var(--mono); font-size: 0.68rem; }
+
+/* One scoping block gives every project its own accent without a single new
+   selector below — and puts --morpher-soft / --liner-soft to work for the
+   first time. */
+.project--brain { --accent: var(--brain); --accent-ink: var(--brain-ink); --accent-soft: var(--brain-soft); }
+.project--morpher { --accent: var(--morpher); --accent-ink: var(--morpher-ink); --accent-soft: var(--morpher-soft); }
+.project--liner { --accent: var(--liner); --accent-ink: var(--liner-ink); --accent-soft: var(--liner-soft); }
+
+.project__copy { max-width: 60ch; }
+.project__topline { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
+.project__number {
+  color: var(--accent-ink);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
 .status {
   padding: 5px 9px;
   color: var(--muted);
   background: var(--panel);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 999px;
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.status--active::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; background: #4b9b71; border-radius: 50%; }
-.project__date { margin: 34px 0 5px; color: var(--faint); font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; }
-.project h3 { margin-bottom: 16px; font-size: clamp(2.4rem, 5vw, 5rem); font-weight: 650; letter-spacing: -0.055em; line-height: 0.95; }
-.project__summary { margin-bottom: 25px; color: var(--muted); font-size: 1.06rem; line-height: 1.6; text-wrap: pretty; }
-.project__facts-list { display: grid; gap: 10px; margin: 0 0 22px; padding: 0; list-style: none; }
-.project__facts-list li { padding-left: 16px; color: var(--muted); border-left: 2px solid var(--rule-strong); font-size: 0.88rem; }
-.project__facts-list strong { color: var(--ink); }
-.project--brain .project__facts-list li { border-color: var(--brain); }
-.project--morpher .project__facts-list li { border-color: var(--morpher); }
-.project--liner .project__facts-list li { border-color: var(--liner); }
-.boundary-note {
-  margin-bottom: 22px;
-  padding: 13px 15px;
-  color: var(--muted);
-  background: var(--panel);
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  font-size: 0.78rem;
-  line-height: 1.55;
+.status--active::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 6px;
+  background: var(--accent);
+  border-radius: 50%;
 }
-.tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 22px 0 0; padding: 0; list-style: none; }
-.tag-list li { padding: 5px 8px; color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; font-family: var(--mono); font-size: 0.64rem; }
+.project__date {
+  margin: var(--s6) 0 var(--s1);
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.project h3 {
+  margin-bottom: var(--s3);
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  line-height: 1.02;
+}
+/* Three tiers instead of a flat 17/24/22/22 stack, so the copy column groups
+   into summary — facts — caveat — actions rather than reading as six
+   undifferentiated blocks. */
+.project__summary { margin-bottom: var(--s6); color: var(--muted); font-size: 1.04rem; line-height: 1.62; text-wrap: pretty; }
+.project__facts-list { display: grid; gap: var(--s3); margin: 0 0 var(--s6); padding: 0; list-style: none; }
+.project__facts-list li {
+  padding-left: var(--s4);
+  color: var(--muted);
+  border-left: 2px solid var(--accent);
+  font-size: 0.88rem;
+}
+.project__facts-list strong { color: var(--ink); font-weight: 600; }
+
+/* The caveat voice. Every one of these says "here is where the claim stops",
+   which is the distinguishing content of the site — setting it in the serif
+   italic is what makes that register read as authored rather than as fine
+   print. Sized up because Spectral's x-height is 450/1000 against Source Sans
+   3's 486; at the old 0.78rem the italic would be genuinely hard to read. */
+.boundary-note, .through-line__boundary {
+  color: var(--muted);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  letter-spacing: 0.004em;
+}
+.boundary-note {
+  margin-bottom: 0;
+  padding: var(--s2) 0 var(--s2) var(--s4);
+  border-left: 2px solid var(--accent);
+}
+.boundary-note a, .source-note a { font-weight: 600; }
+.project__links { margin-top: var(--s7); }
+/* A closing rule above the tags marks the end of the entry. */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: var(--s7) 0 0;
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+  list-style: none;
+}
+.tag-list li {
+  padding: 5px 8px;
+  color: var(--muted);
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--rule));
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+}
 
 /* ------------------------------------------------------------------ demos -- */
 
@@ -461,41 +906,54 @@ h1 {
   background: var(--paper-soft);
   border: 1px solid var(--rule-strong);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 22px 55px color-mix(in srgb, var(--accent) 16%, transparent);
 }
 .demo-frame:focus { outline: none; }
-.demo-poster { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #2a2c26; }
+.demo-poster { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--poster); }
 .demo-poster img { width: 100%; height: 100%; object-fit: cover; }
 .demo-poster__veil { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 12%, rgba(5, 10, 8, 0.7) 55%, rgba(5, 10, 8, 0.94) 100%); }
 .demo-poster__copy { position: absolute; right: 30px; bottom: 28px; left: 30px; display: grid; gap: 5px; color: #f7faf7; }
-.demo-poster__copy strong { font-size: clamp(1.25rem, 2.4vw, 2rem); line-height: 1.15; }
+.demo-poster__copy strong { font-size: clamp(1.2rem, 2.2vw, 1.85rem); font-weight: 600; line-height: 1.18; }
 .demo-poster__detail { max-width: 620px; color: rgba(247, 250, 247, 0.86); font-size: 0.78rem; }
-.demo-kicker { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.07em; text-transform: uppercase; }
-.demo-toolbar { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 14px; padding: 12px 16px; }
-.button--demo { color: #fff; background: #246f69; border: 0; cursor: pointer; }
-.text-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.72rem; font-weight: 700; }
-.demo-status { justify-self: end; margin: 0; color: var(--faint); font-family: var(--mono); font-size: 0.64rem; text-align: right; }
+.demo-kicker {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.demo-toolbar { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 14px; padding: var(--s3) var(--s4); }
+.button--demo { color: var(--focus-contrast); background: var(--accent-ink); border: 0; cursor: pointer; }
+.text-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.72rem; font-weight: 600; }
+.demo-status {
+  justify-self: end;
+  margin: 0;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.03em;
+  text-align: right;
+}
 .demo-mount:empty { display: none; }
 .iframe-demo.is-loaded .demo-poster { display: none; }
 .demo-mount iframe { width: 100%; height: min(74vh, 790px); min-height: 620px; border: 0; background: var(--paper-soft); }
 
 /* Shown only when the browser cannot give the demo a WebGL context. */
-.demo-fallback { display: none; margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 0.78rem; line-height: 1.55; }
+.demo-fallback { display: none; margin: 0; padding: 0 var(--s4) var(--s4); color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
 .demo-frame.is-unsupported .demo-fallback { display: block; }
 .demo-frame.is-unsupported .demo-load { display: none; }
-.demo-frame.is-error .demo-status { color: var(--morpher); }
+.demo-frame.is-error .demo-status { color: var(--morpher-ink); }
 
 .video-demo { margin: 0; }
-.video-demo video { width: 100%; height: auto; aspect-ratio: 1026 / 806; object-fit: contain; background: #101313; }
-.video-controls { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 12px 18px; border-top: 1px solid var(--rule); }
-.video-play { min-width: 62px; min-height: 44px; color: var(--paper); background: var(--ink); border: 0; border-radius: 999px; font-size: 0.72rem; font-weight: 700; cursor: pointer; }
-.video-controls label { display: grid; gap: 4px; color: var(--faint); font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; }
-.video-range { width: 100%; height: 24px; margin: 0; accent-color: var(--morpher); cursor: ew-resize; }
-.video-time { color: var(--muted); font-family: var(--mono); font-size: 0.64rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.video-demo figcaption { display: grid; gap: 4px; padding: 15px 18px 17px; color: var(--muted); font-size: 0.78rem; }
+.video-demo video { width: 100%; height: auto; aspect-ratio: 1026 / 806; object-fit: contain; background: #0d1110; }
+.video-controls { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--s4); padding: var(--s3) 18px; border-top: 1px solid var(--rule); }
+.video-play { min-width: 62px; min-height: 44px; color: var(--paper); background: var(--ink); border: 0; border-radius: 999px; font-size: 0.72rem; font-weight: 600; cursor: pointer; }
+.video-controls label { display: grid; gap: 4px; color: var(--faint); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.video-range { width: 100%; height: 24px; margin: 0; accent-color: var(--accent); cursor: ew-resize; }
+.video-time { color: var(--muted); font-family: var(--mono); font-size: 0.62rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.video-demo figcaption { display: grid; gap: 4px; padding: 15px 18px 17px; color: var(--muted); font-size: 0.8rem; }
 .waitlist-video-demo__media { position: relative; overflow: hidden; background: #000; }
 .video-demo--liner video { aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
-.video-demo--liner .video-range { accent-color: var(--liner); }
 .waitlist-video-demo__badge {
   position: absolute;
   top: 14px;
@@ -506,37 +964,82 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.56rem;
+  font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   backdrop-filter: blur(8px);
 }
+/* Off-palette on purpose: this is Morphliner's own brand yellow, matching the
+   live waitlist, and it clears 13.2:1 on #17141e. */
 .waitlist-video-demo__cta { justify-self: start; margin-top: 10px; color: #17141e; background: #ffd86b; border-color: #ffd86b; }
 .waitlist-video-demo__cta:hover { color: #17141e; background: #ffe8a8; border-color: #ffe8a8; }
-.source-note { display: block; margin-top: 7px; padding-top: 9px; border-top: 1px solid var(--rule); font-size: 0.7rem; line-height: 1.6; }
+.source-note { display: block; margin-top: 7px; padding-top: 9px; border-top: 1px solid var(--rule); font-size: 0.72rem; line-height: 1.6; }
 .source-note code { color: var(--ink); font-family: var(--mono); font-size: 0.92em; }
-.source-note a, .boundary-note a { font-weight: 700; }
 
 /* --------------------------------------------------------- through-line -- */
 
-.through-line { padding: 120px clamp(20px, 5vw, 70px); border-top: 1px solid var(--rule-strong); }
-.section-heading--compact { max-width: 820px; margin-bottom: 60px; }
-.question-chain { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; border: 1px solid var(--rule-strong); border-radius: var(--radius); list-style: none; overflow: hidden; }
-.question-chain li { display: grid; grid-template-columns: auto 1fr; gap: 15px; align-content: start; min-height: 210px; padding: 28px; background: var(--panel); border-right: 1px solid var(--rule); }
-.question-chain li:last-child { border-right: 0; }
-.question-chain li > span { font-family: var(--mono); font-size: 0.65rem; }
-.question-chain strong { font-size: 1.06rem; }
-.question-chain p { margin: 12px 0 0; color: var(--muted); font-size: 0.85rem; text-wrap: pretty; }
-.through-line__boundary { max-width: 880px; margin: 24px auto 0; padding: 15px 18px; color: var(--muted); background: var(--panel); border-left: 3px solid var(--brain); font-size: 0.8rem; }
+.through-line {
+  padding-block: var(--band-open) var(--band-close);
+  padding-inline: var(--inset);
+  border-top: 1px solid var(--rule-strong);
+}
+.section-heading--compact { max-width: 900px; margin-bottom: var(--s8); padding-inline: 0; }
+/* Rule-separated columns rather than panels. At 1.09:1 in dark mode the panel
+   fill was invisible and the rounded container read as a UI widget dropped
+   into a print layout; hairlines are the language this page already speaks. */
+.question-chain {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(28px, 3.5vw, 56px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 2px solid var(--ink);
+  list-style: none;
+}
+.question-chain li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s4);
+  align-content: start;
+  padding: var(--s6) 0 0;
+  background: none;
+  border: 0;
+}
+.question-chain li > span {
+  color: var(--accent-ink);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+.question-chain strong { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.004em; }
+.question-chain p { margin: var(--s3) 0 0; color: var(--muted); font-size: 0.88rem; line-height: 1.6; text-wrap: pretty; }
+.through-line__boundary {
+  max-width: 68ch;
+  margin: var(--s7) 0 0;
+  padding: var(--s3) 0 var(--s3) var(--s4);
+  border-left: 2px solid var(--brain);
+}
 
 /* ----------------------------------------------------------------- about -- */
 
-.about { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; padding: 120px clamp(20px, 5vw, 70px); border-top: 1px solid var(--rule-strong); }
-.about h2 { font-size: clamp(2.3rem, 5vw, 5rem); }
-.about__copy { max-width: 680px; align-self: end; }
-.about__copy > p { color: var(--muted); font-size: 1.1rem; text-wrap: pretty; }
-.about__links { margin-top: 8px; gap: 12px 22px; }
-.about__links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.82rem; font-weight: 700; }
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(40px, 5vw, 72px);
+  align-items: start;
+  padding-block: var(--band-open) var(--band-close);
+  padding-inline: var(--inset);
+  border-top: 1px solid var(--rule-strong);
+}
+/* Was six lines of 72px type in a 440px column, against a 171px copy block
+   pushed to the bottom of a 474px track. */
+.about h2 { font-size: clamp(1.9rem, 3.2vw, 3.1rem); line-height: 1.06; }
+.about__copy { max-width: 58ch; align-self: start; }
+.about__copy > p { color: var(--muted); font-size: 1.06rem; line-height: 1.62; text-wrap: pretty; }
+.about__links { margin-top: var(--s5); gap: var(--s3) var(--s5); }
+.about__links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.82rem; font-weight: 600; }
 
 /* ---------------------------------------------------------------- footer -- */
 
@@ -545,29 +1048,47 @@ h1 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px 28px;
+  gap: var(--s2) var(--s6);
   min-height: 100px;
   padding: 20px 0;
   color: var(--faint);
   border-top: 1px solid var(--rule-strong);
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
 }
 .site-footer p { margin: 0; }
-.site-footer__links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-left: auto; }
+.site-footer__links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-left: auto; }
 .site-footer__links a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ------------------------------------------------- legal + error pages -- */
 
-.legal-page { max-width: 900px; padding: 70px 0 120px; }
-.legal-page__back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 40px; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; }
-.legal-page h1 { max-width: 880px; font-size: clamp(2.6rem, 7vw, 6.4rem); }
-.legal-page h2 { margin: 52px 0 14px; font-size: clamp(1.6rem, 4vw, 2.8rem); letter-spacing: -0.04em; line-height: 1.05; }
+.legal-page { max-width: 900px; padding: var(--s8) 0 var(--s9); }
+/* DM Mono ships no weight above 500. */
+.legal-page__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: var(--s7);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.legal-page h1 { max-width: 820px; font-size: clamp(2.4rem, 6vw, 5.4rem); }
+.legal-page h2 {
+  margin: var(--s8) 0 var(--s4);
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.12;
+}
 .legal-page p, .legal-page li { color: var(--muted); text-wrap: pretty; }
-.legal-page li + li { margin-top: 12px; }
+.legal-page li + li { margin-top: var(--s3); }
 .legal-page code { color: var(--ink); font-family: var(--mono); }
-.legal-page .boundary-note { margin-top: 30px; }
-.legal-page__lede { max-width: 660px; margin-bottom: 30px; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; }
+.legal-page .boundary-note { margin-top: var(--s6); }
+.legal-page__lede { max-width: 660px; margin-bottom: var(--s6); color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.5; }
 
 .error-page {
   display: grid;
@@ -576,57 +1097,60 @@ h1 {
   min-height: calc(100svh - var(--header-h) - 140px);
   padding: clamp(60px, 10vh, 130px) 0;
 }
-.error-page h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); }
-.error-page__lede { max-width: 560px; margin-bottom: 30px; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
-.error-page__links { display: flex; flex-wrap: wrap; gap: 12px; }
+.error-page h1 { font-size: clamp(2.4rem, 7vw, 4.8rem); }
+.error-page__lede { max-width: 560px; margin-bottom: var(--s6); color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+.error-page__links { display: flex; flex-wrap: wrap; gap: var(--s3); }
 
 /* ----------------------------------------------------------- responsive -- */
 
 @media (max-width: 980px) {
-  .site-header { grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; }
-  .site-nav { justify-content: center; gap: 20px; }
+  .site-header { grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s4); }
+  .site-nav { justify-content: center; gap: var(--s5); }
   .hero { grid-template-columns: 1fr; }
+  .hero__copy { display: block; }
   .evidence-strip { grid-template-columns: 1fr auto; }
   .evidence-strip__list { grid-column: 1 / -1; grid-row: 2; }
-  .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; min-height: 0; padding-block: 72px; }
+  .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; padding-block: var(--s7) var(--s8); }
   .project:nth-of-type(odd) .project__copy, .project:nth-of-type(odd) .project__demo { order: initial; }
-  .project__copy { max-width: 700px; }
+  .project__copy { max-width: 68ch; }
   .question-chain { grid-template-columns: 1fr; }
-  .question-chain li { min-height: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .question-chain li { padding-block: var(--s5); border-bottom: 1px solid var(--rule); }
   .question-chain li:last-child { border-bottom: 0; }
-  .about { grid-template-columns: 1fr; gap: 30px; }
+  .about { grid-template-columns: 1fr; gap: var(--s6); }
 }
 
 @media (max-width: 650px) {
   :root { --header-h: 60px; }
-  body { background: var(--paper); }
   .site-header, main, .site-footer { width: min(100% - 24px, 1320px); }
   .site-header { gap: 10px; }
   .wordmark__name, .theme-toggle__label { display: none; }
   .theme-toggle { padding: 7px 10px; }
-  .site-nav { gap: 14px; }
-  .site-nav a { font-size: 0.78rem; }
-  .hero { min-height: 0; gap: 34px; padding: 48px 4px 16px; }
-  h1 { font-size: clamp(2.6rem, 13vw, 4.4rem); }
+  /* DM Mono is wider than the system sans this used to be set in, and the nav
+     had zero headroom at 390px. */
+  .site-nav { gap: var(--s3); }
+  .site-nav a { font-size: 0.62rem; letter-spacing: 0.04em; }
+  .hero { min-height: 0; gap: var(--s6); padding: var(--s7) 4px var(--s4); }
+  h1 { font-size: clamp(2.4rem, 11.5vw, 4rem); letter-spacing: -0.012em; }
   .hero__spotlight { min-height: 340px; border-radius: 16px; }
   .hero__spotlight::before { top: 14px; left: 14px; }
   .hero__spotlight-copy { right: 18px; bottom: 18px; left: 18px; }
   .hero__spotlight-detail { display: none; }
   .hero__facts { grid-template-columns: 1fr; }
-  .hero__facts div { padding: 12px 0 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .hero__facts div { padding: var(--s3) 0 0; border-right: 0; border-bottom: 1px solid var(--rule); }
   .hero__facts div:last-child { border-bottom: 0; }
-  .hero__facts dd { font-size: 0.86rem; }
-  .evidence-strip { grid-template-columns: 1fr; padding: 40px 8px; }
+  .hero__facts dd { font-size: 0.88rem; }
+  .evidence-strip { grid-template-columns: 1fr; padding: var(--s7) 8px; }
   .evidence-strip__list { grid-column: auto; grid-row: auto; grid-template-columns: 1fr 1fr; }
-  .evidence-strip__list li { min-height: 96px; border-bottom: 1px solid var(--rule); }
+  .evidence-strip__list li { border-bottom: 1px solid var(--rule); }
   .evidence-strip__list li:nth-child(2) { border-right: 0; }
   .evidence-strip__list li:nth-child(n+3) { border-bottom: 0; }
   .evidence-strip__cv { justify-self: start; }
-  .projects { padding-top: 80px; }
-  .section-heading { margin-bottom: 55px; padding-inline: 10px; }
-  .project { gap: 34px; padding: 60px 8px; }
+  .projects { padding-top: var(--s8); }
+  .section-heading { margin-bottom: var(--s7); padding-inline: 8px; }
+  .section-heading--compact { padding-inline: 0; }
+  .project { gap: var(--s6); padding-block: var(--s6) var(--s8); padding-inline: 8px; }
   .project__topline { align-items: flex-start; }
-  .project h3 { font-size: 2.7rem; }
+  .project h3 { font-size: 2.4rem; letter-spacing: -0.012em; }
   .demo-poster__copy { right: 18px; bottom: 18px; left: 18px; }
   .demo-poster__detail { display: none; }
   .demo-toolbar { grid-template-columns: 1fr auto; }
@@ -634,9 +1158,8 @@ h1 {
   .demo-mount iframe { min-height: 560px; }
   .video-controls { grid-template-columns: auto 1fr; }
   .video-time { grid-column: 1 / -1; }
-  .through-line, .about { padding: 80px 8px; }
-  .question-chain li { padding: 22px; }
-  .site-footer { gap: 4px 20px; padding: 12px 0; }
+  .through-line, .about { padding-block: var(--s6) var(--s8); padding-inline: 8px; }
+  .site-footer { gap: var(--s1) var(--s5); padding: var(--s3) 0; }
   .site-footer__links { margin-left: 0; width: 100%; justify-content: space-between; }
   .legal-page, .error-page { padding-inline: 8px; }
 }
@@ -651,12 +1174,37 @@ h1 {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   .button:hover, .hero__spotlight:hover img { transform: none; }
+  .button:hover .ico--ne, .text-link:hover .ico--ne, .about__links a:hover .ico--ne { transform: translateY(0.06em); }
+  .button:hover .ico--e { transform: translateY(0.04em) rotate(45deg); }
+  @supports (mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000)) {
+    .button:hover .ico--ne, .text-link:hover .ico--ne, .about__links a:hover .ico--ne { transform: translateY(0.02em); }
+    .button:hover .ico--e { transform: none; }
+  }
 }
 
-/* Higher-contrast environments: drop translucency and lean on solid rules. */
+/* Higher-contrast environments: drop translucency and lean on solid rules.
+   Every token overridden here must track any revalue in the base palette. */
 @media (prefers-contrast: more) {
-  :root { --muted: #3c4541; --faint: #3c4541; --rule: rgba(23, 32, 29, 0.4); --rule-strong: rgba(23, 32, 29, 0.65); --panel: #ffffff; --accent-text: #1f4d4a; }
-  :root[data-theme="dark"] { --muted: #e2e9e4; --faint: #e2e9e4; --rule: rgba(232, 240, 235, 0.4); --rule-strong: rgba(232, 240, 235, 0.7); --panel: #0d1210; --accent-text: #a7e6dc; }
+  :root {
+    --muted: #3c4541;
+    --faint: #3c4541;
+    --rule: rgba(23, 32, 29, 0.4);
+    --rule-strong: rgba(23, 32, 29, 0.65);
+    --panel: #ffffff;
+    --brain-ink: #1f4d4a;
+    --morpher-ink: #7a3517;
+    --liner-ink: #47368a;
+  }
+  :root[data-theme="dark"] {
+    --muted: #e2e9e4;
+    --faint: #e2e9e4;
+    --rule: rgba(232, 240, 235, 0.4);
+    --rule-strong: rgba(232, 240, 235, 0.7);
+    --panel: #0d1210;
+    --brain-ink: #a7e6dc;
+    --morpher-ink: #ffc4ad;
+    --liner-ink: #dcd4ff;
+  }
   .hero__spotlight-veil { background: linear-gradient(180deg, rgba(4, 8, 7, 0.35) 0%, rgba(4, 8, 7, 0.9) 45%, rgba(4, 8, 7, 0.98) 100%); }
   .demo-poster__veil { background: linear-gradient(180deg, rgba(5, 10, 8, 0.35) 0%, rgba(5, 10, 8, 0.9) 45%, rgba(5, 10, 8, 0.98) 100%); }
 }
@@ -666,8 +1214,10 @@ h1 {
   body { color: #000; background: #fff; }
   main, .site-footer { width: 100%; }
   .hero { min-height: 0; grid-template-columns: 1fr; padding: 30px 0; }
+  .hero__copy { display: block; }
   .hero__spotlight, .hero__facts { display: none; }
   .evidence-strip { grid-template-columns: 1fr; padding: 25px 0; background: #fff; }
-  .project { grid-template-columns: 1fr; min-height: 0; padding: 35px 0; break-inside: avoid; }
+  .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; padding: 35px 0; break-inside: avoid; }
   .through-line, .about { padding: 30px 0; break-inside: avoid; }
+  .projects { border-top-width: 1px; }
 }
