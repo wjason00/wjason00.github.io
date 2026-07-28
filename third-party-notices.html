@@ -63,6 +63,16 @@
         molecular model developing.
       </p>
       <p>
+        The cortical folding backdrop behind the home-page hero is a derived rendering of those same sixteen
+        surfaces: each week is rendered once, offscreen, into a single greyscale sprite sheet
+        (<code>assets/atlas/atlas-fold.webp</code>) that the stylesheet steps through as a mask. It is
+        observation, not model output, and it shows the sixteen real atlas timepoints with nothing
+        interpolated between them. Weeks are rescaled to physical proportion using the per-week
+        <code>radiusMmPerUnit</code> in the series manifest, so the sequence shows growth as well as folding.
+        The generator is committed at <code>scripts/atlas-fold/</code>; it runs offline and never at deploy
+        time. Being a derivative of a CC0 dedication, the rendering carries no additional restriction.
+      </p>
+      <p>
         Source: <a href="https://doi.org/10.12751/g-node.qj5hs7">Karolis et al., Developing Human Connectome
         Project spatio-temporal surface atlas of the fetal brain</a>.
       </p>
