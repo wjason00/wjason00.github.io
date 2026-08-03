@@ -490,7 +490,6 @@ html:not(.js) .video-controls { display: none !important; }
 /* The short rule above an eyebrow is the cheapest device on the page that
    reads as authored rather than defaulted. */
 .hero .eyebrow::before,
-.evidence-strip .eyebrow::before,
 .section-heading .eyebrow::before,
 .about .eyebrow::before {
   content: "";
@@ -620,17 +619,24 @@ h1 em {
   letter-spacing: 0.01em;
 }
 
-.hero__facts {
+/* Metadata band (was .hero__facts + the whole .evidence-strip section).
+   One hairline, no cells, no fills, no dividers: at six columns the old
+   per-div border-right added five more rules to a region already carrying
+   too many, and the aligned dt column does the grouping on its own. If it
+   ever reads mushy the fallback is a gutter rule, not a container. */
+.facts {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(20px, 3vw, 40px);
+  row-gap: var(--s5);
   margin: 0;
+  padding: var(--s5) 0 0;
+  background: none;
   border-top: 1px solid var(--rule);
 }
-.hero__facts div { padding: var(--s4) var(--s5) 0; border-right: 1px solid var(--rule); }
-.hero__facts div:first-child { padding-left: 0; }
-.hero__facts div:last-child { border-right: 0; }
-.hero__facts dt {
+.facts > div { padding: 0; border: 0; }
+.facts dt {
   color: var(--faint);
   font-family: var(--mono);
   font-size: 0.6rem;
@@ -638,7 +644,12 @@ h1 em {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.hero__facts dd { margin: 5px 0 0; font-size: 0.84rem; font-weight: 600; }
+.facts dd { margin: 6px 0 0; font-size: 0.84rem; font-weight: 600; }
+.facts a { text-decoration-color: var(--rule-strong); }
+.facts a:hover { text-decoration-color: var(--accent-ink); }
+
+@media (min-width: 700px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 981px) { .facts { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
 /* Full-width display band. In a 598px column the h1 was forced to four lines
    and burned 316px of an 832px hero; given the whole measure it sets in two
@@ -668,62 +679,12 @@ h1 em {
     align-self: stretch;
     min-height: clamp(300px, 36vh, 430px);
   }
-  .hero__facts { grid-column: 1 / -1; grid-row: 5; }
 }
 
 /* -------------------------------------------------------------- evidence -- */
 
-.evidence-strip {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.62fr) minmax(0, 1.8fr) auto;
-  gap: clamp(28px, 4vw, 64px);
-  align-items: center;
-  padding-block: var(--s7) calc(var(--s7) + var(--s2));
-  /* The old mix of a *soft* token into paper computed to 1.04:1 — not a band,
-     just paper. Mixing the decorative token gives a real one. */
-  background: color-mix(in srgb, var(--brain) 13%, var(--paper));
-  border-bottom: 1px solid var(--rule-strong);
-}
-.evidence-strip__heading .eyebrow { margin-bottom: var(--s2); }
-.evidence-strip__heading h2 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  line-height: 1.12;
-}
-.evidence-strip__list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
-  padding: 0;
-  border: 1px solid var(--rule-strong);
-  border-radius: 12px;
-  list-style: none;
-  overflow: hidden;
-}
-.evidence-strip__list li {
-  display: grid;
-  gap: var(--s1);
-  align-content: start;
-  padding: var(--s5) var(--s4) calc(var(--s5) + var(--s1));
-  background: var(--panel);
-  border-right: 1px solid var(--rule);
-}
-.evidence-strip__list li:last-child { border-right: 0; }
 /* The payload was 16px — identical to body copy — so nothing in the strip read
    as evidence. Setting the figures as display type is the whole point of it. */
-.evidence-strip__list strong {
-  color: var(--accent-ink);
-  font-family: var(--display);
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  font-weight: 600;
-  letter-spacing: -0.014em;
-  line-height: 1;
-}
-.evidence-strip__list span { color: var(--muted); font-size: 0.72rem; line-height: 1.45; }
-.evidence-strip__cv { white-space: nowrap; }
 
 /* -------------------------------------------------------------- projects -- */
 
@@ -1084,8 +1045,6 @@ h1 em {
   .site-nav { justify-content: center; gap: var(--s5); }
   .hero { grid-template-columns: 1fr; }
   .hero__copy { display: block; }
-  .evidence-strip { grid-template-columns: 1fr auto; }
-  .evidence-strip__list { grid-column: 1 / -1; grid-row: 2; }
   .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; padding-block: var(--s7) var(--s8); }
   .project:nth-of-type(odd) .project__copy, .project:nth-of-type(odd) .project__demo { order: initial; }
   .project__copy { max-width: 68ch; }
@@ -1111,16 +1070,6 @@ h1 em {
   .hero__spotlight::before { top: 14px; left: 14px; }
   .hero__spotlight-copy { right: 18px; bottom: 18px; left: 18px; }
   .hero__spotlight-detail { display: none; }
-  .hero__facts { grid-template-columns: 1fr; }
-  .hero__facts div { padding: var(--s3) 0 0; border-right: 0; border-bottom: 1px solid var(--rule); }
-  .hero__facts div:last-child { border-bottom: 0; }
-  .hero__facts dd { font-size: 0.88rem; }
-  .evidence-strip { grid-template-columns: 1fr; padding-block: var(--s7); }
-  .evidence-strip__list { grid-column: auto; grid-row: auto; grid-template-columns: 1fr 1fr; }
-  .evidence-strip__list li { border-bottom: 1px solid var(--rule); }
-  .evidence-strip__list li:nth-child(2) { border-right: 0; }
-  .evidence-strip__list li:nth-child(n+3) { border-bottom: 0; }
-  .evidence-strip__cv { justify-self: start; }
   .projects { padding-top: var(--s8); }
   .section-heading { margin-bottom: var(--s7); }
   .project { gap: var(--s6); padding-block: var(--s6) var(--s8); }
@@ -1184,13 +1133,15 @@ h1 em {
 }
 
 @media print {
-  .site-header, .hero__actions, .project__demo, .theme-toggle, .evidence-strip__cv, .skip-link, .site-footer__links { display: none !important; }
+  .site-header, .hero__actions, .project__demo, .theme-toggle, .skip-link, .site-footer__links { display: none !important; }
   body { color: #000; background: #fff; }
   main, .site-footer { width: 100%; }
   .hero { min-height: 0; grid-template-columns: 1fr; padding: 30px 0; }
   .hero__copy { display: block; }
-  .hero__spotlight, .hero__facts { display: none; }
-  .evidence-strip { grid-template-columns: 1fr; padding: 25px 0; background: #fff; }
+  /* The facts band is now the byline — it carries the email and what Jason is
+     seeking, so unlike the old decorative hero__facts it is worth printing. */
+  .hero__spotlight { display: none; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); border-top-color: #000; }
   .project, .project:nth-of-type(odd) { grid-template-columns: 1fr; padding: 35px 0; break-inside: avoid; }
   .through-line, .about { padding: 30px 0; break-inside: avoid; }
   .projects { border-top-width: 1px; }
