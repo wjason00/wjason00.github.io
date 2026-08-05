@@ -103,23 +103,31 @@
           </div>
         </div>
 
-        <a class="hero__spotlight demo-jump" href="#morphbrain-demo" data-demo-target="morphbrain-demo">
-          <img
-            src="./assets/morphbrain/morphbrain-world-a.webp"
-            alt=""
-            width="1200"
-            height="750"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <span class="hero__spotlight-veil" aria-hidden="true"></span>
-          <span class="hero__spotlight-copy">
-            <span class="demo-kicker">World A · real deterministic solver</span>
-            <strong>Change a supported source condition and inspect what the model does.</strong>
-            <span class="hero__spotlight-detail">One click loads the bounded experiment; the atlas remains explicitly separate.</span>
-            <span class="hero__spotlight-action">Run the experiment <span class="ico ico--e" aria-hidden="true"></span></span>
-          </span>
-        </a>
+        <figure class="hero__spotlight-figure">
+          <a class="hero__spotlight demo-jump" href="#morphbrain-demo" data-demo-target="morphbrain-demo">
+            <img
+              src="./assets/morphbrain/morphbrain-world-a.webp"
+              alt=""
+              width="1200"
+              height="750"
+              decoding="async"
+              fetchpriority="high"
+            />
+            <span class="hero__spotlight-veil" aria-hidden="true"></span>
+            <span class="hero__spotlight-copy">
+              <strong>Change a supported source condition and inspect what the model does.</strong>
+              <span class="hero__spotlight-action">Run the experiment <span class="ico ico--e" aria-hidden="true"></span></span>
+            </span>
+          </a>
+          <!--
+            The "it is real and it runs" claim lives here, on paper, rather than
+            as a blurred pill on top of the screenshot. Same move as Colah's
+            venue attribution under a thumbnail.
+          -->
+          <figcaption class="demo-kicker">
+            MorphBrain World A · real deterministic solver · loads on request
+          </figcaption>
+        </figure>
 
         <!--
           Metadata band, after Distill's d-byline. Replaces both the old
