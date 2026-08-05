@@ -127,7 +127,6 @@
   --focus: #176d87;
   --focus-contrast: #ffffff;
   --shadow: 0 22px 55px rgba(38, 45, 42, 0.1);
-  --radius: 18px;
   /* Legacy offset. The masthead no longer overlays anything, so nothing in the
      header reads this; it survives only for .hero and .error-page min-heights. */
   --header-h: 76px;
@@ -750,12 +749,10 @@ h1 em {
   font-weight: 500;
   letter-spacing: 0.04em;
 }
+/* Dot plus text, not a pill. The accent dot carries the state; the container
+   was one more enclosed shape doing nothing the dot did not already do. */
 .status {
-  padding: 5px 9px;
   color: var(--muted);
-  background: var(--panel);
-  border: 1px solid var(--rule-strong);
-  border-radius: 999px;
   font-family: var(--mono);
   font-size: 0.6rem;
   font-weight: 500;
@@ -821,35 +818,16 @@ h1 em {
 }
 .boundary-note a, .source-note a { font-weight: 600; }
 .project__links { margin-top: var(--s7); }
-/* A closing rule above the tags marks the end of the entry. */
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: var(--s7) 0 0;
-  padding-top: var(--s5);
-  border-top: 1px solid var(--rule);
-  list-style: none;
-}
-.tag-list li {
-  padding: 5px 8px;
-  color: var(--muted);
-  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--rule));
-  border-radius: 4px;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.02em;
-}
 
 /* ------------------------------------------------------------------ demos -- */
 
 .project__demo { min-width: 0; }
+/* The poster already has an edge; the frame was drawing a second one 18px
+   away. Fill stays — it is the media well. The toolbar and controls carried
+   their own rules already, so nothing comes unattached. */
 .demo-frame {
   overflow: hidden;
   background: var(--paper-soft);
-  border: 1px solid var(--rule-strong);
-  border-radius: var(--radius);
-  box-shadow: 0 22px 55px color-mix(in srgb, var(--accent) 16%, transparent);
 }
 .demo-frame:focus { outline: none; }
 .demo-poster { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--poster); }

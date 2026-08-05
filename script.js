@@ -121,7 +121,10 @@ function unloadIframeDemo(demo, { restoreFocus = false } = {}) {
     /* Removing the iframe would otherwise drop focus onto <body>. */
     if (restoreFocus) button.focus();
   }
-  if (status) status.textContent = 'Poster loaded · no GPU view active';
+  // A state, not telemetry. "Poster loaded · no GPU view active" sat in the
+  // highest-value position on the page and reads to a non-engineer as an
+  // error — the demo announcing something had failed before they touched it.
+  if (status) status.textContent = 'Interactive demo · not yet loaded';
   if (activeIframeDemo === demo) activeIframeDemo = null;
 }
 
