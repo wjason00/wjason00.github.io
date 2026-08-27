@@ -41,6 +41,14 @@ jobs:
       - name: Check internal links resolve
         shell: bash
         run: node scripts/check-links.mjs _site
+      - name: Install browser-test dependencies
+        run: npm ci
+      - name: Install Chromium for responsive checks
+        run: npx playwright install --with-deps chromium
+      - name: Check responsive layout
+        env:
+          PORTFOLIO_SITE_ROOT: _site
+        run: npm run test:layout
       - name: Upload static site
         uses: actions/upload-pages-artifact@v5
         with:

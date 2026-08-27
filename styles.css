@@ -550,8 +550,8 @@ h1 em {
 .button:hover { transform: translateY(-2px); text-decoration: none; }
 .button--primary { color: var(--paper); background: var(--ink); border-color: var(--ink); }
 /* Was a filled pill. Now the same treatment as .about__links a — the page
-   should carry exactly one filled control per screen, and that is
-   .button--primary on "Run the MorphBrain experiment". */
+   should carry exactly one filled control per screen, and that is the primary
+   MorphBrain demo link. */
 .button--quiet {
   padding: 0;
   color: var(--accent-ink);
@@ -676,9 +676,17 @@ h1 em {
   }
   .hero__lede { grid-column: 1; grid-row: 3; align-self: start; margin-bottom: var(--s5); }
   .hero__actions { grid-column: 1; grid-row: 4; align-self: start; }
-  .hero__spotlight {
+  /* The figure is the direct child of .hero, so it owns the outer grid
+     placement. Putting these coordinates on the nested link creates implicit
+     columns inside the figure and can squeeze the poster into a thin strip. */
+  .hero__spotlight-figure {
     grid-column: 2;
     grid-row: 3 / 5;
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-self: stretch;
+    min-width: 0;
+  }
+  .hero__spotlight {
     align-self: stretch;
     min-height: clamp(300px, 36vh, 430px);
   }

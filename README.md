@@ -66,3 +66,13 @@ node scripts/check-links.mjs _site
 
 Adding a file to the shell means adding it to the `cp` allowlist in `.github/workflows/pages.yml`; the build fails
 loudly rather than deploying a page with a missing stylesheet or script.
+
+The Pages workflow also runs a Chromium layout contract at the wide desktop viewport that exposed the August 2026
+hero-poster collapse, a common laptop viewport and a narrow mobile viewport. It asserts that the poster retains the
+figure's usable width and that the document does not overflow horizontally:
+
+```
+npm ci
+npx playwright install chromium
+npm run test:layout
+```
