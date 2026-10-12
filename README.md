@@ -16,7 +16,9 @@ illustrative, the dPCA study is synthetic, and the Morphliner video demonstrates
 camera motion and captions around one model. Full Morphliner release remains in
 development. No unpublished Fabrizi results or restricted research assets are shipped.
 
-This is a local release candidate. Public deployment is a separate action.
+The implementation commit `98b3849` was pushed on 12 October 2026 to
+[`codex/portfolio-publishable-20261012`](https://github.com/wjason00/wjason00.github.io/tree/codex/portfolio-publishable-20261012).
+Public deployment is a separate action.
 
 ## Explore
 
