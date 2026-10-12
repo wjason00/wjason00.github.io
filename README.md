@@ -1,78 +1,98 @@
-# Jason Wang — project portfolio
+# Jason Wang — portfolio
 
-Static GitHub Pages portfolio led by Jason's computational developmental-neuroscience work in MorphBrain, with
-separate Model Morpher and Morphliner demonstrations.
+A static portfolio for computational neuroscience and machine-learning researchers,
+labs and placement selectors. Research questions, methods and evidence come first;
+geometry and animation tools provide supporting software examples.
 
-## Demonstrations
+## Current candidate — 12 October 2026
 
-- MorphBrain is an interactive production build loaded on request. The current World-A replay stops on a declared
-  numerical tolerance rather than a fixed iteration count. The allowlist includes the application bundles, GW21–36
-  atlas GLBs and Draco decoder only; parked eigenmode and mechanics assets are excluded.
-- Model Morpher uses a compressed recording from the public desktop prototype, with same-page Allen Mouse CCF
-  and BrainGlobe attribution.
-- Morphliner reuses the exact video and poster from the live waitlist hero. The slot can later move to the iframe
-  protocol documented in `demos/EMBED_CONTRACT.md`.
-- The CV is available by request through the public UCL email address; no CV PDF is shipped with the site. The
-  deployment check fails if a CV- or resume-named PDF is accidentally added later. The social preview card is
-  site-specific and derived from the real MorphBrain World A interface.
+The final local iteration gives the synthetic dPCA study a full visual feature,
+clarifies its ground-truth metrics, and provides a direct CV-request route. Morphliner
+now opens on an actual Trainer camera sequence with inline playback, three shot
+shortcuts, a matching editor view and a clearly separate product render.
 
-The portfolio shell has no runtime dependencies, analytics, external fonts or CDN resources. The MorphBrain
-sub-application bundles its own open-source runtime and fonts; data and software notices are published with the site.
+The site describes demonstrated project behaviour. Scientific limits are retained: the MorphBrain model is
+illustrative, the dPCA study is synthetic, and the Morphliner video demonstrates
+camera motion and captions around one model. Full Morphliner release remains in
+development. No unpublished Fabrizi results or restricted research assets are shipped.
 
-## Files in the shell
+This is a local release candidate. Public deployment is a separate action.
 
-| File | Role |
-| --- | --- |
-| `index.html` | The portfolio itself |
-| `404.html`, `third-party-notices.html`, `licenses/index.html` | Secondary pages; all share the same header, footer and theme |
-| `styles.css` | Every style for every page |
-| `theme.js` | **Render-blocking by design.** Applies the stored theme before first paint and marks the document `js` |
-| `script.js` | Deferred enhancement: theme toggle, demo loading, video controls, scroll-spy |
+## Explore
 
-`theme.js` must stay in `<head>` without `defer`. It does two things that have to happen before the first frame:
-applies a saved dark/light choice (otherwise every navigation flashes the light paper background) and adds a `js`
-class that CSS uses to lay out script-only controls immediately (otherwise the video controls shift the page down
-when `script.js` runs). Both are single-line changes with visible consequences — do not "optimise" it to `defer`.
+- **Research:** the UCL research-assistant role is described at the level of EEG source modelling.
+- **Rare-error study:** six saved trial allocations, five noise seeds, an explicit zero-error non-fit,
+  full curves and downloadable metrics/configuration/provenance. Downloads do not include the analysis code.
+- **MorphBrain:** a keyboard-operable saved-image comparison and an on-demand interactive model.
+  Closing its dialog disposes the runtime; a full-page link remains available.
+- **Model Morpher:** a scrub-capable recording of the public Python geometric-morphing prototype.
+- **Morphliner:** a 6.5-second 1080p demo excerpt, matching editor screenshot and separate product render.
+  A complete nine-second 720p Free export remains linked in the project notes.
+- **Contact:** public UCL email, CV by request, GitHub and LinkedIn. No CV PDF is published.
 
-## Progressive enhancement contract
+## Preview and check
 
-- **No JavaScript**: the page reads normally, the videos keep native `controls`, the demo opens full screen in its
-  own tab, and the theme follows `prefers-color-scheme`. Script-only controls are hidden by `html:not(.js)` rather
-  than left on the page as dead buttons.
-- **No WebGL**: `script.js` feature-detects a WebGL context before offering the MorphBrain demo. Without one, the
-  Load button is replaced by a written explanation, the recorded poster stays, and the full-screen link remains.
-- **Reduced motion / high contrast**: honoured via `prefers-reduced-motion` and `prefers-contrast`.
-
-## Content-Security-Policy and the inline JSON-LD
-
-Every page ships a strict CSP with no `'unsafe-inline'`. `index.html` carries one inline
-`<script type="application/ld+json">` block for structured data, allowlisted by sha256 hash. **After editing that
-block, regenerate the hash** or the browser drops it silently and logs a violation:
-
-```
-node scripts/csp-hash.mjs index.html
-```
-
-## Deployment
-
-The Actions workflow assembles an explicit `_site` allowlist. Local QA captures, source maps, parked World-C mode
-files and unrelated repository content are not deployed. Before uploading it asserts that the artifact contains no
-source maps, no CV/resume PDF, no volumetric neuroimaging formats (`.nii`, `.nii.gz`, `.mgz`, `.dcm`), and stays
-under 12 MB, then checks that every internal link and fragment resolves:
-
-```
-node scripts/check-links.mjs _site
-```
-
-Adding a file to the shell means adding it to the `cp` allowlist in `.github/workflows/pages.yml`; the build fails
-loudly rather than deploying a page with a missing stylesheet or script.
-
-The Pages workflow also runs a Chromium layout contract at the wide desktop viewport that exposed the August 2026
-hero-poster collapse, a common laptop viewport and a narrow mobile viewport. It asserts that the poster retains the
-figure's usable width and that the document does not overflow horizontally:
-
-```
+```powershell
 npm ci
+npm run build
+node scripts/serve-static.mjs _site 4187
+```
+
+Open `http://127.0.0.1:4187/`. The server supports byte-range requests for video seeking.
+`npm run build` creates a fresh `_site` from the publication allowlist, rejects prohibited
+files and artifacts at or above 12 MiB, verifies copied file hashes and checks all internal
+HTML links. Its manifest is saved to the ignored `output/release-manifest.json`.
+
+The same assembly command runs in `.github/workflows/pages.yml` before deployment.
+To check the assembled artifact's responsive layout:
+
+```powershell
 npx playwright install chromium
+$env:PORTFOLIO_SITE_ROOT = '_site'
 npm run test:layout
 ```
+
+## Source map
+
+| File | Purpose |
+| --- | --- |
+| `index.html`, `styles.css` | Portfolio content and responsive layout |
+| `script.js` | Gallery, comparisons, video controls, shot selection, dialog and navigation |
+| `theme.js` | Applies a stored colour theme before first paint; intentionally render-blocking |
+| `rare-errors.html`, `assets/portfolio/study.css`, `assets/portfolio/study.js` | Saved-results study interface |
+| `assets/portfolio/rare-errors/` | Frozen metrics, configuration, provenance and original figures |
+| `scripts/portfolio-study.py` | Builds presentation data from hash-verified study outputs; runs no experiment |
+| `scripts/build-site.mjs` | Shared local and CI publication assembly |
+| `scripts/check-links.mjs` | Public HTML link and fragment verification |
+| `404.html`, `third-party-notices.html`, `licenses/` | Secondary pages and source/licence information |
+
+The shell has no runtime dependency, analytics or external font requests. Fonts and
+the separate MorphBrain runtime are served locally. Source and data credits are in
+`third-party-notices.html` and `licenses/`.
+
+## Content and accessibility contracts
+
+- No JavaScript: project previews and native video controls remain available; inactive custom controls are hidden.
+- Keyboard: gallery tabs, saved-image reveal, video scrubbing, shot shortcuts and model dialog are operable.
+- Reduced motion and forced colours are supported. Theme choice persists between pages.
+- The study shows saved observations, not interpolated or newly fitted results.
+- Frozen study downloads retain their exact bytes in Git so published provenance hashes remain valid.
+- Videos do not autoplay. Hidden or offscreen videos pause, and only one video plays at a time.
+- The inline JSON-LD is covered by a CSP hash. After changing it, run `node scripts/csp-hash.mjs index.html`
+  and update the `script-src` hash. Do not weaken the CSP.
+- Only the named shell files and `assets/`, `demos/`, `licenses/` enter `_site`. Private notes, local captures,
+  build scripts and source maps are excluded. Keep restricted data and CV/resume PDFs out of the artifact.
+
+## Local verification record
+
+The assembled candidate passed four responsive-layout tests, 72 homepage/player checks,
+27 study checks, seven final mobile/forced-colour checks and ten build-boundary checks.
+Desktop, phone and dark-theme captures were visually reviewed. The release contains
+89 public files (11,450,963 bytes); the ZIP is checked against the full file-hash manifest.
+These are implementation and presentation checks, not additional research validation.
+
+Current checks, media derivation, public file hashes and screenshots are saved under
+`output/portfolio-final-20261012/` and `output/playwright/portfolio-final-20261012/`.
+The exact earlier README, including dated decisions and source boundaries, is preserved
+at `output/portfolio-final-20261012/before/README.md`. These local records are excluded
+from the website. T-065 in the shared control vault owns next actions and completion.

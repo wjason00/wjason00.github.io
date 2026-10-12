@@ -9,3 +9,9 @@ demos/morphbrain/assets/* linguist-generated=true -diff
 demos/morphbrain/draco/* linguist-vendored=true -diff
 THIRD_PARTY_NOTICES.txt linguist-generated=true -diff
 licenses/*.txt linguist-vendored=true -diff
+
+# Frozen study downloads must retain the exact bytes named in provenance.json.
+assets/portfolio/rare-errors/metrics.csv -text
+assets/portfolio/rare-errors/config.json -text
+assets/portfolio/rare-errors/rare_errors.png -text
+assets/portfolio/rare-errors/rare_errors.svg -text

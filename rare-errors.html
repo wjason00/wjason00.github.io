@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'"
+    />
+    <meta
+      name="description"
+      content="Explore a synthetic dPCA study: how rare error trials change what a choice-labelled component can tell us."
+    />
+    <meta
+      name="theme-color"
+      content="#f6f5f1"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#171b18"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="canonical" href="https://wjason00.github.io/rare-errors.html" />
+    <meta property="og:site_name" content="Jason Wang" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="When errors are rare — a synthetic dPCA study" />
+    <meta property="og:description" content="A component can be strongly choice-driven yet reconstruct the signal poorly. Explore six saved trial mixes and all five noise seeds." />
+    <meta property="og:url" content="https://wjason00.github.io/rare-errors.html" />
+    <meta property="og:image" content="https://wjason00.github.io/assets/og-portfolio.png" />
+    <meta property="og:image:alt" content="Jason Wang — computational neuroscience and machine learning portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>When errors are rare — Jason Wang</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./assets/portfolio/study.css" />
+    <script src="./theme.js"></script>
+    <script src="./script.js" defer></script>
+    <script src="./assets/portfolio/rare-errors/data.js" defer></script>
+    <script src="./assets/portfolio/study.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="site-name" href="./"
+          >Jason Wang<span class="site-name__detail"
+            >Neuroscience &amp; code</span
+          ></a
+        >
+        <nav class="site-nav" aria-label="Portfolio">
+          <a href="./#experience">Research</a><a href="./#projects">Projects</a>
+        </nav>
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Switch colour theme"
+        >
+          <span aria-hidden="true">◐</span>
+        </button>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <section class="study-intro" aria-labelledby="study-title">
+        <p class="eyebrow">Synthetic methods study / dPCA</p>
+        <h1 id="study-title">What if mistakes are missing?</h1>
+        <p class="lede">
+          In this synthetic task, stimulus A should lead to choice A, and B to
+          B. When almost every choice is correct, can an analysis tell the
+          stimulus and choice signals apart?
+        </p>
+        <p class="study-meta">
+          Synthetic data · 80 training trials · 5 noise seeds · saved results,
+          September 2026
+        </p>
+      </section>
+      <section
+        class="experiment"
+        aria-label="Explore the saved rare-error study"
+      >
+        <div class="trial-design">
+          <p class="eyebrow">01 / Change the trial mix</p>
+          <h2>Choose the trial mix.</h2>
+          <p id="count-label">
+            Error trials per stimulus
+            <span class="control-context">/ 40 trials each</span>
+          </p>
+          <div
+            class="count-controls"
+            role="group"
+            aria-labelledby="count-label"
+            hidden
+          >
+            <button type="button" data-errors="0" aria-pressed="false">
+              0
+            </button>
+            <button type="button" data-errors="1" aria-pressed="true">1</button>
+            <button type="button" data-errors="2" aria-pressed="false">
+              2
+            </button>
+            <button type="button" data-errors="5" aria-pressed="false">
+              5
+            </button>
+            <button type="button" data-errors="10" aria-pressed="false">
+              10
+            </button>
+            <button type="button" data-errors="20" aria-pressed="false">
+              20
+            </button>
+          </div>
+          <p class="balance-key">
+            Balanced = 20 errors per stimulus: 20 trials in each of the four
+            cells.
+          </p>
+          <div
+            class="result-overview"
+            aria-label="Selected result compared with the balanced setting"
+          >
+            <div>
+              <p>Choice attribution</p>
+              <strong data-overview="purity">97.63%</strong>
+              <p class="overview-help">Attribution to the known choice signal.</p>
+            </div>
+            <div>
+              <p>Reconstruction error</p>
+              <strong data-overview="ratio">4.14×</strong>
+              <p class="overview-help">
+                the balanced setting<br />Lower is closer to the true signal.
+              </p>
+            </div>
+          </div>
+          <p class="overview-scope">
+            Measured against synthetic ground truth. Means across five noise
+            seeds, one population.
+          </p>
+          <p class="compact-result sr-only" id="compact-result" role="status">
+            97.63% choice attribution; 4.14 times the balanced reconstruction
+            error.
+          </p>
+          <a
+            class="diagnostics-link"
+            href="#seed-diagnostics"
+            data-open-diagnostics
+            >Inspect exact values &amp; all five seeds ↓</a
+          >
+        </div>
+        <div class="study-results">
+          <p class="eyebrow">02 / Look past the label</p>
+          <h2 id="result-title">A clean label. A noisier estimate.</h2>
+          <p id="result-explanation">
+            The component is strongly choice-driven, yet its reconstruction is
+            less accurate than with four equally sampled cells.
+          </p>
+          <div
+            class="allocation"
+            aria-label="Number of training trials in each stimulus-choice combination"
+          >
+            <div class="trial-cell" data-cell="correct">
+              <h3>Stimulus A → choice A<br />Correct trials</h3>
+              <strong>39</strong>
+              <div class="dots" aria-hidden="true"></div>
+            </div>
+            <div class="trial-cell is-error" data-cell="error">
+              <h3>Stimulus A → choice B<br />Error trials</h3>
+              <strong>1</strong>
+              <div class="dots" aria-hidden="true"></div>
+            </div>
+            <div class="trial-cell is-error" data-cell="error">
+              <h3>Stimulus B → choice A<br />Error trials</h3>
+              <strong>1</strong>
+              <div class="dots" aria-hidden="true"></div>
+            </div>
+            <div class="trial-cell" data-cell="correct">
+              <h3>Stimulus B → choice B<br />Correct trials</h3>
+              <strong>39</strong>
+              <div class="dots" aria-hidden="true"></div>
+            </div>
+          </div>
+          <p class="design-note" id="design-state" role="status">
+            1 error per stimulus · 80 trials total · design rank 4 of 4
+          </p>
+          <p class="design-note">
+            One filled dot = one synthetic training trial. Counts are imposed by
+            the study, rather than sampled behaviour.
+          </p>
+          <noscript
+            ><p class="no-js-note">
+              This is the one-error setting. Enable JavaScript to change the
+              mix, or open the full results below.
+            </p></noscript
+          >
+        </div>
+      </section>
+      <section class="study-takeaway" aria-labelledby="takeaway-title">
+        <h2 id="takeaway-title">The useful distinction.</h2>
+        <p>
+          In this synthetic setting, at one error per stimulus, mean choice
+          attribution is already 97.63%. Yet choice reconstruction error is
+          about four times its value in the balanced setting. A clean label does
+          not tell the whole story.
+        </p>
+      </section>
+      <div class="study-depth">
+        <details id="seed-diagnostics">
+          <summary>Exact values &amp; all five noise seeds</summary>
+          <p class="study-meta">Means across five noise seeds</p>
+          <div class="metric-grid">
+            <div class="metric" data-metric="purity">
+              <h3>Choice attribution<br />Higher = more choice-driven</h3>
+              <strong>97.63%</strong
+              ><svg
+                viewBox="0 0 220 65"
+                role="img"
+                aria-label="Five noise-seed results are available in the figure below."
+              ></svg>
+              <p class="metric-range">Mean across five noise seeds</p>
+            </div>
+            <div class="metric" data-metric="error">
+              <h3>Choice reconstruction error<br />Lower = closer to truth</h3>
+              <strong>0.1000</strong
+              ><svg
+                viewBox="0 0 220 65"
+                role="img"
+                aria-label="Five noise-seed results are available in the figure below."
+              ></svg>
+              <p class="metric-range">Mean normalized squared error</p>
+            </div>
+          </div>
+          <p class="result-note">
+            Each point is one noise seed. The two axes have different scales.
+            Ranges show all five seeds in one fixed synthetic population; they
+            are not confidence intervals.
+          </p>
+        </details>
+        <details>
+          <summary>See the full curves &amp; the control</summary>
+          <p>
+            The control removes the pure choice contribution while retaining the
+            stimulus–choice interaction. It tests what appears in the
+            choice-labelled branch when that main contribution is absent.
+          </p>
+          <p id="null-result">
+            Select a trial mix above to inspect the corresponding null result.
+          </p>
+          <figure>
+            <a
+              href="./assets/portfolio/rare-errors/rare_errors.svg"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="./assets/portfolio/rare-errors/rare_errors.png"
+                width="1848"
+                height="1344"
+                loading="lazy"
+                alt="Four panels: design rank falls from four to two at zero errors; choice attribution stays high; choice reconstruction error falls as errors increase; null branch energy is small but nonzero. Points show five-seed means and bars the full ranges."
+            /></a>
+            <figcaption>
+              Original frozen study figure. Click to open the vector version.
+              Every tested count and all five seeds contribute; bars are full
+              ranges.
+            </figcaption>
+          </figure>
+        </details>
+        <details>
+          <summary>What was measured?</summary>
+          <p>
+            Demixed principal component analysis (dPCA) uses task labels to find
+            low-dimensional components associated with time, stimulus, choice
+            and their interaction. Here, the generating factors are known, so
+            attribution and reconstruction can be assessed separately.
+          </p>
+          <p>
+            <strong>Choice attribution</strong> is the fraction of factor-driven
+            score energy attributable to the true choice factor in the
+            choice-labelled branch.
+            <strong>Choice reconstruction error</strong> is that branch’s
+            squared error on independent held-out cell means, divided by the
+            known pure choice signal’s energy. It is not a classification error
+            rate. The headline multiplier divides the selected mean error by
+            the balanced mean error, using the same five noise seeds.
+          </p>
+          <p>
+            The fixed design uses 24 synthetic neurons, 32 time bins, two
+            stimuli and two choices. Each positive-count fit weights the four
+            observed cell means equally; rare cells still have noisier
+            estimates. Test pools and noise seeds are paired across the six
+            allocations. At zero errors, the design has rank two and dPCA is not
+            fitted.
+          </p>
+          <p>
+            The separate PCA comparison has the same four-component budget but
+            no predefined choice branch. dPCA receives task labels; PCA does
+            not. This view makes no claim that one method is generally better.
+          </p>
+        </details>
+        <details>
+          <summary>Scope, provenance &amp; downloads</summary>
+          <p>
+            This independent methods study uses synthetic data with known
+            generating factors. The controls display saved results; they do not
+            run a new fit. Biological recordings have not been evaluated.
+          </p>
+          <p>
+            One population geometry, fixed signal strengths and one regularizer
+            limit the conclusion. These curves do not establish a universal
+            minimum error count or causal choice coding.
+          </p>
+          <p>
+            Method:
+            <a
+              href="https://elifesciences.org/articles/10989"
+              target="_blank"
+              rel="noreferrer"
+              >Kobak et al. (2016)</a
+            >, using the
+            <a
+              href="https://github.com/machenslab/dPCA/tree/1def5b15854638811a25257dc0b68074ab5a1be0/python"
+              target="_blank"
+              rel="noreferrer"
+              >pinned Machens Lab Python implementation</a
+            >.
+          </p>
+          <p class="source-links">
+            <a href="./assets/portfolio/rare-errors/metrics.csv" download
+              >All 120 result rows ↓</a
+            ><a href="./assets/portfolio/rare-errors/config.json" download
+              >Study configuration ↓</a
+            ><a href="./assets/portfolio/rare-errors/provenance.json" download
+              >Provenance &amp; file hashes ↓</a
+            >
+          </p>
+          <p>The downloads contain the saved results and configuration; the study’s analysis code is not included.</p>
+        </details>
+      </div>
+    </main>
+    <footer class="study-footer wrap">
+      <a href="./#experience">← Back to the portfolio</a>
+    </footer>
+  </body>
+</html>

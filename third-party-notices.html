@@ -9,8 +9,8 @@
     />
     <meta name="description" content="Data sources and third-party software notices for Jason Wang's project portfolio." />
     <meta name="author" content="Jason Wang" />
-    <meta name="theme-color" content="#f1efe7" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111614" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#171b18" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://wjason00.github.io/third-party-notices.html" />
     <meta property="og:site_name" content="Jason Wang" />
     <meta property="og:locale" content="en_GB" />
@@ -21,9 +21,8 @@
     <title>Sources &amp; licences — Jason Wang</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="preload" href="./assets/fonts/spectral-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./assets/fonts/dm-mono-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin />
     <script src="./theme.js"></script>
     <script src="./script.js" defer></script>
   </head>
@@ -32,13 +31,11 @@
 
     <header class="site-header" id="top">
       <div class="site-header__inner">
-        <a class="wordmark" href="./" aria-label="Jason Wang, portfolio home">
-          <span class="wordmark__name">Jason Wang</span>
-        </a>
+        <a class="site-name" href="./">Jason Wang</a>
         <nav class="site-nav" aria-label="Portfolio sections">
+          <a href="./#experience">Research</a>
           <a href="./#projects">Projects</a>
-          <a href="./#through-line">Through-line</a>
-          <a href="./#about">About</a>
+          <a href="./#about">Contact</a>
         </nav>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme">
           <span class="theme-toggle__glyph" aria-hidden="true"></span>
@@ -49,11 +46,15 @@
 
     <main class="legal-page" id="main" tabindex="-1">
       <a class="legal-page__back" href="./">← Back to projects</a>
-      <p class="eyebrow">Publication record</p>
-      <h1>Sources &amp; licences.</h1>
+      <p class="eyebrow">Sources &amp; credits</p>
+      <h1>Sources &amp; licences</h1>
       <p class="legal-page__lede">
-        The portfolio separates Jason's project work from the data, software and typefaces that make the
-        demonstrations possible.
+        Data, software and font licences for this site.
+      </p>
+
+      <h2>Project images</h2>
+      <p>
+        The project images come from model outputs, recordings and product renders. Their data sources and licence terms are listed below.
       </p>
 
       <h2>MorphBrain atlas reference</h2>
@@ -87,9 +88,9 @@
         transitive open-source dependencies. The geometry decoder is Google Draco, licensed under Apache-2.0.
       </p>
       <p>
-        Three typefaces are used site-wide and served from this domain: <strong>Source Sans 3</strong> for body
-        and interface text, <strong>Spectral</strong> for headings and the italic notes, and
-        <strong>DM Mono</strong> for labels, figures and the footer. All three are licensed under the
+        The portfolio shell uses self-hosted <strong>Source Sans 3</strong> for body
+        and interface text and <strong>DM Mono</strong> for figure and source labels.
+        <strong>Spectral</strong> is also distributed in the bundled assets. All three are licensed under the
         <a href="./licenses/OFL-1.1.txt">SIL Open Font License 1.1</a>.
       </p>
       <p>
@@ -105,7 +106,7 @@
         forbids them — fonts, styles, scripts and media may only be fetched from this domain.
       </p>
       <p>
-        Its own stylesheet, two small scripts and the self-hosted font files listed above are the entire
+        Its own stylesheet, two small scripts and the self-hosted Source Sans 3 and DM Mono files are the entire
         runtime. The fonts are the shell's only third-party dependency, and their licence is reproduced in
         full alongside the others.
       </p>
@@ -118,7 +119,6 @@
 
     <footer class="site-footer">
       <p class="site-footer__name">Jason Wang</p>
-      <p class="site-footer__note">Built as a lightweight static portfolio.</p>
       <nav class="site-footer__links" aria-label="Site information">
         <a href="./licenses/">Licence texts</a>
         <a href="./">Portfolio home</a>

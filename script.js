@@ -1,35 +1,34 @@
 /*
  * Portfolio behaviour. Deferred, dependency-free, and strictly an enhancement:
  * with scripting off the page still reads, the videos keep native controls and
- * the demo opens full screen in its own tab.
+ * the demo remains available through a normal full-page link.
  *
  * theme.js has already run synchronously in <head>; it applied any stored theme
  * and added the `js` class. This file owns everything that can wait.
  */
 
 const root = document.documentElement;
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
 /* ----------------------------------------------------------------- theme -- */
 
-const themeToggle = document.querySelector('.theme-toggle');
+const themeToggle = document.querySelector(".theme-toggle");
 
 function resolvedTheme() {
-  return root.dataset.theme || (darkQuery.matches ? 'dark' : 'light');
+  return root.dataset.theme || (darkQuery.matches ? "dark" : "light");
 }
 
 /* The document ships two media-scoped theme-color metas, which are correct
    while the visitor is following their system. An explicit choice has to
    override both, so they collapse into one unscoped meta. */
-function setThemeColor(theme) {
-  const colour = theme === 'dark' ? '#111614' : '#f1efe7';
+function setThemeColor() {
+  const colour = resolvedTheme() === "dark" ? "#171b18" : "#f6f5f1";
   const metas = document.querySelectorAll('meta[name="theme-color"]');
   if (!metas.length) return;
 
   metas.forEach((meta, index) => {
     if (index === 0) {
-      meta.removeAttribute('media');
+      meta.removeAttribute("media");
       meta.content = colour;
     } else {
       meta.remove();
@@ -39,16 +38,19 @@ function setThemeColor(theme) {
 
 function describeToggle(theme) {
   if (!themeToggle) return;
-  const next = theme === 'dark' ? 'light' : 'dark';
-  themeToggle.setAttribute('aria-label', `Switch to ${next} colour theme (currently ${theme})`);
-  themeToggle.setAttribute('title', `Switch to ${next} theme`);
+  const next = theme === "dark" ? "light" : "dark";
+  themeToggle.setAttribute(
+    "aria-label",
+    `Switch to ${next} colour theme (currently ${theme})`,
+  );
+  themeToggle.setAttribute("title", `Switch to ${next} theme`);
 }
 
 function applyTheme(theme, persist) {
   root.dataset.theme = theme;
   if (persist) {
     try {
-      localStorage.setItem('portfolio-theme', theme);
+      localStorage.setItem("portfolio-theme", theme);
     } catch (error) {
       /* Private mode or blocked storage: the choice just will not survive. */
     }
@@ -58,205 +60,309 @@ function applyTheme(theme, persist) {
 }
 
 describeToggle(resolvedTheme());
-if (root.dataset.theme) setThemeColor(root.dataset.theme);
+setThemeColor();
 
-themeToggle?.addEventListener('click', () => {
-  applyTheme(resolvedTheme() === 'dark' ? 'light' : 'dark', true);
+themeToggle?.addEventListener("click", () => {
+  applyTheme(resolvedTheme() === "dark" ? "light" : "dark", true);
 });
 
 /* Follow the system while the visitor has not made an explicit choice. */
-darkQuery.addEventListener('change', () => {
-  if (!root.dataset.theme) describeToggle(resolvedTheme());
+darkQuery.addEventListener("change", () => {
+  if (!root.dataset.theme) {
+    describeToggle(resolvedTheme());
+    setThemeColor();
+  }
 });
 
-/* ------------------------------------------------------- demo capability -- */
+/* Saved-image comparison, operable with touch, pointer or arrow keys. */
+document.querySelectorAll(".comparison").forEach((comparison) => {
+  const range = comparison.querySelector("input");
+  if (!range) return;
+  const update = () => {
+    comparison.style.setProperty("--position", `${range.value}%`);
+    range.setAttribute(
+      "aria-valuetext",
+      `${range.value}% concentration view, ${100 - Number(range.value)}% positional readout`,
+    );
+  };
+  range.addEventListener("input", update);
+  update();
+});
 
-/* The MorphBrain build renders through three.js, so a page without a WebGL
-   context can only ever show a broken canvas. Detect once, up front, and
-   present the recorded poster plus a written explanation instead. */
-function hasWebGLSupport() {
-  try {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('webgl2') || canvas.getContext('webgl');
-    if (!context) return false;
-    context.getExtension('WEBGL_lose_context')?.loseContext();
-    return true;
-  } catch (error) {
-    return false;
-  }
+/* Load only recordings the visitor has chosen; never autoplay them. */
+function prepareVideo(video) {
+  if (!video || video.dataset.prepared) return;
+  video.dataset.prepared = "true";
+  video.preload = "metadata";
+  video.load();
 }
 
-/* Memoised: creating a throwaway context is cheap but not free, and the legal
-   pages share this script without ever hosting a demo. */
-let webglMemo = null;
-function webglAvailable() {
-  if (webglMemo === null) webglMemo = hasWebGLSupport();
-  return webglMemo;
-}
-
-/* ------------------------------------------------------------ iframe demo -- */
-
-const IFRAME_TIMEOUT_MS = 20000;
-let activeIframeDemo = null;
-
-function statusOf(demo) {
-  return demo.querySelector('.demo-status');
-}
-
-function unloadIframeDemo(demo, { restoreFocus = false } = {}) {
-  const mount = demo.querySelector('.demo-mount');
-  const button = demo.querySelector('.demo-load');
-  const status = statusOf(demo);
-
-  if (demo.dataset.loadTimer) {
-    clearTimeout(Number(demo.dataset.loadTimer));
-    delete demo.dataset.loadTimer;
-  }
-
-  if (mount) mount.textContent = '';
-  demo.classList.remove('is-loaded', 'is-error');
-  if (button) {
-    button.textContent = 'Load interactive demo';
-    button.setAttribute('aria-expanded', 'false');
-    /* Removing the iframe would otherwise drop focus onto <body>. */
-    if (restoreFocus) button.focus();
-  }
-  // A state, not telemetry. "Poster loaded · no GPU view active" sat in the
-  // highest-value position on the page and reads to a non-engineer as an
-  // error — the demo announcing something had failed before they touched it.
-  if (status) status.textContent = 'Interactive demo · not yet loaded';
-  if (activeIframeDemo === demo) activeIframeDemo = null;
-}
-
-function loadIframeDemo(demo) {
-  if (!demo || demo.classList.contains('is-loaded') || demo.classList.contains('is-unsupported')) return;
-
-  const mount = demo.querySelector('.demo-mount');
-  if (!mount) return;
-
-  /* Only one live GPU context at a time — see demos/EMBED_CONTRACT.md. */
-  if (activeIframeDemo && activeIframeDemo !== demo) unloadIframeDemo(activeIframeDemo);
-
-  const button = demo.querySelector('.demo-load');
-  const status = statusOf(demo);
-  const iframe = document.createElement('iframe');
-
-  iframe.src = demo.dataset.demoSrc;
-  iframe.title = demo.dataset.demoTitle || 'Interactive project demonstration';
-  iframe.loading = 'eager';
-  iframe.allow = 'fullscreen';
-  iframe.referrerPolicy = 'no-referrer';
-  /* Same-origin, so this is defence in depth: it blocks top-level navigation,
-     form submission and popups from the embedded build. */
-  iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-downloads');
-
-  const timer = window.setTimeout(() => {
-    if (demo.classList.contains('is-loaded') && status && !demo.dataset.demoReady) {
-      demo.classList.add('is-error');
-      status.textContent = 'Demo is slow to start · try opening it full screen';
-    }
-  }, IFRAME_TIMEOUT_MS);
-  demo.dataset.loadTimer = String(timer);
-
-  iframe.addEventListener('load', () => {
-    demo.dataset.demoReady = 'true';
-    clearTimeout(timer);
-    delete demo.dataset.loadTimer;
-    demo.classList.remove('is-error');
-    if (status) status.textContent = 'Interactive demo loaded · unload to release the 3D view';
-  }, { once: true });
-
-  iframe.addEventListener('error', () => {
-    clearTimeout(timer);
-    demo.classList.add('is-error');
-    if (status) status.textContent = 'Demo failed to load · open it full screen instead';
-  }, { once: true });
-
-  delete demo.dataset.demoReady;
-  mount.appendChild(iframe);
-  demo.classList.add('is-loaded');
-  if (button) {
-    button.textContent = 'Unload demo';
-    button.setAttribute('aria-expanded', 'true');
-  }
-  if (status) status.textContent = 'Loading bounded application…';
-  activeIframeDemo = demo;
-}
-
-document.querySelectorAll('.iframe-demo').forEach((demo) => {
-  const button = demo.querySelector('.demo-load');
-  const status = statusOf(demo);
-
-  if (!webglAvailable()) {
-    demo.classList.add('is-unsupported');
-    if (status) status.textContent = 'WebGL unavailable · showing the recorded poster';
-    return;
-  }
-
-  button?.addEventListener('click', () => {
-    if (demo.classList.contains('is-loaded')) {
-      unloadIframeDemo(demo, { restoreFocus: true });
-      return;
-    }
-    loadIframeDemo(demo);
+const gallery = document.querySelector(".gallery");
+const projectTabs = [...document.querySelectorAll(".gallery-tab")];
+const panels = [...document.querySelectorAll(".gallery-panel")];
+function selectProject(name, focus = false) {
+  const selected = projectTabs.find((tab) => tab.dataset.project === name);
+  if (!selected) return;
+  projectTabs.forEach((tab) => {
+    tab.setAttribute("aria-selected", String(tab === selected));
+    tab.tabIndex = tab === selected ? 0 : -1;
   });
-});
-
-/* Hero and spotlight shortcuts: load the demo, scroll to it, and take focus
-   with it so keyboard and screen-reader users are not left behind. */
-document.querySelectorAll('.demo-jump').forEach((link) => {
-  if (link.classList.contains('button') && !webglAvailable()) {
-    link.textContent = 'See the MorphBrain experiment';
-  }
-
-  link.addEventListener('click', (event) => {
-    const targetId = link.dataset.demoTarget;
-    const demo = targetId ? document.getElementById(targetId) : null;
-    if (!demo) return;
-
-    event.preventDefault();
-    loadIframeDemo(demo);
-    demo.scrollIntoView({
-      behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
-      block: 'center',
+  panels.forEach((panel) => {
+    panel.hidden = panel.id !== `preview-${name}`;
+    panel.querySelectorAll("video").forEach((video) => {
+      if (panel.hidden) video.pause();
+      else if (!video.closest("[hidden]")) prepareVideo(video);
     });
-    demo.focus({ preventScroll: true });
   });
+  gallery.querySelector(".gallery__count").textContent =
+    `0${projectTabs.indexOf(selected) + 1} / 03`;
+  if (focus) selected.focus();
+}
+
+if (gallery && projectTabs.length) {
+  gallery.classList.add("is-enhanced");
+  gallery.querySelector(".gallery-tabs").setAttribute("role", "tablist");
+  projectTabs.forEach((tab, index) => {
+    tab.setAttribute("role", "tab");
+    tab.setAttribute("aria-controls", `preview-${tab.dataset.project}`);
+    tab.addEventListener("click", (event) => {
+      event.preventDefault();
+      selectProject(tab.dataset.project);
+      history.replaceState(null, "", tab.hash);
+    });
+    tab.addEventListener("keydown", (event) => {
+      if (event.key === " ") {
+        event.preventDefault();
+        selectProject(tab.dataset.project);
+        history.replaceState(null, "", tab.hash);
+        return;
+      }
+      const next =
+        event.key === "ArrowRight"
+          ? (index + 1) % projectTabs.length
+          : event.key === "ArrowLeft"
+            ? (index + projectTabs.length - 1) % projectTabs.length
+            : event.key === "Home"
+              ? 0
+              : event.key === "End"
+                ? projectTabs.length - 1
+                : null;
+      if (next === null) return;
+      event.preventDefault();
+      selectProject(projectTabs[next].dataset.project, true);
+      history.replaceState(null, "", projectTabs[next].hash);
+    });
+  });
+  panels.forEach((panel) => {
+    panel.setAttribute("role", "tabpanel");
+    panel.tabIndex = 0;
+  });
+}
+
+/* Each showcase stays where the visitor opened it. The demo and editor are
+   two views of the Trainer project; the product render is a separate scene. */
+document.querySelectorAll("[data-morphliner-showcase]").forEach((showcase) => {
+  const views = [...showcase.querySelectorAll("[data-morphliner-panel]")];
+  const buttons = [...showcase.querySelectorAll("[data-morphliner-view]")];
+  function selectView(mode, prepare = true) {
+    views.forEach((view) => {
+      view.hidden = view.dataset.morphlinerPanel !== mode;
+      view.querySelectorAll("video").forEach((video) => {
+        if (view.hidden) video.pause();
+        else if (prepare) prepareVideo(video);
+      });
+    });
+    buttons.forEach((button) =>
+      button.setAttribute("aria-pressed", String(button.dataset.morphlinerView === mode)),
+    );
+  }
+  buttons.forEach((button) => button.addEventListener("click", () => selectView(button.dataset.morphlinerView)));
+  selectView("recording", false);
 });
+
+function selectFromHash() {
+  const name = location.hash.replace(/^#(?:preview-)?/, "");
+  if (projectTabs.some((tab) => tab.dataset.project === name))
+    selectProject(name);
+}
+if (gallery) {
+  selectProject("morphbrain");
+  selectFromHash();
+  window.addEventListener("hashchange", selectFromHash);
+  document.querySelectorAll("[data-show-project]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      selectProject(link.dataset.showProject, true);
+      if (link.dataset.showView)
+        document
+          .querySelector(`[data-morphliner-view="${link.dataset.showView}"]`)
+          ?.click();
+      history.replaceState(null, "", link.hash);
+      gallery.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+        block: "start",
+      });
+    });
+  });
+}
+
+/* The real model is a separate runtime, mounted only during an explicit visit. */
+const demoDialog = document.querySelector(".demo-dialog");
+let demoOpener;
+if (demoDialog && typeof demoDialog.showModal === "function") {
+  document.querySelectorAll("[data-launch-demo]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)
+        return;
+      event.preventDefault();
+      document.querySelectorAll("video").forEach((video) => video.pause());
+      demoOpener = link;
+      const iframe = document.createElement("iframe");
+      iframe.title = "MorphBrain interactive illustrative model";
+      iframe.src = link.href;
+      // Escape inside an iframe does not reach the parent document. The bundled
+      // same-origin model gets a close handler without altering its runtime.
+      iframe.addEventListener("load", () => {
+        iframe.contentDocument?.addEventListener(
+          "keydown",
+          (keyEvent) => {
+            if (keyEvent.key === "Escape" && demoDialog.open) {
+              keyEvent.preventDefault();
+              demoDialog.close();
+            }
+          },
+          { capture: true },
+        );
+      });
+      demoDialog.querySelector(".demo-dialog__mount").replaceChildren(iframe);
+      demoDialog.showModal();
+      document.body.classList.add("demo-is-open");
+    });
+  });
+  demoDialog
+    .querySelector(".demo-close")
+    .addEventListener("click", () => demoDialog.close());
+  demoDialog.addEventListener("close", () => {
+    demoDialog.querySelector(".demo-dialog__mount").replaceChildren();
+    document.body.classList.remove("demo-is-open");
+    demoOpener?.focus();
+  });
+}
 
 /* ------------------------------------------------------- video enhancement -- */
 
 function formatTime(value) {
-  if (!Number.isFinite(value)) return '0:00';
+  if (!Number.isFinite(value)) return "0:00";
   const seconds = Math.max(0, Math.floor(value));
-  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
-document.querySelectorAll('.video-demo').forEach((demo) => {
-  const video = demo.querySelector('video');
-  const playButton = demo.querySelector('.video-play');
-  const range = demo.querySelector('.video-range');
-  const output = demo.querySelector('.video-time');
-  const recordingLabel = demo.dataset.recordingLabel || 'recorded result';
+document.querySelectorAll(".video-demo").forEach((demo) => {
+  const video = demo.querySelector("video");
+  const playButton = demo.querySelector(".video-play");
+  const range = demo.querySelector(".video-range");
+  const output = demo.querySelector(".video-time");
+  const recordingLabel = demo.dataset.recordingLabel || "recorded result";
   if (!video || !playButton || !range || !output) return;
 
   const placeholderTime = output.textContent;
+  const chapters = [...demo.querySelectorAll("[data-video-seek]")];
+  let startButton;
+  if (demo.classList.contains("morphliner-demo")) {
+    startButton = document.createElement("button");
+    startButton.type = "button";
+    startButton.className = "video-start";
+    startButton.textContent = "▶ Watch demo";
+    startButton.setAttribute("aria-label", `Watch ${recordingLabel}`);
+    startButton.addEventListener("click", () => {
+      if (video.ended) video.currentTime = 0;
+      video.play().catch(() => updateVideoControls());
+      playButton.focus({ preventScroll: true });
+    });
+    demo.querySelector(".video-stage").append(startButton);
+  }
+  chapters.forEach((chapter) => chapter.addEventListener("click", () => {
+    const seek = () => {
+      video.pause();
+      video.currentTime = Number(chapter.dataset.videoSeek);
+    };
+    if (video.readyState >= 1) seek();
+    else {
+      video.addEventListener("loadedmetadata", seek, { once: true });
+      prepareVideo(video);
+    }
+  }));
+  // Seeking has its own accessible value; avoid announcing every video frame.
+  output.setAttribute("aria-live", "off");
 
-  demo.classList.add('is-enhanced');
+  if (typeof demo.requestFullscreen === "function") {
+    const expand = document.createElement("button");
+    expand.type = "button";
+    expand.className = "video-expand";
+    expand.textContent = "Expand";
+    expand.setAttribute(
+      "aria-label",
+      `Expand ${recordingLabel} to full screen`,
+    );
+    expand.addEventListener("click", async () => {
+      try {
+        if (document.fullscreenElement === demo)
+          await document.exitFullscreen();
+        else await demo.requestFullscreen();
+      } catch {
+        // Fullscreen may be unavailable in an embedded browser; native playback remains usable.
+      }
+    });
+    document.addEventListener("fullscreenchange", () => {
+      const expanded = document.fullscreenElement === demo;
+      expand.textContent = expanded ? "Minimise" : "Expand";
+      expand.setAttribute(
+        "aria-label",
+        expanded
+          ? `Exit full screen for ${recordingLabel}`
+          : `Expand ${recordingLabel} to full screen`,
+      );
+    });
+    output.after(expand);
+  }
+
+  demo.classList.add("is-enhanced");
   video.controls = false;
 
   /* Videos are preload="none", so duration is unknown until the first play.
      Keep the authored placeholder and park the scrubber until it is real. */
   range.disabled = true;
-  range.setAttribute('aria-label', 'Playback position — available once the recording starts');
+  range.setAttribute(
+    "aria-label",
+    `Scrub ${recordingLabel} — loading metadata`,
+  );
 
   function hasDuration() {
     return Number.isFinite(video.duration) && video.duration > 0;
   }
 
   function updateVideoControls() {
-    playButton.textContent = video.paused ? 'Play' : 'Pause';
-    playButton.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} ${recordingLabel}`);
+    if (startButton) {
+      startButton.hidden = !video.paused || (video.currentTime > 0 && !video.ended);
+      startButton.textContent = video.ended ? "↺ Replay demo" : "▶ Watch demo";
+      startButton.setAttribute("aria-label", `${video.ended ? "Replay" : "Watch"} ${recordingLabel}`);
+    }
+    chapters.forEach((chapter, index) => {
+      const next = chapters[index + 1];
+      const active = video.currentTime >= Number(chapter.dataset.videoSeek) &&
+        (!next || video.currentTime < Number(next.dataset.videoSeek));
+      chapter.setAttribute("aria-pressed", String(active));
+    });
+    // Retain the complete recording frame when paused or scrubbed after first play.
+    if (!video.paused || video.currentTime > 0)
+      demo.classList.add("has-played");
+    playButton.textContent = video.paused ? "Play" : "Pause";
+    playButton.setAttribute(
+      "aria-label",
+      `${video.paused ? "Play" : "Pause"} ${recordingLabel}`,
+    );
 
     if (!hasDuration()) {
       output.textContent = placeholderTime;
@@ -265,32 +371,75 @@ document.querySelectorAll('.video-demo').forEach((demo) => {
 
     if (range.disabled) {
       range.disabled = false;
-      range.setAttribute('aria-label', 'Playback position');
+      range.setAttribute("aria-label", `Scrub ${recordingLabel}`);
     }
     range.value = String((video.currentTime / video.duration) * 100);
-    range.setAttribute('aria-valuetext', `${formatTime(video.currentTime)} of ${formatTime(video.duration)}`);
+    range.setAttribute(
+      "aria-valuetext",
+      `${formatTime(video.currentTime)} of ${formatTime(video.duration)}`,
+    );
     output.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
   }
 
-  playButton.addEventListener('click', () => {
+  playButton.addEventListener("click", () => {
     if (video.paused) {
       video.play().catch(() => updateVideoControls());
     } else {
       video.pause();
     }
   });
+  video.addEventListener("play", () => {
+    document.querySelectorAll("video").forEach((other) => {
+      if (other !== video) other.pause();
+    });
+  });
 
-  range.addEventListener('input', () => {
+  range.addEventListener("input", () => {
     if (!hasDuration()) return;
     video.pause();
     video.currentTime = (Number(range.value) / 100) * video.duration;
     updateVideoControls();
   });
 
-  ['loadedmetadata', 'durationchange', 'timeupdate', 'play', 'pause', 'ended'].forEach((name) => {
+  [
+    "loadedmetadata",
+    "durationchange",
+    "timeupdate",
+    "seeked",
+    "play",
+    "pause",
+    "ended",
+  ].forEach((name) => {
     video.addEventListener(name, updateVideoControls);
   });
+  video.addEventListener("error", () => {
+    video.controls = true;
+    demo.classList.remove("is-enhanced");
+  });
   updateVideoControls();
+});
+
+/* Do not leave a recording playing after its preview leaves the screen. */
+if ("IntersectionObserver" in window) {
+  const mediaObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) target.pause();
+      else if (target.hasAttribute("data-prepare-when-visible"))
+        prepareVideo(target);
+    });
+  });
+  document
+    .querySelectorAll("video")
+    .forEach((video) => mediaObserver.observe(video));
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden)
+    document.querySelectorAll("video").forEach((video) => video.pause());
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {});
+  }
 });
 
 /* --------------------------------------------------------------- scrollspy -- */
@@ -299,10 +448,13 @@ document.querySelectorAll('.video-demo').forEach((demo) => {
    long single-page document still tells you where you are. */
 const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
 const watched = navLinks
-  .map((link) => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+  .map((link) => ({
+    link,
+    section: document.getElementById(link.hash.slice(1)),
+  }))
   .filter((entry) => entry.section);
 
-if (watched.length && 'IntersectionObserver' in window) {
+if (watched.length && "IntersectionObserver" in window) {
   const visible = new Set();
 
   const observer = new IntersectionObserver(
@@ -314,11 +466,12 @@ if (watched.length && 'IntersectionObserver' in window) {
 
       const current = watched.find((entry) => visible.has(entry.section));
       watched.forEach(({ link }) => {
-        if (current && link === current.link) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
+        if (current && link === current.link)
+          link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
       });
     },
-    { rootMargin: '-25% 0px -60% 0px', threshold: 0 },
+    { rootMargin: "-25% 0px -60% 0px", threshold: 0 },
   );
 
   watched.forEach(({ section }) => observer.observe(section));

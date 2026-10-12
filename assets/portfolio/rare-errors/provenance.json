@@ -1,0 +1,23 @@
+{
+  "description": "Frozen synthetic rare-error study, presentation copy. No biological data.",
+  "source_commit": "fd196a6c3712dba2d1b1196bebebc072501ff430",
+  "source_created_utc": "2026-09-26T19:54:58.488717+00:00",
+  "source_status": "complete",
+  "scope": "Frozen synthetic results for inspection. Downloads contain results and configuration; the study analysis code is not included.",
+  "rows": 120,
+  "fitted_rows": 100,
+  "noise_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "uncertainty": "Full range over five noise seeds, not a confidence interval.",
+  "sha256": {
+    "metrics.csv": "d2aefaadc12439db7fc7bc5106e939bcc2a127d2c39d4295ee5aa5f11a9a87cd",
+    "config.json": "d105466080aa3f933f7fe972e96c04ed0dffda1acd5a74516667e804d0a7f9aa",
+    "rare_errors.png": "4bb0a092535c4fdb635c074c8115b8fbfd55e394e3709e3ff563570c5af457b5",
+    "rare_errors.svg": "c8f2a96e52340447b33ee215e75f01245cc26ad8736f1bae1355ab663af5e8b2"
+  }
+}

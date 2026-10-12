@@ -1,0 +1,27 @@
+{
+  "compute_cap_seconds": 600,
+  "decisions": 2,
+  "error_counts": [
+    0,
+    1,
+    2,
+    5,
+    10,
+    20
+  ],
+  "neurons": 24,
+  "noise_sd": 1.0,
+  "noise_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "population_seed": 2026,
+  "regularizer": 0.001,
+  "stimuli": 2,
+  "test_trials": 40,
+  "time_bins": 32,
+  "trials_per_stimulus": 40
+}

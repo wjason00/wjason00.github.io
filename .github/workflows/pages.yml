@@ -25,22 +25,8 @@ jobs:
         uses: actions/checkout@v7
       - name: Configure Pages
         uses: actions/configure-pages@v6
-      - name: Assemble public artifact
-        shell: bash
-        run: |
-          mkdir -p _site
-          cp index.html 404.html styles.css theme.js script.js favicon.svg robots.txt sitemap.xml third-party-notices.html THIRD_PARTY_NOTICES.txt .nojekyll _site/
-          cp -R assets demos licenses _site/
-      - name: Verify publication boundary
-        shell: bash
-        run: |
-          test -z "$(find _site -type f \( -name '*.modes.bin' -o -name '*.map' \) -print -quit)"
-          test -z "$(find _site -type f \( -iname '*cv*.pdf' -o -iname '*resume*.pdf' \) -print -quit)"
-          test -z "$(find _site -type f \( -name '*.nii' -o -name '*.nii.gz' -o -name '*.mgz' -o -name '*.dcm' \) -print -quit)"
-          test "$(du -sm _site | cut -f1)" -lt 12
-      - name: Check internal links resolve
-        shell: bash
-        run: node scripts/check-links.mjs _site
+      - name: Assemble and verify public artifact
+        run: node scripts/build-site.mjs
       - name: Install browser-test dependencies
         run: npm ci
       - name: Install Chromium for responsive checks
