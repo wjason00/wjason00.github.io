@@ -4,9 +4,9 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
-## Current candidate — 12 October 2026
+## Portfolio release — 12 October 2026
 
-The final local iteration gives the synthetic dPCA study a full visual feature,
+This iteration gives the synthetic dPCA study a full visual feature,
 clarifies its ground-truth metrics, and provides a direct CV-request route. Morphliner
 now opens on an actual Trainer camera sequence with inline playback, three shot
 shortcuts, a matching editor view and a clearly separate product render.
@@ -18,7 +18,9 @@ development. No unpublished Fabrizi results or restricted research assets are sh
 
 The implementation commit `98b3849` was pushed on 12 October 2026 to
 [`codex/portfolio-publishable-20261012`](https://github.com/wjason00/wjason00.github.io/tree/codex/portfolio-publishable-20261012).
-Public deployment is a separate action.
+Publication was authorised on 12 October 2026. The live URL is
+[wjason00.github.io](https://wjason00.github.io/); GitHub Pages deploys `main` through
+the checked workflow below. T-065 and the local release receipts record deployment verification.
 
 ## Explore
 
