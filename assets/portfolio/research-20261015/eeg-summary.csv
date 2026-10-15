@@ -1,0 +1,7 @@
+normalization,representation,pooled_balanced_accuracy_percent,equal_person_balanced_accuracy_percent
+per_recording,lag_0,40.38095238095239,40.304232804232804
+per_recording,duplicated_current,38.76190476190476,38.70370370370371
+per_recording,lag_4,46.95238095238095,46.98412698412698
+session0,lag_0,40.0,39.94708994708995
+session0,duplicated_current,37.714285714285715,37.658730158730165
+session0,lag_4,45.52380952380952,45.595238095238095

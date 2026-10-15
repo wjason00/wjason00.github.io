@@ -4,6 +4,27 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Research draft — 15 October 2026 (unpublished)
+
+The fly circuit and EEG normalization studies now lead the research section. Their
+questions, Jason's proposed/directed contribution, checked results and limitations
+follow the current project owners and reviewed master CV. dPCA remains a smaller
+supporting methods study; its interactive artifact and all existing projects remain.
+
+Only checked figures and aggregate CSV summaries were added under
+`assets/portfolio/research-20261015/`. No raw EEG, subject MRI or trial-level predictions
+are included. `scripts/prepare-research-evidence.py` derives those summaries from the
+verified saved outputs and records exact local sources in ignored
+`output/research-20261015/source-provenance.json`. The public JSON contains aggregate
+methods, limits and source hashes. Original research owners retain full execution and
+contribution provenance; public wording does not assert sole manual implementation.
+
+Actual Claude Opus 5.5 reviewed the changed scientific copy. The revised version
+discloses both fly post-failure amendments and the EEG verifier correction; the
+127,400-neuron count is bound to the verified run identity. Codex checked the
+dispositions and rebuilt the site. This is a separate local branch draft, not pushed
+or deployed. T-089 owns integration; the existing 12 October release below is history.
+
 ## Portfolio release — 12 October 2026
 
 This iteration gives the synthetic dPCA study a full visual feature,
@@ -24,7 +45,7 @@ the checked workflow below. T-065 and the local release receipts record deployme
 
 ## Explore
 
-- **Research:** the UCL research-assistant role is described at the level of EEG source modelling.
+- **Research:** the completed fly sensitivity and EEG normalization comparisons lead, with checked figures, aggregate downloads and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling.
 - **Rare-error study:** six saved trial allocations, five noise seeds, an explicit zero-error non-fit,
   full curves and downloadable metrics/configuration/provenance. Downloads do not include the analysis code.
 - **MorphBrain:** a keyboard-operable saved-image comparison and an on-demand interactive model.
