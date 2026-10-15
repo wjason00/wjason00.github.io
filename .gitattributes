@@ -15,3 +15,6 @@ assets/portfolio/rare-errors/metrics.csv -text
 assets/portfolio/rare-errors/config.json -text
 assets/portfolio/rare-errors/rare_errors.png -text
 assets/portfolio/rare-errors/rare_errors.svg -text
+
+# Aggregate download hashes refer to exact bytes on every checkout platform.
+assets/portfolio/research-20261015/* -text

@@ -4,7 +4,7 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
-## Research draft — 15 October 2026 (unpublished)
+## Research update — 15 October 2026
 
 The fly circuit and EEG normalization studies now lead the research section. Their
 questions, Jason's proposed/directed contribution, checked results and limitations
@@ -15,15 +15,17 @@ Only checked figures and aggregate CSV summaries were added under
 `assets/portfolio/research-20261015/`. No raw EEG, subject MRI or trial-level predictions
 are included. `scripts/prepare-research-evidence.py` derives those summaries from the
 verified saved outputs and records exact local sources in ignored
-`output/research-20261015/source-provenance.json`. The public JSON contains aggregate
+`output/research-20261015/source-provenance.json`. Pass the verified study directories
+with `--fly-source` and `--eeg-source`; local machine paths are not hard-coded in the
+public generator. The public JSON contains aggregate
 methods, limits and source hashes. Original research owners retain full execution and
 contribution provenance; public wording does not assert sole manual implementation.
 
 Actual Claude Opus 5.5 reviewed the changed scientific copy. The revised version
 discloses both fly post-failure amendments and the EEG verifier correction; the
 127,400-neuron count is bound to the verified run identity. Codex checked the
-dispositions and rebuilt the site. This is a separate local branch draft, not pushed
-or deployed. T-089 owns integration; the existing 12 October release below is history.
+dispositions and rebuilt the site. Jason authorised public release on 15 October.
+T-089 owns deployment verification; the existing 12 October release below is history.
 
 **Source wording correction — 15 October 2026:** the primary paper's Methods
 (Par60) explains the dataset's left-right inversion and corrected biological naming.
@@ -31,7 +33,8 @@ The site, aggregate evidence and its generator now retain the narrower unresolve
 limits: genetic-driver coverage and historical cell-ID lineage. Numerical results,
 figures and earlier review receipts are unchanged. This source-checked correction
 has its own [build and layout receipt](output/research-20261015/hemisphere-wording-20261015.json);
-the existing Claude review retains its original scope. The draft remains unpublished.
+the existing Claude review retains its original scope. This correction is included
+in the 15 October research update.
 
 ## Portfolio release — 12 October 2026
 

@@ -1,4 +1,5 @@
 """Export only aggregate presentation evidence; never read or copy raw subject data."""
+import argparse
 import csv
 import hashlib
 import io
@@ -8,9 +9,13 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'assets/portfolio/research-20261015'
-FLY = Path('C:/Users/jason/Documents/ChatGPT/fly-perturbation-pilot/paired-2026-10-13')
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--fly-source', type=Path, required=True, help='Directory containing the verified paired fly study.')
+parser.add_argument('--eeg-source', type=Path, required=True, help='Directory containing the verified EEG normalization study.')
+args = parser.parse_args()
+FLY = args.fly_source.resolve()
 FLY_RESULT = FLY / 'combined-verification-r2-20261014T1735'
-EEG = Path('C:/Users/jason/Desktop/projects/eeg-track2-baseline/docs/experiments/normalization_control_2026-10-14')
+EEG = args.eeg_source.resolve()
 IDENTITY = FLY/'attempts/continuation-v4-r2-20261014T1730/identity.json'
 SOURCES = [FLY/'README.md', FLY_RESULT/'paired-results-v4.csv', FLY_RESULT/'combined-verification.json', IDENTITY, EEG/'README.md', EEG/'verification-summary.json']
 
