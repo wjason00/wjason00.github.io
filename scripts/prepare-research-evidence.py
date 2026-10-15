@@ -63,7 +63,7 @@ public = {
         'verification_sha256': sha(FLY_RESULT/'combined-verification.json'),
         'paired_results_sha256': sha(FLY_RESULT/'paired-results-v4.csv'),
         'method': 'Roundup outgoing weights set to zero; three recurrent gains, five paired input seeds, one second per run. Shared exogenous candidates with state-dependent refractory acceptance. Both candidate coupling and an execution correction were post-failure amendments, not preregistered.',
-        'limits': 'Five input seeds are not animals. One model, neuron intervention, endpoint and input regime at three selected gains. No statistical significance, biological validation, novelty or full source-paper replication claimed. Source hemisphere naming discrepancy unresolved.'
+        'limits': 'Five input seeds are not animals. One model, neuron intervention, endpoint and input regime at three selected gains. No statistical significance, biological validation, novelty or full source-paper replication claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.'
     },
     'eeg': {
         'source': 'Scherer et al. (2015), https://doi.org/10.1371/journal.pone.0123727; BNCI2015-004, selected numeric classes 1, 2, 4.',

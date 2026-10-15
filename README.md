@@ -25,6 +25,14 @@ discloses both fly post-failure amendments and the EEG verifier correction; the
 dispositions and rebuilt the site. This is a separate local branch draft, not pushed
 or deployed. T-089 owns integration; the existing 12 October release below is history.
 
+**Source wording correction — 15 October 2026:** the primary paper's Methods
+(Par60) explains the dataset's left-right inversion and corrected biological naming.
+The site, aggregate evidence and its generator now retain the narrower unresolved
+limits: genetic-driver coverage and historical cell-ID lineage. Numerical results,
+figures and earlier review receipts are unchanged. This source-checked correction
+has its own [build and layout receipt](output/research-20261015/hemisphere-wording-20261015.json);
+the existing Claude review retains its original scope. The draft remains unpublished.
+
 ## Portfolio release — 12 October 2026
 
 This iteration gives the synthetic dPCA study a full visual feature,
