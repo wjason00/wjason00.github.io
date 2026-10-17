@@ -15,7 +15,13 @@ function collect(path) {
   if (stat.isSymbolicLink()) throw new Error(`Publication source must not be a symlink: ${relative(root, path)}`);
   if (stat.isDirectory()) {
     for (const child of readdirSync(path).sort()) collect(join(path, child));
-  } else if (stat.isFile()) files.push(path);
+  } else if (stat.isFile()) {
+    const name = relative(root, path).split(sep).join('/');
+    // Withheld from public promotion at Jason's request, 17 October 2026.
+    if (['assets/portfolio/research-20261015/eeg-normalization.png',
+         'assets/portfolio/research-20261015/eeg-summary.csv'].includes(name)) return;
+    files.push(path);
+  }
 }
 for (const name of [...shell, ...directories]) collect(join(root, name));
 const manifest = {};
@@ -39,7 +45,12 @@ if (existsSync(destination)) {
   rmSync(destination, { recursive: true });
 }
 mkdirSync(destination);
-for (const name of [...shell, ...directories]) cpSync(join(root, name), join(destination, name), { recursive: true });
+for (const path of files) {
+  const name = relative(root, path);
+  const target = join(destination, name);
+  mkdirSync(resolve(target, '..'), { recursive: true });
+  cpSync(path, target);
+}
 // Detect a concurrent source write or failed copy before accepting the candidate.
 for (const [name, receipt] of Object.entries(manifest)) {
   const copied = readFileSync(join(destination, name));

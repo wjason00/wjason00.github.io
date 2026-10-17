@@ -4,6 +4,14 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Independent EEG project withheld — 17 October 2026
+
+Jason asked to hold the cross-session/time-lagged EEG study from portfolio, CV and promotional use
+because he does not yet understand it. Its homepage entry, introductory claim and public aggregate
+evidence have been removed; the build excludes its figure and CSV. Research sources and historical
+receipts remain in Git and their private owners. Neonatal EEG source modelling, the fly study,
+MorphBrain, Model Morpher and Morphliner retain their existing scope. Next action: see T-113.
+
 ## Research update — 15 October 2026
 
 The fly circuit and EEG normalization studies now lead the research section. Their

@@ -166,8 +166,8 @@
           <p class="hero__text">
             I’m Jason, a UCL neuroscience undergraduate interested in
             computational neuroscience and machine learning. My recent projects ask which
-            predictions survive changes in a model or its analysis: from a fly
-            feeding circuit to EEG decoding across recording sessions.
+            predictions survive changes in a model or its analysis, including a
+            sensitivity study of a published fly feeding-circuit model.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="#experience"
@@ -490,27 +490,6 @@
           <figure class="research-result-figure">
             <a href="./assets/portfolio/research-20261015/fly-circuit.png" aria-label="Open the full fly circuit results figure"><img src="./assets/portfolio/research-20261015/fly-circuit.png" loading="lazy" alt="Paired simulated MN9 spike counts across three recurrent gains: every disconnected result is lower than its intact pair." /></a>
             <figcaption>Roundup’s outgoing connections removed; matched intact comparisons at recurrent gains 0.8, 1.0 and 1.2. Saved simulation outputs.</figcaption>
-          </figure>
-        </article>
-        <article class="research-feature research-feature--result" id="eeg-decoding" aria-labelledby="eeg-title">
-          <div class="research-feature__copy">
-            <p class="eyebrow">EEG decoding · October 2026</p>
-            <h3 id="eeg-title">Does the decoding gain survive?</h3>
-            <p>I proposed and directed a study testing whether time-lagged EEG features retain their advantage when normalization uses only an earlier recording session.</p>
-            <p>The lagged representation retained a <strong>7.81 percentage-point advantage</strong> in pooled balanced accuracy over a dimension-matched duplication control on 1,050 later-session trials: positive in seven participants and tied in two.</p>
-            <p class="research-result-limit">Nine participants; evaluation recordings had already been inspected. This is an exploratory comparison, not evidence of performance on new people or an untouched test set.</p>
-            <details class="project-notes research-evidence">
-              <summary>Methods, limits &amp; evidence</summary>
-              <p>Exact raw-data replay covered all nine participants and both sessions. Each representation’s classifier was fitted once on 1,080 earlier-session trials and kept fixed while normalization changed. Duplicating current signals controls feature dimension without adding time-lagged information.</p>
-              <p>Balanced accuracy averages recall across the three selected classes. With earlier-session normalization, pooled scores were 45.52% for lag-4 and 37.71% for duplicated current signals; the difference was 7.94 points when participants received equal weight.</p>
-              <p>Independent saved-output verification passed after a disclosed verifier-metadata correction; no model was refitted. This comparison does not isolate a neural mechanism, establish online performance or qualify a competition submission.</p>
-              <p><a href="https://doi.org/10.1371/journal.pone.0123727" target="_blank" rel="noreferrer">Scherer et al. (2015), source dataset study</a> · BNCI2015-004, selected numeric classes 1, 2 and 4.</p>
-              <p><a href="./assets/portfolio/research-20261015/eeg-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-            </details>
-          </div>
-          <figure class="research-result-figure">
-            <a href="./assets/portfolio/research-20261015/eeg-normalization.png" aria-label="Open the full EEG normalization results figure"><img src="./assets/portfolio/research-20261015/eeg-normalization.png" loading="lazy" alt="EEG decoding scores under two normalization modes; lag-4 retains its advantage over duplicated current signals, with participant variation shown." /></a>
-            <figcaption>The same fitted classifiers under recording-wise and earlier-session-only normalization. Saved results from previously inspected recordings.</figcaption>
           </figure>
         </article>
         <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">

@@ -1,6 +1,6 @@
 {
   "prepared_date": "2026-10-15",
-  "scope": "Aggregate presentation of completed exploratory studies. No raw recordings, trial-level EEG predictions or participant identifiers are included in the downloadable tables.",
+  "scope": "Aggregate presentation of the completed exploratory fly study. No raw recordings, participant identifiers or trial-level EEG predictions are included.",
   "fly": {
     "source": "Shiu et al. (2024), https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/",
     "model_commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
@@ -12,22 +12,7 @@
     "method": "Roundup outgoing weights set to zero; three recurrent gains, five paired input seeds, one second per run. Shared exogenous candidates with state-dependent refractory acceptance. Both candidate coupling and an execution correction were post-failure amendments, not preregistered.",
     "limits": "Five input seeds are not animals. One model, neuron intervention, endpoint and input regime at three selected gains. No statistical significance, biological validation, novelty or full source-paper replication claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified."
   },
-  "eeg": {
-    "source": "Scherer et al. (2015), https://doi.org/10.1371/journal.pone.0123727; BNCI2015-004, selected numeric classes 1, 2, 4.",
-    "independent_saved_output_verification_passed": true,
-    "verification_sha256": "1ac04ef1d76ea79eb8591c725b02ca050b14a42e1dcaaf022287004c5ff9fcbf",
-    "method": "Nine participants, 1080 earlier-session training trials and 1050 later-session evaluation trials. Three representations with fitted classifiers held fixed across two normalization modes. Verification passed after a verifier-metadata correction; no model was refitted. CSV accuracies are percentages.",
-    "limits": "Previously inspected evaluation sessions. Descriptive exploratory result; no untouched-test, new-person, online, neural-mechanism, significance, novelty or competition-performance claim."
-  },
   "public_files": {
-    "eeg-normalization.png": {
-      "sha256": "f3997068549b9a6c3ee01e93d48bcf7635d4a8ff3737f36a42cab2209a883480",
-      "bytes": 269477
-    },
-    "eeg-summary.csv": {
-      "sha256": "d68ff7cdb01dddb7cd05717f50de00a95e92874b4cfa84e71538bb30b79c33ed",
-      "bytes": 446
-    },
     "fly-circuit.png": {
       "sha256": "80c27d37e5ac81582187350c8a1997eb1dcce5d1c3ca4ff4358bf4bf2d8a88a6",
       "bytes": 336300
