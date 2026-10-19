@@ -27,6 +27,8 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Assemble and verify public artifact
         run: node scripts/build-site.mjs
+      - name: Check fly data and replay modules
+        run: node --test tests/fly-*.test.*
       - name: Install browser-test dependencies
         run: npm ci
       - name: Install Chromium for responsive checks

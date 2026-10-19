@@ -1,0 +1,184 @@
+{
+  "format": "fly-body-portfolio-package-v1",
+  "entry": "index.html",
+  "original_source_root": "fly-perturbation-pilot/feeding-demo-2026-10-15/",
+  "source_geometry_repository": "https://github.com/TuragaLab/flybody",
+  "source_geometry_commit": "d015e9bfe441bd90ae431bac24c55cb74bdbce26",
+  "source_model_repository": "https://github.com/philshiu/Drosophila_brain_model",
+  "source_model_commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+  "three_version": "0.160.0",
+  "geometry_decoded_bytes": 29435400,
+  "geometry_decoded_sha256": "7082f88db83d93799aff4fc932366c0d4eebe3d7288f883ac743aeadaac094cb",
+  "geometry_compressed_bytes": 8085759,
+  "geometry_compressed_sha256": "bf00dabb1f8e881459cdc4173b85644c8b4ca71dce10d0a1f24d0950b477878e",
+  "geometry_transform": "Lossless gzip only; no changed mesh values or source transforms.",
+  "neural_data": "Separate retained author simulation archive; not the paired gain/input experiment.",
+  "movement": "Uncalibrated illustrative mapping; no animal-motion fit, fluid physics, swallowing or sensory feedback.",
+  "files": [
+    {
+      "file": "native-app.js",
+      "source": "native-app.js",
+      "bytes": 17746,
+      "sha256": "6ac41ccfe1d2a1e7012dedb2b15dfdf1cbf3df2aebd18f4f130d8db8b46d2c9b",
+      "preserved": true
+    },
+    {
+      "file": "style.css",
+      "source": "style.css",
+      "bytes": 10480,
+      "sha256": "7a0ef99f6556d3db5511b81949063fc6c601c135f5ab42550bd8a6cf472896c9",
+      "preserved": true
+    },
+    {
+      "file": "native-style.css",
+      "source": "native-style.css",
+      "bytes": 8056,
+      "sha256": "0d529d8bb193e72ff0980d521e776c9a44bee334ab890e83ecb2a99f60a5c5d0",
+      "preserved": true
+    },
+    {
+      "file": "event-time.js",
+      "source": "event-time.js",
+      "bytes": 510,
+      "sha256": "0949cb6c8a4ab2e0dcca91c89414fc5378143b9c553fa7f518f01f1f60381e4b",
+      "preserved": true
+    },
+    {
+      "file": "sensory-cues.js",
+      "source": "sensory-cues.js",
+      "bytes": 984,
+      "sha256": "7ec055ead9971b9f070f8c7a3959551e17005aa24d5bcc15ea45a8fbbd522290",
+      "preserved": true
+    },
+    {
+      "file": "droplet-callout.js",
+      "source": "droplet-callout.js",
+      "bytes": 966,
+      "sha256": "b855c938ae863d49108fd290d6652b1b916eae7456c15a9aed3372ca6eb671c1",
+      "preserved": true
+    },
+    {
+      "file": "motor-navigation.js",
+      "source": "motor-navigation.js",
+      "bytes": 1237,
+      "sha256": "ada52508db23b151a95bd2c9d3acf40024e07c1578c853e87d736534ded0981d",
+      "preserved": true
+    },
+    {
+      "file": "native-body-rig.js",
+      "source": "review-2026-10-17/motor-outputs/transform-adapter/native-body-rig.js",
+      "bytes": 5267,
+      "sha256": "74c9575851b7b82569afbff90ab8139d7e1af38faed5451a1128ba287c899807",
+      "preserved": true
+    },
+    {
+      "file": "packed-mesh-loader.js",
+      "source": "review-2026-10-17/motor-outputs/transform-adapter/packed-mesh-loader.js",
+      "bytes": 3530,
+      "sha256": "a7e99acf2c1e526d9c3e742079986b9a48d2b7e4a2ceac46ccc9f9cb19bb27ca",
+      "preserved": true
+    },
+    {
+      "file": "native-policy.js",
+      "source": "review-2026-10-17/motor-outputs/native-coupling/native-policy.js",
+      "bytes": 2709,
+      "sha256": "ce7bba06a3ad6f17460edfc7c8b1d5285365ca5dace45c619df0f24a8e544242",
+      "preserved": true
+    },
+    {
+      "file": "native-motor-replay.js",
+      "source": "review-2026-10-17/motor-outputs/native-coupling/native-motor-replay.js",
+      "bytes": 7601,
+      "sha256": "b796efb8fc6916400b76890a824ff8094352c97c0b53293f94477e8a51b066ad",
+      "preserved": true
+    },
+    {
+      "file": "geometric-contact.js",
+      "source": "review-2026-10-17/motor-outputs/native-coupling/geometric-contact.js",
+      "bytes": 6470,
+      "sha256": "e61678a5c648d0657033cf3b33b19de92a61020ab2247da1fbacad7c046d11c7",
+      "preserved": true
+    },
+    {
+      "file": "native-feeding-events.js",
+      "source": "review-2026-10-17/motor-outputs/native-replay-20261017T191631933066Z/native-feeding-events.js",
+      "bytes": 569979,
+      "sha256": "0d4c5ec8534636eb3fa8cf56dae022a3c93d0bc4b7be5a5d9164816a1894e9a9",
+      "preserved": true
+    },
+    {
+      "file": "licenses/FlyBody-APACHE-2.0.txt",
+      "source": "review-2026-10-17/motor-outputs/mesh-package-20261017T191357313556Z/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "preserved": true
+    },
+    {
+      "file": "licenses/fly-model-MIT.txt",
+      "source": "published Drosophila brain model MIT license",
+      "bytes": 1085,
+      "sha256": "3621f6d6476189190e2960fa43f11b275ba4eca848fdac50a1ba2925de6223e8",
+      "preserved": false
+    },
+    {
+      "file": "../vendor/three.min.js",
+      "source": "vendor/three.min.js",
+      "bytes": 669884,
+      "sha256": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+      "preserved": true
+    },
+    {
+      "file": "../vendor/THREE-LICENSE.txt",
+      "source": "vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+      "preserved": true
+    },
+    {
+      "file": "meshes.bin.gz",
+      "source": "review-2026-10-17/motor-outputs/mesh-package-20261017T191357313556Z/meshes.bin",
+      "bytes": 8085759,
+      "sha256": "bf00dabb1f8e881459cdc4173b85644c8b4ca71dce10d0a1f24d0950b477878e",
+      "preserved": false,
+      "transform": "Lossless gzip; decoded source SHA-256 in geometry_decoded_sha256."
+    },
+    {
+      "file": "asset-metadata.json",
+      "source": "review-2026-10-17/motor-outputs/mesh-package-20261017T191357313556Z/native-flybody-asset.js",
+      "bytes": 107912,
+      "sha256": "9c6373f82ba6457a08cfa7ef57a071ea3ef6192783b62c2afc9764583fc71fe0",
+      "preserved": false,
+      "transform": "Retain every non-base64 JSON property; geometry transported separately as gzip."
+    },
+    {
+      "file": "shared-packed-body-rig.js",
+      "source": "shared-packed-body-rig.js",
+      "bytes": 3607,
+      "sha256": "4c4344cf980af0df41dea606f034a99f89532b1b0e30f8d09d658d5c67c1ff5d",
+      "preserved": false,
+      "transform": "Relative CommonJS paths; accept already-decoded exact ArrayBuffer, release reference after mesh decode."
+    },
+    {
+      "file": "index.html",
+      "source": "index.html",
+      "bytes": 9815,
+      "sha256": "5ead6bb91b42fc9f8cc6116af33b4a8f80f42bd7079862c194786675d76dc0ae",
+      "preserved": false,
+      "transform": "Standalone body embed; remove external local navigation; collapse supporting traces; replace stale methods with explicit current boundaries."
+    },
+    {
+      "file": "boot.js",
+      "source": "new portfolio packaging",
+      "bytes": 2882,
+      "sha256": "361446d6acc57ca8fc3f80c4d096bca2e241e915d61571a222b92d6000742309",
+      "preserved": false
+    },
+    {
+      "file": "embed.css",
+      "source": "new portfolio packaging",
+      "bytes": 2314,
+      "sha256": "acb1d43202cd75bfe6bb144025f8d43ded783d980eb840e3d02a3ba8201daec0",
+      "preserved": false
+    }
+  ]
+}

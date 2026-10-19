@@ -5,6 +5,7 @@ const siteRoot = process.env.PORTFOLIO_SITE_ROOT || '.';
 
 export default defineConfig({
   testDir: './tests',
+  testMatch: '**/*.spec.mjs',
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,

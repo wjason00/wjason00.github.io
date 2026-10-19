@@ -1,3 +1,4 @@
+import { neuronExplanation } from './neuron-roles.js';
 const NS = 'http://www.w3.org/2000/svg';
 const $ = id => document.getElementById(id);
 const make = (tag, attrs = {}, text) => {
@@ -41,7 +42,10 @@ export function initNetwork() {
       const node = data.nodes.find(n => String(n.id) === selected.id);
       const ins = data.edges.filter(e => String(e.target) === selected.id), outs = data.edges.filter(e => String(e.source) === selected.id);
       const types = Array.isArray(node.types) ? node.types.join(', ') : node.types;
+      const role = neuronExplanation(node), signs = [...new Set(outs.map(edge => edge.modelSign))];
+      const roleHtml = `<div class="neuron-explanation"><p>${escapeText(role.summary)}</p><p>${escapeText(role.evidence)}</p><p class="evidence-limit">${escapeText(role.limit)}</p>${role.sources.length ? `<p class="role-sources">Sources: ${role.sources.map(source => `<a href="${source.url}" target="_blank" rel="noopener">${source.title}</a>`).join(', ')}</p>` : '<p class="role-sources">Annotation: pinned source-model export.</p>'}<p class="assigned-sign">Displayed outgoing weights: ${signs.length ? signs.map(sign => sign < 0 ? 'negative · assigned inhibitory' : 'positive · assigned excitatory').join('; ') : 'none in this subset'}. Model assignment, not a measured response.</p></div>`;
       html = `<h3>${escapeText(shortName(node))}</h3><p class="inspection-kind">${node.role === 'roundup' ? 'Intervention target' : node.role === 'mn9' ? 'Simulated motor output' : node.role === 'sensory' ? 'Sensory neuron' : 'Source neuron'}</p><dl><dt>Full source ID</dt><dd class="source-id">${escapeText(node.id)}</dd><dt>Source annotation</dt><dd>${escapeText(types || 'Unannotated in this export')}</dd><dt>Selected-subgraph connections</dt><dd>${ins.length} incoming · ${outs.length} outgoing</dd><dt>Full-source connections</dt><dd>${node.inDegree} incoming · ${node.outDegree} outgoing</dd></dl>`;
+      html = html.replace('<dl>', roleHtml + '<details class="neuron-details"><summary>Identity & connection counts</summary><dl>') + '</details>';
       if (node.role === 'roundup') html += `<p class="state-note">${state.cut ? 'All Roundup outputs are zeroed in the cut condition. Incoming connections remain.' : 'Roundup outputs are retained.'}</p>`;
       if (node.role === 'mn9') html += '<p class="state-note">MN9 is the motor neuron read out in the saved experiment. Its spikes are plotted below.</p>';
       $('node-picker').value = node.id;
@@ -52,7 +56,10 @@ export function initNetwork() {
     }
     $('network-inspection').innerHTML = html;
   }
-  function choose(selection) { selected = selection; draw(); }
+  function choose(selection) {
+    selected = selection; draw();
+    if (selection.kind === 'node') document.dispatchEvent(new CustomEvent('fly:neuron-selected', { detail: { id: selection.id } }));
+  }
   function interactive(el, label, action) {
     el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); el.setAttribute('aria-label', label);
     el.addEventListener('click', event => { event.stopPropagation(); action(); });
@@ -88,7 +95,7 @@ export function initNetwork() {
       const group = make('g', { 'data-graph-key':`node:${node.id}`, class: `graph-node ${node.role}${active ? ' selected' : ''}${adjacent.size && !adjacent.has(String(node.id)) && !active ? ' distant' : ''}`, transform: `translate(${p.x} ${p.y})` });
       group.append(make('circle', { r: special ? 29 : 16, class:'node-hit' }), make('circle', { r: special ? 23 : node.role === 'sensory' ? 10 : 8, class:'node-ink' }));
       group.append(make('title', {}, `${shortName(node)} · ${node.id}`));
-      if (special || node.role === 'sensory') group.append(make('text', { x:0, y:special ? 43 : -17, 'text-anchor':'middle', class:special ? 'major-label' : 'minor-label' }, shortName(node)));
+      if (special || node.role === 'sensory' || active && node.types?.length) group.append(make('text', { x:0, y:special ? 43 : -17, 'text-anchor':'middle', class:special ? 'major-label' : 'minor-label' }, shortName(node)));
       interactive(group, `Inspect ${shortName(node)}, source ID ${node.id}`, () => choose({kind:'node', id:String(node.id)}));
       world.append(group);
     }
@@ -109,6 +116,11 @@ export function initNetwork() {
     data=result; selected={kind:'node',id:String(data.roundup)}; layout();
     $('node-picker').replaceChildren(...data.nodes.map(node => { const option=document.createElement('option'); option.value=node.id; option.textContent=`${shortName(node)}${node.role==='roundup'?' · target':node.role==='mn9'?' · motor output':''}`; return option; }));
     draw();
+    document.dispatchEvent(new CustomEvent('fly:neuron-selected', { detail: { id: String(data.roundup) } }));
   }).catch(() => { $('network-summary').textContent='Source network unavailable'; $('network-error').hidden=false; $('network-error').textContent='The source network could not be loaded. Reload this page to try again; the saved MN9 results remain available below.'; });
+  document.addEventListener('fly:select-neuron', event => {
+    const id = String(event.detail?.id);
+    if (data?.nodes.some(node => String(node.id) === id)) choose({ kind: 'node', id });
+  });
   return { setState(next) { if (state.gain===next.gain && state.cut===next.cut) return; state={...next}; draw(); } };
 }

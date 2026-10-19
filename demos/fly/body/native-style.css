@@ -1,0 +1,62 @@
+/* Native replay: one large specimen and its synchronized mouth detail. */
+.native-choices{order:1;display:flex;flex-wrap:wrap;align-items:end;gap:12px 20px;padding:8px 0}
+.native-choices label:not(.loop-control){display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+.native-choices select{min-width:150px;font-size:13px;color:#25303b}
+.native-source{order:1;margin:3px 0 5px;font-size:11px;line-height:1.5;color:var(--muted)}
+.native-key{order:5;display:flex;flex-wrap:wrap;gap:8px 24px;padding:12px 0 4px;font-size:12px;color:var(--muted)}
+.native-key b{color:#25303b;font-weight:600}
+.native-outcome{order:5;margin:4px 0 14px;max-width:95ch;font-size:12px;line-height:1.6}
+.native-condition{position:absolute;top:12px;left:18px;font-size:13px;font-weight:600;pointer-events:none;max-width:85%;z-index:1}
+#scene[data-compare=true] .native-condition{max-width:45%}
+.native-condition.second{left:calc(50% + 18px);color:var(--disconnected)}
+.native-frame{position:absolute;pointer-events:none}
+.native-frame span{position:absolute;left:10px;top:7px;font-size:11px;color:var(--muted);background:rgba(249,250,251,.9);padding:3px 5px}
+.native-frame.mouth{border:1px solid #b8c4ce;border-radius:2px}
+.native-frame output{position:absolute;left:10px;bottom:8px;font-size:11px;padding:4px 6px;background:rgba(249,250,251,.94);font-variant-numeric:tabular-nums}
+#scene{height:clamp(440px,61vh,600px)}
+#scene[data-compare=true]{height:660px}
+@media(max-width:980px){#scene[data-compare=true]{height:1080px}.native-condition.second{left:18px;top:calc(50% + 12px)}#scene[data-compare=true] .native-condition{max-width:85%}}
+@media(max-width:687px){.native-choices{gap:10px}.native-choices label:not(.loop-control){flex:1 1 130px}.native-choices select{width:100%;min-width:0}.native-choices .loop-control{flex-basis:100%;min-height:28px}.native-key{font-size:11px;gap:7px 14px}#scene{height:590px}#scene[data-compare=true]{height:1180px}.native-condition{font-size:11px}.native-frame output{font-size:10px}.native-outcome{font-size:11px}.signal h2 span{display:none}}
+/* Labels and divider follow the actual canvas layout, including narrow side panels. */
+#scene[data-compare=true][data-stacked=false]::after{left:50%;right:auto;top:16px;bottom:16px;border-top:0;border-left:1px solid #d1d9e1}
+#scene[data-stacked=false] .native-condition.second{left:calc(50% + 18px);top:12px}
+#scene[data-compare=true][data-stacked=true]::after{left:14px;right:14px;top:50%;bottom:auto;border-left:0;border-top:1px solid #d1d9e1}
+#scene[data-stacked=true] .native-condition.second{left:18px;top:calc(50% + 12px)}
+
+/* Input, saved output and contact have distinct visual meanings. */
+.view-navigation{display:flex;gap:6px 24px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:4px 0 10px;font-size:13px}
+.view-navigation a{padding:10px 0;text-decoration:none;color:var(--muted);border-bottom:2px solid transparent}
+.view-navigation a[aria-current]{color:var(--intact);border-bottom-color:var(--intact);font-weight:600}
+.sensory-flow{order:3;border:1px solid #d8e1e7;background:#f6f9fb;border-radius:8px;padding:14px 18px;margin:0 0 12px}
+.flow-heading{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:13px}
+.flow-heading h2{font-size:14px;margin:0;font-weight:600}.flow-heading p{font-size:12px;color:#586977;margin:0;line-height:1.5}
+.flow-track{display:flex;align-items:center;gap:18px}.flow-stage{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.flow-stage b{font-size:13px;font-weight:600;display:block}.flow-stage output,.flow-stage small{display:block;font-size:12px;color:#526574;margin-top:4px;line-height:1.5}
+.cue-dot{width:20px;height:25px;flex:none;border:2px solid #b08b47;background:#faf0d8;border-radius:50% 50% 46% 46%;transform:rotate(-18deg)}
+.flow-stage[data-active=true] .input-dot{background:#e7a331;border-color:#a76c15;box-shadow:0 0 0 5px #f3deb7}
+.flow-stage[data-active=true] output{color:#81520c;font-weight:600}.network-glyph{font-size:28px;line-height:1;color:#7a8f9f}.flow-arrow{color:#7d92a3;font-size:22px}
+.motor-cues{flex:1.35;min-width:0}.motor-cue{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px}.motor-cue+.motor-cue{margin-top:8px}
+.motor-cue b{font-size:11px;min-width:68px;font-weight:600;max-width:100%;overflow-wrap:anywhere}.motor-cue span{padding:5px 8px;border:1px solid #b9cddd;border-radius:20px;color:#315c7f;white-space:nowrap;font-variant-numeric:tabular-nums}
+.motor-cue span[data-active=true]{background:#2866a5;color:white;border-color:#2866a5}
+#motor-cue-1 span[data-active=true]{background:#9a4c76;border-color:#9a4c76}
+.motor-cue output{color:#60717d;font-size:11px}.motor-cue output[data-contact=true]{color:#166b61;font-weight:700}
+.flow-footnote{font-size:11px;color:#61727f;line-height:1.6;margin:12px 0 0;max-width:110ch}.flow-footnote a{color:#275f8d}
+.native-frame .drop-contact{position:absolute;right:10px;top:9px;padding:4px 7px;font-size:10px;font-weight:500;border-radius:12px;background:rgba(255,255,255,.94);color:#596b7a;border:1px solid #cbd7df}
+.native-frame .drop-contact[data-contact=true]{background:#e1f4ef;border-color:#549e91;color:#145e53;font-weight:700}
+.native-frame.mouth{background:transparent;border-color:#bccdd9;border-radius:8px}.native-frame span,.native-frame output{border-radius:4px}
+@media(max-width:1050px){.flow-track{flex-wrap:wrap;gap:12px}.flow-stage{flex:1 1 210px}.motor-cues{flex-basis:100%;border-top:1px solid #d8e1e7;padding-top:10px}.flow-arrow:last-of-type{display:none}.motor-cue b{min-width:100px}}
+@media(max-width:687px){.view-navigation{font-size:12px;gap:18px}.sensory-flow{padding:13px}.flow-heading{gap:5px}.flow-stage{flex-basis:180px}.flow-track>.flow-arrow{display:none}.flow-stage b{font-size:12px}.flow-stage output,.flow-stage small{font-size:11px}.native-frame .drop-contact{right:6px;top:34px;font-size:10px}.flow-footnote{font-size:10px}.motor-cue b{min-width:85px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* The annotation follows the projected droplet centre in each mouth camera. */
+.droplet-leader{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;pointer-events:none;color:#a06b1f}
+.droplet-leader path{fill:none;stroke:currentColor;stroke-width:1.25;stroke-dasharray:3 3}.droplet-leader circle{fill:#fff9e8;stroke:currentColor;stroke-width:1.4}
+.native-frame .droplet-label{position:absolute;display:flex;align-items:center;justify-content:center;padding:0 5px;border:1px solid #cba65e;border-radius:5px;background:rgba(255,251,237,.96);color:#80530e;font-size:10px;font-weight:600;white-space:nowrap}
+.droplet-leader[data-stimulus=water]{color:#3b819f}.native-frame .droplet-label[data-stimulus=water]{background:rgba(240,249,253,.96);border-color:#83afc3;color:#326b83}
+.droplet-leader[data-contact=true]{color:#277d6b}.native-frame .droplet-label[data-contact=true]{background:rgba(228,248,240,.97);border-color:#55a08e;color:#195f50}
+.droplet-label-control{display:flex;align-items:center;gap:6px;cursor:pointer;margin-left:auto;min-height:26px;color:#536675;font-size:12px}.droplet-label-control input{accent-color:#2866a5}
+@media(max-width:687px){.droplet-label-control{margin-left:0;flex-basis:100%;font-size:11px}}
+
+.motor-navigation{display:flex;flex-wrap:wrap;align-items:end;gap:8px 12px;margin:12px 0 6px}.motor-navigation label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:5px}.motor-navigation select{font-size:12px;min-height:34px}.motor-navigation button{font-size:12px;min-height:34px}.motor-navigation button:disabled{opacity:.45;cursor:default}.motor-navigation p{flex:1 1 220px;align-self:center;font-size:11px;line-height:1.5;color:#5a6d7b;margin:0}
+#clip-time{min-width:76px}
+@media(max-width:687px){.motor-navigation label{flex-basis:100%}.motor-navigation label select{width:100%}.motor-navigation button{flex:1}.motor-navigation p{flex-basis:100%}#clip-time{font-size:11px;min-width:74px}}

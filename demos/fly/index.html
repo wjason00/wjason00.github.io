@@ -2,33 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fly circuit experiment | Jason Wang</title>
-<meta name="description" content="Explore saved paired simulations: cut Roundup's outgoing connections and compare MN9 motor-neuron output across connection strengths and input seeds.">
+<title>Fly circuit explorer | Jason Wang</title>
+<meta name="description" content="Explore fly circuit connections, reconstructed 3D neurons, paired MN9 simulations and an illustrative 3D fly replay in one source-backed portfolio demo.">
 <link rel="canonical" href="https://wjason00.github.io/demos/fly/">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="fly.css">
-<script defer src="archive.js"></script><script type="module" src="fly.js"></script>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="fly.css"><link rel="stylesheet" href="morphology.css"><link rel="stylesheet" href="explorer.css">
+<script defer src="archive.js"></script><script type="module" src="explorer.js"></script><script type="module" src="fly.js"></script>
 </head>
 <body>
 <main>
 <nav aria-label="Breadcrumb"><a href="../../#fly-circuit">Jason Wang / Research</a><span>Interactive experiment</span></nav>
-<header><h1>What changes when one neuron’s output is cut?</h1><p>Same sugar input. Same model. Compare MN9 motor-neuron spikes with <strong>Roundup’s outgoing connections</strong> kept or cut.</p></header>
+<header><h1>From a neuron’s connections to motor output</h1><p>Explore the feeding circuit’s wiring, real neuron shapes and an illustrative fly replay. Test what changes when <strong>Roundup’s outgoing connections</strong> are cut.</p></header>
 <section class="experiment" aria-label="Saved fly circuit experiment">
-<div class="controls">
+<div class="explorer-tabs" role="tablist" aria-label="Circuit views"><button type="button" id="connections-tab" role="tab" data-explorer-view="connections" aria-selected="true" aria-controls="connections-panel">Connections</button><button type="button" id="anatomy-tab" role="tab" data-explorer-view="anatomy" aria-selected="false" aria-controls="anatomy-panel" tabindex="-1">3D neurons</button><button type="button" id="body-tab" role="tab" data-explorer-view="body" aria-selected="false" aria-controls="body-panel" tabindex="-1">3D fly</button></div>
+<div class="controls" id="paired-controls" aria-label="Paired experiment controls">
 <fieldset><legend>Roundup outgoing connections</legend><div class="switch"><button type="button" id="kept" aria-pressed="false">Kept</button><button type="button" id="cut" aria-pressed="true">Cut</button></div></fieldset>
 <label>Global connection strength<select id="gain"><option value="0.8">0.8×</option><option value="1" selected>1.0× · original</option><option value="1.2">1.2×</option></select></label>
 <label>Saved input seed<select id="seed"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label>
 </div>
 <figure>
-<div class="network-heading"><div><h2>Inside Roundup’s connectome neighbourhood</h2><p id="network-summary">Loading source connections…</p></div><span class="layout-note">Graph layout · not anatomical positions</span></div>
-<div class="network-workbench">
-<div class="network-map">
+<div class="network-heading"><div><h2 id="view-title">Inside Roundup’s connectome neighbourhood</h2><p id="view-description">Select a neuron to understand its role, evidence and connections.</p></div><span class="layout-note" id="layout-note">Graph layout · not anatomical positions</span></div>
+<div class="network-workbench" id="network-workbench">
+<div class="network-stage">
+<div class="network-map" id="connections-panel" data-explorer-panel="connections" role="tabpanel" aria-labelledby="connections-tab">
+<p class="network-count" id="network-summary">Loading source connections…</p>
 <div class="graph-toolbar"><label>Connections shown<select id="edge-filter"><option value="strong">Strongest links</option><option value="all">All selected links</option></select></label><div class="zoom-controls" aria-label="Network view"><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-reset">Reset view</button></div></div>
 <svg id="network-graph" viewBox="0 0 960 590" role="group" aria-labelledby="network-title network-description"><title id="network-title">Actual source-connectome connections around Roundup</title><desc id="network-description">A weighted, directed subnetwork from the source model. Select neurons or connections to inspect them. Positions are a graph layout, not anatomical coordinates.</desc><defs><marker id="graph-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs><g id="graph-world"></g></svg>
 <div class="graph-legend"><span><i class="positive"></i>Positive weight</span><span><i class="negative"></i>Negative weight</span><span><i class="severed"></i>Cut output</span></div><p class="graph-instruction">Select a neuron or arrow. Drag to pan; use + / − to zoom. Widths use a compressed scale; inspect for exact weights. Dashed outputs are zeroed.</p>
 <p id="network-error" hidden role="alert"></p>
 </div>
-<aside class="network-inspector" aria-label="Selected source connection or neuron"><label>Find a neuron<select id="node-picker"><option>Loading…</option></select></label><div id="network-inspection" aria-live="polite"></div><p class="inspector-footnote">Inspecting or filtering the graph changes the view only. The chart below always shows the saved paired experiment.</p></aside>
+<div id="anatomy-panel" data-explorer-panel="anatomy" role="tabpanel" aria-labelledby="anatomy-tab" hidden><p id="anatomy-status" role="status"></p><div id="neuron-anatomy"></div></div>
+<div id="body-panel" data-explorer-panel="body" role="tabpanel" aria-labelledby="body-tab" hidden><iframe id="body-frame" title="Illustrative 3D fly replay from a separate saved motor archive" loading="lazy"></iframe></div>
 </div>
+<aside class="network-inspector" id="neuron-inspector" aria-label="Selected source connection or neuron"><label>Find a neuron<select id="node-picker"><option>Loading…</option></select></label><div id="network-inspection" aria-live="polite"></div><p class="inspector-footnote">Selection changes the view. The chart compares the saved Roundup-output intervention.</p></aside>
+</div>
+<div id="paired-output">
 <div class="output-heading"><h2>What happens to MN9 output?</h2><p>The same input, with Roundup’s outputs kept or cut.</p></div>
 <svg id="chart" viewBox="0 0 920 320" role="img" aria-labelledby="chart-title chart-description">
 <title id="chart-title">Paired cumulative MN9 spikes</title><desc id="chart-description">Both saved circuit conditions on shared axes, from zero to one thousand milliseconds.</desc>
@@ -38,10 +45,11 @@
 </svg>
 <div class="legend"><span class="kept-key">Kept</span><span class="cut-key">Cut</span><span class="muted">Both saved runs share the same input.</span></div>
 <div class="playback"><button type="button" id="play">Replay</button><label class="time-label" for="time">Time <output id="time-label">1000 ms</output></label><input id="time" type="range" min="0" max="1000" value="1000" step="1" aria-label="Simulated time in milliseconds"></div>
-<figcaption id="result" aria-live="polite">Loading saved output…</figcaption>
+<p class="paired-result" id="result" aria-live="polite">Loading saved output…</p>
+</div>
 </figure>
 </section>
-<p class="framing">I proposed and directed this sensitivity study. These controls select saved runs; they do not run a live simulation.</p>
+<p class="framing">I proposed and directed this focused reproduction and sensitivity study of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/">Shiu et al. (2024)</a>. The original authors tested neuron silencing and weight robustness. Controls select saved runs; they do not run a live simulation.</p>
 <div class="details-row">
 <details><summary>What are MN9 and MN6?</summary><p>MN means motor neuron. MN9 innervates muscle 9, involved in rostrum (main mouthpart) protraction. MN6 innervates muscle 6, involved in labellar extension. They control different parts of the feeding apparatus. This experiment measures <strong>MN9 only</strong>; it does not demonstrate movement or feeding.</p><p>Motor anatomy: <a href="https://elifesciences.org/articles/54978">McKellar et al. (2020), Figures 7 and 9</a>.</p></details>
 <details><summary>Methods, limits &amp; sources</summary><p>Thirty one-second saved simulations: three recurrent gains, five matched input seeds and two conditions. Gain scales all signed internal connection weights, including inhibition and sensory-neuron outgoing synapses. Cutting sets only Roundup’s outgoing weights to zero; its incoming connections remain. External input is unchanged. Accepted sensory input also matches across all six gain/condition cells for each seed in this archive.</p><p>The graph uses actual directed connections and signed source weights from a bounded Roundup neighbourhood. Layout positions are computed for readability, not measured anatomy. The selected subnetwork omits most of the brain and does not establish that the direct Roundup-to-MN9 connection explains the full effect. Edge widths use a capped square-root scale, adjusted by gain, for readability. The inspector gives exact gain-scaled weights and whether the cut zeros them. The export retains 55 neurons and 230 of their 1,070 induced directed connections; the initial strongest-links view shows a further subset. Full-source degrees and selected-subgraph counts are distinguished in the inspector. This is wiring, not animated neural propagation.</p><p>All fifteen saved pairs have fewer MN9 spikes after the cut. Five seeds are not five animals. One neuron, output and input regime do not establish biological effects, general robustness, novelty or full paper replication. The shared-candidate design and an execution correction were post-failure amendments.</p><p>Model: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/">Shiu et al. (2024)</a>, <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960">pinned source, MIT</a>. <a href="provenance.json">Replay provenance</a> · <a href="network-data.json">Network selection and attribution</a> · <a href="../../assets/portfolio/research-20261015/fly-summary.csv">Aggregate results</a> · <a href="../../third-party-notices.html">Notices</a>.</p></details>

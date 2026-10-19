@@ -1,0 +1,26 @@
+[hidden]{display:none!important}
+.explorer-tabs{display:flex;gap:4px;padding:12px 20px 0;border-bottom:1px solid var(--line);background:#fff}
+.explorer-tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 18px;color:var(--muted);font-size:16px}
+.explorer-tabs button[aria-selected=true]{border-bottom-color:var(--kept);color:var(--ink);font-weight:650}
+.explorer-tabs button:hover{background:#edf4f9}
+.network-workbench{grid-template-columns:minmax(0,1fr)310px;align-items:start}
+.network-stage{min-width:0;background:#f8fbfd}
+.network-inspector{height:100%;font-size:14px}
+.network-inspector h3{margin-top:20px}
+.inspection-kind{margin-bottom:14px}
+.neuron-explanation p{margin:12px 0;line-height:1.6}
+.neuron-explanation .evidence-limit{color:#526777;border-left:3px solid #b9cbd8;padding-left:12px}
+.role-sources,.assigned-sign{font-size:12px;color:var(--muted)}
+.neuron-details{margin-top:20px;font-size:13px}
+.network-count{margin:12px 16px 0;font-size:12px;color:var(--muted)}
+#anatomy-status{margin:16px 20px;font-size:14px}
+#anatomy-status:empty{display:none}
+#neuron-anatomy{min-height:530px}
+#anatomy-panel{padding:16px}
+.network-workbench.body-view{grid-template-columns:1fr}
+#body-frame{display:block;width:100%;height:1030px;border:0;background:#fff}
+.body-view .network-stage{background:white}
+.paired-result{margin:0 7%;font-size:17px;min-height:2.8em}
+@media(max-width:950px){.network-workbench{grid-template-columns:minmax(0,1fr)270px}}
+@media(max-width:720px){.network-workbench{grid-template-columns:1fr}.network-inspector{border-left:0;border-top:1px solid var(--line)}.neuron-explanation{font-size:15px}.network-inspector dl{display:block}.network-inspector dd{margin-top:3px}.explorer-tabs{padding:7px 8px 0;gap:0}.explorer-tabs button{flex:1;padding:12px 5px;font-size:14px}#neuron-anatomy{min-height:480px}#body-frame{height:1250px}.network-heading{display:block}.layout-note{text-align:left;max-width:none;margin-top:8px;display:block}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

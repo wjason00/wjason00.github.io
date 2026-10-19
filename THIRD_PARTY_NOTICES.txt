@@ -1819,3 +1819,9 @@ SOFTWARE.
 Fly connectome neighbourhood
 ---------------------------
 Bounded derivative of published FlyWire v630 source connectivity and annotations, via Shiu et al. (2024), Drosophila_brain_model commit91bdd1e7dcf193f3e7ca5a8933497fcef63b7960. Source IDs/counts/model signs unchanged; deterministic subset and original non-anatomical display layout added. FlyWire-derived data: CC BY-NC4.0, https://creativecommons.org/licenses/by-nc/4.0/ ; basis https://edit.flywire.ai/principles.html . Model code: MIT, copyright2023 Philip Shiu and Nico Spiller; full notice licenses/fly-model-MIT.txt. Credit FlyWire Consortium; Dorkenwald et al.2024 doi:10.1038/s41586-024-07558-y; Schlegel et al.2024 doi:10.1038/s41586-024-07686-5; Buhmann et al.2021 doi:10.1038/s41592-021-01183-7; Heinrich et al.2018 doi:10.1007/978-3-030-00934-2_36; Eckstein,Bates et al.2024 doi:10.1016/j.cell.2024.03.016. Complete selection/source hashes: demos/fly/network-data.json.
+
+Fly neuron anatomy and body illustration
+---------------------------------------
+Source neuron skeletons: FlyWire Consortium, Dorkenwald et al.2024 and Schlegel et al.2024; exact materialization630 IDs, public skeleton endpoint hosted by MRC LMB. CC BY-NC4.0 as above. Skeleton branches simplified and source positions converted only for display; provenance, original hashes, units and changes: demos/fly/morphology-provenance.json.
+FlyBody geometry: TuragaLab/flybody commitd015e9bfe441bd90ae431bac24c55cb74bdbce26, Apache2.0; full license demos/fly/body/licenses/FlyBody-APACHE-2.0.txt. Exact geometry losslessly gzip-packed; no geometry values changed. Separate saved source-model motor archive and original motor/contact mapping retained with packaging changes documented in demos/fly/body/provenance.json. Movement is an uncalibrated illustration and the body is not registered to the source neurons.
+Three.js0.160.0, MIT, copyright2010-2023Three.jsAuthors; full license demos/fly/vendor/THREE-LICENSE.txt.

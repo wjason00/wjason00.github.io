@@ -36,7 +36,9 @@ for (const path of files) {
   bytes += content.byteLength;
   manifest[name] = { bytes: content.byteLength, sha256: createHash('sha256').update(content).digest('hex') };
 }
-if (bytes >= 12 * 1024 * 1024) throw new Error(`Publication artifact exceeds 12 MiB: ${bytes} bytes`);
+// Audited fly geometry and local renderer are loaded only when their view is opened.
+// Keep a bounded budget while allowing the losslessly packed public FlyBody asset.
+if (bytes >= 32 * 1024 * 1024) throw new Error(`Publication artifact exceeds 32 MiB: ${bytes} bytes`);
 
 // Only this exact, generated child directory may be removed. Never follow a link.
 if (relative(root, destination) !== '_site') throw new Error('Unsafe artifact destination');
