@@ -5,8 +5,8 @@
 <title>Fly circuit explorer | Jason Wang</title>
 <meta name="description" content="Explore fly circuit connections, reconstructed 3D neurons, paired MN9 simulations and an illustrative 3D fly replay in one source-backed portfolio demo.">
 <link rel="canonical" href="https://wjason00.github.io/demos/fly/">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="fly.css"><link rel="stylesheet" href="morphology.css"><link rel="stylesheet" href="explorer.css">
-<script defer src="archive.js"></script><script type="module" src="explorer.js"></script><script type="module" src="fly.js"></script>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="fly.css"><link rel="stylesheet" href="morphology.css"><link rel="stylesheet" href="explorer.css?v=20261019-workbench">
+<script defer src="archive.js"></script><script type="module" src="explorer.js?v=20261019-workbench"></script><script type="module" src="fly.js"></script>
 </head>
 <body>
 <main>
@@ -34,7 +34,7 @@
 <p id="network-error" hidden role="alert"></p>
 </div>
 <div id="anatomy-panel" data-explorer-panel="anatomy" role="tabpanel" aria-labelledby="anatomy-tab" hidden><p id="anatomy-status" role="status"></p><div id="neuron-anatomy"></div></div>
-<div id="body-panel" data-explorer-panel="body" role="tabpanel" aria-labelledby="body-tab" hidden><p id="body-status" role="status" hidden>Loading the body replay. <a href="body/index.html" target="_blank" rel="noopener">Open the replay separately</a>.</p><iframe id="body-frame" title="Illustrative 3D fly replay from a separate saved motor archive"></iframe></div>
+<div id="body-panel" data-explorer-panel="body" role="tabpanel" aria-labelledby="body-tab" hidden><p id="body-status" role="status" hidden>Loading the body replay. <a href="body/index.html?v=20261019-workbench" target="_blank" rel="noopener">Open the replay separately</a>.</p><iframe id="body-frame" title="Illustrative 3D fly replay from a separate saved motor archive"></iframe></div>
 </div>
 <aside class="network-inspector" id="neuron-inspector" aria-label="Selected source connection or neuron"><label>Find a neuron<select id="node-picker"><option>Loading…</option></select></label><div id="network-inspection" aria-live="polite"></div><p class="inspector-footnote">Selection changes the view. The chart compares the saved Roundup-output intervention.</p></aside>
 </div>

@@ -17,7 +17,7 @@ test('body replay is a closed local asset package with intact evidence boundarie
   for (const [, ref] of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
     if (/^https:\/\//.test(ref)) continue;
     assert.ok(!ref.includes('127.0.0.1') && !ref.includes('review-2026'), ref);
-    assert.ok(fs.existsSync(path.resolve(root, ref)), 'missing dependency: ' + ref);
+    assert.ok(fs.existsSync(path.resolve(root, ref.split('?')[0])), 'missing dependency: ' + ref);
   }
   assert.doesNotMatch(html, /(?:start|sensitivity)\.html|publication-plan\.md/);
 });

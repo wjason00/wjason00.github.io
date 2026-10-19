@@ -76,7 +76,7 @@ export function initExplorer() {
     }
     if (body && !bodyFrame.getAttribute('src')) {
       $('body-status').hidden = false;
-      bodyFrame.src = 'body/index.html';
+      bodyFrame.src = 'body/index.html?v=20261019-workbench';
     }
     else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }

@@ -15,7 +15,7 @@ for (const width of [390, 1366]) {
     await expect(page.locator('#paired-controls')).toBeHidden();
     await expect(page.locator('#paired-output')).toBeHidden();
     await expect(page.locator('.framing')).toBeHidden();
-    await expect(body).toHaveAttribute('src', 'body/index.html');
+    await expect(body).toHaveAttribute('src', /^body\/index\.html\?v=/);
     await expect(page.locator('#view-description')).toContainText('separate saved author archive');
     await page.getByRole('tab', { name: 'Connections', exact: true }).click();
     await expect(page.locator('#paired-controls')).toBeVisible();
