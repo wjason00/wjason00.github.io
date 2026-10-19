@@ -9,49 +9,57 @@
     />
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="That page does not exist on Jason Wang's project portfolio." />
-    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#171b18" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f6f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#19232b" media="(prefers-color-scheme: dark)" />
     <title>Page not found — Jason Wang</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/assets/portfolio/secondary.css" />
     <link rel="preload" href="/assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin />
     <script src="/theme.js"></script>
     <script src="/script.js" defer></script>
   </head>
-  <body>
+  <body class="secondary-page">
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header" id="top">
       <div class="site-header__inner">
-        <a class="site-name" href="/">Jason Wang</a>
+        <a class="site-name" href="/">Jason Wang<span class="site-name__detail">Neuroscience &amp; code</span></a>
         <nav class="site-nav" aria-label="Portfolio sections">
           <a href="/#experience">Research</a>
           <a href="/#projects">Projects</a>
           <a href="/#about">Contact</a>
         </nav>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme">
-          <span class="theme-toggle__glyph" aria-hidden="true"></span>
-          <span class="theme-toggle__label">Theme</span>
+          <span class="theme-toggle__glyph" aria-hidden="true">◐</span>
+          <span class="sr-only">Theme</span>
         </button>
       </div>
     </header>
 
     <main class="error-page" id="main" tabindex="-1">
-      <p class="eyebrow">404</p>
+      <header class="secondary-intro">
+      <p class="page-context">Error 404</p>
       <h1>Page not found</h1>
       <p class="error-page__lede">
-        Return to the homepage or open the MorphBrain demo below.
+        The address may have changed. Return to the portfolio or open a project below.
       </p>
-      <p class="error-page__links">
-        <a href="/">Back to homepage</a>
-        <a href="/demos/morphbrain/">Open the MorphBrain demo</a>
-        <a href="/third-party-notices.html">Sources &amp; licences</a>
-      </p>
+      <a class="recovery-home" href="/">Back to the homepage</a>
+      </header>
+      <nav class="recovery" aria-label="Find your way">
+        <h2>Find a project</h2>
+        <ul>
+          <li><a href="/#experience">Research</a></li>
+          <li><a href="/demos/fly/">Fly circuit explorer</a></li>
+          <li><a href="/rare-errors.html">Rare-error study</a></li>
+          <li><a href="/demos/morphbrain/">MorphBrain</a></li>
+        </ul>
+      </nav>
     </main>
 
     <footer class="site-footer">
-      <p class="site-footer__name">Jason Wang</p>
+      <p class="site-footer__name">Jason Wang · Neuroscience &amp; code</p>
       <nav class="site-footer__links" aria-label="Site information">
         <a href="/third-party-notices.html">Sources &amp; licences</a>
         <a href="/">Portfolio home</a>

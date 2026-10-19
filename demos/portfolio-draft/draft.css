@@ -38,7 +38,7 @@
   --page: #eef1f3;
   --ink: #273440;
   --muted: #5d6b77;
-  --quiet: #6e7b85;
+  --quiet: #5f6b76;
   --link: #30596f;
   --rule: #cdd5db;
   --header: rgba(238, 241, 243, .94);
@@ -320,7 +320,7 @@ body[data-direction="editorial"] {
   --page: #fbfcfc;
   --ink: #203643;
   --muted: #5d6c76;
-  --quiet: #6e7b84;
+  --quiet: #606f79;
   --link: #315f77;
   --rule: #d5dde2;
   --header: rgba(251, 252, 252, .94);

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' 'sha256-RSuriyH7/u7w56fGAHIyHw6BQSPNH8UmGuLieRAzX8o='; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' 'sha256-QtLpCO8vyTpHGKQkxQBv2VtB6q8fg4o3PTS9bhjoPq4='; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
     />
     <meta
       name="description"
@@ -14,12 +14,12 @@
     <meta name="author" content="Jason Wang" />
     <meta
       name="theme-color"
-      content="#f6f5f1"
+      content="#f4f6f7"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#171b18"
+      content="#19232b"
       media="(prefers-color-scheme: dark)"
     />
     <link rel="canonical" href="https://wjason00.github.io/" />
@@ -156,33 +156,101 @@
       </div>
     </header>
     <main id="main" tabindex="-1">
-      <section class="hero wrap" aria-labelledby="intro-title">
-        <div class="hero__copy">
-          <p class="eyebrow">
-            <span class="status-dot" aria-hidden="true"></span> UCL ·
-            Neuroscience undergraduate
-          </p>
-          <h1 id="intro-title">Models to <br /><span>think with.</span></h1>
-          <p class="hero__text">
+      <section class="intro wrap" aria-labelledby="intro-title">
+        <div>
+          <p class="intro__context">UCL · Neuroscience undergraduate</p>
+          <h1 id="intro-title">Jason Wang</h1>
+          <p class="intro__text">
             I’m Jason, a UCL neuroscience undergraduate interested in
             computational neuroscience and machine learning. My recent projects ask which
             predictions survive changes in a model or its analysis, including a
             sensitivity study of a published fly feeding-circuit model.
           </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#experience"
-              >Explore the research <span aria-hidden="true">↓</span></a
-            ><a class="text-link" href="#projects"
-              >Explore the models <span aria-hidden="true">↗</span></a
-            >
-          </div>
-          <p class="hero__aside">
-            Interested in research placements.
-            <a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="intro__links">
+          <p>Selected work</p>
+          <a href="#fly-circuit">Fly circuit study</a>
+          <a href="#dpca">Rare-error methods study</a>
+          <a href="#projects">Models &amp; software</a>
+          <p class="intro__availability">Interested in research placements.
+            <a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a>
           </p>
         </div>
+      </section>
+      <section
+        class="research wrap"
+        id="experience"
+        aria-labelledby="experience-title"
+      >
+        <div class="research-context">
+          <div class="section-heading">
+            <p class="eyebrow">Computational neuroscience</p>
+            <h2 id="experience-title">Research</h2>
+          </div>
+          <article class="research-item research-item--role">
+            <p class="research-item__kind">UCL</p>
+            <h3>Undergraduate Research Assistant</h3>
+            <p>
+              I work under Professor Lorenzo Fabrizi in UCL’s
+              <a href="https://www.ucl.ac.uk/life-sciences/mpsl" target="_blank" rel="noreferrer">Medawar Pain and Somatosensory Labs</a>.
+              My supervised work focuses on EEG source modelling: relating
+              models of brain activity to signals measured at the scalp.
+            </p>
+          </article>
+        </div>
+        <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
+          <div class="research-feature__copy">
+            <p class="eyebrow">Connectome modelling · October 2026</p>
+            <h3 id="fly-title">Does the circuit effect hold?</h3>
+            <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
+            <p>In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p>
+            <p><a href="./demos/fly/">Explore connections, 3D neurons and the fly replay</a></p>
+            <p class="research-result-limit">Exploratory model sensitivity: one circuit intervention, output neuron and input regime, at three selected gains. These simulated spikes do not establish a change in real feeding behaviour.</p>
+            <details class="project-notes research-evidence">
+              <summary>Methods, limits &amp; evidence</summary>
+              <p>All 30 scientific runs passed independent saved-output verification. Each trial lasted one simulated second. Within each seed, intact and disconnected conditions at all three gains shared both input candidates and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched in these saved runs. Both this shared-candidate design and an execution correction were post-failure amendments, not preregistered.</p>
+              <p>Five input seeds are not five animals. No statistical significance, biological validation, novelty or full replication of the source paper is claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.</p>
+              <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
+              <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
+            </details>
+          </div>
+          <figure class="research-result-figure">
+            <a href="./assets/portfolio/research-20261015/fly-circuit.png" aria-label="Open the full fly circuit results figure"><img src="./assets/portfolio/research-20261015/fly-circuit.png" width="2544" height="2160" loading="lazy" alt="Paired simulated MN9 spike counts across three recurrent gains: every disconnected result is lower than its intact pair." /></a>
+            <figcaption>Roundup’s outgoing connections removed; matched intact comparisons at recurrent gains 0.8, 1.0 and 1.2. Saved simulation outputs.</figcaption>
+          </figure>
+        </article>
+        <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">
+          <div class="research-feature__copy">
+            <p class="eyebrow">Supporting methods study · dPCA</p>
+            <h3 id="dpca-title">Separating patterns in neural activity.</h3>
+            <p>
+              dPCA separates variation in population activity associated with stimulus, choice and time, helping ask what a pattern represents.
+              This study tests that interpretation with synthetic data whose factors are known—not my own brain recordings or evidence of causality.
+            </p>
+            <p class="research-item__scope">Six saved trial mixes · five noise seeds</p>
+            <a class="research-study-link" href="./rare-errors.html">Explore the study <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="research-feature__preview" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
+            <img src="./assets/portfolio/rare-errors-preview.png" width="1366" height="744" loading="lazy"
+              alt="Study preview: choose the number of error trials and compare signal attribution with reconstruction error" />
+            <span>Change the trial mix. Inspect the result. <span aria-hidden="true">↗</span></span>
+          </a>
+        </article>
+      </section>
+      <section
+        class="projects wrap"
+        id="projects"
+        aria-labelledby="projects-title"
+      >
+        <div class="section-heading projects__heading">
+          <div>
+            <p class="eyebrow">Selected personal projects</p>
+            <h2 id="projects-title">Models &amp; software</h2>
+          </div>
+          <p>Explore the previews, then read the methods and limits.</p>
+        </div>
         <figure
-          class="hero__spotlight-figure gallery"
+          class="project-gallery gallery"
           aria-label="Interactive previews of three personal projects"
         >
           <div class="gallery__heading">
@@ -301,7 +369,7 @@
               </div>
               <div class="gallery__caption">
                 <div>
-                  <h2>How signals become regions.</h2>
+                  <h3>How signals become regions.</h3>
                   <p>Same saved run · signal fields → regional identities.</p>
                 </div>
                 <a
@@ -363,7 +431,7 @@
               </div>
               <div class="gallery__caption">
                 <div>
-                  <h2>One shape into another.</h2>
+                  <h3>One shape into another.</h3>
                   <p>Play or scrub a recording of the Python prototype.</p>
                 </div>
                 <a
@@ -431,7 +499,7 @@
           </div>
               <div class="gallery__caption">
                 <div>
-                  <h2>From timeline to camera sequence.</h2>
+                  <h3>From timeline to camera sequence.</h3>
                   <p>
                     Watch the result. Inspect the editor behind it.
                   </p>
@@ -450,79 +518,6 @@
             </section>
           </div>
         </figure>
-      </section>
-      <section
-        class="research wrap"
-        id="experience"
-        aria-labelledby="experience-title"
-      >
-        <div class="research-context">
-          <div class="section-heading">
-            <p class="eyebrow">Computational neuroscience</p>
-            <h2 id="experience-title">Questions, controls, results.</h2>
-          </div>
-          <article class="research-item research-item--role">
-            <p class="research-item__kind">UCL</p>
-            <h3>Undergraduate Research Assistant</h3>
-            <p>
-              I work under Professor Lorenzo Fabrizi in UCL’s
-              <a href="https://www.ucl.ac.uk/life-sciences/mpsl" target="_blank" rel="noreferrer">Medawar Pain and Somatosensory Labs</a>.
-              My supervised work focuses on EEG source modelling: relating
-              models of brain activity to signals measured at the scalp.
-            </p>
-          </article>
-        </div>
-        <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
-          <div class="research-feature__copy">
-            <p class="eyebrow">Connectome modelling · October 2026</p>
-            <h3 id="fly-title">Does the circuit effect hold?</h3>
-            <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
-            <p>In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p>
-            <p><a href="./demos/fly/">Explore connections, 3D neurons and the fly replay</a></p>
-            <p class="research-result-limit">Exploratory model sensitivity: one circuit intervention, output neuron and input regime, at three selected gains. These simulated spikes do not establish a change in real feeding behaviour.</p>
-            <details class="project-notes research-evidence">
-              <summary>Methods, limits &amp; evidence</summary>
-              <p>All 30 scientific runs passed independent saved-output verification. Each trial lasted one simulated second. Within each seed, intact and disconnected conditions at all three gains shared both input candidates and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched in these saved runs. Both this shared-candidate design and an execution correction were post-failure amendments, not preregistered.</p>
-              <p>Five input seeds are not five animals. No statistical significance, biological validation, novelty or full replication of the source paper is claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.</p>
-              <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
-              <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-            </details>
-          </div>
-          <figure class="research-result-figure">
-            <a href="./assets/portfolio/research-20261015/fly-circuit.png" aria-label="Open the full fly circuit results figure"><img src="./assets/portfolio/research-20261015/fly-circuit.png" loading="lazy" alt="Paired simulated MN9 spike counts across three recurrent gains: every disconnected result is lower than its intact pair." /></a>
-            <figcaption>Roundup’s outgoing connections removed; matched intact comparisons at recurrent gains 0.8, 1.0 and 1.2. Saved simulation outputs.</figcaption>
-          </figure>
-        </article>
-        <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">
-          <div class="research-feature__copy">
-            <p class="eyebrow">Supporting methods study · dPCA</p>
-            <h3 id="dpca-title">Separating patterns in neural activity.</h3>
-            <p>
-              dPCA separates variation in population activity associated with stimulus, choice and time, helping ask what a pattern represents.
-              This study tests that interpretation with synthetic data whose factors are known—not my own brain recordings or evidence of causality.
-            </p>
-            <p class="research-item__scope">Six saved trial mixes · five noise seeds</p>
-            <a class="research-study-link" href="./rare-errors.html">Explore the study <span aria-hidden="true">↗</span></a>
-          </div>
-          <a class="research-feature__preview" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
-            <img src="./assets/portfolio/rare-errors-preview.webp" width="1344" height="635" loading="lazy"
-              alt="Study preview: choose the number of error trials and compare signal attribution with reconstruction error" />
-            <span>Change the trial mix. Inspect the result. <span aria-hidden="true">↗</span></span>
-          </a>
-        </article>
-      </section>
-      <section
-        class="projects wrap"
-        id="projects"
-        aria-labelledby="projects-title"
-      >
-        <div class="section-heading projects__heading">
-          <div>
-            <p class="eyebrow">Selected personal projects</p>
-            <h2 id="projects-title">A closer look.</h2>
-          </div>
-          <p>What each project explores.<br />What you can try.</p>
-        </div>
         <article
           class="project"
           id="morphbrain"
@@ -530,7 +525,7 @@
         >
           <div class="project__number" aria-hidden="true">01</div>
           <div class="project__identity">
-            <p class="eyebrow">01 / Interactive model</p>
+            <p class="eyebrow">Interactive model</p>
             <h3 id="morphbrain-title">MorphBrain</h3>
             <p class="project__question">
               What happens when you change the signals?
@@ -545,36 +540,7 @@
               Interactive demo · JavaScript &amp; WebGL
             </p>
           </div>
-          <a
-            class="project-visual project-visual--brain"
-            href="./demos/morphbrain/"
-            data-launch-demo
-            aria-label="Open the interactive MorphBrain model"
-          >
-            <div class="project-visual__tag">
-              Interactive neural-patterning model
-            </div>
-            <div class="project-fields">
-              <img
-                src="./assets/portfolio/morphbrain-field.png"
-                width="214"
-                height="321"
-                alt="Saved model signal field"
-                loading="lazy"
-              /><span aria-hidden="true">→</span
-              ><img
-                src="./assets/portfolio/morphbrain-regions.png"
-                width="240"
-                height="360"
-                alt="The same field decoded into three regions"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-visual__footer">
-              <span>Change the sources. Compare the regions.</span
-              ><span aria-hidden="true">↗</span>
-            </div>
-          </a>
+          <p class="project__preview-link"><a href="#preview-morphbrain" data-show-project="morphbrain">View the preview</a></p>
           <div class="project__body">
             <p class="project__lede">
               Move or remove SHH and BMP sources, then see how the model’s
@@ -662,7 +628,7 @@
         >
           <div class="project__number" aria-hidden="true">02</div>
           <div class="project__identity">
-            <p class="eyebrow">02 / Supporting software · Geometry</p>
+            <p class="eyebrow">Geometry prototype</p>
             <h3 id="model-morpher-title">Model Morpher</h3>
             <p class="project__question">Morphing without matching vertices.</p>
             <a
@@ -673,49 +639,7 @@
               >Explore the source <span aria-hidden="true">↗</span></a
             >
           </div>
-          <div
-            class="project-visual project-visual--morpher video-demo"
-            data-recording-label="Model Morpher project recording"
-          >
-            <div class="project-visual__tag">Recorded Python prototype</div>
-            <video
-              controls
-              playsinline
-              preload="none"
-              width="900"
-              height="708"
-              poster="./assets/portfolio/model-morpher.webp"
-              data-prepare-when-visible
-              aria-label="Model Morpher geometric interpolation recording"
-              aria-describedby="morpher-project-limit"
-            >
-              <source
-                src="./assets/model-morpher/dentate-to-brain.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support this recording.
-            </video>
-            <div
-              class="video-controls"
-              role="group"
-              aria-label="Project recording controls"
-            >
-              <button class="video-play" type="button">Play</button
-              ><label
-                ><span class="sr-only">Scrub the project recording</span
-                ><input
-                  class="video-range"
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="0.1"
-                  value="0" /></label
-              ><output class="video-time">0:00 / 0:17</output>
-            </div>
-            <div class="project-visual__footer">
-              <span>Play or scrub the geometric transition.</span>
-            </div>
-          </div>
+          <p class="project__preview-link"><a href="#preview-model-morpher" data-show-project="model-morpher">View the preview</a></p>
           <div class="project__body">
             <p class="project__lede">
               Two 3D surfaces. No matching vertices. This prototype blends their
@@ -752,7 +676,7 @@
         >
           <div class="project__number" aria-hidden="true">03</div>
           <div class="project__identity">
-            <p class="eyebrow">03 / Supporting software · WebGPU</p>
+            <p class="eyebrow">Animation software</p>
             <h3 id="morphliner-title">Morphliner</h3>
             <p class="project__question">
               From a 3D scene to a finished video.
@@ -765,52 +689,7 @@
               >Visit Morphliner <span aria-hidden="true">↗</span></a
             >
           </div>
-          <div class="project-visual project-visual--editor morphliner-showcase" data-morphliner-showcase>
-            <div class="media-switch" role="group" aria-label="Morphliner project demo views">
-              <button type="button" data-morphliner-view="recording" aria-pressed="true">Demo</button>
-              <button type="button" data-morphliner-view="editor" aria-pressed="false">Editor</button>
-              <button type="button" data-morphliner-view="render" aria-pressed="false">Another scene</button>
-            </div>
-            <div class="video-demo gallery-media morphliner-editor morphliner-demo"
-              data-morphliner-panel="recording" data-recording-label="Morphliner project demo">
-              <div class="video-stage">
-                <video controls playsinline preload="none" width="1920" height="1080"
-                  data-prepare-when-visible
-                  poster="./assets/portfolio/morphliner-poster.jpg"
-                  aria-label="Morphliner project demo: exported Trainer camera sequence">
-                  <source src="./assets/portfolio/morphliner-demo.mp4" type="video/mp4" />
-                  Your browser does not support this video.
-                </video>
-              </div>
-              <div class="video-controls" role="group" aria-label="Morphliner project demo playback">
-                <button class="video-play" type="button">Play</button>
-                <label><span class="sr-only">Scrub Morphliner project demo</span>
-                  <input class="video-range" type="range" min="0" max="100" step="0.1" value="0" />
-                </label>
-                <output class="video-time">0:00 / 0:06</output>
-              </div>
-              <div class="demo-chapters" role="group" aria-label="Jump to a shot in Morphliner project demo">
-                <button type="button" data-video-seek="0" aria-pressed="true"><span>01</span> Opening</button>
-                <button type="button" data-video-seek="1.57" aria-pressed="false"><span>02</span> Detail</button>
-                <button type="button" data-video-seek="3.6" aria-pressed="false"><span>03</span> Profile</button>
-              </div>
-              <p class="demo-caption">Trainer camera sequence · 6.5-second demo excerpt</p>
-            </div>
-            <a class="morphliner-editor-still" data-morphliner-panel="editor"
-              href="./assets/portfolio/morphliner-editor.jpg" target="_blank" rel="noreferrer"
-              aria-label="Open the full-size Morphliner editor screenshot">
-              <img src="./assets/portfolio/morphliner-editor.jpg" width="1280" height="720"
-                alt="The Trainer scene in Morphliner, with camera controls, captions and an animation timeline"
-                loading="lazy" />
-              <span>Editor screenshot · open full size ↗</span>
-            </a>
-            <figure class="morphliner-render-view" data-morphliner-panel="render">
-              <img class="morphliner-render" src="./assets/portfolio/morphliner.webp"
-                width="1920" height="1080" loading="lazy"
-                alt="A separate Morphliner product render: red and gold lipstick on a mauve stage" />
-              <figcaption>Beauty Shade Sweep · a separate product render</figcaption>
-            </figure>
-          </div>
+          <p class="project__preview-link"><a href="#preview-morphliner" data-show-project="morphliner">View the preview</a></p>
           <div class="project__body">
             <p class="project__lede">
               Arrange a scene, set camera keyframes and preview the result
@@ -900,6 +779,10 @@
         Illustrative model; parameters are not calibrated to biological
         measurements.
       </p>
+      <div class="demo-dialog__status" role="status" aria-live="polite" hidden>
+        <p data-demo-message>Loading the model interface…</p>
+        <div data-demo-recovery hidden><button type="button" class="demo-retry">Retry</button><a href="./demos/morphbrain/">Open the model full page</a></div>
+      </div>
       <div class="demo-dialog__mount"></div>
     </dialog>
   </body>

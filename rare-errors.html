@@ -13,12 +13,12 @@
     />
     <meta
       name="theme-color"
-      content="#f6f5f1"
+      content="#f4f6f7"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#171b18"
+      content="#19232b"
       media="(prefers-color-scheme: dark)"
     />
     <link rel="canonical" href="https://wjason00.github.io/rare-errors.html" />
@@ -39,7 +39,7 @@
     <script src="./assets/portfolio/rare-errors/data.js" defer></script>
     <script src="./assets/portfolio/study.js" defer></script>
   </head>
-  <body>
+  <body id="top">
     <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
       <div class="site-header__inner">
@@ -49,20 +49,20 @@
           ></a
         >
         <nav class="site-nav" aria-label="Portfolio">
-          <a href="./#experience">Research</a><a href="./#projects">Projects</a>
+          <a href="./#experience">Research</a><a href="./#projects">Projects</a><a href="./#about">Contact</a>
         </nav>
         <button
           class="theme-toggle"
           type="button"
           aria-label="Switch colour theme"
         >
-          <span aria-hidden="true">◐</span>
+          <span class="theme-toggle__glyph" aria-hidden="true">&#9680;</span><span class="sr-only">Theme</span>
         </button>
       </div>
     </header>
-    <main id="main" class="wrap">
+    <main id="main" class="wrap" tabindex="-1">
       <section class="study-intro" aria-labelledby="study-title">
-        <p class="eyebrow">Synthetic methods study / dPCA</p>
+        <p class="study-category">Synthetic methods study / dPCA</p>
         <h1 id="study-title">What if mistakes are missing?</h1>
         <p class="lede">
           In this synthetic task, stimulus A should lead to choice A, and B to
@@ -74,13 +74,12 @@
           September 2026
         </p>
       </section>
-      <section
-        class="experiment"
-        aria-label="Explore the saved rare-error study"
-      >
-        <div class="trial-design">
-          <p class="eyebrow">01 / Change the trial mix</p>
-          <h2>Choose the trial mix.</h2>
+      <section class="trial-design" id="trial-settings" aria-labelledby="trial-settings-title">
+          <div class="trial-design__heading">
+            <h2 id="trial-settings-title">Choose the trial mix.</h2>
+            <p class="saved-setting">Saved results; no new fit is run</p>
+          </div>
+          <div class="trial-design__controls">
           <p id="count-label">
             Error trials per stimulus
             <span class="control-context">/ 40 trials each</span>
@@ -112,45 +111,12 @@
             Balanced = 20 errors per stimulus: 20 trials in each of the four
             cells.
           </p>
-          <div
-            class="result-overview"
-            aria-label="Selected result compared with the balanced setting"
-          >
-            <div>
-              <p>Choice attribution</p>
-              <strong data-overview="purity">97.63%</strong>
-              <p class="overview-help">Attribution to the known choice signal.</p>
-            </div>
-            <div>
-              <p>Reconstruction error</p>
-              <strong data-overview="ratio">4.14×</strong>
-              <p class="overview-help">
-                the balanced setting<br />Lower is closer to the true signal.
-              </p>
-            </div>
           </div>
-          <p class="overview-scope">
-            Measured against synthetic ground truth. Means across five noise
-            seeds, one population.
-          </p>
-          <p class="compact-result sr-only" id="compact-result" role="status">
-            97.63% choice attribution; 4.14 times the balanced reconstruction
-            error.
-          </p>
-          <a
-            class="diagnostics-link"
-            href="#seed-diagnostics"
-            data-open-diagnostics
-            >Inspect exact values &amp; all five seeds ↓</a
-          >
-        </div>
-        <div class="study-results">
-          <p class="eyebrow">02 / Look past the label</p>
-          <h2 id="result-title">A clean label. A noisier estimate.</h2>
-          <p id="result-explanation">
-            The component is strongly choice-driven, yet its reconstruction is
-            less accurate than with four equally sampled cells.
-          </p>
+      </section>
+      <section class="experiment" aria-label="Explore the saved rare-error study">
+        <div class="experiment-body">
+          <section class="study-allocation" id="trial-allocation" aria-labelledby="allocation-title">
+            <h2 id="allocation-title">Training trial allocation</h2>
           <div
             class="allocation"
             aria-label="Number of training trials in each stimulus-choice combination"
@@ -189,6 +155,46 @@
               mix, or open the full results below.
             </p></noscript
           >
+          </section>
+          <section class="study-results" aria-labelledby="result-title">
+            <p class="result-context">Saved result</p>
+          <h2 id="result-title">A clean label. A noisier estimate.</h2>
+          <p id="result-explanation">
+            The component is strongly choice-driven, yet its reconstruction is
+            less accurate than with four equally sampled cells.
+          </p>
+          <div
+            class="result-overview"
+            aria-label="Selected result compared with the balanced setting"
+          >
+            <div>
+              <p>Choice attribution</p>
+              <strong data-overview="purity">97.63%</strong>
+              <p class="overview-help">Attribution to the known choice signal.</p>
+            </div>
+            <div>
+              <p>Reconstruction error</p>
+              <strong data-overview="ratio">4.14×</strong>
+              <p class="overview-help">
+                the balanced setting<br />Lower is closer to the true signal.
+              </p>
+            </div>
+          </div>
+          <p class="overview-scope">
+            Measured against synthetic ground truth. Means across five noise
+            seeds, one population.
+          </p>
+          <p class="compact-result sr-only" id="compact-result" role="status">
+            97.63% choice attribution; 4.14 times the balanced reconstruction
+            error.
+          </p>
+          <a
+            class="diagnostics-link"
+            href="#seed-diagnostics"
+            data-open-diagnostics
+            >Inspect exact values &amp; all five seeds ↓</a
+          >
+          </section>
         </div>
       </section>
       <section class="study-takeaway" aria-labelledby="takeaway-title">
@@ -203,13 +209,13 @@
       <div class="study-depth">
         <details id="seed-diagnostics">
           <summary>Exact values &amp; all five noise seeds</summary>
-          <p class="study-meta">Means across five noise seeds</p>
+          <div class="diagnostics-heading"><p class="study-meta">Means across five noise seeds</p><div class="seed-legend" id="seed-legend" aria-label="Noise seed identities" hidden></div></div>
           <div class="metric-grid">
             <div class="metric" data-metric="purity">
               <h3>Choice attribution<br />Higher = more choice-driven</h3>
               <strong>97.63%</strong
               ><svg
-                viewBox="0 0 220 65"
+                viewBox="0 0 360 104"
                 role="img"
                 aria-label="Five noise-seed results are available in the figure below."
               ></svg>
@@ -219,7 +225,7 @@
               <h3>Choice reconstruction error<br />Lower = closer to truth</h3>
               <strong>0.1000</strong
               ><svg
-                viewBox="0 0 220 65"
+                viewBox="0 0 360 104"
                 role="img"
                 aria-label="Five noise-seed results are available in the figure below."
               ></svg>
@@ -232,7 +238,7 @@
             are not confidence intervals.
           </p>
         </details>
-        <details>
+        <details id="full-curves">
           <summary>See the full curves &amp; the control</summary>
           <p>
             The control removes the pure choice contribution while retaining the
@@ -261,7 +267,7 @@
             </figcaption>
           </figure>
         </details>
-        <details>
+        <details id="measured-quantities">
           <summary>What was measured?</summary>
           <p>
             Demixed principal component analysis (dPCA) uses task labels to find
@@ -293,7 +299,7 @@
             not. This view makes no claim that one method is generally better.
           </p>
         </details>
-        <details>
+        <details id="study-sources">
           <summary>Scope, provenance &amp; downloads</summary>
           <p>
             This independent methods study uses synthetic data with known
@@ -333,8 +339,13 @@
         </details>
       </div>
     </main>
-    <footer class="study-footer wrap">
-      <a href="./#experience">← Back to the portfolio</a>
+    <footer class="site-footer study-footer">
+      <p class="site-footer__name">Jason Wang &middot; Neuroscience &amp; code</p>
+      <nav class="site-footer__links" aria-label="Site information">
+        <a href="./">Back to the portfolio</a>
+        <a href="./third-party-notices.html">Sources &amp; licences</a>
+        <a href="#top">Back to top</a>
+      </nav>
     </footer>
   </body>
 </html>

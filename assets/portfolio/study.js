@@ -3,6 +3,20 @@
   const data = window.rareErrorResults;
   if (!data) return;
   const buttons = [...document.querySelectorAll("[data-errors]")];
+  // portfolio-study.py sorts the frozen metric values by noise_seed 0 through 4.
+  const legend = document.querySelector("#seed-legend");
+  if (legend) {
+    for (let seed = 0; seed < 5; seed++) {
+      const key = document.createElement("span");
+      key.className = `seed-key seed-${seed}`;
+      const swatch = document.createElement("span");
+      swatch.className = "seed-swatch";
+      swatch.setAttribute("aria-hidden", "true");
+      key.append(swatch, document.createTextNode(`Seed ${seed}`));
+      legend.append(key);
+    }
+    legend.hidden = false;
+  }
   const ns = "http://www.w3.org/2000/svg";
   const svgNode = (tag, attrs, value) => {
     const node = document.createElementNS(ns, tag);
@@ -16,10 +30,12 @@
     const range = container.querySelector(".metric-range");
     const graph = container.querySelector("svg");
     graph.replaceChildren();
+    graph.setAttribute("viewBox", "0 0 360 104");
     if (!result) {
       value.textContent = "No fit";
       range.textContent = "Missing trial combinations";
       graph.setAttribute("aria-label", "No fitted result at zero errors.");
+      graph.append(svgNode("text", { x: 12, y: 50, fill: "currentColor", "font-size": 13 }, "No fitted result at zero errors."));
       return;
     }
     const format = (x) => (percent ? `${(100 * x).toFixed(2)}%` : x.toFixed(4));
@@ -27,14 +43,14 @@
     range.textContent = `${format(result.min)}–${format(result.max)} · full seed range`;
     graph.setAttribute(
       "aria-label",
-      `Five noise seeds: ${result.values.map(format).join(", ")}. Axis zero to ${percent ? "100 percent" : max}.`,
+      `Five noise seeds: ${result.values.map((v, i) => `Seed ${i}: ${format(v)}`).join(", ")}. Axis zero to ${percent ? "100 percent" : max}.`,
     );
     graph.append(
       svgNode("line", {
-        x1: 10,
-        x2: 210,
-        y1: 37,
-        y2: 37,
+        x1: 12,
+        x2: 348,
+        y1: 76,
+        y2: 76,
         stroke: "currentColor",
         opacity: ".35",
       }),
@@ -42,7 +58,7 @@
     graph.append(
       svgNode(
         "text",
-        { x: 10, y: 57, fill: "currentColor", "font-size": 12 },
+        { x: 12, y: 98, fill: "currentColor", "font-size": 12 },
         "0",
       ),
     );
@@ -50,8 +66,8 @@
       svgNode(
         "text",
         {
-          x: 210,
-          y: 57,
+          x: 348,
+          y: 98,
           fill: "currentColor",
           "text-anchor": "end",
           "font-size": 12,
@@ -59,17 +75,19 @@
         percent ? "100%" : max,
       ),
     );
-    result.values.forEach((v, i) =>
-      graph.append(
-        svgNode("circle", {
-          cx: 10 + (200 * v) / max,
-          cy: 7 + i * 6,
-          r: 3,
-          fill: "currentColor",
-        }),
-      ),
-    );
+    result.values.forEach((v, i) => {
+      const point = svgNode("circle", {
+        cx: 12 + (336 * v) / max,
+        cy: 12 + i * 12,
+        r: 4,
+        class: `seed-point seed-${i}`,
+        "data-seed": i,
+      });
+      point.append(svgNode("title", {}, `Seed ${i}: ${format(v)}`));
+      graph.append(point);
+    });
   }
+
   function select(count) {
     const result = data[count];
     const ratio = count

@@ -4,12 +4,40 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Portfolio refinement — 19 October 2026
+
+The homepage now puts a compact factual introduction and research before the
+software gallery. Each software project has one preview; the following project
+accounts keep the methods, limitations and source links without repeating the
+same recordings. A persistent top navigation and a shared slate palette connect
+the homepage, saved-results study, source inventory, licence index and 404 page.
+
+The study keeps all six saved settings, including zero-error refusal, and adds
+persistent setting controls, clearer allocation/results groups and identified
+noise seeds. The homepage preview is a direct capture of this revised interface.
+Sources has a project index; nested missing URLs have root-relative recovery
+links. MorphBrain's parent dialog detects a rendered interface, offers retry and
+a full-page route if loading stalls, and releases its frame and restores focus
+when closed. Its compiled scientific runtime is unchanged.
+
+Scientific paragraphs, methods, limits, frozen data, source figures and the held
+EEG publication exclusions were checked against the preceding release. These are
+presentation and interaction improvements, not new research findings or evidence
+of Jason's understanding. The scroll concept below remains a separate draft.
+Current checks cover saved settings in both themes, gallery navigation and
+playback, actual model loading, failed model loading/retry/disposal, nested 404
+recovery, responsive layouts and the existing Fly and draft behaviours. See
+`tests/portfolio-experience.spec.mjs` and the current Pages release checks.
+The revised study's direct UI capture is saved in [Drive](https://drive.google.com/file/d/1AVbHRpllqPFjo4zYEs30DIAIdPOSKRZO/view)
+in the [existing design review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+Next action: see T-173.
+
 ## Scroll-driven design draft — 19 October 2026
 
 The separate [design draft](https://wjason00.github.io/demos/portfolio-draft/)
 and [contact sheet](https://wjason00.github.io/demos/portfolio-draft/contact-sheet.html)
 explore translucent project imagery, expressive project titles and a fixed project
-index. The current homepage is preserved while this direction is reviewed.
+index. This concept remains separate from the research-first homepage above.
 Mist, Night and Editorial are selectable appearances of the same scroll layout.
 Each section has an ordinary anchor and direct demo/evidence links; scrolling is
 native, imagery is decorative, and reduced motion uses static imagery.
@@ -89,7 +117,7 @@ the checked workflow below. T-065 and the local release receipts record deployme
 
 ## Explore
 
-- **Research:** the completed fly sensitivity and EEG normalization comparisons lead, with checked figures, aggregate downloads and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling.
+- **Research:** the fly sensitivity study leads, followed by the synthetic dPCA methods study, with checked figures, aggregate downloads and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling; the held independent EEG study is excluded.
 - **Rare-error study:** six saved trial allocations, five noise seeds, an explicit zero-error non-fit,
   full curves and downloadable metrics/configuration/provenance. Downloads do not include the analysis code.
 - **MorphBrain:** a keyboard-operable saved-image comparison and an on-demand interactive model.
@@ -109,7 +137,7 @@ node scripts/serve-static.mjs _site 4187
 
 Open `http://127.0.0.1:4187/`. The server supports byte-range requests for video seeking.
 `npm run build` creates a fresh `_site` from the publication allowlist, rejects prohibited
-files and artifacts at or above 12 MiB, verifies copied file hashes and checks all internal
+files and artifacts at or above 32 MiB, verifies copied file hashes and checks all internal
 HTML links. Its manifest is saved to the ignored `output/release-manifest.json`.
 
 The same assembly command runs in `.github/workflows/pages.yml` before deployment.
@@ -134,6 +162,8 @@ npm run test:layout
 | `scripts/build-site.mjs` | Shared local and CI publication assembly |
 | `scripts/check-links.mjs` | Public HTML link and fragment verification |
 | `404.html`, `third-party-notices.html`, `licenses/` | Secondary pages and source/licence information |
+| `assets/portfolio/secondary.css` | Shared theme and source/recovery-page layout |
+| `demos/portfolio-draft/` | Separate scroll concept and three-direction contact sheet |
 
 The shell has no runtime dependency, analytics or external font requests. Fonts and
 the separate MorphBrain runtime are served locally. Source and data credits are in

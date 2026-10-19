@@ -22,7 +22,7 @@ function resolvedTheme() {
    while the visitor is following their system. An explicit choice has to
    override both, so they collapse into one unscoped meta. */
 function setThemeColor() {
-  const colour = resolvedTheme() === "dark" ? "#171b18" : "#f6f5f1";
+  const colour = getComputedStyle(root).getPropertyValue("--paper").trim();
   const metas = document.querySelectorAll('meta[name="theme-color"]');
   if (!metas.length) return;
 
@@ -131,6 +131,7 @@ if (gallery && projectTabs.length) {
       history.replaceState(null, "", tab.hash);
     });
     tab.addEventListener("keydown", (event) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
       if (event.key === " ") {
         event.preventDefault();
         selectProject(tab.dataset.project);
@@ -212,40 +213,89 @@ if (gallery) {
 const demoDialog = document.querySelector(".demo-dialog");
 let demoOpener;
 if (demoDialog && typeof demoDialog.showModal === "function") {
+  const mount = demoDialog.querySelector(".demo-dialog__mount");
+  const status = demoDialog.querySelector(".demo-dialog__status");
+  const message = status.querySelector("[data-demo-message]");
+  const recovery = status.querySelector("[data-demo-recovery]");
+  let currentURL;
+  let timeout;
+  let readinessObserver;
+  function releaseReadiness() {
+    clearTimeout(timeout);
+    readinessObserver?.disconnect();
+    readinessObserver = null;
+  }
+  function showRecovery() {
+    status.hidden = false;
+    message.textContent = "The model interface is taking longer to load. Retry or open it full page.";
+    recovery.hidden = false;
+    status.dataset.state = "slow";
+  }
+  function mountModel() {
+    releaseReadiness();
+    status.hidden = false;
+    status.dataset.state = "loading";
+    message.textContent = "Loading the model interface…";
+    recovery.hidden = true;
+    recovery.querySelector("a").href = currentURL;
+    const iframe = document.createElement("iframe");
+    iframe.title = "MorphBrain interactive illustrative model";
+    iframe.src = currentURL;
+    iframe.addEventListener("error", () => {
+      if (demoDialog.open && mount.firstElementChild === iframe) showRecovery();
+    });
+    iframe.addEventListener("load", () => {
+      if (!demoDialog.open || mount.firstElementChild !== iframe) return;
+      try {
+        const child = iframe.contentDocument;
+        child?.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && demoDialog.open) {
+            event.preventDefault();
+            demoDialog.close();
+          }
+        }, { capture: true });
+        const app = child?.getElementById("root");
+        // The frame's load event can precede the React interface, or occur even
+        // when a bundle failed. A rendered interface is the readiness signal.
+        function checkReady() {
+          if (!app?.childElementCount || !app.textContent.trim()) return;
+          releaseReadiness();
+          status.dataset.state = "ready";
+          status.hidden = true;
+        }
+        if (app) {
+          readinessObserver = new MutationObserver(checkReady);
+          readinessObserver.observe(app, { childList: true, subtree: true });
+          checkReady();
+        }
+      } catch {
+        showRecovery();
+      }
+    });
+    timeout = setTimeout(showRecovery, 15_000);
+    mount.replaceChildren(iframe);
+  }
   document.querySelectorAll("[data-launch-demo]").forEach((link) => {
     link.addEventListener("click", (event) => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0 || link.origin !== location.origin)
         return;
       event.preventDefault();
       document.querySelectorAll("video").forEach((video) => video.pause());
       demoOpener = link;
-      const iframe = document.createElement("iframe");
-      iframe.title = "MorphBrain interactive illustrative model";
-      iframe.src = link.href;
-      // Escape inside an iframe does not reach the parent document. The bundled
-      // same-origin model gets a close handler without altering its runtime.
-      iframe.addEventListener("load", () => {
-        iframe.contentDocument?.addEventListener(
-          "keydown",
-          (keyEvent) => {
-            if (keyEvent.key === "Escape" && demoDialog.open) {
-              keyEvent.preventDefault();
-              demoDialog.close();
-            }
-          },
-          { capture: true },
-        );
-      });
-      demoDialog.querySelector(".demo-dialog__mount").replaceChildren(iframe);
+      currentURL = link.href;
       demoDialog.showModal();
       document.body.classList.add("demo-is-open");
+      mountModel();
     });
   });
   demoDialog
     .querySelector(".demo-close")
     .addEventListener("click", () => demoDialog.close());
+  demoDialog.querySelector(".demo-retry").addEventListener("click", mountModel);
   demoDialog.addEventListener("close", () => {
-    demoDialog.querySelector(".demo-dialog__mount").replaceChildren();
+    releaseReadiness();
+    mount.replaceChildren();
+    status.hidden = true;
     document.body.classList.remove("demo-is-open");
     demoOpener?.focus();
   });

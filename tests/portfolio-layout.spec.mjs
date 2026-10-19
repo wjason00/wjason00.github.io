@@ -8,14 +8,20 @@ const viewports = [
 ];
 
 for (const viewport of viewports) {
-  test(`hero poster keeps its usable width at ${viewport.name}`, async ({ page }) => {
+  test(`software preview follows research and keeps its usable width at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto('/');
 
-    const figure = page.locator('.hero__spotlight-figure');
+    const figure = page.locator('.project-gallery');
     const poster = page.locator('.hero__spotlight');
     await expect(figure).toBeVisible();
     await expect(poster).toBeVisible();
+    expect(await page.locator('#projects .project-gallery').count()).toBe(1);
+    expect(await page.locator('#experience').evaluate(section =>
+      Boolean(section.compareDocumentPosition(document.querySelector('.project-gallery')) & Node.DOCUMENT_POSITION_FOLLOWING),
+    )).toBe(true);
+    expect(await page.locator('video[poster$="model-morpher.webp"]').count()).toBe(1);
+    expect(await page.locator('[data-morphliner-showcase]').count()).toBe(1);
 
     const figureBox = await figure.boundingBox();
     const posterBox = await poster.boundingBox();

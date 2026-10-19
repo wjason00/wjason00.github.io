@@ -9,8 +9,8 @@
     />
     <meta name="description" content="Data sources and third-party software notices for Jason Wang's project portfolio." />
     <meta name="author" content="Jason Wang" />
-    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#171b18" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f6f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#19232b" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://wjason00.github.io/third-party-notices.html" />
     <meta property="og:site_name" content="Jason Wang" />
     <meta property="og:locale" content="en_GB" />
@@ -21,43 +21,62 @@
     <title>Sources &amp; licences — Jason Wang</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./assets/portfolio/secondary.css" />
     <link rel="preload" href="./assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/fonts/source-sans-3-600.woff2" as="font" type="font/woff2" crossorigin />
     <script src="./theme.js"></script>
     <script src="./script.js" defer></script>
   </head>
-  <body>
+  <body class="secondary-page">
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header" id="top">
       <div class="site-header__inner">
-        <a class="site-name" href="./">Jason Wang</a>
+        <a class="site-name" href="./">Jason Wang<span class="site-name__detail">Neuroscience &amp; code</span></a>
         <nav class="site-nav" aria-label="Portfolio sections">
           <a href="./#experience">Research</a>
           <a href="./#projects">Projects</a>
           <a href="./#about">Contact</a>
         </nav>
         <button class="theme-toggle" type="button" aria-label="Switch colour theme">
-          <span class="theme-toggle__glyph" aria-hidden="true"></span>
-          <span class="theme-toggle__label">Theme</span>
+          <span class="theme-toggle__glyph" aria-hidden="true">◐</span>
+          <span class="sr-only">Theme</span>
         </button>
       </div>
     </header>
 
-    <main class="legal-page" id="main" tabindex="-1">
-      <a class="legal-page__back" href="./">← Back to projects</a>
-      <p class="eyebrow">Sources &amp; credits</p>
+    <main class="legal-page source-page" id="main" tabindex="-1">
+      <header class="secondary-intro">
+      <a class="legal-page__back" href="./">Back to the portfolio</a>
+      <p class="page-context">Sources &amp; credits</p>
       <h1>Sources &amp; licences</h1>
       <p class="legal-page__lede">
         Data, software and font licences for this site.
       </p>
 
-      <h2>Project images</h2>
-      <p>
+      <p class="source-overview"><strong>Project images.</strong>
         The project images come from model outputs, recordings and product renders. Their data sources and licence terms are listed below.
       </p>
+      </header>
 
-      <h2>Fly circuit study</h2>
+      <div class="source-layout">
+      <nav class="source-index" aria-label="Sources by project">
+        <p>On this page</p>
+        <ul>
+          <li><a href="#fly">Fly circuit study</a></li>
+          <li><a href="#rare-errors">Rare-error study</a></li>
+          <li><a href="#morphbrain">MorphBrain</a></li>
+          <li><a href="#model-morpher">Model Morpher</a></li>
+          <li><a href="#software-fonts">Software &amp; fonts</a></li>
+          <li><a href="#portfolio-shell">Portfolio shell</a></li>
+        </ul>
+        <a class="source-index__notice" href="./THIRD_PARTY_NOTICES.txt">Complete third-party notice</a>
+      </nav>
+      <div class="source-inventory">
+
+      <section id="fly" aria-labelledby="fly-source-title">
+      <p class="section-context">Connectivity, skeletons &amp; body replay</p>
+      <h2 id="fly-source-title">Fly circuit study</h2>
       <p>The <a href="./demos/fly/">interactive fly explorer</a> combines saved paired MN9 output with a bounded derivative of published FlyWire v630 connectivity. Neuron IDs, connection counts and model signs are retained. The connections view uses an original graph layout. The anatomy view adds real reconstructed skeletons for the same source IDs, in their shared coordinate frame, with documented branch simplification and unit conversion. The complete raw connectome is not distributed. <a href="./demos/fly/provenance.json">Paired replay provenance</a>, <a href="./demos/fly/network-data.json">network selection</a> and <a href="./demos/fly/morphology-provenance.json">anatomy processing and source hashes</a> document these parts.</p>
       <p>The separate body illustration includes geometry from <a href="https://github.com/TuragaLab/flybody/tree/d015e9bfe441bd90ae431bac24c55cb74bdbce26">FlyBody</a>, under <a href="./demos/fly/body/licenses/FlyBody-APACHE-2.0.txt">Apache 2.0</a>, and local <a href="./demos/fly/vendor/THREE-LICENSE.txt">Three.js 0.160.0, MIT</a>. Geometry is losslessly packed. A separate saved author simulation archive drives an assumed, uncalibrated movement mapping; it is not the paired sensitivity experiment and does not establish physical feeding. The body and neuron skeletons have no verified registration. <a href="./demos/fly/body/provenance.json">Body package provenance and modifications</a>.</p>
       <p>The model code is MIT-licensed. FlyWire-derived connectivity and annotations retain <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>, following the <a href="https://edit.flywire.ai/principles.html">FlyWire published-data principles</a>. This research display selects a small subset and adds a layout; it does not change the source connection counts or annotations. Credit: the FlyWire Consortium; <a href="https://doi.org/10.1038/s41586-024-07558-y">Dorkenwald et al. (2024)</a>; <a href="https://doi.org/10.1038/s41586-024-07686-5">Schlegel et al. (2024)</a>; synapse detection by <a href="https://doi.org/10.1038/s41592-021-01183-7">Buhmann et al. (2021)</a> and <a href="https://doi.org/10.1007/978-3-030-00934-2_36">Heinrich et al. (2018)</a>; transmitter predictions by <a href="https://doi.org/10.1016/j.cell.2024.03.016">Eckstein, Bates et al. (2024)</a>. The displayed sign is the source model’s assigned sign, not a new measurement of transmitter identity.</p>
@@ -65,8 +84,27 @@
       <ul>
         <li>Fly circuit: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/">Shiu et al. (2024)</a> and the <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960">published Drosophila brain model</a> at commit 91bdd1e7. This portfolio's sensitivity study is not a biological validation or full paper replication.</li>
       </ul>
+      </section>
 
-      <h2>MorphBrain atlas reference</h2>
+      <section id="rare-errors" aria-labelledby="rare-errors-source-title">
+      <p class="section-context">Saved synthetic observations</p>
+      <h2 id="rare-errors-source-title">Rare-error study</h2>
+      <p>This independent methods study uses synthetic data with known generating factors. The controls display saved results; they do not run a new fit. Biological recordings have not been evaluated.</p>
+      <p>Method: <a href="https://elifesciences.org/articles/10989">Kobak et al. (2016)</a>, using the <a href="https://github.com/machenslab/dPCA/tree/1def5b15854638811a25257dc0b68074ab5a1be0/python">pinned Machens Lab Python implementation</a>.</p>
+      <ul class="source-downloads">
+        <li><a href="./rare-errors.html">Interactive study</a></li>
+        <li><a href="./assets/portfolio/rare-errors/metrics.csv" download>Saved metrics (CSV)</a></li>
+        <li><a href="./assets/portfolio/rare-errors/config.json" download>Study configuration</a></li>
+        <li><a href="./assets/portfolio/rare-errors/provenance.json" download>Provenance &amp; file hashes</a></li>
+        <li><a href="./assets/portfolio/rare-errors/rare_errors.svg">Original frozen figure</a></li>
+      </ul>
+      <p>The downloads contain the saved results and configuration; the study’s analysis code is not included.</p>
+      <p>One population geometry, fixed signal strengths and one regularizer limit the conclusion. These curves do not establish a universal minimum error count or causal choice coding.</p>
+      </section>
+
+      <section id="morphbrain" aria-labelledby="morphbrain-source-title">
+      <p class="section-context">Population-average atlas reference</p>
+      <h2 id="morphbrain-source-title">MorphBrain</h2>
       <p>
         The GW21–36 playback uses weekly white-matter surfaces derived from the Developing Human Connectome
         Project spatio-temporal surface atlas of the fetal brain. The source atlas is a population-average
@@ -77,8 +115,12 @@
         Source: <a href="https://doi.org/10.12751/g-node.qj5hs7">Karolis et al., Developing Human Connectome
         Project spatio-temporal surface atlas of the fetal brain</a>.
       </p>
+      <p class="source-route"><a href="./demos/morphbrain/">Open MorphBrain</a></p>
+      </section>
 
-      <h2>Model Morpher recording</h2>
+      <section id="model-morpher" aria-labelledby="model-morpher-source-title">
+      <p class="section-context">Recording &amp; source meshes</p>
+      <h2 id="model-morpher-source-title">Model Morpher</h2>
       <p>
         The recorded DG-to-root example uses Allen Mouse Brain Common Coordinate Framework meshes delivered by
         BrainGlobe as <code>allen_mouse_25um</code> v1.2. Image/data credit: Allen Institute. This is a
@@ -90,8 +132,11 @@
         <li><a href="https://doi.org/10.21105/joss.02668">Claudi et al. 2020, BrainGlobe Atlas API</a></li>
         <li><a href="https://alleninstitute.org/legal/citation-policy">Allen Institute citation policy</a> and <a href="https://alleninstitute.org/legal/terms-of-use">terms of use</a></li>
       </ul>
+      </section>
 
-      <h2>Bundled software and fonts</h2>
+      <section id="software-fonts" aria-labelledby="software-source-title">
+      <p class="section-context">Bundled dependencies</p>
+      <h2 id="software-source-title">Software &amp; fonts</h2>
       <p>
         The MorphBrain browser build includes React, three.js, React Three Fiber, Drei, Zustand and their
         transitive open-source dependencies. The geometry decoder is Google Draco, licensed under Apache-2.0.
@@ -108,7 +153,6 @@
         available under <a href="./licenses/">the licences directory</a>.
       </p>
 
-      <h2>The portfolio shell</h2>
       <p>
         The separate <a href="./demos/portfolio-draft/contact-sheet.html">portfolio design draft</a>
         also uses <strong>Caveat</strong>, self-hosted under the
@@ -117,13 +161,18 @@
         the translucent material and scroll-linked camera are presentation choices,
         not measured neural activity or a behavioural simulation.
       </p>
+      </section>
+
+      <section id="portfolio-shell" aria-labelledby="shell-source-title">
+      <p class="section-context">Self-hosted presentation</p>
+      <h2 id="shell-source-title">The portfolio shell</h2>
       <p>
         The page you are reading contacts no other host. There are no CDN resources, no analytics and no
         external font services, and the Content-Security-Policy declared in its <code>&lt;head&gt;</code>
         forbids them — fonts, styles, scripts and media may only be fetched from this domain.
       </p>
       <p>
-        Its own stylesheet, two small scripts and the self-hosted Source Sans 3 and DM Mono files are the entire
+        Its own stylesheets, two small scripts and the self-hosted Source Sans 3 and DM Mono files are the entire
         runtime. The fonts are the shell's only third-party dependency, and their licence is reproduced in
         full alongside the others.
       </p>
@@ -132,10 +181,13 @@
         Portfolio-specific writing, media and presentation are not offered under an open-source licence. Each
         third-party component remains governed by its own terms.
       </p>
+      </section>
+      </div>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <p class="site-footer__name">Jason Wang</p>
+      <p class="site-footer__name">Jason Wang · Neuroscience &amp; code</p>
       <nav class="site-footer__links" aria-label="Site information">
         <a href="./licenses/">Licence texts</a>
         <a href="./">Portfolio home</a>
