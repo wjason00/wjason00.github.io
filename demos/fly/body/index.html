@@ -1,36 +1,107 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly body · saved motor replay</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="native-style.css"><link rel="stylesheet" href="embed.css"></head>
-<body><main><p class="archive-boundary"><strong>Body illustration.</strong> This separate author archive is not the paired Roundup experiment. Saved motor spikes drive an assumed, uncalibrated movement mapping.</p><p id="load-status" role="status">Loading the fly geometry…</p>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Fly body &middot; saved motor replay</title>
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="native-style.css">
+ <link rel="stylesheet" href="embed.css">
+</head>
+<body>
+<main>
+ <p class="archive-boundary"><strong>Body illustration.</strong> This separate author archive is not the paired Roundup experiment. Saved motor spikes drive an assumed, uncalibrated movement mapping.</p>
+ <p id="load-status" role="status">Loading the fly geometry&hellip;</p>
 
+ <section class="viewer" aria-label="Native fly neural replay" id="viewer">
+  <div class="replay-layout">
+   <aside class="run-rail run-settings" aria-labelledby="run-settings-title">
+    <h2 id="run-settings-title">Run settings</h2>
+    <div class="native-choices">
+     <label>Input<select id="stimulus"><option value="sugar">Sugar &middot; 100 Hz</option><option value="water">Water &middot; 200 Hz</option></select></label>
+     <label id="single-control">Circuit<select id="circuit"></select></label>
+     <label id="compare-control" hidden>Compare intact with<select id="comparison"></select></label>
+     <label class="trial-control">Saved trial<select id="trial"></select></label>
+     <label class="loop-control"><input id="repeat" type="checkbox"> Cycle saved trials</label>
+    </div>
+    <p class="native-source"><span id="trial-description">Saved trial 1 of 30</span><br>Author&rsquo;s saved simulation archive</p>
+    <div class="active-blocks" id="active-blocks" hidden><p id="active-block-status" role="status"></p><button id="clear-motor-blocks" type="button">Clear drive blocks</button></div>
+    <p id="pairing-note" class="pairing-note" hidden>A is intact; B is the selected disconnection. Matching trial numbers do not establish paired inputs between these archive runs.</p>
+   </aside>
 
-<section class="viewer" aria-label="Native fly neural replay" id="viewer">
- <div class="toolbar"><div class="mode-tabs"><button id="watch-mode" aria-pressed="true">Single fly</button><button id="compare-mode" aria-pressed="false">Compare runs</button></div><button id="body-view">Reset view</button></div>
- <div class="native-choices"><label>Input<select id="stimulus"><option value="sugar">Sugar · 100 Hz</option><option value="water">Water · 200 Hz</option></select></label><label id="single-control">Circuit<select id="circuit"></select></label><label id="compare-control" hidden>Compare intact with<select id="comparison"></select></label><label>Repeat<select id="trial"></select></label><label class="loop-control"><input id="repeat" type="checkbox"> Cycle saved trials</label></div>
- <p class="native-source">Author's saved simulation archive · <span id="trial-description">Saved trial 1 of 30</span></p><p id="pairing-note" class="native-source" hidden>A is intact; B is the selected disconnection. Matching trial numbers do not establish paired inputs between these archive runs.</p>
- <div class="transport"><button id="play" class="primary">Present droplet</button><button id="reset" aria-label="Restart">↺</button><input id="scrub" type="range" min="0" max="2400" value="0" step="0.1" aria-label="Replay time"><output id="clip-time">−400.0 ms</output><label class="speed-label"><select id="speed" aria-label="Playback speed"><option value="0.25" selected>¼ speed</option><option value="0.5">½ speed</option><option value="1">1× speed</option></select></label></div>
- <details class="signal-detail"><summary>Follow sensory input and motor activity</summary><section class="sensory-flow" aria-label="Sensory input and contact status">
-  <div class="flow-heading"><h2>Follow the signal</h2><p>Neural input is prescribed. Touching the droplet is a separate geometric event.</p></div>
-  <div class="flow-track"><div id="input-cue" class="flow-stage"><span class="cue-dot input-dot" aria-hidden="true"></span><div><b id="input-label">Sugar sensory drive</b><output id="input-status">Before input</output></div></div><span class="flow-arrow" aria-hidden="true">→</span><div class="flow-stage"><span class="network-glyph" aria-hidden="true">⋮</span><div><b>Saved brain simulation</b><small>Motor output, then assumed body mapping</small></div></div><span class="flow-arrow" aria-hidden="true">→</span><div class="motor-cues"><div class="motor-cue" id="motor-cue-0"><b id="motor-label-0">Intact</b><span id="mn9-cue-0">MN9</span><span id="mn6-cue-0">MN6</span><output id="touch-cue-0">No contact</output></div><div class="motor-cue" id="motor-cue-1" hidden><b id="motor-label-1">Disconnected</b><span id="mn9-cue-1">MN9</span><span id="mn6-cue-1">MN6</span><output id="touch-cue-1">No contact</output></div></div></div>
-  <p class="flow-footnote">Motor markers brighten for 40 ms after saved spikes. This replay export contains motor spike times, not sensory spike times. The paired experiment above uses a separate dataset.</p>
- </section></details>
- <div id="scene-error" hidden role="alert"></div>
- <div id="scene" tabindex="0" role="group" data-compare="false" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home" aria-label="Whole fly and simultaneous mouth detail, driven by saved MN9 and MN6 activity. Drag or use arrow keys to turn the whole fly.">
-  <div class="native-condition" id="condition-0"></div><div class="native-condition second" id="condition-1" hidden></div>
-  <div class="native-frame whole" id="whole-0"><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-0"><span>Mouth detail · same pose</span><output id="volume-0"></output><b class="drop-contact" id="drop-contact-0">No mesh contact</b><svg class="droplet-leader" id="drop-leader-0" aria-hidden="true" hidden><path id="drop-line-0"></path><circle id="drop-point-0" r="3"></circle></svg><b class="droplet-label" id="drop-label-0" hidden>Sugar solution</b></div>
-  <div class="native-frame whole" id="whole-1" hidden><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-1" hidden><span>Mouth detail · same pose</span><output id="volume-1" hidden></output><b class="drop-contact" id="drop-contact-1">No mesh contact</b><svg class="droplet-leader" id="drop-leader-1" aria-hidden="true" hidden><path id="drop-line-1"></path><circle id="drop-point-1" r="3"></circle></svg><b class="droplet-label" id="drop-label-1" hidden>Sugar solution</b></div>
- </div>
- <div class="native-key"><span><b>MN9</b> → main reach</span><span><b>MN6</b> → distal mouthparts</span><span><b>Contact + MN6</b> → assumed volume loss</span><label class="droplet-label-control"><input type="checkbox" id="show-droplet-labels" checked> Label droplet</label></div>
- <p class="native-outcome" id="result"></p>
- <details class="signal-detail"><summary>Inspect exact saved motor spikes</summary><section class="signal"><div class="signal-header"><h2>Motor neuron spikes <span>left and right, from the same saved simulated trial</span></h2></div><div class="motor-navigation"><label for="motor-event-group">Step through<select id="motor-event-group"><option value="all">MN9 and MN6 spikes</option><option value="MN9">MN9 spikes only</option><option value="MN6">MN6 spikes only</option></select></label><button id="previous-motor-event" type="button">Previous spike</button><button id="next-motor-event" type="button">Next spike</button><p id="motor-step-note" aria-live="off"></p></div><canvas id="raster" role="img" aria-label="Exact saved MN9 and MN6 spike times; each tick is one simulated spike."></canvas><div class="signal-caption"><p>Each tick is one simulated spike. Blue/purple: MN9. Brown: MN6. Drive blocks preserve these saved events.</p><span id="neural-time"></span></div></section></details>
-</section>
-<section class="configuration"><details class="settings"><summary>Test the movement rule</summary><div class="settings-grid"><label class="block-control"><input type="checkbox" id="block-mn9"> Block MN9 drive</label><label class="block-control"><input type="checkbox" id="block-mn6"> Block MN6 drive</label></div><p>These controls remove motor drive while retaining the saved spike traces. MN9 controls the main reach and head coupling; MN6 controls the independent distal joints. Parameters are fixed engineering assumptions.</p></details><details class="contact-detail"><summary>Contact timing</summary><p id="contact-timing"></p><p>Contact is a sphere-to-triangle surface test. Loss uses mean MN6 activity, so it is not a side-specific pumping model.</p></details></section>
-<p class="evidence-note">This is a replay of an author's simulation archive with an assumed body mapping. It does not measure an animal eating, predict swallowed volume or feed sensory feedback into the brain.</p>
-<details class="body-methods" id="methods"><summary>Sources, movement assumptions and reuse terms</summary>
-<p>The <a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-024-07763-9">Shiu et al. (2024)</a> author simulation archive supplies sugar (100 Hz) or water (200 Hz), three circuit conditions and 30 repeats per case. MN9 and MN6 come from the same saved file and trial. Matching repeat numbers across conditions do not establish paired inputs.</p>
-<p>MN9 is mapped to the main reach and head coupling; left and right MN6 signals drive the respective distal source joints. The source calls those parts <code>labrum_left</code> and <code>labrum_right</code>; their correspondence to feeding anatomy remains unqualified. No movement parameters were fitted to animal videos. The neural interval is 0–1 s, followed by assumed actuator relaxation.</p>
-<p>Geometric mouth–droplet contact gates an illustrative volume change. This is not fluid physics, pumping, swallowing or a closed sensory loop. The body is not registered to the FlyWire neuron coordinates shown in the anatomy view.</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/TuragaLab/flybody/tree/d015e9bfe441bd90ae431bac24c55cb74bdbce26">FlyBody geometry</a> is redistributed under <a href="licenses/FlyBody-APACHE-2.0.txt">Apache 2.0</a>; <a href="../vendor/THREE-LICENSE.txt">Three.js</a> and the <a href="licenses/fly-model-MIT.txt">source neural model</a> retain their MIT licenses. Geometry is losslessly gzip-compressed; motor events and motor/contact policies are unchanged. <a href="provenance.json">Package provenance</a>.</p></details>
-<footer>Source anatomy: FlyBody · source neural archive: Shiu et al. · body mapping and contact: illustrative</footer></main>
+   <div class="body-stage">
+    <div class="toolbar">
+     <div class="mode-tabs" aria-label="Replay comparison"><button id="watch-mode" aria-pressed="true">Single fly</button><button id="compare-mode" aria-pressed="false">Compare runs</button></div>
+     <button id="body-view">Reset view</button>
+    </div>
+    <div id="scene-error" hidden role="alert"></div>
+    <div id="scene" tabindex="0" role="group" data-compare="false" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home" aria-label="Whole fly and simultaneous mouth detail, driven by saved MN9 and MN6 activity. Drag or use arrow keys to turn the whole fly.">
+     <div class="native-condition" id="condition-0"></div><div class="native-condition second" id="condition-1" hidden></div>
+     <div class="native-frame whole" id="whole-0"><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-0"><span>Mouth detail &middot; same pose</span><output id="volume-0"></output><b class="drop-contact" id="drop-contact-0">No mesh contact</b><svg class="droplet-leader" id="drop-leader-0" aria-hidden="true" hidden><path id="drop-line-0"></path><circle id="drop-point-0" r="3"></circle></svg><b class="droplet-label" id="drop-label-0" hidden>Sugar solution</b></div>
+     <div class="native-frame whole" id="whole-1" hidden><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-1" hidden><span>Mouth detail &middot; same pose</span><output id="volume-1" hidden></output><b class="drop-contact" id="drop-contact-1">No mesh contact</b><svg class="droplet-leader" id="drop-leader-1" aria-hidden="true" hidden><path id="drop-line-1"></path><circle id="drop-point-1" r="3"></circle></svg><b class="droplet-label" id="drop-label-1" hidden>Sugar solution</b></div>
+    </div>
+    <div class="transport" aria-label="Replay playback">
+     <button id="play" class="primary">Present droplet</button>
+     <button id="reset" aria-label="Restart replay" title="Restart replay">&#8634;</button>
+     <input id="scrub" type="range" min="0" max="2400" value="0" step="0.1" aria-label="Replay time">
+     <output id="clip-time" aria-label="Current replay time" aria-live="off">&minus;400.0 ms</output>
+     <label class="speed-label"><select id="speed" aria-label="Playback speed"><option value="0.25" selected>&frac14; speed</option><option value="0.5">&frac12; speed</option><option value="1">1&times; speed</option></select></label>
+    </div>
+    <p class="timeline-guide"><span><b>0 ms</b> Input onset</span><span><b>0&ndash;1000 ms</b> Saved neural interval</span><span><b>After 1000 ms</b> Assumed relaxation</span></p>
+    <div class="stage-caption"><p>Drag the whole fly to rotate. The mouth detail shows the same pose.</p><label class="droplet-label-control"><input type="checkbox" id="show-droplet-labels" checked> Label droplet</label></div>
+    <div class="run-outcome">
+     <h3>At the end of this replay</h3>
+     <p class="native-outcome" id="result"></p>
+    </div>
+   </div>
+  </div>
+
+  <div class="inspection-sections">
+   <details class="inspection-detail signal-detail" id="neural-details">
+    <summary><span class="detail-title">Neural signals</span><span class="detail-description">Prescribed input, saved motor spikes and event stepping</span></summary>
+    <div class="detail-content">
+     <section class="sensory-flow" aria-labelledby="flow-title">
+      <div class="flow-heading"><h2 id="flow-title">Follow the signal</h2><p>Neural input is prescribed. Touching the droplet is a separate geometric event.</p></div>
+      <div class="flow-track"><div id="input-cue" class="flow-stage"><span class="cue-dot input-dot" aria-hidden="true"></span><div><b id="input-label">Sugar sensory drive</b><output id="input-status">Before input</output></div></div><span class="flow-arrow" aria-hidden="true">&rarr;</span><div class="flow-stage"><span class="network-glyph" aria-hidden="true">&#8942;</span><div><b>Saved brain simulation</b><small>Motor output, then assumed body mapping</small></div></div><span class="flow-arrow" aria-hidden="true">&rarr;</span><div class="motor-cues"><div class="motor-cue" id="motor-cue-0"><b id="motor-label-0">Intact</b><span id="mn9-cue-0">MN9</span><span id="mn6-cue-0">MN6</span><output id="touch-cue-0">No contact</output></div><div class="motor-cue" id="motor-cue-1" hidden><b id="motor-label-1">Disconnected</b><span id="mn9-cue-1">MN9</span><span id="mn6-cue-1">MN6</span><output id="touch-cue-1">No contact</output></div></div></div>
+      <p class="flow-footnote">Motor markers brighten for 40 ms after saved spikes. This replay export contains motor spike times, not sensory spike times. The paired comparison in Connections uses a separate dataset.</p>
+     </section>
+     <section class="signal" aria-labelledby="motor-signals-title">
+      <div class="signal-header"><h2 id="motor-signals-title">Exact saved motor spikes <span>Left and right, from the same saved simulated trial</span></h2></div>
+      <div class="motor-navigation"><label for="motor-event-group">Step through<select id="motor-event-group"><option value="all">MN9 and MN6 spikes</option><option value="MN9">MN9 spikes only</option><option value="MN6">MN6 spikes only</option></select></label><button id="previous-motor-event" type="button">Previous spike</button><button id="next-motor-event" type="button">Next spike</button><p id="motor-step-note" aria-live="off"></p></div>
+      <canvas id="raster" role="img" aria-label="Exact saved MN9 and MN6 spike times; each tick is one simulated spike."></canvas>
+      <div class="signal-caption"><p>Each tick is one simulated spike. Blue/purple: MN9. Brown: MN6. Drive blocks preserve these saved events.</p><span id="neural-time"></span></div>
+     </section>
+    </div>
+   </details>
+
+   <details class="inspection-detail movement-detail" id="movement-details">
+    <summary><span class="detail-title">Movement model</span><span class="detail-description">Test motor drive and inspect geometric contact</span></summary>
+    <div class="detail-content configuration">
+     <section class="settings" aria-labelledby="movement-title">
+      <h2 id="movement-title">Test the movement rule</h2>
+      <div class="settings-grid"><label class="block-control"><input type="checkbox" id="block-mn9"> Block MN9 drive</label><label class="block-control"><input type="checkbox" id="block-mn6"> Block MN6 drive</label></div>
+      <p>These controls remove motor drive while retaining the saved spike traces. MN9 controls the main reach and head coupling; MN6 controls the independent distal joints. Parameters are fixed engineering assumptions.</p>
+     </section>
+     <section class="contact-detail" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact timing</h2><p id="contact-timing"></p><p>Contact is a sphere-to-triangle surface test. Loss uses mean MN6 activity, so it is not a side-specific pumping model.</p>
+     </section>
+    </div>
+   </details>
+
+   <details class="inspection-detail body-methods" id="sources-details">
+    <summary><span class="detail-title">Sources</span><span class="detail-description">Archive, movement assumptions and reuse terms</span></summary>
+    <div class="detail-content source-copy" id="methods">
+     <p>The <a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-024-07763-9">Shiu et al. (2024)</a> author simulation archive supplies sugar (100 Hz) or water (200 Hz), three circuit conditions and 30 repeats per case. MN9 and MN6 come from the same saved file and trial. Matching repeat numbers across conditions do not establish paired inputs.</p>
+     <p>MN9 is mapped to the main reach and head coupling; left and right MN6 signals drive the respective distal source joints. The source calls those parts <code>labrum_left</code> and <code>labrum_right</code>; their correspondence to feeding anatomy remains unqualified. No movement parameters were fitted to animal videos. The neural interval is 0&ndash;1 s, followed by assumed actuator relaxation.</p>
+     <p>Geometric mouth&ndash;droplet contact gates an illustrative volume change. This is not fluid physics, pumping, swallowing or a closed sensory loop. The body is not registered to the FlyWire neuron coordinates shown in the anatomy view.</p>
+     <p><a target="_blank" rel="noopener" href="https://github.com/TuragaLab/flybody/tree/d015e9bfe441bd90ae431bac24c55cb74bdbce26">FlyBody geometry</a> is redistributed under <a href="licenses/FlyBody-APACHE-2.0.txt">Apache 2.0</a>; <a href="../vendor/THREE-LICENSE.txt">Three.js</a> and the <a href="licenses/fly-model-MIT.txt">source neural model</a> retain their MIT licenses. Geometry is losslessly gzip-compressed; motor events and motor/contact policies are unchanged. <a href="provenance.json">Package provenance</a>.</p>
+    </div>
+   </details>
+  </div>
+ </section>
+ <p class="evidence-note">This is a replay of an author&rsquo;s simulation archive with an assumed body mapping. It does not measure an animal eating, predict swallowed volume or feed sensory feedback into the brain.</p>
+ <footer>Source anatomy: FlyBody &middot; source neural archive: Shiu et al. &middot; body mapping and contact: illustrative</footer>
+</main>
 <script src="../vendor/three.min.js"></script>
 <script src="native-feeding-events.js"></script>
 <script src="native-body-rig.js"></script>
@@ -43,5 +114,7 @@
 <script src="sensory-cues.js"></script>
 <script src="droplet-callout.js"></script>
 <script src="motor-navigation.js"></script>
+<script src="interface.js"></script>
 <script src="boot.js"></script>
-</body></html>
+</body>
+</html>

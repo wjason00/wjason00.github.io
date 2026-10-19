@@ -161,10 +161,10 @@
     {
       "file": "index.html",
       "source": "index.html",
-      "bytes": 9815,
-      "sha256": "5ead6bb91b42fc9f8cc6116af33b4a8f80f42bd7079862c194786675d76dc0ae",
+      "bytes": 11844,
+      "sha256": "0b2f112785bf8ae278dfc8217544ca6544377e792841c707cad54d03d860789b",
       "preserved": false,
-      "transform": "Standalone body embed; remove external local navigation; collapse supporting traces; replace stale methods with explicit current boundaries."
+      "transform": "Group scene/playback, saved-run settings, neural signals, movement assumptions and sources; retain native controller IDs and scientific boundaries."
     },
     {
       "file": "boot.js",
@@ -176,10 +176,18 @@
     {
       "file": "embed.css",
       "source": "new portfolio packaging",
-      "bytes": 2779,
-      "sha256": "782dc807d17cec988ed0d17b75c8ef80e6b328d61fa0ed5a164878a932dedb44",
+      "bytes": 13792,
+      "sha256": "e36b093404b047c8fb809d3b589e1f91bd56a868497122e2168d09644113e1d7",
       "preserved": false,
-      "transform": "Portfolio shell typography and palette; local Source Sans 3; no replay or movement changes."
+      "transform": "Contextual desktop/mobile replay layout using portfolio typography; no changed geometry, neural data or movement rules."
+    },
+    {
+      "file": "interface.js",
+      "source": "new portfolio interface",
+      "preserved": false,
+      "bytes": 2414,
+      "sha256": "40506130a6d0beb2744c954acc01d3de805f2986e67ab70963cd94ec2453a9fc",
+      "transform": "Presentation only: natural-content iframe sizing, persistent movement-block status and clear-blocks action through existing controls."
     }
   ]
 }

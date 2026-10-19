@@ -27,6 +27,13 @@ export function initExplorer() {
   const $ = id => document.getElementById(id);
   const tabs = [...document.querySelectorAll('[data-explorer-view]')];
   if (!tabs.length) return;
+  const bodyFrame = $('body-frame');
+  window.addEventListener('message', event => {
+    if (event.source !== bodyFrame.contentWindow || event.origin !== window.location.origin) return;
+    const message = event.data;
+    if (message?.type !== 'fly-body-height' || typeof message.height !== 'number' || !Number.isFinite(message.height) || message.height <= 0) return;
+    bodyFrame.style.setProperty('--body-height', `${Math.ceil(message.height)}px`);
+  });
   let active = 'connections';
   const anatomy = createSelectionBridge(async () => {
     $('anatomy-status').textContent = 'Loading source neuron skeletons…';
@@ -54,6 +61,7 @@ export function initExplorer() {
     $('paired-output').hidden = body;
     $('neuron-inspector').hidden = body;
     $('network-workbench').classList.toggle('body-view', body);
+    document.querySelector('.experiment').classList.toggle('body-view', body);
     $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions' : view === 'anatomy' ? 'Source skeleton geometry · FlyWire v630' : 'Saved motor spikes · assumed body movement';
     $('view-title').textContent = view === 'connections' ? 'Roundup’s neighbourhood' : view === 'anatomy' ? 'Reconstructed neurons' : 'Motor replay';
     $('view-description').textContent = body ? 'A separate saved author archive drives this replay. Body movement is an uncalibrated illustration.' : view === 'anatomy' ? 'A subset of 55 source neurons in their shared coordinate frame. Cut and gain change the experiment below, not these static shapes.' : 'Select a neuron to understand its role, evidence and connections.';
@@ -61,11 +69,13 @@ export function initExplorer() {
       try { await anatomy.open(); }
       catch { $('anatomy-status').textContent = 'The 3D anatomy could not load. Check your connection, then select this view again. Neuron explanations and saved results remain available.'; }
     }
-    if (body && !$('body-frame').getAttribute('src')) $('body-frame').src = 'body/index.html';
+    if (body && !bodyFrame.getAttribute('src')) bodyFrame.src = 'body/index.html';
+    else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => show(tab.dataset.explorerView));
     tab.addEventListener('keydown', event => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
       const next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : null;
       if (next !== null) { event.preventDefault(); show(tabs[next].dataset.explorerView, true); }
     });

@@ -302,8 +302,11 @@ h2 { font-weight: 600; }
 .morphology-note { margin: 10px 0; color: var(--muted); font-size: 12px; }
 
 .network-workbench.body-view { grid-template-columns: 1fr; }
+.experiment.body-view .network-heading,
+.experiment.body-view ~ .framing,
+.experiment.body-view ~ .details-row { display: none; }
 .body-view .network-stage { background: #fff; }
-#body-frame { display: block; width: 100%; height: 1030px; border: 0; background: #fff; }
+#body-frame { display: block; width: 100%; height: var(--body-height, 1030px); border: 0; background: #fff; }
 
 .output-heading { padding: 25px 6% 0; }
 .output-heading h2 { font-size: 21px; }
@@ -404,7 +407,7 @@ details p { max-width: 84ch; }
   .morphology-actions button { min-height: 38px; padding: 6px 10px; }
   .morphology-stage { height: 420px; }
   .morphology-bottom { align-items: flex-start; flex-direction: column; gap: 7px; }
-  #body-frame { height: 1250px; }
+  #body-frame { height: var(--body-height, 1250px); }
   .output-heading { padding: 22px 6% 0; }
   .output-heading h2 { font-size: 20px; }
   .legend { flex-wrap: wrap; gap: 8px 20px; padding: 0 6%; }
