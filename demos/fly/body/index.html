@@ -15,7 +15,7 @@
 
  <section class="viewer" aria-label="Native fly neural replay" id="viewer">
   <div class="replay-layout">
-   <aside class="run-rail run-settings" aria-labelledby="run-settings-title">
+   <section class="run-rail run-settings" aria-labelledby="run-settings-title">
     <h2 id="run-settings-title">Run settings</h2>
     <div class="native-choices">
      <label>Input<select id="stimulus"><option value="sugar">Sugar &middot; 100 Hz</option><option value="water">Water &middot; 200 Hz</option></select></label>
@@ -27,7 +27,7 @@
     <p class="native-source"><span id="trial-description">Saved trial 1 of 30</span><br>Author&rsquo;s saved simulation archive</p>
     <div class="active-blocks" id="active-blocks" hidden><p id="active-block-status" role="status"></p><button id="clear-motor-blocks" type="button">Clear drive blocks</button></div>
     <p id="pairing-note" class="pairing-note" hidden>A is intact; B is the selected disconnection. Matching trial numbers do not establish paired inputs between these archive runs.</p>
-   </aside>
+   </section>
 
    <div class="body-stage">
     <div class="toolbar">
@@ -54,26 +54,26 @@
      <p class="native-outcome" id="result"></p>
     </div>
    </div>
+   <section class="neural-panel" id="neural-details" aria-labelledby="motor-signals-title">
+     <section class="signal" aria-labelledby="motor-signals-title">
+      <div class="signal-header"><h2 id="motor-signals-title">Exact saved motor spikes <span>Left and right, from the same saved simulated trial</span></h2></div>
+
+      <canvas id="raster" role="img" aria-label="Exact saved MN9 and MN6 spike times; each tick is one simulated spike."></canvas>
+      <div class="signal-caption"><p>Each tick is one simulated spike. Blue/purple: MN9. Brown: MN6. Saved neural activity: 0&ndash;1000 ms; the movement replay continues into assumed relaxation. Drive blocks preserve these saved events.</p><span id="neural-time"></span></div>
+      <div class="motor-navigation"><label for="motor-event-group">Step through<select id="motor-event-group"><option value="all">MN9 and MN6 spikes</option><option value="MN9">MN9 spikes only</option><option value="MN6">MN6 spikes only</option></select></label><button id="previous-motor-event" type="button">Previous spike</button><button id="next-motor-event" type="button">Next spike</button><p id="motor-step-note" aria-live="off"></p></div>
+     </section>
+     <section class="sensory-flow" aria-labelledby="flow-title">
+      <div class="flow-heading"><h2 id="flow-title">Input and motor activity</h2><p>Neural input is prescribed. Touching the droplet is a separate geometric event.</p></div>
+      <div class="flow-track">
+       <div id="input-cue" class="flow-stage"><span class="cue-dot input-dot" aria-hidden="true"></span><div><b id="input-label">Sugar sensory drive</b><output id="input-status">Before input</output></div></div>
+       <div class="motor-cues"><div class="motor-cue" id="motor-cue-0"><b id="motor-label-0">Intact</b><span id="mn9-cue-0">MN9</span><span id="mn6-cue-0">MN6</span><output id="touch-cue-0">No contact</output></div><div class="motor-cue" id="motor-cue-1" hidden><b id="motor-label-1">Disconnected</b><span id="mn9-cue-1">MN9</span><span id="mn6-cue-1">MN6</span><output id="touch-cue-1">No contact</output></div></div>
+      </div>
+      <p class="flow-footnote">Motor markers brighten for 40 ms after saved spikes; sensory spike times are not exported.</p>
+     </section>
+   </section>
   </div>
 
   <div class="inspection-sections">
-   <details class="inspection-detail signal-detail" id="neural-details">
-    <summary><span class="detail-title">Neural signals</span><span class="detail-description">Prescribed input, saved motor spikes and event stepping</span></summary>
-    <div class="detail-content">
-     <section class="sensory-flow" aria-labelledby="flow-title">
-      <div class="flow-heading"><h2 id="flow-title">Follow the signal</h2><p>Neural input is prescribed. Touching the droplet is a separate geometric event.</p></div>
-      <div class="flow-track"><div id="input-cue" class="flow-stage"><span class="cue-dot input-dot" aria-hidden="true"></span><div><b id="input-label">Sugar sensory drive</b><output id="input-status">Before input</output></div></div><span class="flow-arrow" aria-hidden="true">&rarr;</span><div class="flow-stage"><span class="network-glyph" aria-hidden="true">&#8942;</span><div><b>Saved brain simulation</b><small>Motor output, then assumed body mapping</small></div></div><span class="flow-arrow" aria-hidden="true">&rarr;</span><div class="motor-cues"><div class="motor-cue" id="motor-cue-0"><b id="motor-label-0">Intact</b><span id="mn9-cue-0">MN9</span><span id="mn6-cue-0">MN6</span><output id="touch-cue-0">No contact</output></div><div class="motor-cue" id="motor-cue-1" hidden><b id="motor-label-1">Disconnected</b><span id="mn9-cue-1">MN9</span><span id="mn6-cue-1">MN6</span><output id="touch-cue-1">No contact</output></div></div></div>
-      <p class="flow-footnote">Motor markers brighten for 40 ms after saved spikes. This replay export contains motor spike times, not sensory spike times. The paired comparison in Connections uses a separate dataset.</p>
-     </section>
-     <section class="signal" aria-labelledby="motor-signals-title">
-      <div class="signal-header"><h2 id="motor-signals-title">Exact saved motor spikes <span>Left and right, from the same saved simulated trial</span></h2></div>
-      <div class="motor-navigation"><label for="motor-event-group">Step through<select id="motor-event-group"><option value="all">MN9 and MN6 spikes</option><option value="MN9">MN9 spikes only</option><option value="MN6">MN6 spikes only</option></select></label><button id="previous-motor-event" type="button">Previous spike</button><button id="next-motor-event" type="button">Next spike</button><p id="motor-step-note" aria-live="off"></p></div>
-      <canvas id="raster" role="img" aria-label="Exact saved MN9 and MN6 spike times; each tick is one simulated spike."></canvas>
-      <div class="signal-caption"><p>Each tick is one simulated spike. Blue/purple: MN9. Brown: MN6. Drive blocks preserve these saved events.</p><span id="neural-time"></span></div>
-     </section>
-    </div>
-   </details>
-
    <details class="inspection-detail movement-detail" id="movement-details">
     <summary><span class="detail-title">Movement model</span><span class="detail-description">Test motor drive and inspect geometric contact</span></summary>
     <div class="detail-content configuration">
@@ -91,6 +91,7 @@
    <details class="inspection-detail body-methods" id="sources-details">
     <summary><span class="detail-title">Sources</span><span class="detail-description">Archive, movement assumptions and reuse terms</span></summary>
     <div class="detail-content source-copy" id="methods">
+     <p>The signal display follows prescribed input into a saved brain simulation, then saved motor output into the assumed body mapping. Motor markers brighten for 40 ms after saved spikes. This replay export contains motor spike times, not sensory spike times. The paired comparison in Connections uses a separate dataset.</p>
      <p>The <a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-024-07763-9">Shiu et al. (2024)</a> author simulation archive supplies sugar (100 Hz) or water (200 Hz), three circuit conditions and 30 repeats per case. MN9 and MN6 come from the same saved file and trial. Matching repeat numbers across conditions do not establish paired inputs.</p>
      <p>MN9 is mapped to the main reach and head coupling; left and right MN6 signals drive the respective distal source joints. The source calls those parts <code>labrum_left</code> and <code>labrum_right</code>; their correspondence to feeding anatomy remains unqualified. No movement parameters were fitted to animal videos. The neural interval is 0&ndash;1 s, followed by assumed actuator relaxation.</p>
      <p>Geometric mouth&ndash;droplet contact gates an illustrative volume change. This is not fluid physics, pumping, swallowing or a closed sensory loop. The body is not registered to the FlyWire neuron coordinates shown in the anatomy view.</p>

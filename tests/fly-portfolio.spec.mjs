@@ -26,8 +26,8 @@ for (const width of [390, 1366]) {
 
   test(`body replay keeps controls contextual and uses one scroll area at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
-    await page.goto('/demos/fly/');
-    await page.getByRole('tab', { name: '3D fly', exact: true }).click();
+    await page.goto('/demos/fly/#body');
+    await expect(page.getByRole('tab', { name: '3D fly', exact: true })).toHaveAttribute('aria-selected', 'true');
     const frame = page.frameLocator('#body-frame');
     await expect(frame.locator('html')).toHaveAttribute('data-loading', 'false', { timeout: 20000 });
     await expect(page.locator('#body-status')).toBeHidden();
@@ -40,14 +40,34 @@ for (const width of [390, 1366]) {
       return Math.abs(window.innerHeight - Math.ceil(size.height)) <= 2 && document.documentElement.scrollWidth <= window.innerWidth;
     });
     await expect.poll(fitsFrame).toBe(true);
-    await frame.locator('#neural-details > summary').click();
     await expect(frame.locator('#raster')).toBeVisible();
+    await expect(frame.locator('#input-cue')).toBeVisible();
+    const signal = await frame.locator('#neural-details').boundingBox();
+    const specimen = await scene.boundingBox();
+    if (width > 800) {
+      expect(signal.x).toBeGreaterThan(specimen.x + specimen.width);
+      expect(Math.abs(signal.y - specimen.y)).toBeLessThan(80);
+      expect(signal.width).toBeGreaterThan(360);
+    } else {
+      expect(signal.y).toBeGreaterThan(specimen.y);
+    }
+    const raster = frame.locator('#raster');
+    expect((await raster.boundingBox()).width).toBeGreaterThan(width > 800 ? 340 : 270);
+    expect(await raster.evaluate(canvas => canvas.width > 0 && canvas.height > 0)).toBe(true);
+    await frame.locator('#next-motor-event').click();
+    await expect(frame.locator('#clip-time')).not.toContainText('-400.0');
+    await expect(frame.locator('#play')).toHaveText('Continue');
+    await expect(frame.locator('#mn9-cue-0')).toBeVisible();
     await expect.poll(fitsFrame).toBe(true);
-    await frame.locator('#neural-details > summary').click();
-    await expect.poll(fitsFrame).toBe(true);
+    if (process.env.FLY_REVIEW_CAPTURE) {
+      await frame.locator('.toolbar').scrollIntoViewIfNeeded();
+      await page.screenshot({ path: `output/fly-workbench-20261019/replay-${width}.png`, fullPage: width < 800 });
+    }
     await frame.getByRole('button', { name: 'Compare runs', exact: true }).click();
     await expect(scene).toHaveAttribute('data-compare', 'true');
     await expect(frame.locator('#pairing-note')).toBeVisible();
+    await expect(raster).toBeVisible();
+    expect((await raster.boundingBox()).height).toBe(244);
     await expect.poll(fitsFrame).toBe(true);
     await frame.getByRole('button', { name: 'Single fly', exact: true }).click();
     await expect(scene).toHaveAttribute('data-compare', 'false');

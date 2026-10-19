@@ -50,6 +50,8 @@ export function initExplorer() {
 
   async function show(view, focus = false) {
     active = view;
+    const hash = view === 'connections' ? '' : `#${view}`;
+    if (window.location.hash !== hash) window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`);
     tabs.forEach(tab => {
       const selected = tab.dataset.explorerView === view;
       tab.setAttribute('aria-selected', String(selected));
@@ -58,6 +60,8 @@ export function initExplorer() {
     });
     for (const panel of document.querySelectorAll('[data-explorer-panel]')) panel.hidden = panel.dataset.explorerPanel !== view;
     const body = view === 'body';
+    document.querySelector('.project-intro h1').textContent = body ? 'From saved spikes to movement' : 'The fly feeding circuit';
+    document.querySelector('.project-intro p').textContent = body ? 'Inspect MN9 and MN6 activity alongside the illustrative body replay.' : 'Explore the wiring. Compare the saved motor output.';
     $('paired-controls').hidden = body;
     $('paired-output').hidden = body;
     $('neuron-inspector').hidden = body;
@@ -86,7 +90,8 @@ export function initExplorer() {
   });
   const observer = new ResizeObserver(() => { if (active === 'anatomy') anatomy.open().catch(() => {}); });
   observer.observe($('neuron-anatomy'));
-  show('connections');
+  const requested = window.location.hash.slice(1);
+  show(tabs.some(tab => tab.dataset.explorerView === requested) ? requested : 'connections');
 }
 
 if (typeof document !== 'undefined') initExplorer();

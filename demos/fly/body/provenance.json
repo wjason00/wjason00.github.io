@@ -161,10 +161,10 @@
     {
       "file": "index.html",
       "source": "index.html",
-      "bytes": 11844,
-      "sha256": "0b2f112785bf8ae278dfc8217544ca6544377e792841c707cad54d03d860789b",
+      "bytes": 11716,
+      "sha256": "22b14203ca8f226bfb5a1c9a22cb6a5e2888033c3c462a0a91c4dec1d3e7f388",
       "preserved": false,
-      "transform": "Group scene/playback, saved-run settings, neural signals, movement assumptions and sources; retain native controller IDs and scientific boundaries."
+      "transform": "Place saved motor raster, exact event stepping and input cues beside the 3D scene; preserve native controller IDs and scientific boundaries."
     },
     {
       "file": "boot.js",
@@ -176,10 +176,10 @@
     {
       "file": "embed.css",
       "source": "new portfolio packaging",
-      "bytes": 13792,
-      "sha256": "e36b093404b047c8fb809d3b589e1f91bd56a868497122e2168d09644113e1d7",
+      "bytes": 13673,
+      "sha256": "bbdfd2e33970c7fc11701598dfa8c84f49f50fc9c01258d395a812b3cfc605f3",
       "preserved": false,
-      "transform": "Contextual desktop/mobile replay layout using portfolio typography; no changed geometry, neural data or movement rules."
+      "transform": "Presentation only: shared top settings and two-pane scientific workspace, stacking on mobile; no changed source geometry, neural data or movement rules."
     },
     {
       "file": "interface.js",

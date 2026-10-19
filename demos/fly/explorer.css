@@ -15,12 +15,12 @@
 }
 
 :root {
-  --ink: #18333d;
-  --muted: #60737d;
+  --ink: #24333d;
+  --muted: #5e6d77;
   --kept: #197989;
   --cut: #87476a;
-  --line: #dce5e9;
-  --paper: #f4f7f8;
+  --line: #d2dbe0;
+  --paper: #f4f6f7;
   --stage: #f8fbfc;
   --page-gutter: 36px;
 }

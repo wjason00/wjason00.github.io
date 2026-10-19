@@ -32,6 +32,18 @@ The revised study's direct UI capture is saved in [Drive](https://drive.google.c
 in the [existing design review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
 Next action: see T-173.
 
+## Fly replay workspace — 19 October 2026
+
+The [3D fly view](https://wjason00.github.io/demos/fly/#body) places the
+source body views beside the always-visible saved MN9/MN6 raster and exact spike
+stepper on desktop. Run settings span the top; mobile places the signals directly
+after the scene. A shared replay clock connects the saved events to the assumed
+movement mapping. The author archive remains separate from the paired sensitivity
+study; geometry, archived spikes and movement/contact policies are preserved.
+The scroll draft and contact sheet now use the same pale FlyBody rendering.
+Current verification: `output/fly-workbench-20261019/verification.json`.
+Next action: see T-168.
+
 ## Scroll-driven design draft — 19 October 2026
 
 The separate [design draft](https://wjason00.github.io/demos/portfolio-draft/)
