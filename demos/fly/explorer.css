@@ -307,6 +307,7 @@ h2 { font-weight: 600; }
 .experiment.body-view ~ .details-row { display: none; }
 .body-view .network-stage { background: #fff; }
 #body-frame { display: block; width: 100%; height: var(--body-height, 1030px); border: 0; background: #fff; }
+#body-status { margin: 16px 24px; color: var(--muted); font-size: 14px; }
 
 .output-heading { padding: 25px 6% 0; }
 .output-heading h2 { font-size: 21px; }

@@ -30,6 +30,7 @@ for (const width of [390, 1366]) {
     await page.getByRole('tab', { name: '3D fly', exact: true }).click();
     const frame = page.frameLocator('#body-frame');
     await expect(frame.locator('html')).toHaveAttribute('data-loading', 'false', { timeout: 20000 });
+    await expect(page.locator('#body-status')).toBeHidden();
     const scene = frame.locator('#scene');
     const transport = frame.locator('.transport');
     expect((await transport.boundingBox()).y).toBeGreaterThanOrEqual((await scene.boundingBox()).y + (await scene.boundingBox()).height - 1);

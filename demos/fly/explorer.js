@@ -33,6 +33,7 @@ export function initExplorer() {
     const message = event.data;
     if (message?.type !== 'fly-body-height' || typeof message.height !== 'number' || !Number.isFinite(message.height) || message.height <= 0) return;
     bodyFrame.style.setProperty('--body-height', `${Math.ceil(message.height)}px`);
+    $('body-status').hidden = true;
   });
   let active = 'connections';
   const anatomy = createSelectionBridge(async () => {
@@ -69,7 +70,10 @@ export function initExplorer() {
       try { await anatomy.open(); }
       catch { $('anatomy-status').textContent = 'The 3D anatomy could not load. Check your connection, then select this view again. Neuron explanations and saved results remain available.'; }
     }
-    if (body && !bodyFrame.getAttribute('src')) bodyFrame.src = 'body/index.html';
+    if (body && !bodyFrame.getAttribute('src')) {
+      $('body-status').hidden = false;
+      bodyFrame.src = 'body/index.html';
+    }
     else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }
   tabs.forEach((tab, index) => {
