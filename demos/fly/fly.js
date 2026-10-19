@@ -1,5 +1,7 @@
 import { selectPair, countThrough } from './model.js';
+import { initNetwork } from './network.js';
 const data = window.FEEDING_DATA, $ = id => document.getElementById(id);
+const network = initNetwork();
 let cut = true, time = 1, playing = false, frame = 0, last = 0;
 const ns='http://www.w3.org/2000/svg', colors={intact:'#156b9a',cut:'#984176'};
 const mobile=window.matchMedia('(max-width:620px)');
@@ -19,12 +21,7 @@ function axes(){
 function render(){
  const pair=selectPair(data.trials,$('gain').value,$('seed').value), selected=cut?'cut':'intact';
  $('kept').setAttribute('aria-pressed',String(!cut));$('cut').setAttribute('aria-pressed',String(cut));
- $('output-edge').classList.toggle('is-cut',cut);$('output-edge').style.stroke=cut?colors.cut:colors.intact;
- $('cut-mark').style.display=cut?'':'none';$('figure').querySelector('.motor').style.stroke=colors[selected];
- $('mobile-output-edge').classList.toggle('is-cut',cut);$('mobile-output-edge').style.stroke=colors[selected];
- $('mobile-cut-mark').style.display=cut?'':'none';$('mobile-circuit').querySelector('.motor').style.stroke=colors[selected];
- const description=`Circuit schematic: Roundup outgoing connections ${cut?'cut':'kept'}, incoming connections retained. Paired cumulative MN9 spikes at gain ${$('gain').value}, seed ${$('seed').value}; positions are illustrative.`;
- for(const id of ['figure-description','mobile-description'])if($(id).textContent!==description)$(id).textContent=description;
+ network.setState({gain:Number($('gain').value),cut});
  $('curves').replaceChildren();$('dots').replaceChildren();
  for(const condition of ['intact','cut']){
   let path=`M${x(0)} ${y(0)}`,count=0;

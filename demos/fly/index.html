@@ -19,41 +19,17 @@
 <label>Saved input seed<select id="seed"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label>
 </div>
 <figure>
-<svg id="figure" class="desktop-circuit" viewBox="0 0 920 220" role="img" aria-labelledby="figure-title figure-description">
-<title id="figure-title">Roundup intervention and cumulative MN9 motor output</title>
-<desc id="figure-description">Schematic of input to a connectome model, with Roundup outgoing connections cut. Below, paired saved cumulative MN9 spikes are shown on shared axes.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
-<text x="32" y="32" class="note">Circuit schematic · positions are illustrative</text>
-<rect x="228" y="56" width="650" height="154" rx="18" class="network"/>
-<text x="250" y="80" class="note">Source-connectome model</text>
-<rect x="34" y="100" width="146" height="62" rx="8" class="input-box"/>
-<text x="107" y="125" text-anchor="middle" class="node-label">Sugar input</text><text x="107" y="145" text-anchor="middle" class="note">21 sensory channels</text>
-<path d="M180 131H225" class="input-edge" marker-end="url(#arrow)"/>
-<text x="310" y="128" text-anchor="middle" class="note">Rest of</text><text x="310" y="146" text-anchor="middle" class="note">network</text>
-<path d="M362 133H427" class="context-edge" marker-end="url(#arrow)"/><text x="393" y="174" text-anchor="middle" class="small">Inputs retained</text>
-<circle cx="480" cy="132" r="43" class="roundup"/><text x="480" y="137" text-anchor="middle" class="node-label">Roundup</text>
-<path id="output-edge" d="M523 132H740" marker-end="url(#arrow)"/>
-<g id="cut-mark"><path d="M621 116l23 32m0-32-23 32"/><rect x="577" y="164" width="118" height="22" rx="5"/><text x="636" y="180" text-anchor="middle">Outgoing cut</text></g>
-<text id="edge-note" x="635" y="108" text-anchor="middle" class="note">Direct source connection</text>
-<circle cx="790" cy="132" r="43" class="motor"/><text x="790" y="137" text-anchor="middle" class="node-label">MN9</text>
-<text x="250" y="197" class="small">Other connections omitted; this is not a neural activity animation.</text>
-</svg>
-<svg id="mobile-circuit" class="mobile-circuit" viewBox="0 0 350 355" role="img" aria-labelledby="mobile-title mobile-description">
-<title id="mobile-title">Roundup intervention schematic</title><desc id="mobile-description">Illustrative circuit layout: input to the model, Roundup outgoing links cut, incoming connections retained.</desc>
-<defs><marker id="mobile-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
-<text x="175" y="22" text-anchor="middle" class="note">Schematic &#183; illustrative positions</text>
-<rect x="95" y="36" width="160" height="49" rx="8" class="input-box"/><text x="175" y="56" text-anchor="middle" class="node-label">Sugar input</text><text x="175" y="75" text-anchor="middle" class="note">21 sensory channels</text>
-<path d="M175 85V106" class="input-edge" marker-end="url(#mobile-arrow)"/>
-<rect x="14" y="109" width="322" height="232" rx="14" class="network"/><text x="30" y="132" class="note">Source-connectome model</text>
-<text x="72" y="169" text-anchor="middle" class="note">Rest of</text><text x="72" y="187" text-anchor="middle" class="note">network</text>
-<path d="M111 174H136" class="context-edge" marker-end="url(#mobile-arrow)"/>
-<text x="74" y="212" text-anchor="middle" class="note">Inputs retained</text>
-<circle cx="178" cy="175" r="36" class="roundup"/><text x="178" y="180" text-anchor="middle" class="node-label">Roundup</text>
-<path id="mobile-output-edge" d="M178 211V275" marker-end="url(#mobile-arrow)"/>
-<g id="mobile-cut-mark"><path d="M166 229l24 24m0-24-24 24"/><text x="212" y="242" class="note">Outgoing cut</text></g>
-<circle cx="178" cy="304" r="28" class="motor"/><text x="178" y="309" text-anchor="middle" class="node-label">MN9</text>
-<text x="23" y="273" class="note">Other wiring</text><text x="23" y="291" class="note">omitted</text>
-</svg>
+<div class="network-heading"><div><h2>Inside Roundup’s connectome neighbourhood</h2><p id="network-summary">Loading source connections…</p></div><span class="layout-note">Graph layout · not anatomical positions</span></div>
+<div class="network-workbench">
+<div class="network-map">
+<div class="graph-toolbar"><label>Connections shown<select id="edge-filter"><option value="strong">Strongest links</option><option value="all">All selected links</option></select></label><div class="zoom-controls" aria-label="Network view"><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-reset">Reset view</button></div></div>
+<svg id="network-graph" viewBox="0 0 960 590" role="group" aria-labelledby="network-title network-description"><title id="network-title">Actual source-connectome connections around Roundup</title><desc id="network-description">A weighted, directed subnetwork from the source model. Select neurons or connections to inspect them. Positions are a graph layout, not anatomical coordinates.</desc><defs><marker id="graph-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs><g id="graph-world"></g></svg>
+<div class="graph-legend"><span><i class="positive"></i>Positive weight</span><span><i class="negative"></i>Negative weight</span><span><i class="severed"></i>Cut output</span></div><p class="graph-instruction">Select a neuron or arrow. Drag to pan; use + / − to zoom. Widths use a compressed scale; inspect for exact weights. Dashed outputs are zeroed.</p>
+<p id="network-error" hidden role="alert"></p>
+</div>
+<aside class="network-inspector" aria-label="Selected source connection or neuron"><label>Find a neuron<select id="node-picker"><option>Loading…</option></select></label><div id="network-inspection" aria-live="polite"></div><p class="inspector-footnote">Inspecting or filtering the graph changes the view only. The chart below always shows the saved paired experiment.</p></aside>
+</div>
+<div class="output-heading"><h2>What happens to MN9 output?</h2><p>The same input, with Roundup’s outputs kept or cut.</p></div>
 <svg id="chart" viewBox="0 0 920 320" role="img" aria-labelledby="chart-title chart-description">
 <title id="chart-title">Paired cumulative MN9 spikes</title><desc id="chart-description">Both saved circuit conditions on shared axes, from zero to one thousand milliseconds.</desc>
 <text id="chart-label" x="68" y="21" class="axis-label">Cumulative MN9 spikes</text>
@@ -68,7 +44,7 @@
 <p class="framing">I proposed and directed this sensitivity study. These controls select saved runs; they do not run a live simulation.</p>
 <div class="details-row">
 <details><summary>What are MN9 and MN6?</summary><p>MN means motor neuron. MN9 innervates muscle 9, involved in rostrum (main mouthpart) protraction. MN6 innervates muscle 6, involved in labellar extension. They control different parts of the feeding apparatus. This experiment measures <strong>MN9 only</strong>; it does not demonstrate movement or feeding.</p><p>Motor anatomy: <a href="https://elifesciences.org/articles/54978">McKellar et al. (2020), Figures 7 and 9</a>.</p></details>
-<details><summary>Methods, limits &amp; sources</summary><p>Thirty one-second saved simulations: three recurrent gains, five matched input seeds and two conditions. Gain scales all signed internal connection weights, including inhibition and sensory-neuron outgoing synapses. Cutting sets only Roundup’s outgoing weights to zero; its incoming connections remain. External input is unchanged. Accepted sensory input also matches across all six gain/condition cells for each seed in this archive.</p><p>The schematic includes a direct Roundup-to-MN9 source connection but omits the rest of the wiring. It is not an anatomical map or a claim that this one edge explains the full effect. Physical connections constrain the model; this demo does not search the full raw connectome.</p><p>All fifteen saved pairs have fewer MN9 spikes after the cut. Five seeds are not five animals. One neuron, output and input regime do not establish biological effects, general robustness, novelty or full paper replication. The shared-candidate design and an execution correction were post-failure amendments.</p><p>Model: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/">Shiu et al. (2024)</a>, <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960">pinned source, MIT</a>. <a href="provenance.json">Saved-data provenance</a> · <a href="../../assets/portfolio/research-20261015/fly-summary.csv">Aggregate results</a> · <a href="../../third-party-notices.html">Notices</a>.</p></details>
+<details><summary>Methods, limits &amp; sources</summary><p>Thirty one-second saved simulations: three recurrent gains, five matched input seeds and two conditions. Gain scales all signed internal connection weights, including inhibition and sensory-neuron outgoing synapses. Cutting sets only Roundup’s outgoing weights to zero; its incoming connections remain. External input is unchanged. Accepted sensory input also matches across all six gain/condition cells for each seed in this archive.</p><p>The graph uses actual directed connections and signed source weights from a bounded Roundup neighbourhood. Layout positions are computed for readability, not measured anatomy. The selected subnetwork omits most of the brain and does not establish that the direct Roundup-to-MN9 connection explains the full effect. Edge widths use a capped square-root scale, adjusted by gain, for readability. The inspector gives exact gain-scaled weights and whether the cut zeros them. The export retains 55 neurons and 230 of their 1,070 induced directed connections; the initial strongest-links view shows a further subset. Full-source degrees and selected-subgraph counts are distinguished in the inspector. This is wiring, not animated neural propagation.</p><p>All fifteen saved pairs have fewer MN9 spikes after the cut. Five seeds are not five animals. One neuron, output and input regime do not establish biological effects, general robustness, novelty or full paper replication. The shared-candidate design and an execution correction were post-failure amendments.</p><p>Model: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/">Shiu et al. (2024)</a>, <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960">pinned source, MIT</a>. <a href="provenance.json">Replay provenance</a> · <a href="network-data.json">Network selection and attribution</a> · <a href="../../assets/portfolio/research-20261015/fly-summary.csv">Aggregate results</a> · <a href="../../third-party-notices.html">Notices</a>.</p></details>
 </div>
 <noscript><p>Enable JavaScript to explore the saved runs. <a href="../../assets/portfolio/research-20261015/fly-summary.csv">Download the aggregate results</a>.</p></noscript>
 </main>
