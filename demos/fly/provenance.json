@@ -1,0 +1,191 @@
+{
+  "format": "public-paired-replay-provenance-v1",
+  "study": "T-076",
+  "export": "data.js copied byte-for-byte as archive.js; saved MN9 spikes, not native movement archive",
+  "archiveSHA256": "796b2a0042be2c8fb63ad8cd2c842d8bfa5e4542458499c744c7874ca7cbfebf",
+  "sourceVerificationSHA256": "2eead899aa11ff3322625685e83cf2f735237c0f808e0292b3737837c53e90b7",
+  "sourceInputExportSHA256": "dc2e2c6be4363132be1b422bc7dd00b64f60abafdad3f4c59017d1f4dcedd8f1",
+  "durationSeconds": 1,
+  "modelNeurons": 127400,
+  "inputChannels": 21,
+  "gains": [
+    0.8,
+    1,
+    1.2
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "conditions": {
+    "intact": "Roundup outgoing connections retained",
+    "silenced": "Roundup outgoing weights zero; incoming weights retained"
+  },
+  "sourceModel": {
+    "url": "https://github.com/philshiu/Drosophila_brain_model",
+    "commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+    "licence": "MIT"
+  },
+  "acceptedInputCheck": "For each seed, appliedTicks and all-channel appliedBins are equal across all six gain/condition cells. Exported all-channel exact-event verification independently retained in study owner record.",
+  "trials": [
+    {
+      "label": "gain-1.0_seed-0_intact",
+      "sourceArraySHA256": "47fa174e693795487abe6e40453c3a7d4b42f8e8c70fa813a98bb78c699e6783",
+      "count": 67
+    },
+    {
+      "label": "gain-1.0_seed-0_silenced",
+      "sourceArraySHA256": "7df0742f6516aedc59804ca66e67d84d04fb867aa0cc8f2bbe8f531616ff9eb4",
+      "count": 50
+    },
+    {
+      "label": "gain-1.0_seed-1_intact",
+      "sourceArraySHA256": "d634d269baa5e63ac71e4c0c5a170c9a27f96dbe98b87d43a2292bf5adca1749",
+      "count": 52
+    },
+    {
+      "label": "gain-1.0_seed-1_silenced",
+      "sourceArraySHA256": "d641448f2e58da701d546d03ebfd10061bc5da89648789b277584cd4d7d57b97",
+      "count": 47
+    },
+    {
+      "label": "gain-1.0_seed-2_intact",
+      "sourceArraySHA256": "a3a30ab8f9478ea6415fdc55c885a2833c78935c8f4936041f7f684ba28d0521",
+      "count": 65
+    },
+    {
+      "label": "gain-1.0_seed-2_silenced",
+      "sourceArraySHA256": "db022a79bd77e65af20b4b08c689036eb62f8457a576adb86c6b37a24ee1f066",
+      "count": 51
+    },
+    {
+      "label": "gain-1.0_seed-3_intact",
+      "sourceArraySHA256": "d6471b9b1263f79a02e8e35422adf15e626d00704e78ef6c048c27f619659a10",
+      "count": 58
+    },
+    {
+      "label": "gain-1.0_seed-3_silenced",
+      "sourceArraySHA256": "f874086fb8dd00aabaf9d6be9c24c7e7d9eee83d76601dd885841f4435eb000b",
+      "count": 37
+    },
+    {
+      "label": "gain-1.0_seed-4_intact",
+      "sourceArraySHA256": "d999f84bfda718cfb8e043f99e78f60d126199a317454ace10ebc96b16dec1da",
+      "count": 68
+    },
+    {
+      "label": "gain-1.0_seed-4_silenced",
+      "sourceArraySHA256": "d1ff62de3b14825a9f5926f74283f2c994693c1a89985428f6156cb917f6d4e2",
+      "count": 45
+    },
+    {
+      "label": "gain-0.8_seed-0_intact",
+      "sourceArraySHA256": "7ae851873803c660e30d318a909c7a73ef08bb32673008866b4538a24550d2b0",
+      "count": 49
+    },
+    {
+      "label": "gain-0.8_seed-0_silenced",
+      "sourceArraySHA256": "29ed90a144353ef1acbf8c6a17549e40cf26a3dc761e7f26e133a6105b1edcc2",
+      "count": 24
+    },
+    {
+      "label": "gain-0.8_seed-1_intact",
+      "sourceArraySHA256": "fc8d62df2bb2c7609b4e3ce8285048c50ef213c7b4ebea78aa2d249b6c3e3bf2",
+      "count": 31
+    },
+    {
+      "label": "gain-0.8_seed-1_silenced",
+      "sourceArraySHA256": "046d7bc5eb9d96dbe0b340b97df594770ae58673d3bb6f938f0a2a89ab4aaa4e",
+      "count": 16
+    },
+    {
+      "label": "gain-0.8_seed-2_intact",
+      "sourceArraySHA256": "5e7596baf1c0244532d632488169438d9dc2f88a3f2bf4f09f71e535853a96ae",
+      "count": 36
+    },
+    {
+      "label": "gain-0.8_seed-2_silenced",
+      "sourceArraySHA256": "7bf70b10011f3dea0612ae7dd4e7926ecef4d2c5ca489996a91b1036a4d33cd7",
+      "count": 19
+    },
+    {
+      "label": "gain-0.8_seed-3_intact",
+      "sourceArraySHA256": "512350c83004e1906695d420d248190408a9e289fecb8ef7f48ebff8ee5d65b6",
+      "count": 25
+    },
+    {
+      "label": "gain-0.8_seed-3_silenced",
+      "sourceArraySHA256": "0b7a7a6e39ce9121750993ab026ab6f7035596a1f7c9566d21c92929361a5b2c",
+      "count": 12
+    },
+    {
+      "label": "gain-0.8_seed-4_intact",
+      "sourceArraySHA256": "5a8d579ee19870cf10ba74ff53f4936b86a216d39488b92515a32845a2430b1d",
+      "count": 33
+    },
+    {
+      "label": "gain-0.8_seed-4_silenced",
+      "sourceArraySHA256": "cc05a571e3c46a1a73769875e3a304be29b32d8ccbf170a727e64d6d5eebeaea",
+      "count": 21
+    },
+    {
+      "label": "gain-1.2_seed-0_intact",
+      "sourceArraySHA256": "380b458dbb2fd75f95414c13aaa7922b590b92b4bb94e80f768c78a5d8ba3d98",
+      "count": 76
+    },
+    {
+      "label": "gain-1.2_seed-0_silenced",
+      "sourceArraySHA256": "637fa4e113d4dae5ff811775ab276ebb53bf577f67ed6b96d716a2578ac53e3f",
+      "count": 61
+    },
+    {
+      "label": "gain-1.2_seed-1_intact",
+      "sourceArraySHA256": "e715fa904903dad1a5d0ca7d361713f7c45ee3bee24730ffa598e91e57834e8b",
+      "count": 64
+    },
+    {
+      "label": "gain-1.2_seed-1_silenced",
+      "sourceArraySHA256": "162577a40267937bada424a0facd6cc7df7db8a3711136b4aa05f5e33d5e09bc",
+      "count": 52
+    },
+    {
+      "label": "gain-1.2_seed-2_intact",
+      "sourceArraySHA256": "ca5e992b10f594d0c530bd4ddc9f63a9468334a5b57e4f90b61c988f49f5ec06",
+      "count": 77
+    },
+    {
+      "label": "gain-1.2_seed-2_silenced",
+      "sourceArraySHA256": "f0fedf6dbb6d13558ca654cc9597655ad0021ee02f05eee9525d73632a9e15cb",
+      "count": 54
+    },
+    {
+      "label": "gain-1.2_seed-3_intact",
+      "sourceArraySHA256": "196c749032a930258ddd3f1b027de96c3298f11c77508ff737a2aeb94958f120",
+      "count": 80
+    },
+    {
+      "label": "gain-1.2_seed-3_silenced",
+      "sourceArraySHA256": "be651e32c3dc40bcfe22883746641dfd171eb06f7f3ba790cc167a60d1e00917",
+      "count": 56
+    },
+    {
+      "label": "gain-1.2_seed-4_intact",
+      "sourceArraySHA256": "900ad548b2dc3e5a0e12a7d12d2539cb7df5ca34af5b0a4f3b7ce768ae289a48",
+      "count": 75
+    },
+    {
+      "label": "gain-1.2_seed-4_silenced",
+      "sourceArraySHA256": "78d32a0c427de1153800fd17fd4171f8dad4f7a26b07e4b16b58561f6c6b50b6",
+      "count": 50
+    }
+  ],
+  "limits": [
+    "No neural simulation is run in the browser.",
+    "Schematic only; no anatomical coordinates or intermediate activity are represented.",
+    "Direct Roundup-to-MN9 source connection shown in the schematic; other network wiring omitted.",
+    "No body movement, ingestion or MN6 result is implied."
+  ]
+}
