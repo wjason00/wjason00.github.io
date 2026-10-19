@@ -176,9 +176,10 @@
     {
       "file": "embed.css",
       "source": "new portfolio packaging",
-      "bytes": 2314,
-      "sha256": "acb1d43202cd75bfe6bb144025f8d43ded783d980eb840e3d02a3ba8201daec0",
-      "preserved": false
+      "bytes": 2779,
+      "sha256": "782dc807d17cec988ed0d17b75c8ef80e6b328d61fa0ed5a164878a932dedb44",
+      "preserved": false,
+      "transform": "Portfolio shell typography and palette; local Source Sans 3; no replay or movement changes."
     }
   ]
 }

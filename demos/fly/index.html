@@ -10,17 +10,20 @@
 </head>
 <body>
 <main>
-<nav aria-label="Breadcrumb"><a href="../../#fly-circuit">Jason Wang / Research</a><span>Interactive experiment</span></nav>
-<header><h1>From a neuron’s connections to motor output</h1><p>Explore the feeding circuit’s wiring, real neuron shapes and an illustrative fly replay. Test what changes when <strong>Roundup’s outgoing connections</strong> are cut.</p></header>
-<section class="experiment" aria-label="Saved fly circuit experiment">
+<nav class="appbar" aria-label="Fly circuit explorer">
+<a class="app-brand" href="../../#fly-circuit">Fly circuit<span>Jason Wang</span></a>
 <div class="explorer-tabs" role="tablist" aria-label="Circuit views"><button type="button" id="connections-tab" role="tab" data-explorer-view="connections" aria-selected="true" aria-controls="connections-panel">Connections</button><button type="button" id="anatomy-tab" role="tab" data-explorer-view="anatomy" aria-selected="false" aria-controls="anatomy-panel" tabindex="-1">3D neurons</button><button type="button" id="body-tab" role="tab" data-explorer-view="body" aria-selected="false" aria-controls="body-panel" tabindex="-1">3D fly</button></div>
+<a class="back-link" href="../../#fly-circuit">Research</a>
+</nav>
+<header class="project-intro"><h1>The fly feeding circuit</h1><p>Explore the wiring. Compare the saved motor output.</p></header>
+<section class="experiment" aria-label="Saved fly circuit experiment">
 <div class="controls" id="paired-controls" aria-label="Paired experiment controls">
 <fieldset><legend>Roundup outgoing connections</legend><div class="switch"><button type="button" id="kept" aria-pressed="false">Kept</button><button type="button" id="cut" aria-pressed="true">Cut</button></div></fieldset>
 <label>Global connection strength<select id="gain"><option value="0.8">0.8×</option><option value="1" selected>1.0× · original</option><option value="1.2">1.2×</option></select></label>
 <label>Saved input seed<select id="seed"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></label>
 </div>
 <figure>
-<div class="network-heading"><div><h2 id="view-title">Inside Roundup’s connectome neighbourhood</h2><p id="view-description">Select a neuron to understand its role, evidence and connections.</p></div><span class="layout-note" id="layout-note">Graph layout · not anatomical positions</span></div>
+<div class="network-heading"><div><h2 id="view-title">Roundup’s neighbourhood</h2><p id="view-description">Select a neuron to understand its role, evidence and connections.</p></div><span class="layout-note" id="layout-note">Graph layout · not anatomical positions</span></div>
 <div class="network-workbench" id="network-workbench">
 <div class="network-stage">
 <div class="network-map" id="connections-panel" data-explorer-panel="connections" role="tabpanel" aria-labelledby="connections-tab">
@@ -36,7 +39,7 @@
 <aside class="network-inspector" id="neuron-inspector" aria-label="Selected source connection or neuron"><label>Find a neuron<select id="node-picker"><option>Loading…</option></select></label><div id="network-inspection" aria-live="polite"></div><p class="inspector-footnote">Selection changes the view. The chart compares the saved Roundup-output intervention.</p></aside>
 </div>
 <div id="paired-output">
-<div class="output-heading"><h2>What happens to MN9 output?</h2><p>The same input, with Roundup’s outputs kept or cut.</p></div>
+<div class="output-heading"><h2>MN9 output</h2><p>The same input, with Roundup’s outputs kept or cut.</p></div>
 <svg id="chart" viewBox="0 0 920 320" role="img" aria-labelledby="chart-title chart-description">
 <title id="chart-title">Paired cumulative MN9 spikes</title><desc id="chart-description">Both saved circuit conditions on shared axes, from zero to one thousand milliseconds.</desc>
 <text id="chart-label" x="68" y="21" class="axis-label">Cumulative MN9 spikes</text>

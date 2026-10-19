@@ -1,26 +1,423 @@
-[hidden]{display:none!important}
-.explorer-tabs{display:flex;gap:4px;padding:12px 20px 0;border-bottom:1px solid var(--line);background:#fff}
-.explorer-tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:12px 18px;color:var(--muted);font-size:16px}
-.explorer-tabs button[aria-selected=true]{border-bottom-color:var(--kept);color:var(--ink);font-weight:650}
-.explorer-tabs button:hover{background:#edf4f9}
-.network-workbench{grid-template-columns:minmax(0,1fr)310px;align-items:start}
-.network-stage{min-width:0;background:#f8fbfd}
-.network-inspector{height:100%;font-size:14px}
-.network-inspector h3{margin-top:20px}
-.inspection-kind{margin-bottom:14px}
-.neuron-explanation p{margin:12px 0;line-height:1.6}
-.neuron-explanation .evidence-limit{color:#526777;border-left:3px solid #b9cbd8;padding-left:12px}
-.role-sources,.assigned-sign{font-size:12px;color:var(--muted)}
-.neuron-details{margin-top:20px;font-size:13px}
-.network-count{margin:12px 16px 0;font-size:12px;color:var(--muted)}
-#anatomy-status{margin:16px 20px;font-size:14px}
-#anatomy-status:empty{display:none}
-#neuron-anatomy{min-height:530px}
-#anatomy-panel{padding:16px}
-.network-workbench.body-view{grid-template-columns:1fr}
-#body-frame{display:block;width:100%;height:1030px;border:0;background:#fff}
-.body-view .network-stage{background:white}
-.paired-result{margin:0 7%;font-size:17px;min-height:2.8em}
-@media(max-width:950px){.network-workbench{grid-template-columns:minmax(0,1fr)270px}}
-@media(max-width:720px){.network-workbench{grid-template-columns:1fr}.network-inspector{border-left:0;border-top:1px solid var(--line)}.neuron-explanation{font-size:15px}.network-inspector dl{display:block}.network-inspector dd{margin-top:3px}.explorer-tabs{padding:7px 8px 0;gap:0}.explorer-tabs button{flex:1;padding:12px 5px;font-size:14px}#neuron-anatomy{min-height:480px}#body-frame{height:1250px}.network-heading{display:block}.layout-note{text-align:left;max-width:none;margin-top:8px;display:block}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../../assets/fonts/source-sans-3-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("../../assets/fonts/source-sans-3-600.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+}
+
+:root {
+  --ink: #18333d;
+  --muted: #60737d;
+  --kept: #197989;
+  --cut: #87476a;
+  --line: #dce5e9;
+  --paper: #f4f7f8;
+  --stage: #f8fbfc;
+  --page-gutter: 36px;
+}
+
+[hidden] { display: none !important; }
+
+body {
+  background: var(--paper);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 0 var(--page-gutter) 48px;
+}
+
+a { color: #186b7a; }
+button, select { font: inherit; }
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+  outline: 3px solid #b78429;
+  outline-offset: 3px;
+}
+
+/* The view switcher belongs to the application, above the experiment. */
+.appbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  min-height: 74px;
+  width: calc(100% + 2 * var(--page-gutter));
+  margin-left: calc(-1 * var(--page-gutter));
+  padding: 0 var(--page-gutter);
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+
+.app-brand {
+  width: fit-content;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  text-decoration: none;
+}
+
+.app-brand span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.back-link {
+  justify-self: end;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back-link:hover { color: var(--ink); text-decoration: underline; }
+
+.explorer-tabs {
+  display: flex;
+  align-self: stretch;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.explorer-tabs button {
+  position: relative;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.explorer-tabs button:hover { background: #f4f8f9; color: var(--ink); }
+.explorer-tabs button[aria-selected="true"] {
+  border-bottom-color: var(--kept);
+  color: var(--ink);
+  font-weight: 600;
+}
+.explorer-tabs button:focus-visible { outline-offset: -6px; }
+
+.project-intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: none;
+  margin: 23px 0 19px;
+}
+
+.project-intro h1 {
+  margin: 0;
+  font-size: clamp(22px, 2vw, 27px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+
+.project-intro p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.experiment {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.controls {
+  align-items: center;
+  gap: 32px;
+  padding: 15px 24px;
+  background: #fff;
+}
+
+.controls legend, .controls label {
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.controls legend { margin-bottom: 5px; }
+
+button, select {
+  min-height: 36px;
+  padding: 6px 12px;
+  border-color: #c8d6dd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+button:hover { background: #edf4f6; }
+.controls select { min-width: 146px; }
+.controls #seed { min-width: 100px; }
+.switch button { min-width: 70px; }
+.switch button + button { margin-left: -1px; }
+.switch button:first-child { border-radius: 5px 0 0 5px; }
+.switch button:last-child { border-radius: 0 5px 5px 0; }
+.switch button[aria-pressed="true"] { position: relative; border-color: transparent; }
+
+figure { padding: 0 0 25px; }
+h2 { font-weight: 600; }
+.network-heading {
+  align-items: center;
+  gap: 24px;
+  padding: 19px 24px 17px;
+}
+.network-heading h2 { margin-bottom: 3px; font-size: 21px; }
+.network-heading p, .output-heading p { color: var(--muted); font-size: 14px; }
+.layout-note { max-width: 240px; font-size: 12px; line-height: 1.45; }
+
+/* A shared work surface: the graph and its selected-neuron explanation. */
+.network-workbench {
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: stretch;
+}
+.network-stage { min-width: 0; background: var(--stage); }
+.network-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-width: 0;
+  background: var(--stage);
+}
+.network-count {
+  min-width: 0;
+  margin: 0;
+  padding: 14px 0 14px 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.graph-toolbar { gap: 16px; padding: 12px 16px 12px 20px; }
+.graph-toolbar label { gap: 4px; font-size: 12px; font-weight: 400; }
+.graph-toolbar select { min-height: 33px; font-size: 13px; }
+.zoom-controls { gap: 4px; }
+.zoom-controls button { min-height: 33px; font-size: 13px; background: #fff; }
+.zoom-controls button:hover { background: #edf4f6; }
+
+#network-graph {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: clamp(450px, 40vw, 570px);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
+.graph-node text { stroke: var(--stage); }
+.graph-node .major-label { font-weight: 600; }
+.graph-legend {
+  grid-column: 1 / -1;
+  gap: 20px;
+  padding: 12px 20px 0;
+  font-size: 12px;
+}
+.graph-instruction {
+  grid-column: 1 / -1;
+  max-width: 90ch;
+  margin: 9px 20px 17px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+#network-error { grid-column: 1 / -1; }
+
+.network-inspector {
+  height: 100%;
+  padding: 20px 23px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.network-inspector label { gap: 5px; color: var(--muted); font-size: 12px; font-weight: 400; }
+.network-inspector select { min-height: 37px; padding: 7px 10px; font-size: 14px; }
+.network-inspector h3 {
+  margin: 24px 0 6px;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+.inspection-kind { margin-bottom: 17px; color: var(--muted); font-size: 12px; }
+.neuron-explanation p { margin: 12px 0; }
+.neuron-explanation .evidence-limit {
+  margin-top: 16px;
+  padding-left: 12px;
+  border-left: 2px solid #ccdadf;
+  color: var(--muted);
+}
+.role-sources, .assigned-sign { color: var(--muted); font-size: 12px; }
+.neuron-details { margin-top: 22px; font-size: 13px; }
+.network-inspector dt { font-size: 12px; }
+.network-inspector dd { font-size: 14px; }
+.source-id { font-size: 12px; }
+.state-note { margin-top: 18px; padding-top: 15px; font-size: 13px; }
+.inspector-footnote { margin-top: 22px; font-size: 12px; line-height: 1.5; }
+
+/* The anatomical view uses the same tools and spacing around its dark canvas. */
+#anatomy-panel { padding: 16px 18px 8px; }
+#anatomy-status { margin: 8px 0 18px; font-size: 14px; }
+#anatomy-status:empty { display: none; }
+#neuron-anatomy { min-height: 560px; }
+.morphology-toolbar { margin-bottom: 14px; gap: 14px; }
+.morphology-toolbar label { gap: 4px; color: var(--muted); font-size: 12px; }
+.morphology-picker { min-height: 36px; max-width: 100%; border-color: #c8d6dd; border-radius: 5px; font-size: 14px; }
+.morphology-actions { gap: 4px; }
+.morphology-actions button { min-height: 36px; padding: 6px 10px; border-color: #c8d6dd; border-radius: 5px; background: #fff; font-size: 13px; }
+.morphology-actions button:hover { background: #edf4f6; }
+.morphology-stage { height: clamp(450px, 40vw, 570px); border-radius: 4px; }
+.morphology-bottom { margin: 14px 0 10px; font-size: 13px; }
+.morphology-bottom label { font-size: 13px; font-weight: 400; }
+.morphology-selection { min-height: 0; margin: 12px 0; font-size: 13px; overflow-wrap: anywhere; }
+.morphology-note { margin: 10px 0; color: var(--muted); font-size: 12px; }
+
+.network-workbench.body-view { grid-template-columns: 1fr; }
+.body-view .network-stage { background: #fff; }
+#body-frame { display: block; width: 100%; height: 1030px; border: 0; background: #fff; }
+
+.output-heading { padding: 25px 6% 0; }
+.output-heading h2 { font-size: 21px; }
+#chart { margin-top: 10px; font-family: "Source Sans 3", "Segoe UI", sans-serif; }
+.legend { gap: 24px; padding: 0 6%; font-size: 14px; }
+.legend .muted { color: var(--muted); font-size: 12px; }
+.playback { margin: 20px 6% 17px; }
+.time-label { color: var(--muted); font-size: 12px; font-weight: 400; }
+.time-label output { color: var(--ink); font-size: 14px; }
+.paired-result { min-height: 2.8em; margin: 0 6%; font-size: 16px; line-height: 1.5; }
+.framing { max-width: 100ch; margin: 22px 0; font-size: 13px; line-height: 1.65; }
+.details-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+details { padding-top: 14px; font-size: 14px; line-height: 1.65; }
+summary { width: fit-content; color: var(--ink); font-weight: 600; }
+details p { max-width: 84ch; }
+
+@media (max-width: 1100px) {
+  :root { --page-gutter: 24px; }
+  .network-workbench { grid-template-columns: minmax(0, 1fr) 280px; }
+  .network-count { grid-column: 1 / -1; padding-bottom: 0; }
+  .graph-toolbar { grid-column: 1 / -1; padding-top: 10px; }
+  .network-inspector { padding: 20px; }
+  .controls { gap: 24px; }
+  .project-intro { align-items: flex-start; }
+  .project-intro p { max-width: 40ch; }
+}
+
+@media (max-width: 800px) {
+  :root { --page-gutter: 20px; }
+  .appbar { grid-template-columns: 1fr auto; gap: 0 16px; min-height: 0; }
+  .app-brand { padding: 14px 0 10px; font-size: 17px; }
+  .app-brand span { display: none; }
+  .back-link { grid-column: 2; grid-row: 1; font-size: 13px; }
+  .explorer-tabs { grid-column: 1 / -1; justify-self: start; gap: 16px; }
+  .explorer-tabs button { min-height: 45px; padding: 0 9px; }
+  .explorer-tabs button:first-child { padding-left: 0; padding-right: 18px; }
+  .project-intro { display: block; margin: 22px 0 18px; }
+  .project-intro p { max-width: none; margin-top: 7px; font-size: 14px; }
+  .network-workbench { grid-template-columns: minmax(0, 1fr) 255px; }
+  .network-heading { display: block; padding: 18px 20px 15px; }
+  .layout-note { display: block; max-width: none; margin-top: 8px; text-align: left; }
+  .network-inspector { padding: 18px; }
+  .graph-toolbar { flex-wrap: wrap; gap: 10px; }
+  .graph-toolbar label { flex: 1 1 100%; }
+  .graph-toolbar select { width: 100%; max-width: none; }
+  #network-graph { height: 470px; }
+  .controls { padding: 15px 20px; gap: 14px 24px; }
+  .controls label { min-width: 140px; }
+  .morphology-toolbar label { width: 100%; }
+  .morphology-picker { width: 100%; }
+}
+
+@media (max-width: 680px) {
+  :root { --page-gutter: 14px; }
+  main { padding-bottom: 32px; }
+  .appbar { gap: 0 14px; }
+  .explorer-tabs { width: 100%; justify-self: stretch; gap: 0; }
+  .explorer-tabs button,
+  .explorer-tabs button:first-child { flex: 1; min-height: 44px; padding: 0 5px; font-size: 14px; }
+  .explorer-tabs button:focus-visible { outline-offset: -5px; }
+  .project-intro { margin: 20px 0 16px; }
+  .project-intro h1 { font-size: 23px; }
+  .experiment { border-radius: 6px; }
+  .controls { align-items: end; gap: 14px 16px; padding: 15px 16px; }
+  .controls fieldset { width: 100%; }
+  .controls label { flex: 1; min-width: 115px; }
+  .controls select, .controls #seed { width: 100%; min-width: 0; }
+  .switch { width: fit-content; }
+  .switch button { min-width: 82px; min-height: 40px; }
+  .network-heading { padding: 18px 16px 15px; }
+  .network-heading h2 { font-size: 20px; }
+  .network-heading p { max-width: 46ch; }
+  .network-workbench { grid-template-columns: minmax(0, 1fr); }
+  .network-count { padding: 14px 16px 0; }
+  .graph-toolbar { flex-wrap: nowrap; gap: 10px; padding: 10px 16px 5px; }
+  .graph-toolbar label { flex: 1; min-width: 0; }
+  .graph-toolbar select { width: 100%; min-width: 0; font-size: 12px; }
+  .zoom-controls { gap: 3px; align-self: end; }
+  .zoom-controls button { min-height: 35px; padding: 5px 7px; white-space: nowrap; font-size: 12px; }
+  .zoom-controls button:first-child, .zoom-controls button:nth-child(2) { min-width: 31px; padding: 0 6px; }
+  #network-graph { height: auto; aspect-ratio: 960 / 590; }
+  .graph-node .major-label { font-size: 34px; }
+  .graph-node .minor-label { font-size: 29px; }
+  .graph-legend { gap: 10px 16px; padding: 8px 16px 0; }
+  .graph-instruction { margin: 9px 16px 17px; }
+  .network-inspector { border-top: 1px solid var(--line); border-left: 0; padding: 20px; }
+  .network-inspector h3 { margin-top: 20px; font-size: 25px; }
+  .network-inspector dl { display: block; }
+  .network-inspector dd { margin-top: 3px; }
+  .network-inspector dt:first-child + dd { margin-top: 3px; }
+  .neuron-explanation { max-width: 65ch; font-size: 15px; }
+  .inspector-footnote { margin-top: 18px; }
+  #anatomy-panel { padding: 14px 12px 6px; }
+  #neuron-anatomy { min-height: 480px; }
+  .morphology-toolbar { align-items: stretch; margin-bottom: 12px; }
+  .morphology-toolbar label { width: 100%; }
+  .morphology-actions { flex-wrap: nowrap; }
+  .morphology-actions button { min-height: 38px; padding: 6px 10px; }
+  .morphology-stage { height: 420px; }
+  .morphology-bottom { align-items: flex-start; flex-direction: column; gap: 7px; }
+  #body-frame { height: 1250px; }
+  .output-heading { padding: 22px 6% 0; }
+  .output-heading h2 { font-size: 20px; }
+  .legend { flex-wrap: wrap; gap: 8px 20px; padding: 0 6%; }
+  .legend .muted { width: 100%; }
+  .playback { gap: 10px; margin: 18px 6%; }
+  .playback button { padding: 6px 11px; }
+  .paired-result { font-size: 15px; }
+  .framing { margin: 20px 2px; }
+  .details-row { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  details { padding-top: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .graph-link .edge-ink { transition: none; }
+}

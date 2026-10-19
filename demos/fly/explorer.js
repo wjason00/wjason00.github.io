@@ -55,7 +55,7 @@ export function initExplorer() {
     $('neuron-inspector').hidden = body;
     $('network-workbench').classList.toggle('body-view', body);
     $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions' : view === 'anatomy' ? 'Source skeleton geometry · FlyWire v630' : 'Saved motor spikes · assumed body movement';
-    $('view-title').textContent = view === 'connections' ? 'Inside Roundup’s connectome neighbourhood' : view === 'anatomy' ? 'The neurons behind the connections' : 'From motor spikes to a fly illustration';
+    $('view-title').textContent = view === 'connections' ? 'Roundup’s neighbourhood' : view === 'anatomy' ? 'Reconstructed neurons' : 'Motor replay';
     $('view-description').textContent = body ? 'A separate saved author archive drives this replay. Body movement is an uncalibrated illustration.' : view === 'anatomy' ? 'A subset of 55 source neurons in their shared coordinate frame. Cut and gain change the experiment below, not these static shapes.' : 'Select a neuron to understand its role, evidence and connections.';
     if (view === 'anatomy') {
       try { await anatomy.open(); }
