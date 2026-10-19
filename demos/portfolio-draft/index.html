@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="A visual draft for Jason Wang’s portfolio: selected research and software, one project at a time." />
+  <meta name="theme-color" content="#eef1f3" />
+  <title>Selected work · Jason Wang · Design draft</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="./assets/caveat-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./draft.css" />
+  <script src="../fly/vendor/three.min.js" defer></script>
+  <script src="../fly/body/native-body-rig.js" defer></script>
+  <script src="../fly/body/packed-mesh-loader.js" defer></script>
+  <script src="../fly/body/shared-packed-body-rig.js" defer></script>
+  <script src="./ghost-fly.js" defer></script>
+  <script src="./draft.js" defer></script>
+</head>
+<body data-direction="mist" data-project="fly">
+  <a class="skip-link" href="#selected-work">Skip to selected work</a>
+  <header class="draft-header">
+    <a class="draft-brand" href="../../">Jason Wang<span>Neuroscience &amp; scientific software</span></a>
+    <nav class="draft-nav" aria-label="Selected projects">
+      <a href="#fly" aria-current="location">Fly circuits</a>
+      <a href="#rare-errors">Rare errors</a>
+      <a href="#morphbrain">MorphBrain</a>
+      <a href="#model-morpher">Model Morpher</a>
+      <a href="#morphliner">Morphliner</a>
+    </nav>
+    <div class="draft-tools">
+      <a class="draft-mode" href="./contact-sheet.html">Draft / Contact sheet</a>
+      <button type="button" data-direction-toggle hidden>Appearance: Mist</button>
+    </div>
+  </header>
+
+  <div class="project-stage" aria-hidden="true">
+    <div class="project-visual is-active" data-visual="fly">
+      <img class="fly-fallback" src="./assets/fly-ghost.png" width="1500" height="1000" alt="" />
+      <canvas id="ghost-fly"></canvas>
+    </div>
+    <div class="project-visual" data-visual="rare-errors">
+      <img src="../../assets/portfolio/rare-errors/rare_errors.svg" width="1500" height="900" alt="" decoding="async" />
+    </div>
+    <div class="project-visual" data-visual="morphbrain">
+      <img src="../../assets/portfolio/morphbrain-regions.png" width="240" height="360" alt="" decoding="async" />
+    </div>
+    <div class="project-visual" data-visual="model-morpher">
+      <img src="../../assets/portfolio/model-morpher.webp" width="900" height="708" alt="" decoding="async" />
+    </div>
+    <div class="project-visual" data-visual="morphliner">
+      <img src="../../assets/portfolio/morphliner-poster.jpg" width="1920" height="1080" alt="" decoding="async" />
+    </div>
+  </div>
+
+  <main class="portfolio-story" id="selected-work">
+    <section class="project-chapter" id="fly" data-project="fly" aria-labelledby="fly-title">
+      <div class="chapter-copy">
+        <p class="draft-intro">I’m Jason, a neuroscience undergraduate at UCL interested in computational neuroscience and machine learning.</p>
+        <p class="project-kind">Connectome modelling</p>
+        <h1 class="project-title" id="fly-title">Fly circuits</h1>
+        <p class="project-description">Does disconnecting one feeding-circuit neuron still reduce simulated motor-neuron output when connection strength changes?</p>
+        <div class="project-links">
+          <a href="../fly/">Explore the fly</a>
+          <a href="../../#fly-circuit">Study &amp; evidence</a>
+        </div>
+        <p class="project-caption">Published model, exploratory sensitivity study. The fly is an anatomical illustration; simulated spikes do not establish real feeding behaviour.</p>
+        <p class="scroll-cue">Scroll to the next project <span aria-hidden="true">↓</span></p>
+      </div>
+    </section>
+
+    <section class="project-chapter" id="rare-errors" data-project="rare-errors" aria-labelledby="rare-errors-title">
+      <div class="chapter-copy">
+        <p class="project-kind">Neural population methods</p>
+        <h2 class="project-title" id="rare-errors-title">Rare errors</h2>
+        <p class="project-description">Separating stimulus, choice and time in neural activity. What changes when error trials become rare?</p>
+        <div class="project-links">
+          <a href="../../rare-errors.html">Explore the study</a>
+          <a href="../../#dpca">Method &amp; scope</a>
+        </div>
+        <p class="project-caption">Synthetic data with known factors. Six saved trial mixes, five noise seeds; these are not brain recordings or evidence of causality.</p>
+      </div>
+    </section>
+
+    <section class="project-chapter" id="morphbrain" data-project="morphbrain" aria-labelledby="morphbrain-title">
+      <div class="chapter-copy">
+        <p class="project-kind">Interactive neural-patterning model</p>
+        <h2 class="project-title" id="morphbrain-title">MorphBrain</h2>
+        <p class="project-description">What happens when you change the signals? Explore morphogen fields and the regions they produce in an interactive model.</p>
+        <div class="project-links">
+          <a href="../morphbrain/">Try the model</a>
+          <a href="../../#morphbrain">Methods &amp; limits</a>
+        </div>
+        <p class="project-caption">Personal computational model. The background shows saved model regions, not measured biological development.</p>
+      </div>
+    </section>
+
+    <section class="project-chapter" id="model-morpher" data-project="model-morpher" aria-labelledby="model-morpher-title">
+      <div class="chapter-copy">
+        <p class="project-kind">Geometry prototype</p>
+        <h2 class="project-title" id="model-morpher-title">Model Morpher</h2>
+        <p class="project-description">Two 3D surfaces. No matching vertices. This prototype blends their distance fields, then extracts the shape in between.</p>
+        <div class="project-links">
+          <a href="../../#model-morpher">Watch the transition</a>
+          <a href="https://github.com/wjason00/model-morpher">Explore the source</a>
+        </div>
+        <p class="project-caption">A geometric transition, not a correspondence between anatomy or a model of biological development. Meshes: Allen Institute / BrainGlobe.</p>
+      </div>
+    </section>
+
+    <section class="project-chapter" id="morphliner" data-project="morphliner" aria-labelledby="morphliner-title">
+      <div class="chapter-copy">
+        <p class="project-kind">3D animation software</p>
+        <h2 class="project-title" id="morphliner-title">Morphliner</h2>
+        <p class="project-description">From a 3D scene to a finished video. A browser editor for composing scenes, camera moves and animation.</p>
+        <div class="project-links">
+          <a href="../../#morphliner">Watch the demo</a>
+          <a href="https://morphliner.com/">Visit Morphliner</a>
+        </div>
+        <p class="project-caption">Working prototype. Saved projects and MP4 export demonstrated; full release remains in development.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="draft-footer" id="contact">
+    <p>Let’s talk.</p>
+    <a href="mailto:jason.wang.25@ucl.ac.uk">jason.wang.25@ucl.ac.uk</a>
+    <div><a href="../../">Current portfolio</a><a href="./contact-sheet.html">Compare the design drafts</a><a href="../../third-party-notices.html">Sources &amp; licences</a><a href="./assets/OFL.txt">Caveat font licence</a></div>
+    <small>Design draft. Project imagery comes from the existing portfolio. Fly anatomy: FlyBody, Apache 2.0. This page changes presentation, not the underlying research evidence.</small>
+  </footer>
+</body>
+</html>

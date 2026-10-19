@@ -4,6 +4,31 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Scroll-driven design draft — 19 October 2026
+
+The separate [design draft](https://wjason00.github.io/demos/portfolio-draft/)
+and [contact sheet](https://wjason00.github.io/demos/portfolio-draft/contact-sheet.html)
+explore translucent project imagery, expressive project titles and a fixed project
+index. The current homepage is preserved while this direction is reviewed.
+Mist, Night and Editorial are selectable appearances of the same scroll layout.
+Each section has an ordinary anchor and direct demo/evidence links; scrolling is
+native, imagery is decorative, and reduced motion uses static imagery.
+
+The draft reuses existing public project assets and the exact losslessly packed
+FlyBody source. Its pale source-mesh rendering is not a neural or behavioural
+result. Caveat is self-hosted with its copyright and OFL terms in the draft assets.
+There are no new research runs, quantitative findings or held EEG promotional
+assets. Next action: see T-173.
+
+Implementation lives in `demos/portfolio-draft/`; current behavioural checks are in
+`tests/portfolio-draft.spec.mjs`. Release receipts below retain their dated scope.
+The layout groups each project's title, explanation and actions through proximity,
+keeps a common reading edge and provides direct navigation instead of requiring a
+full scroll. The design rationale follows [visual hierarchy and grouping](https://www.nngroup.com/articles/principles-visual-design/);
+motion respects [the user's reduced-motion preference](https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html).
+The review image is also saved in [Drive](https://drive.google.com/file/d/1guH3L6ivqmfh1_vxgomrDJLNtosEBFQg/view),
+in the [design drafts folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+
 ## Independent EEG project withheld — 17 October 2026
 
 Jason asked to hold the cross-session/time-lagged EEG study from portfolio, CV and promotional use

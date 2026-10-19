@@ -5,6 +5,13 @@ Generated from the installed production dependency tree used to build the MorphB
 plus the three bundled Fontsource packages and Draco decoder package. Data-source terms are documented in
 third-party-notices.html.
 
+Additional self-hosted design-draft font:
+- Caveat, Copyright 2014 The Caveat Project Authors
+  https://github.com/googlefonts/caveat
+  SIL Open Font License 1.1; full copyright and terms distributed in
+  demos/portfolio-draft/assets/OFL.txt. Official download provenance is in
+  demos/portfolio-draft/assets/README.txt.
+
 ------------------------------------------------------------------------
 Packages:
 - @babel/runtime@7.29.7 — MIT — https://github.com/babel/babel.git
