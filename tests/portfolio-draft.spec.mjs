@@ -60,5 +60,6 @@ test('content and the source image fallback remain available without JavaScript'
   await expect(page.getByRole('button', { name: /Appearance/ })).toBeHidden();
   await page.getByRole('navigation', { name: 'Selected projects' }).getByRole('link', { name: 'MorphBrain', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'MorphBrain', exact: true })).toBeInViewport();
+  await expect(fallback).not.toBeInViewport();
   await context.close();
 });

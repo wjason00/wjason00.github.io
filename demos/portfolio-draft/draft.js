@@ -1,6 +1,7 @@
 /* A normal document scroll drives the decorative stage. Every section and link
    remains usable without this script; no wheel interception or scroll snapping. */
 (() => {
+  document.body.dataset.enhanced = '';
   const chapters = [...document.querySelectorAll('.project-chapter')];
   const visuals = [...document.querySelectorAll('[data-visual]')];
   const links = [...document.querySelectorAll('.draft-nav a')];
