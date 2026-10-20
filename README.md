@@ -4,6 +4,37 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## MotionSites-inspired composition - 20 October 2026
+
+The [portfolio](https://wjason00.github.io/?v=20261020-motion) adopts the stronger
+composition discussed with Astra: a large research question, one continuous
+light scientific canvas inside a slate Fly section, and a distinct software
+presentation. It draws on the subject-led scale and layered compositions in
+the [MotionSites catalog](https://motionsites.ai/), rather than a specific
+template or a Lovable integration. Scientific figures, data, model runtimes,
+recordings and movement rules are unchanged.
+
+The factual masthead stays compact. Entering the Fly project shows the complete
+circuit and paired chart together at1366x900; phones retain a readable circuit
+followed by the result. Selected previews respond over200ms and opened viewers
+over280ms. Reduced motion is immediate, and ordinary scrolling, keyboard access
+and the complete no-script accounts remain available.
+
+The shared website preference now lives once in the vault working-practices
+playbook. STANDARDS routes website/UI work there; MorphBrain, the Neuroscience
+Helper preview and the local LinkedIn review owner contain pointers. These
+record future adoption and preserve each existing audience. This release
+implements the public portfolio; it does not restyle or publish those apps.
+
+The [implementation plan](docs/superpowers/plans/2026-10-20-motionsites-direction.md)
+and canonical [UX sheet](demos/fly/ux-sheet.html) explain the concrete contract.
+Current Astra reviews, light/dark captures, propagation receipt and public
+verification belong in `output/motionsites-direction-20261020/`.
+
+[Desktop preview](https://drive.google.com/file/d/10d5ishrkSFCSgLpXH--oUYKyq2pRd0DL/view?usp=drivesdk)
+and [phone preview](https://drive.google.com/file/d/10O2mxaQ78fBGvFA5CqQ0kYljmSnko34E/view?usp=drivesdk)
+are in the existing review folder. Next action: see T-173.
+
 ## Reader orientation and previews - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-refinement) now provides

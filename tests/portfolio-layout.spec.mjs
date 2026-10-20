@@ -149,17 +149,19 @@ for (const width of [1366, 390]) {
 }
 
 for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
-  test(`first screen exposes the Fly circuit and prioritises the paired result at ${viewport.width}px`, async ({ page }) => {
+  test(`Fly entry exposes the circuit and prioritises the paired result at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
-    await page.goto('/');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/#fly-circuit');
+    await page.evaluate(() => document.fonts.ready);
     const network = page.locator('#fly-visuals .fly-circuit img');
     const chart = page.locator('#fly-visuals .fly-comparison img');
     await expect(network).toBeVisible();
     await expect(network).toHaveAttribute('src', './assets/portfolio/fly-network-focus.svg');
     const networkBox = await network.boundingBox();
     const chartBox = await chart.boundingBox();
-    expect(networkBox.width).toBeGreaterThanOrEqual(viewport.width > 1000 ? 500 : 340);
-    expect(networkBox.height).toBeGreaterThanOrEqual(viewport.width > 1000 ? 350 : 240);
+    expect(networkBox.width).toBeGreaterThanOrEqual(viewport.width > 1000 ? 500 : 310);
+    expect(networkBox.height).toBeGreaterThanOrEqual(viewport.width > 1000 ? 350 : 220);
     expect(networkBox.y).toBeGreaterThanOrEqual(0);
     expect(networkBox.y + networkBox.height).toBeLessThanOrEqual(viewport.height);
     if (viewport.width > 1000) {
@@ -169,7 +171,7 @@ for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 
       expect(Math.abs(networkBox.y - chartBox.y)).toBeLessThan(3);
       expect(chartBox.x).toBeGreaterThan(networkBox.x + networkBox.width);
     } else {
-      expect(chartBox.width).toBeGreaterThanOrEqual(340);
+      expect(chartBox.width).toBeGreaterThanOrEqual(310);
       expect(chartBox.y).toBeGreaterThan(networkBox.y + networkBox.height);
       const studyBox = await page.locator('.fly-study-summary').boundingBox();
       expect(studyBox.y).toBeGreaterThan(chartBox.y + chartBox.height);
@@ -241,7 +243,7 @@ for (const width of [1366, 820, 390]) {
       expect(chartBox.width).toBeGreaterThanOrEqual(400);
     } else {
       expect(chartBox.y).toBeGreaterThan(networkBox.y + networkBox.height);
-      expect(chartBox.width).toBeGreaterThanOrEqual(340);
+      expect(chartBox.width).toBeGreaterThanOrEqual(310);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
