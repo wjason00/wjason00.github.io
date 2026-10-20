@@ -48,6 +48,7 @@ for (const width of [390, 1366]) {
     await expect(frame.locator('#speed')).toBeHidden();
     await expect(frame.locator('#next-motor-event')).toBeHidden();
     await expect(frame.locator('#body-run-summary')).toBeVisible();
+    await expect(frame.locator('select:visible')).toHaveCount(2);
     const signal = await frame.locator('#neural-details').boundingBox();
     const specimen = await scene.boundingBox();
     if (width > 800) {
@@ -64,6 +65,12 @@ for (const width of [390, 1366]) {
     if (process.env.FLY_REVIEW_CAPTURE) {
       await page.screenshot({ path: `output/fly-ux-20261020/basic-${width}.png`, fullPage: width < 800 });
     }
+    await frame.locator('#play').click();
+    await expect(frame.locator('#play')).toHaveText('Pause');
+    await advanced.click();
+    await advanced.click();
+    await expect(frame.locator('#play')).toHaveText('Pause');
+    await frame.locator('#reset').click();
     await advanced.click();
     await expect(advanced).toHaveAttribute('aria-expanded', 'true');
     await frame.locator('#next-motor-event').click();

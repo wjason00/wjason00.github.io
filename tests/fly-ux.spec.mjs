@@ -11,6 +11,7 @@ for (const width of [390, 1366]) {
     await expect(page.locator('#edge-filter')).toBeHidden();
     await expect(page.locator('#network-graph')).toBeVisible();
     await expect(page.locator('#chart')).toBeVisible();
+    await expect(page.locator('#reference-material > summary')).toBeVisible();
     await expect(page.locator('#network-inspection .evidence-limit')).toBeVisible();
     await advanced.press('Enter');
     await expect(advanced).toHaveAttribute('aria-expanded', 'true');
