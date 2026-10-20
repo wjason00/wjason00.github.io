@@ -19,6 +19,10 @@ assets/portfolio/rare-errors/rare_errors.svg -text
 # Aggregate download hashes refer to exact bytes on every checkout platform.
 assets/portfolio/research-20261015/* -text
 
+# Generated media provenance names exact vector and recording bytes.
+assets/portfolio/fly-paired-comparison.svg -text
+assets/portfolio/fly-media-provenance.json -text whitespace=cr-at-eol
+
 # These source receipts name exact public archive, geometry and renderer bytes.
 demos/fly/body/** -text whitespace=cr-at-eol
 demos/fly/vendor/** -text whitespace=cr-at-eol

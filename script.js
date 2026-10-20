@@ -438,11 +438,6 @@ document.querySelectorAll(".video-demo").forEach((demo) => {
       video.pause();
     }
   });
-  video.addEventListener("play", () => {
-    document.querySelectorAll("video").forEach((other) => {
-      if (other !== video) other.pause();
-    });
-  });
 
   range.addEventListener("input", () => {
     if (!hasDuration()) return;
@@ -467,6 +462,15 @@ document.querySelectorAll(".video-demo").forEach((demo) => {
     demo.classList.remove("is-enhanced");
   });
   updateVideoControls();
+});
+
+/* Native and enhanced recordings share the same playback policy. */
+document.querySelectorAll("video").forEach((video) => {
+  video.addEventListener("play", () => {
+    document.querySelectorAll("video").forEach((other) => {
+      if (other !== video) other.pause();
+    });
+  });
 });
 
 /* Do not leave a recording playing after its preview leaves the screen. */

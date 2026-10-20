@@ -1,0 +1,73 @@
+{
+  "format": "fly-portfolio-media-v1",
+  "date": "2026-10-20",
+  "video": {
+    "source": "../../demos/fly/body/index.html",
+    "source_provenance": "../../demos/fly/body/provenance.json",
+    "geometry": "TuragaLab/flybody@d015e9bfe441bd90ae431bac24c55cb74bdbce26",
+    "model": "philshiu/Drosophila_brain_model@91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+    "archive": "native-feeding-events.js author simulation archive, distinct from paired gain/input study",
+    "input": "Prescribed sugar 100 Hz",
+    "circuit": "Intact",
+    "trial": 1,
+    "timeline": {
+      "start": -0.4,
+      "end": 2,
+      "neuralSavedInterval": [
+        0,
+        1
+      ],
+      "assumedRelaxationInterval": [
+        1,
+        2
+      ],
+      "frames": 240,
+      "fps": 25,
+      "videoDuration": 9.6,
+      "speed": 0.25
+    },
+    "capture": "Deterministic source FLY_DEMO.setTime; wait two animation frames; screenshot source scene. CSS presentation-only full-viewport scene and legible view labels. No geometry, spike, policy, movement or contact modifications. Video encoding only, no generated interpolation.",
+    "limitation": "Uncalibrated illustrative body mapping; not animal-motion fit or paired-study finding. Droplet contact and volume illustrative; no fluid physics, swallowing or sensory feedback.",
+    "attribution": "FlyBody, TuragaLab (Apache 2.0); Three.js Authors (MIT); source-model authors (MIT)."
+  },
+  "chart": {
+    "primary_csv_sha256": "bff77cb68d9892b0a1cbe903e927029542ecba4952c6137884407a3f390c4b22",
+    "public_replay_archive": "../../demos/fly/archive.js",
+    "saved_evidence": "research-20261015/evidence.json",
+    "pairs": 15,
+    "conditions": [
+      "intact",
+      "Roundup outgoing weights zeroed"
+    ],
+    "window_seconds": 1,
+    "gains": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "input_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "generator": "scripts/plot-fly-portfolio.py --input PATH/paired-results-v4.csv",
+    "transformation": "Redraw all original counts on common 0\u201390 axes; no new fit or simulation.",
+    "limitation": "Exploratory model sensitivity; seeds are inputs, not animals. No biological or significance claim."
+  },
+  "files": {
+    "assets/portfolio/fly-preview-20261020.mp4": {
+      "bytes": 753303,
+      "sha256": "0464b4ec06f2665d63cdc2ef9b57a587a728caa140ba099cd1eddb360d2dac80"
+    },
+    "assets/portfolio/fly-preview-20261020.webp": {
+      "bytes": 62700,
+      "sha256": "5a0f5a1f11975e19e2c10a53120616c93c6a0453cbb90904fc205d0650c992ff"
+    },
+    "assets/portfolio/fly-paired-comparison.svg": {
+      "bytes": 25499,
+      "sha256": "b4b1a8d6ca8146283a50b79480665c3d0a1de94c999b301710fe1352f12064cc"
+    }
+  }
+}

@@ -65,7 +65,7 @@
     />
     <title>Jason Wang — Computational Neuroscience &amp; Machine Learning</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261020-portfolio" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-fly-media" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -93,7 +93,7 @@
       crossorigin
     />
     <script src="./theme.js"></script>
-    <script src="./script.js" defer></script>
+    <script src="./script.js?v=20261020-fly-media" defer></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -198,25 +198,43 @@
         </div>
         <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
           <div class="research-feature__copy">
-            <p class="eyebrow">Connectome modelling · October 2026</p>
+            <p class="eyebrow fly-study-context">Connectome modelling · October 2026</p>
             <h3 id="fly-title">Does the circuit effect hold?</h3>
-            <p>I proposed and directed this sensitivity study of a published fly feeding-circuit model.</p>
-            <p>In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p>
-            <p><a href="./demos/fly/?v=20261020-simple">Explore the fly model</a></p>
+            <p class="fly-study-contribution">I proposed and directed this sensitivity study of a published fly feeding-circuit model.</p>
+            <p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p>
+            <p class="fly-study-action"><a href="./demos/fly/?v=20261020-simple">Explore the fly model</a></p>
             <p class="research-result-limit">Exploratory model sensitivity: one circuit intervention, output neuron and input regime, at three selected gains. These simulated spikes do not establish a change in real feeding behaviour.</p>
-            <details class="project-notes research-evidence">
+          </div>
+          <div class="fly-media" id="fly-visuals" aria-label="Illustrative fly replay and saved experimental result">
+            <figure class="fly-replay">
+              <h4>3D fly replay</h4>
+              <video id="fly-preview" controls playsinline muted preload="none"
+                poster="./assets/portfolio/fly-preview-20261020.webp"
+                width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
+                aria-describedby="fly-replay-caption">
+                <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
+                <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
+              </video>
+              <figcaption id="fly-replay-caption">Sugar input, intact, trial 1; ¼ speed. <strong>Separate archive; uncalibrated movement</strong>, including assumed relaxation after 1 s. This film does not show the paired experiment.</figcaption>
+            </figure>
+            <figure class="research-result-figure fly-comparison">
+              <h4>Saved paired experiment</h4>
+              <a href="./assets/portfolio/fly-paired-comparison.svg" aria-label="Open the paired MN9 spike-count comparison">
+                <img src="./assets/portfolio/fly-paired-comparison.svg" width="420" height="500" loading="lazy"
+                  alt="Fifteen paired simulated MN9 spike counts at recurrent gains 0.8, 1.0 and 1.2. Each matched seed has fewer spikes after Roundup’s outgoing weights are zeroed." />
+              </a>
+              <figcaption>One-second simulated MN9 spike counts. Five input seeds per gain; each line joins a matched seed. Seeds are inputs, not animals.</figcaption>
+            </figure>
+          </div>
+          <details class="project-notes research-evidence">
               <summary>Methods, limits &amp; evidence</summary>
               <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
               <p>All 30 scientific runs passed independent saved-output verification. Each trial lasted one simulated second. Within each seed, intact and disconnected conditions at all three gains shared both input candidates and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched in these saved runs. Both this shared-candidate design and an execution correction were post-failure amendments, not preregistered.</p>
               <p>Five input seeds are not five animals. No statistical significance, biological validation, novelty or full replication of the source paper is claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.</p>
               <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
               <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-            </details>
-          </div>
-          <figure class="research-result-figure">
-            <a href="./assets/portfolio/research-20261015/fly-circuit.png" aria-label="Open the full fly circuit results figure"><img src="./assets/portfolio/research-20261015/fly-circuit.png" width="2544" height="2160" loading="lazy" alt="Paired simulated MN9 spike counts across three recurrent gains: every disconnected result is lower than its intact pair." /></a>
-            <figcaption>Roundup’s outgoing connections removed; matched intact comparisons at recurrent gains 0.8, 1.0 and 1.2. Saved simulation outputs.</figcaption>
-          </figure>
+              <p><a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The compact chart redraws the same 15 saved pairs; the film records the unchanged renderer over −0.4 to 2.0 simulated seconds and adds no behavioural validation.</p>
+          </details>
           <section class="research-followup" aria-labelledby="fly-timing-title">
             <p class="eyebrow">Follow-up · input timing</p>
             <h4 id="fly-timing-title">Does timing change the effect of cutting more connections?</h4>

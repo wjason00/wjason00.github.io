@@ -4,6 +4,42 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Fly film and compact evidence — 20 October 2026
+
+The [Fly project](https://wjason00.github.io/?v=20261020-fly-media#fly-visuals)
+now pairs a playable 9.6-second whole-fly/mouth-detail recording with a compact
+vector comparison of all 15 saved pairs. The media share one desktop row and
+stack on phones/tablets. Native controls work without the page script; recordings
+start on request, pause offscreen and share the gallery's single-playback policy.
+
+The film records the existing renderer and separate author archive: prescribed
+sugar 100 Hz, intact, trial 1, source time −0.4 to 2.0 seconds at quarter speed.
+Neural events cover 0–1 second; subsequent motion is assumed relaxation. The
+visible caption identifies that boundary, uncalibrated movement and the separate
+archive. It is not animal footage or the gain experiment's behavioural outcome.
+
+The chart redraws SHA-verified primary counts on common nonnegative axes, with
+two condition encodings, matched seed rows and no repeated ratio panel. The
+original full figure and all frozen source assets remain unchanged. An independent
+number audit matched all 30 marker counts and positions to the primary CSV and
+original run files. The generator is `scripts/plot-fly-portfolio.py --input
+PATH/paired-results-v4.csv` (requires matplotlib). Public source/capture details
+and asset hashes: [media provenance](assets/portfolio/fly-media-provenance.json).
+
+Local checks cover native video decoding/playback, pause on leaving the page
+region, desktop co-visibility, tablet/phone stacking, no-JS access and existing
+gallery/model behaviour. The complete movie decoded to 240 frames, with 238
+distinct frame hashes. Current release verification and source preservation:
+`output/fly-figure-20261020/verification.json`. These are presentation checks,
+not new research validation or a measured usability study.
+
+Review: [recorded video](https://drive.google.com/file/d/1q33wrAuRN6ZVdZkRlIb46k_K7SOxzpHi/view),
+[desktop composition](https://drive.google.com/file/d/1-6kEqr46iYcxrEYWy0aG3Oq8lX32oKlv/view)
+and [phone composition](https://drive.google.com/file/d/1RQ9aRu24e5LFk1AS8H0BNZ7QOmjUt3xy/view)
+in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+The canonical UX sheet now requires these media boundaries and readable paired
+evidence alongside motion. Next action: see T-173.
+
 ## Homepage disclosure — 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-portfolio) now has a

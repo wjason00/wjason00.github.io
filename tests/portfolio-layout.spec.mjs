@@ -99,11 +99,66 @@ test('project selection keeps contributions, results and critical limits outside
   }
 });
 
+for (const width of [1366, 820, 390]) {
+  test(`fly presentation pairs a playable source replay with saved evidence at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const video = page.locator('#fly-preview');
+    const chart = page.locator('.fly-comparison img');
+    await expect(video).toHaveAttribute('controls', '');
+    await expect(video).toHaveAttribute('preload', 'none');
+    await expect(video).not.toHaveAttribute('autoplay');
+    await expect(video).toHaveAttribute('aria-describedby', 'fly-replay-caption');
+    await expect(page.locator('#fly-replay-caption')).toContainText(/Separate archive; uncalibrated movement/);
+    await expect(page.locator('#fly-replay-caption')).toContainText('assumed relaxation after 1 s');
+    await expect(page.locator('#fly-replay-caption')).toContainText('does not show the paired experiment');
+    await expect(chart).toHaveAttribute('src', './assets/portfolio/fly-paired-comparison.svg');
+    const videoBox = await video.boundingBox();
+    const chartBox = await chart.boundingBox();
+    if (width > 1000) {
+      expect(Math.abs(videoBox.y - chartBox.y)).toBeLessThan(3);
+      expect(chartBox.x).toBeGreaterThan(videoBox.x + videoBox.width);
+      expect(videoBox.width).toBeGreaterThan(650);
+      expect(chartBox.width).toBeGreaterThanOrEqual(400);
+    } else {
+      expect(chartBox.y).toBeGreaterThan(videoBox.y + videoBox.height);
+      expect(chartBox.width).toBeGreaterThanOrEqual(340);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+    await video.scrollIntoViewIfNeeded();
+    await video.evaluate(element => element.play());
+    await expect.poll(() => video.evaluate(element => element.duration)).toBeCloseTo(9.6, 1);
+    await expect.poll(() => video.evaluate(element => element.currentTime)).toBeGreaterThan(0.1);
+    await page.locator('#about').scrollIntoViewIfNeeded();
+    await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
+
+    if (process.env.FLY_PORTFOLIO_CAPTURE) {
+      await video.evaluate(element => { element.currentTime = 0; });
+      await page.setViewportSize({ width, height: 1200 });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      for (const theme of ['light', 'dark']) {
+        await page.evaluate(value => { document.documentElement.dataset.theme = value; }, theme);
+        await page.evaluate(() => {
+          const media = document.querySelector('#fly-visuals');
+          const header = document.querySelector('.site-header');
+          window.scrollTo({ top: media.getBoundingClientRect().top + scrollY - header.offsetHeight - 20, behavior: 'instant' });
+        });
+        await expect(page.locator('.fly-replay h4')).toBeInViewport();
+        await page.locator('#fly-visuals').screenshot({ path: `output/fly-figure-20261020/presentation-${width}-${theme}.png` });
+      }
+    }
+  });
+}
+
 test.describe('homepage methods without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
   test('native disclosures support keyboard use and the synthetic-study deep link', async ({ page }) => {
     await page.goto('/');
+    await expect(page.locator('#fly-preview')).toHaveAttribute('controls', '');
+    await expect(page.locator('#fly-preview source')).toHaveAttribute('src', './assets/portfolio/fly-preview-20261020.mp4');
+    await expect(page.locator('.fly-comparison img')).toBeVisible();
     for (const id of ['morphbrain', 'model-morpher', 'morphliner']) {
       const details = page.locator(`#${id} .project__body > details`);
       const summary = details.locator(':scope > summary');
