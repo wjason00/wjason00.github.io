@@ -758,6 +758,11 @@ html:not(.js) .compare-stage__hint {
 .research-result-figure { margin: 0; min-width: 0; }
 .research-result-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: white; }
 .research-result-figure figcaption { color: var(--muted); font-size: 14px; line-height: 1.5; margin-top: 12px; }
+.research-followup { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 24px; }
+.research-followup h4 { max-width: 42ch; margin: 8px 0 14px; font-size: clamp(22px, 2vw, 28px); line-height: 1.25; letter-spacing: -.025em; }
+.research-followup > p:not(.eyebrow) { max-width: 72ch; font-size: 17px; }
+.research-followup > p.research-result-limit { margin-top: 12px; color: var(--muted); font-size: 15px; }
+.research-followup > a { display: inline-block; margin-top: 16px; }
 .research-evidence { margin-top: 20px; }
 .research-evidence p { font-size: 15px; line-height: 1.6; margin-top: 12px; }
 .research-feature--supporting { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); }
