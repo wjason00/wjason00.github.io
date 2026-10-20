@@ -111,6 +111,7 @@ def main() -> None:
         token = f'id="{gid}"'
         assert svg.count(token) == 1
         svg = svg.replace(token, token + f' data-gain="{point["gain"]}" data-seed="{point["seed"]}" data-intact="{point["intact"]}" data-cut="{point["silenced"]}"')
+    svg = "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
     OUTPUT.write_text(svg, encoding="utf-8", newline="\n")
     # Verify each emitted artist's intended count via the receipt and retain
     # explicit values for a separate source-to-render audit.
