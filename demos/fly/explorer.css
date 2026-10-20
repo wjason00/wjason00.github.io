@@ -425,3 +425,60 @@ details p { max-width: 84ch; }
   * { scroll-behavior: auto !important; }
   .graph-link .edge-ink { transition: none; }
 }
+
+/* Progressive disclosure follows the active view, including lazy/generated UI. */
+#fly-explorer.progressive-enabled[data-advanced="false"] [data-advanced-only] { display: none !important; }
+#fly-explorer[data-view="anatomy"] #node-picker-control { display: none !important; }
+.paired-settings { display: flex; align-items: end; flex-wrap: wrap; gap: 16px; }
+#advanced-toggle { margin-left: auto; min-height: 38px; padding: 7px 14px; font-size: 14px; background: #fff; }
+#advanced-toggle[aria-expanded="true"] { background: #e7f1f3; border-color: var(--kept); }
+.experiment-summary { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.controls { gap: 12px 20px; padding-block: 14px; }
+.controls fieldset { width: auto; }
+.network-heading { padding-block: 15px; }
+.network-heading h2 { font-size: 19px; }
+.network-workbench { grid-template-columns: minmax(0, 1fr) minmax(360px, 430px); }
+#network-graph { height: clamp(360px, 37vw, 500px); }
+.graph-toolbar { grid-column: 2; }
+.graph-legend { gap: 10px 16px; font-size: 12px; padding-bottom: 14px; }
+.network-inspector { padding: 18px 20px; }
+#paired-output { padding-bottom: 19px; margin-bottom: 19px; border-bottom: 1px solid var(--line); }
+.network-inspector .output-heading { padding: 0; }
+.network-inspector .output-heading h2 { margin-bottom: 4px; font-size: 19px; }
+.network-inspector .output-heading p { font-size: 13px; line-height: 1.45; }
+.network-inspector #chart { width: 100%; height: auto; margin-top: 8px; }
+.network-inspector .legend { gap: 7px 18px; flex-wrap: wrap; padding: 0; font-size: 13px; }
+.network-inspector .legend .muted { display: none; }
+.network-inspector .playback { gap: 9px; margin: 12px 0; }
+.network-inspector .playback button { padding-inline: 10px; }
+.network-inspector .time-label { min-width: 68px; }
+.network-inspector .paired-result { min-height: 0; margin: 0; font-size: 14px; line-height: 1.5; }
+.model-boundary { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.network-inspector h3 { margin-top: 17px; font-size: 22px; }
+.network-inspector .inspection-kind { margin-bottom: 10px; }
+.neuron-explanation p { font-size: 14px; line-height: 1.5; }
+.neuron-explanation .evidence-limit { margin-top: 11px; padding-left: 10px; font-size: 13px; }
+.neuron-details { margin-top: 16px; }
+.neuron-details h4 { margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+#neuron-anatomy { min-height: 0; }
+.morphology-stage { height: clamp(360px, 37vw, 500px); }
+.morphology-boundary { margin: 8px 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.morphology-selection { font-size: 13px; line-height: 1.5; }
+.morphology-selection [data-advanced-only] { display: block; margin-top: 4px; }
+.details-row { display: block; }
+#reference-material h3 { margin: 20px 0 9px; font-size: 17px; }
+@media (max-width: 1050px) {
+  .network-workbench { grid-template-columns: minmax(0, 1fr) minmax(320px, .8fr); }
+  .network-inspector { padding: 16px; }
+  .graph-toolbar { flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+}
+@media (max-width: 800px) {
+  .network-workbench { grid-template-columns: minmax(0, 1fr); }
+  .network-inspector { border-left: 0; border-top: 1px solid var(--line); }
+  .network-inspector #chart { max-width: 580px; margin-inline: auto; }
+  #network-graph { height: auto; aspect-ratio: 960 / 590; }
+  .morphology-stage { height: 390px; }
+  .paired-settings { flex: 1 1 100%; gap: 12px; }
+  .paired-settings label { min-width: 130px; }
+  #advanced-toggle { align-self: end; }
+}

@@ -161,10 +161,10 @@
     {
       "file": "index.html",
       "source": "index.html",
-      "bytes": 11737,
-      "sha256": "dd42deced2c893117047cb7a6ef0e39960109b78f225df89b432034c5b1ee8c3",
+      "bytes": 12303,
+      "sha256": "9e6159ca773da5139df5c8ca5f7f685ce1927d6c9a367be329018ad3b59461b6",
       "preserved": false,
-      "transform": "Place saved motor raster, exact event stepping and input cues beside the 3D scene; preserve native controller IDs and scientific boundaries."
+      "transform": "Progressive disclosure of specialised controls; retain the scene, saved raster, primary controls and scientific boundaries."
     },
     {
       "file": "boot.js",
@@ -176,18 +176,18 @@
     {
       "file": "embed.css",
       "source": "new portfolio packaging",
-      "bytes": 13673,
-      "sha256": "bbdfd2e33970c7fc11701598dfa8c84f49f50fc9c01258d395a812b3cfc605f3",
+      "bytes": 18214,
+      "sha256": "dfabbb090f85b4105ffad089527758a4b08906ae949bd11c6eb48238dc4e7d1f",
       "preserved": false,
-      "transform": "Presentation only: shared top settings and two-pane scientific workspace, stacking on mobile; no changed source geometry, neural data or movement rules."
+      "transform": "Presentation only: default/advanced hierarchy, responsive layout and readable essential labels; no changed source geometry, events or movement rules."
     },
     {
       "file": "interface.js",
       "source": "new portfolio interface",
       "preserved": false,
-      "bytes": 2414,
-      "sha256": "40506130a6d0beb2744c954acc01d3de805f2986e67ab70963cd94ec2453a9fc",
-      "transform": "Presentation only: natural-content iframe sizing, persistent movement-block status and clear-blocks action through existing controls."
+      "bytes": 4973,
+      "sha256": "4ed2fb0a940dc3b4e814a222164fa4f51e45f9f65622626d22dbe96570cdf30a",
+      "transform": "Presentation only: accessible Advanced disclosure, visible run state and drive-block warning, and natural-content iframe sizing."
     }
   ]
 }

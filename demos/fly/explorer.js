@@ -27,6 +27,10 @@ export function initExplorer() {
   const $ = id => document.getElementById(id);
   const tabs = [...document.querySelectorAll('[data-explorer-view]')];
   if (!tabs.length) return;
+  const workspace = $('fly-explorer');
+  workspace.classList.add('progressive-enabled');
+  const advancedToggle = $('advanced-toggle');
+  const advanced = { connections: false, anatomy: false };
   const bodyFrame = $('body-frame');
   window.addEventListener('message', event => {
     if (event.source !== bodyFrame.contentWindow || event.origin !== window.location.origin) return;
@@ -36,10 +40,23 @@ export function initExplorer() {
     $('body-status').hidden = true;
   });
   let active = 'connections';
+  function applyAdvanced() {
+    const expanded = Boolean(advanced[active]);
+    if (!expanded && workspace.contains(document.activeElement) && document.activeElement.closest('[data-advanced-only]')) advancedToggle.focus();
+    workspace.dataset.view = active;
+    workspace.dataset.advanced = String(expanded);
+    advancedToggle.hidden = active === 'body';
+    advancedToggle.setAttribute('aria-expanded', String(expanded));
+    advancedToggle.textContent = expanded ? 'Close advanced' : 'Advanced';
+  }
+  advancedToggle.addEventListener('click', () => {
+    advanced[active] = !advanced[active];
+    applyAdvanced();
+  });
   const anatomy = createSelectionBridge(async () => {
     $('anatomy-status').textContent = 'Loading source neuron skeletons…';
     await loadThree();
-    const { mountMorphology } = await import('./morphology.js');
+    const { mountMorphology } = await import('./morphology.js?v=20261020-simple');
     const viewer = await mountMorphology($('neuron-anatomy'), {
       onSelect: id => document.dispatchEvent(new CustomEvent('fly:select-neuron', { detail: { id: String(id) } }))
     });
@@ -50,6 +67,7 @@ export function initExplorer() {
 
   async function show(view, focus = false) {
     active = view;
+    applyAdvanced();
     const hash = view === 'connections' ? '' : `#${view}`;
     if (window.location.hash !== hash) window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${hash}`);
     tabs.forEach(tab => {
@@ -67,16 +85,16 @@ export function initExplorer() {
     $('neuron-inspector').hidden = body;
     $('network-workbench').classList.toggle('body-view', body);
     document.querySelector('.experiment').classList.toggle('body-view', body);
-    $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions' : view === 'anatomy' ? 'Source skeleton geometry · FlyWire v630' : 'Saved motor spikes · assumed body movement';
+    $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions or recorded activity' : view === 'anatomy' ? 'Static source skeletons · FlyWire v630' : 'Saved motor spikes · assumed body movement';
     $('view-title').textContent = view === 'connections' ? 'Roundup’s neighbourhood' : view === 'anatomy' ? 'Reconstructed neurons' : 'Motor replay';
-    $('view-description').textContent = body ? 'A separate saved author archive drives this replay. Body movement is an uncalibrated illustration.' : view === 'anatomy' ? 'A subset of 55 source neurons in their shared coordinate frame. Cut and gain change the experiment below, not these static shapes.' : 'Select a neuron to understand its role, evidence and connections.';
+    $('view-description').textContent = body ? 'A separate saved author archive drives this replay. Body movement is an uncalibrated illustration.' : view === 'anatomy' ? 'Real source geometry. Cut and gain change the saved comparison, not these static shapes.' : 'Select a neuron or connection. The chart shows saved model output.';
     if (view === 'anatomy') {
       try { await anatomy.open(); }
       catch { $('anatomy-status').textContent = 'The 3D anatomy could not load. Check your connection, then select this view again. Neuron explanations and saved results remain available.'; }
     }
     if (body && !bodyFrame.getAttribute('src')) {
       $('body-status').hidden = false;
-      bodyFrame.src = 'body/index.html?v=20261019-workbench';
+      bodyFrame.src = 'body/index.html?v=20261020-simple';
     }
     else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }

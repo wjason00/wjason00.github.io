@@ -1,15 +1,16 @@
 import { selectPair, countThrough } from './model.js';
-import { initNetwork } from './network.js';
+import { initNetwork } from './network.js?v=20261020-simple';
 const data = window.FEEDING_DATA, $ = id => document.getElementById(id);
 const network = initNetwork();
 let cut = true, time = 1, playing = false, frame = 0, last = 0;
 const ns='http://www.w3.org/2000/svg', colors={intact:'#156b9a',cut:'#984176'};
-const mobile=window.matchMedia('(max-width:620px)');
+const chart=$('chart');
 let layout;
 const x=t=>layout.left+t*(layout.right-layout.left), y=n=>layout.bottom-n/100*(layout.bottom-layout.top);
 function element(tag,attrs,text){const el=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;}
 function axes(){
- layout=mobile.matches?{width:350,height:280,left:41,right:328,top:38,bottom:220,ticks:245,label:272}:{width:920,height:320,left:68,right:850,top:45,bottom:256,ticks:280,label:310};
+ const compact=chart.clientWidth<620;
+ layout=compact?{width:350,height:280,left:41,right:328,top:38,bottom:220,ticks:245,label:272}:{width:920,height:320,left:68,right:850,top:45,bottom:256,ticks:280,label:310};
  $('chart').setAttribute('viewBox',`0 0 ${layout.width} ${layout.height}`);
  $('grid').replaceChildren();
  for(let n=0;n<=100;n+=25)$('grid').append(element('line',{x1:layout.left,x2:layout.right,y1:y(n),y2:y(n),class:'grid-line'}),element('text',{x:layout.left-10,y:y(n)+5,'text-anchor':'end',class:'tick'},n));
@@ -35,6 +36,7 @@ function render(){
  const a=countThrough(pair.intact.spikes,time),b=countThrough(pair.cut.spikes,time);
  $('result').setAttribute('aria-live',playing?'off':'polite');
  $('result').textContent=`${cut?'Cut':'Kept'} selected · ${cut?b:a} MN9 spikes at ${Math.round(time*1000)} ms. Full saved trial: ${pair.intact.count} kept, ${pair.cut.count} cut (${pair.intact.count-pair.cut.count} fewer after the cut).`;
+ $('experiment-summary').textContent=`Saved comparison · Gain ${Number($('gain').value).toFixed(1)}× · Seed ${$('seed').value} · Roundup outputs ${cut?'cut':'kept'}`;
  $('play').textContent=playing?'Pause':time>=1?'Replay':'Play';
 }
 function pause(){playing=false;cancelAnimationFrame(frame);render();}
@@ -44,6 +46,7 @@ $('time').addEventListener('input',()=>{playing=false;cancelAnimationFrame(frame
 for(const id of ['gain','seed'])$(id).addEventListener('change',()=>{pause();time=1;render();});
 $('kept').addEventListener('click',()=>{cut=false;render();});$('cut').addEventListener('click',()=>{cut=true;render();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)pause();});
-mobile.addEventListener('change',()=>{axes();render();});
+let chartWidth=0;
+new ResizeObserver(()=>{const width=chart.clientWidth;if(width<=0||width===chartWidth)return;chartWidth=width;axes();render();}).observe(chart);
 axes();
 render();

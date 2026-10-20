@@ -32,16 +32,21 @@ The revised study's direct UI capture is saved in [Drive](https://drive.google.c
 in the [existing design review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
 Next action: see T-173.
 
-## Fly replay workspace — 19 October 2026
+## Fly explorer UX — 20 October 2026
 
-The [3D fly view](https://wjason00.github.io/demos/fly/#body) places the
-source body views beside the always-visible saved MN9/MN6 raster and exact spike
-stepper on desktop. Run settings span the top; mobile places the signals directly
-after the scene. A shared replay clock connects the saved events to the assumed
-movement mapping. The author archive remains separate from the paired sensitivity
-study; geometry, archived spikes and movement/contact policies are preserved.
-The scroll draft and contact sheet now use the same pale FlyBody rendering.
-Current verification: `output/fly-workbench-20261019/verification.json`.
+The [Fly explorer](https://wjason00.github.io/demos/fly/?v=20261020-simple#body)
+keeps the principal visual and saved output together, with one Advanced control
+per active view. Advanced reveals specialised settings and audit detail; current
+settings and critical limits remain visible when it closes. The body defaults to
+Input/Circuit and replay alongside its saved MN9/MN6 raster. Connections and
+anatomy pair their visual with a readable saved-output chart; anatomy has one
+neuron picker. Source data, geometry and native movement rules are preserved.
+
+The canonical [UX sheet](demos/fly/ux-sheet.html) records the critique, default and
+Advanced contract, release checks and proposed observational tasks. It is a
+design review and regression contract, not a completed usability study. Future
+interface changes should use it before release.
+Current verification: `output/fly-ux-20261020/verification.json`.
 Next action: see T-168.
 
 ## Scroll-driven design draft — 19 October 2026

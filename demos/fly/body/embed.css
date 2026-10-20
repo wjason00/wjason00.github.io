@@ -56,3 +56,65 @@ html[data-loading="true"] .viewer button,html[data-loading="true"] .viewer selec
 @media(max-width:900px){main{padding-inline:16px}.replay-layout{grid-template-columns:1fr;gap:19px}.run-settings{grid-column:1;grid-row:1;grid-template-columns:1fr;gap:9px}.run-settings>h2{grid-column:1;grid-row:auto;font-size:15px}.native-choices{grid-column:1;grid-row:auto}.native-source{grid-column:1}.body-stage{grid-column:1;grid-row:2}.neural-panel{grid-column:1;grid-row:3;padding:17px 0 0;border-left:0;border-top:1px solid var(--line)}.signal-header{min-height:40px}.motor-navigation{grid-template-columns:minmax(0,1fr) auto auto}.motor-navigation label{grid-column:auto}.motor-navigation button{width:auto}.flow-track{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:15px}.flow-stage{flex:none}.motor-cues{border:0;padding:0}.neural-panel .sensory-flow{margin-top:14px}.configuration{gap:22px}}
 @media(max-width:600px){main{padding-inline:12px}.archive-boundary{font-size:11px;padding:10px 0}.run-settings{padding:10px 0;gap:8px}.native-choices{grid-template-columns:1fr 1fr;gap:9px 12px}.native-choices>label:first-child{grid-column:1;grid-row:1}.native-choices>.trial-control{grid-column:2;grid-row:1}#single-control,#compare-control{grid-column:1/-1;grid-row:2}.native-choices>.loop-control{grid-column:1/-1;grid-row:3;min-height:25px;white-space:normal;font-size:12px}.native-source{font-size:10px}.pairing-note{font-size:11px}.toolbar{gap:3px}.mode-tabs button{padding:0 10px;font-size:12px}.mode-tabs button:first-child{padding-right:13px}.toolbar #body-view{padding:0 5px;font-size:11px}.transport{gap:5px}.transport .primary{min-width:126px;font-size:12px}#clip-time{min-width:74px;font-size:11px}.speed-label select{padding:0 2px;font-size:11px}.stage-caption{font-size:10px}.droplet-label-control{font-size:10px}.timeline-guide{font-size:9px;column-gap:10px}.run-outcome .native-outcome{font-size:11px}.signal h2{font-size:14px}.signal h2 span{font-size:11px}.motor-navigation{grid-template-columns:1fr 1fr}.motor-navigation label{grid-column:1/-1}.motor-navigation button{width:100%}.flow-track{display:flex;gap:11px}.flow-heading p{max-width:47ch}.motor-cue b{min-width:66px}.inspection-detail>summary{display:grid;grid-template-columns:15px 1fr;gap:1px 12px;align-items:center;padding:14px 0}.inspection-detail>summary::before{grid-row:1/span 2}.detail-title,.detail-description{grid-column:2}.detail-content{padding-left:0}.configuration{grid-template-columns:1fr;gap:22px}.configuration .settings-grid{flex-direction:column;align-items:flex-start}.evidence-note{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Progressive disclosure keeps the two scientific views primary. Native hidden
+   flags remain authoritative; secondary regions are scoped on their ancestor. */
+body[data-advanced="false"] [data-advanced-only] { display: none !important; }
+body[data-advanced="false"] #scene .native-frame output,
+body[data-advanced="false"] #scene .native-frame .drop-contact,
+body[data-advanced="false"] #scene .native-frame .droplet-label,
+body[data-advanced="false"] #scene .native-frame .droplet-leader { display: none !important; }
+.run-settings { grid-template-columns: minmax(0, 1fr) auto; gap: 5px 16px; padding: 10px 0; }
+.run-settings > .native-choices { grid-column: 1; grid-row: 1; grid-template-columns: minmax(140px, .65fr) minmax(250px, 1.35fr); gap: 10px 16px; max-width: 850px; }
+.native-choices > label:first-child { grid-column: 1; grid-row: 1; }
+.native-choices > #single-control { grid-column: 2; grid-row: 1; }
+.advanced-toggle { grid-column: 2; grid-row: 1; align-self: end; min-height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: #405c68; font-size: 13px; }
+.advanced-toggle[aria-expanded="true"] { border-color: var(--intact); color: var(--intact); background: #f2f7f8; }
+.advanced-run-controls { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: minmax(200px, 1.5fr) minmax(145px, 1fr) auto; align-items: end; gap: 12px; padding-top: 5px; }
+.advanced-run-controls #compare-control { grid-column: 1; grid-row: auto; }
+.advanced-run-controls .trial-control { grid-column: 2; grid-row: auto; }
+.advanced-run-controls .loop-control { grid-column: 3; grid-row: auto; min-height: 36px; display: flex; align-items: center; gap: 7px; font-size: 12px; }
+.body-run-summary { grid-column: 1 / -1; margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.run-settings > .native-source { grid-column: 1 / -1; font-size: 12px; }
+.archive-boundary { font-size: 12px; }
+.native-condition, .native-frame span, .native-frame output,
+.native-frame .drop-contact, .native-frame .droplet-label { font-size: 12px; }
+.signal-caption, .signal-caption p, .signal h2 span,
+.motor-navigation label, .motor-navigation p, .stage-caption,
+.droplet-label-control, .run-outcome .native-outcome,
+.flow-heading p, .flow-stage output, .flow-stage small,
+.motor-cue, .motor-cue b, .motor-cue output, .flow-footnote,
+.pairing-note, .active-blocks p, .active-blocks button,
+.evidence-note, footer { font-size: 12px; }
+.motor-navigation select, .motor-navigation button, .speed-label select { font-size: 12px; }
+#clip-time { font-size: 12px; }
+.signal-caption { gap: 5px; padding-top: 7px; }
+body[data-advanced="false"] .signal-header { min-height: 41px; }
+.advanced-section-heading { margin: 0; padding: 16px 0 12px; font-size: 16px; line-height: 1.3; font-weight: 600; }
+.inspection-sections { margin-top: 14px; }
+
+@media (max-width: 900px) {
+  .run-settings { grid-template-columns: minmax(0, 1fr) auto; }
+  .run-settings > .native-choices { grid-column: 1; grid-row: 1; grid-template-columns: minmax(130px, .7fr) minmax(220px, 1.3fr); }
+  .advanced-toggle { grid-column: 2; grid-row: 1; }
+  .neural-panel { padding-top: 14px; }
+}
+@media (max-width: 600px) {
+  .run-settings { gap: 5px 9px; }
+  .run-settings > .native-choices { grid-column: 1 / -1; grid-row: 1; grid-template-columns: minmax(105px, .75fr) minmax(0, 1.25fr); gap: 9px 12px; }
+  .native-choices > #single-control { grid-column: 2; grid-row: 1; }
+  .advanced-toggle { grid-column: 1 / -1; grid-row: 2; justify-self: start; min-height: 32px; margin-top: 2px; }
+  .body-run-summary { grid-row: 3; margin-top: 3px; }
+  .advanced-run-controls { grid-template-columns: 1fr 1fr; gap: 9px 12px; }
+  .advanced-run-controls #compare-control { grid-column: 1 / -1; grid-row: auto; }
+  .advanced-run-controls .trial-control { grid-column: 1; grid-row: auto; }
+  .advanced-run-controls .loop-control { grid-column: 2; grid-row: auto; white-space: normal; }
+  .native-choices label:not(.loop-control), .native-choices select { font-size: 12px; }
+  .toolbar #body-view, .transport .primary, .speed-label select,
+  .flow-heading p, .flow-stage output, .flow-stage small,
+  .motor-cue, .motor-cue b, .motor-cue output, .flow-footnote,
+  .stage-caption, .droplet-label-control, .signal h2 span,
+  .run-outcome .native-outcome, .active-blocks p, .pairing-note,
+  .evidence-note, footer { font-size: 12px; }
+  #clip-time { min-width: 80px; font-size: 12px; }
+}
