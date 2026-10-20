@@ -1,0 +1,131 @@
+{
+  "format": "fly-network-focus-1",
+  "source": {
+    "path": "demos/fly/network-data.json",
+    "sha256": "4c36fb3c12f252ac0f061850003a260966a1b46ebdfc89f682ff17811ec6094f",
+    "fingerprint": "UTF-8 with LF line endings; CRLF is normalized without changing JSON values.",
+    "upstream": {
+      "url": "https://github.com/philshiu/Drosophila_brain_model",
+      "commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+      "sha256": {
+        "2023_03_23_completeness_630_final.csv": "e6b71e17671a9bdb05f55e4bc6774640a1418cb7a05125e0fc994ad40f9bfdfb",
+        "2023_03_23_connectivity_630_final.parquet": "94db8c650533bc36ffa3223f2e62325d5648b8d6bd31c3a4e1c804628c7557b3",
+        "sez_neurons.pickle": "2bc5a2a8289924f2de39a8e68bdc07025cb6d6c6c6ddc83a973c0cace7cec2ce",
+        "LICENSE": "3621f6d6476189190e2960fa43f11b275ba4eca848fdac50a1ba2925de6223e8"
+      },
+      "release": "FlyWire v630",
+      "paper": "https://doi.org/10.1038/s41586-024-07763-9",
+      "license": "Model code: MIT. FlyWire-derived data: CC BY-NC 4.0.",
+      "dataLicense": "CC-BY-NC-4.0",
+      "dataLicenseURL": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "licenseBasis": "https://edit.flywire.ai/principles.html",
+      "citationGuidelines": "https://docs.google.com/spreadsheets/d/1eOPxOYoalArVDIhzVis3CsKjETzkdFkRtXSHHY3XdSU/edit",
+      "attribution": "Model: Philip Shiu, Nico Spiller and colleagues. Connectome: FlyWire Consortium, Dorkenwald et al.; annotations: Schlegel et al.; original synapses: Buhmann et al. and Heinrich et al.; neurotransmitter predictions: Eckstein, Bates et al.",
+      "citations": [
+        "https://doi.org/10.1038/s41586-024-07763-9",
+        "https://doi.org/10.1038/s41586-024-07558-y",
+        "https://doi.org/10.1038/s41586-024-07686-5",
+        "https://doi.org/10.1038/s41592-021-01183-7",
+        "https://doi.org/10.1007/978-3-030-00934-2_36",
+        "https://doi.org/10.1016/j.cell.2024.03.016"
+      ],
+      "modifications": "Deterministic bounded subset; model sign/counts and source IDs unchanged; positions and timed activity absent."
+    }
+  },
+  "selectionRule": "Within the existing bounded export: two largest synapse-count inputs to Roundup, three largest synapse-count outputs from Roundup, and largest other input to MN9. Ties resolve by ascending source parquet row. Other connections are omitted.",
+  "scope": "Selected model connections; schematic layout. Not anatomical coordinates, activity, or a causal signal route. Uniform line widths do not encode model sign or connection strength.",
+  "intervention": "All Roundup outgoing connections were zeroed in the cut condition; incoming connections were preserved. The diagram shows three selected outgoing connections only.",
+  "nodes": [
+    {
+      "id": "720575940619853515",
+      "label": "Unannotated neuron"
+    },
+    {
+      "id": "720575940621261296",
+      "label": "Unannotated neuron"
+    },
+    {
+      "id": "720575940623211725",
+      "label": "Roundup (lesion target)"
+    },
+    {
+      "id": "720575940624023188",
+      "label": "Unannotated neuron"
+    },
+    {
+      "id": "720575940625164176",
+      "label": "Unannotated neuron"
+    },
+    {
+      "id": "720575940630820919",
+      "label": "Unannotated neuron"
+    },
+    {
+      "id": "720575940660219265",
+      "label": "MN9 (saved readout)"
+    }
+  ],
+  "edges": [
+    {
+      "row": 7017932,
+      "source": "720575940624023188",
+      "target": "720575940623211725",
+      "signedCount": 290,
+      "synapses": 290,
+      "modelSign": 1,
+      "intervention": "unchanged"
+    },
+    {
+      "row": 7614185,
+      "source": "720575940625164176",
+      "target": "720575940623211725",
+      "signedCount": -241,
+      "synapses": 241,
+      "modelSign": -1,
+      "intervention": "unchanged"
+    },
+    {
+      "row": 6541012,
+      "source": "720575940623211725",
+      "target": "720575940660219265",
+      "signedCount": 424,
+      "synapses": 424,
+      "modelSign": 1,
+      "intervention": "zeroed"
+    },
+    {
+      "row": 6540857,
+      "source": "720575940623211725",
+      "target": "720575940630820919",
+      "signedCount": 155,
+      "synapses": 155,
+      "modelSign": 1,
+      "intervention": "zeroed"
+    },
+    {
+      "row": 6541071,
+      "source": "720575940623211725",
+      "target": "720575940621261296",
+      "signedCount": 153,
+      "synapses": 153,
+      "modelSign": 1,
+      "intervention": "zeroed"
+    },
+    {
+      "row": 4506535,
+      "source": "720575940619853515",
+      "target": "720575940660219265",
+      "signedCount": 561,
+      "synapses": 561,
+      "modelSign": 1,
+      "intervention": "unchanged"
+    }
+  ],
+  "output": {
+    "path": "assets/portfolio/fly-network-focus.svg",
+    "sha256": "19fe42a4a93c0e04320c1f4fc9d7ebf788c22cf4eb0e3d8f4d0a3752a6a5defc",
+    "width": 600,
+    "height": 430
+  },
+  "rebuild": "node scripts/render-fly-network.mjs"
+}

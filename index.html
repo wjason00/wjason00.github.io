@@ -65,7 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261020-public" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-network" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -93,7 +93,7 @@
       crossorigin
     />
     <script src="./theme.js"></script>
-    <script src="./script.js?v=20261020-public" defer></script>
+    <script src="./script.js?v=20261020-network" defer></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -171,17 +171,15 @@
         <div class="section-heading research__heading"><h2 id="experience-title">Research</h2></div>
         <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
           <header class="fly-project-heading"><h3 id="fly-title">Fly feeding circuit</h3><p>Does disconnecting Roundup, a circuit neuron, reduce activity in motor neuron MN9?</p></header>
-          <div class="fly-media" id="fly-visuals" aria-label="Illustrative fly replay and saved experimental result">
-            <figure class="fly-replay">
-              <h4>Illustrative 3D replay</h4>
-              <video id="fly-preview" controls playsinline muted preload="none"
-                poster="./assets/portfolio/fly-preview-20261020.webp"
-                width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
-                aria-describedby="fly-replay-caption">
-                <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
-                <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
-              </video>
-              <figcaption id="fly-replay-caption">Prescribed sugar input, intact circuit, trial 1; ¼ speed. <strong>Uncalibrated movement from a separate simulation archive</strong>, with assumed relaxation after 1 s. The film is separate from the paired comparison. <a href="./demos/fly/?v=20261020-public#body">Explore the 3D replay</a>.</figcaption>
+          <div class="fly-media" id="fly-visuals" aria-label="Circuit intervention and paired simulation result">
+            <figure class="fly-circuit">
+              <h4>The circuit intervention</h4>
+              <a href="./demos/fly/?v=20261020-network#connections" aria-label="Explore the circuit connections">
+                <img src="./assets/portfolio/fly-network-focus.svg" width="600" height="430"
+                  alt="Selected model connections around Roundup and motor neuron MN9. Roundup's outgoing connections are marked as cut; its incoming connections remain."
+                  aria-describedby="fly-network-caption" />
+              </a>
+              <figcaption id="fly-network-caption">Selected model connections; schematic layout. The experiment cuts all Roundup outputs; only selected links are shown. Incoming connections remain. This is wiring, not activity flow.</figcaption>
             </figure>
             <figure class="research-result-figure fly-comparison">
               <h4>Paired simulation result</h4>
@@ -194,7 +192,7 @@
           </div>
 <div class="research-feature__copy fly-study-summary" id="fly-strength-study">
           <div><h4>Connection-strength study</h4><p class="fly-study-contribution">I proposed and directed a study of whether removing Roundup’s outputs still reduces MN9 activity when connection strength changes.</p></div>
-          <div><p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p><p class="research-result-limit">The result concerns one motor neuron and input regime in a computational model; it does not establish a change in real feeding behaviour.</p><a class="research-study-link" href="./demos/fly/?v=20261020-public#connections">Explore the circuit comparison</a></div>
+          <div><p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p><p class="research-result-limit">The result concerns one motor neuron and input regime in a computational model; it does not establish a change in real feeding behaviour.</p><a class="research-study-link" href="./demos/fly/?v=20261020-network#connections">Explore the circuit comparison</a></div>
           </div>
           <details class="project-notes research-evidence">
               <summary>Methods &amp; sources</summary>
@@ -203,8 +201,25 @@
               <p>The five seeds represent alternative model inputs, not animals. The comparison covers one neuron intervention, motor output and input regime. The source paper corrects left–right labels in its dataset; genetic-driver coverage and historical cell-ID lineage are not established here.</p>
               <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
               <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-              <p><a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The chart shows the 15 matched simulation pairs. The video covers −0.4 to 2.0 simulated seconds, using a separate motor archive and an illustrative movement mapping.</p>
+              <p><a href="./assets/portfolio/fly-network-focus.json">Network selection and sources</a> · <a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The chart shows the 15 matched simulation pairs. The video covers −0.4 to 2.0 simulated seconds, using a separate motor archive and an illustrative movement mapping.</p>
           </details>
+          <section class="fly-replay-preview" aria-labelledby="fly-replay-title">
+            <div class="fly-replay-intro">
+              <h4 id="fly-replay-title">Explore the 3D fly</h4>
+              <p>Replay simulated motor spikes alongside whole-fly and mouth views. Rotate the fly or step through the activity in the interactive replay.</p>
+              <a class="research-study-link" href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
+            </div>
+            <figure class="fly-replay">
+              <video id="fly-preview" controls playsinline muted preload="none"
+                poster="./assets/portfolio/fly-preview-20261020.webp"
+                width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
+                aria-describedby="fly-replay-caption">
+                <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
+                <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
+              </video>
+              <figcaption id="fly-replay-caption">Prescribed sugar input, intact circuit, trial 1; ¼ speed. <strong>Uncalibrated movement from a separate simulation archive</strong>, with assumed relaxation after 1 s. The film is separate from the paired comparison.</figcaption>
+            </figure>
+          </section>
           <section class="research-followup" aria-labelledby="fly-timing-title">
             <p class="eyebrow">Input timing</p>
             <h4 id="fly-timing-title">Does timing change the effect of cutting more connections?</h4>

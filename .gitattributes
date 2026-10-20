@@ -28,3 +28,7 @@ demos/fly/body/** -text whitespace=cr-at-eol
 demos/fly/vendor/** -text whitespace=cr-at-eol
 demos/fly/morphology-data.json -text whitespace=cr-at-eol
 demos/fly/morphology-provenance.json -text whitespace=cr-at-eol
+
+# Generated circuit figure and its receipt name exact output bytes.
+assets/portfolio/fly-network-focus.svg -text
+assets/portfolio/fly-network-focus.json -text

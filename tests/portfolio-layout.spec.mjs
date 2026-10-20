@@ -124,21 +124,30 @@ test('the Fly question precedes its media and default copy speaks to visitors', 
 });
 
 for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
-  test(`first screen exposes the playable Fly media at ${viewport.width}px`, async ({ page }) => {
+  test(`first screen exposes the Fly circuit and prioritises the paired result at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.goto('/');
-    const video = page.locator('#fly-preview');
-    await expect(video).toHaveAttribute('controls', '');
-    const videoBox = await video.boundingBox();
-    expect(videoBox.width).toBeGreaterThanOrEqual(viewport.width > 1000 ? 600 : 330);
-    expect(videoBox.height).toBeGreaterThanOrEqual(viewport.width > 1000 ? 330 : 185);
-    expect(videoBox.y).toBeGreaterThanOrEqual(0);
-    expect(videoBox.y + videoBox.height).toBeLessThanOrEqual(viewport.height);
+    const network = page.locator('#fly-visuals .fly-circuit img');
+    const chart = page.locator('#fly-visuals .fly-comparison img');
+    await expect(network).toBeVisible();
+    await expect(network).toHaveAttribute('src', './assets/portfolio/fly-network-focus.svg');
+    const networkBox = await network.boundingBox();
+    const chartBox = await chart.boundingBox();
+    expect(networkBox.width).toBeGreaterThanOrEqual(viewport.width > 1000 ? 500 : 340);
+    expect(networkBox.height).toBeGreaterThanOrEqual(viewport.width > 1000 ? 350 : 240);
+    expect(networkBox.y).toBeGreaterThanOrEqual(0);
+    expect(networkBox.y + networkBox.height).toBeLessThanOrEqual(viewport.height);
     if (viewport.width > 1000) {
-      const chartBox = await page.locator('.fly-comparison img').boundingBox();
-      expect(chartBox.width).toBeGreaterThanOrEqual(380);
-      expect(chartBox.height).toBeGreaterThanOrEqual(450);
+      expect(chartBox.width).toBeGreaterThanOrEqual(400);
+      expect(chartBox.height).toBeGreaterThanOrEqual(475);
       expect(chartBox.y + chartBox.height).toBeLessThanOrEqual(viewport.height);
+      expect(Math.abs(networkBox.y - chartBox.y)).toBeLessThan(3);
+      expect(chartBox.x).toBeGreaterThan(networkBox.x + networkBox.width);
+    } else {
+      expect(chartBox.width).toBeGreaterThanOrEqual(340);
+      expect(chartBox.y).toBeGreaterThan(networkBox.y + networkBox.height);
+      const studyBox = await page.locator('.fly-study-summary').boundingBox();
+      expect(studyBox.y).toBeGreaterThan(chartBox.y + chartBox.height);
     }
   });
 }
@@ -169,11 +178,18 @@ test('Fly replay and connection links open the matching explorer views', async (
 });
 
 for (const width of [1366, 820, 390]) {
-  test(`fly presentation pairs a playable source replay with saved evidence at ${width}px`, async ({ page }) => {
+  test(`Fly circuit and paired result precede the separate playable replay at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     const video = page.locator('#fly-preview');
     const chart = page.locator('.fly-comparison img');
+    const network = page.locator('#fly-visuals .fly-circuit img');
+    const replay = page.locator('.fly-replay-preview');
+    await expect(page.locator('#fly-visuals video')).toHaveCount(0);
+    await expect(replay.locator('#fly-preview')).toHaveCount(1);
+    await expect(page.locator('#fly-visuals .fly-circuit h4')).toHaveText('The circuit intervention');
+    await expect(page.locator('#fly-visuals .fly-circuit figcaption')).toContainText('Selected model connections; schematic layout.');
+    await expect(page.locator('#fly-visuals .fly-circuit > a')).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
     await expect(video).toHaveAttribute('controls', '');
     await expect(video).toHaveAttribute('preload', 'none');
     await expect(video).not.toHaveAttribute('autoplay');
@@ -184,13 +200,21 @@ for (const width of [1366, 820, 390]) {
     await expect(chart).toHaveAttribute('src', './assets/portfolio/fly-paired-comparison.svg');
     const videoBox = await video.boundingBox();
     const chartBox = await chart.boundingBox();
+    const networkBox = await network.boundingBox();
+    const studyBox = await page.locator('.fly-study-summary').boundingBox();
+    const replayBox = await replay.boundingBox();
+    expect(replayBox.y).toBeGreaterThan(studyBox.y + studyBox.height);
+    expect(videoBox.y).toBeGreaterThan(chartBox.y + chartBox.height);
+    expect(videoBox.width).toBeGreaterThanOrEqual(width > 1000 ? 500 : 330);
+    expect(await replay.evaluate(element => Boolean(document.querySelector('#fly-circuit > .research-evidence').compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+    expect(await replay.evaluate(element => Boolean(element.compareDocumentPosition(document.querySelector('.research-followup')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
     if (width > 1000) {
-      expect(Math.abs(videoBox.y - chartBox.y)).toBeLessThan(3);
-      expect(chartBox.x).toBeGreaterThan(videoBox.x + videoBox.width);
-      expect(videoBox.width).toBeGreaterThan(650);
+      expect(Math.abs(networkBox.y - chartBox.y)).toBeLessThan(3);
+      expect(chartBox.x).toBeGreaterThan(networkBox.x + networkBox.width);
+      expect(networkBox.width).toBeGreaterThanOrEqual(500);
       expect(chartBox.width).toBeGreaterThanOrEqual(400);
     } else {
-      expect(chartBox.y).toBeGreaterThan(videoBox.y + videoBox.height);
+      expect(chartBox.y).toBeGreaterThan(networkBox.y + networkBox.height);
       expect(chartBox.width).toBeGreaterThanOrEqual(340);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -213,8 +237,9 @@ for (const width of [1366, 820, 390]) {
           const header = document.querySelector('.site-header');
           window.scrollTo({ top: media.getBoundingClientRect().top + scrollY - header.offsetHeight - 20, behavior: 'instant' });
         });
-        await expect(page.locator('.fly-replay h4')).toBeInViewport();
+        await expect(page.locator('#fly-visuals .fly-circuit h4')).toBeInViewport();
         await page.locator('#fly-visuals').screenshot({ path: `output/fly-figure-20261020/presentation-${width}-${theme}.png` });
+        await replay.screenshot({ path: `output/fly-figure-20261020/separate-replay-${width}-${theme}.png` });
       }
     }
   });
@@ -228,6 +253,8 @@ test.describe('homepage methods without JavaScript', () => {
     await expect(page.locator('#fly-preview')).toHaveAttribute('controls', '');
     await expect(page.locator('#fly-preview source')).toHaveAttribute('src', './assets/portfolio/fly-preview-20261020.mp4');
     await expect(page.locator('.fly-comparison img')).toBeVisible();
+    await expect(page.locator('#fly-visuals .fly-circuit img')).toBeVisible();
+    await expect(page.locator('#fly-visuals video')).toHaveCount(0);
     for (const id of ['morphbrain', 'model-morpher', 'morphliner']) {
       await expect(page.locator(`#preview-${id}`)).toBeVisible();
       await expect(page.locator(`#preview-${id} article#${id}`)).toBeVisible();

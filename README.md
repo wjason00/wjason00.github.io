@@ -4,6 +4,42 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Focused circuit figure - 20 October 2026
+
+The [Fly project](https://wjason00.github.io/?v=20261020-network#fly-circuit)
+now pairs a focused network diagram with the unchanged 15-pair result chart.
+The diagram opens the interactive Connections view. The 3D movie remains in a
+separate, named preview below the scientific account, with its native playback
+and separate-archive/uncalibrated-movement limits retained.
+
+The diagram draws seven actual source neurons and six directed connections:
+the two largest-count incoming links to Roundup, its three largest outgoing
+links, and the largest other input to MN9 within the existing bounded export.
+Its caption states that only selected links are shown, while the experiment
+cuts all Roundup outputs. Dashed orange cut links match the result chart;
+incoming connections remain solid. Positions are schematic, not anatomy,
+activity propagation or a claimed causal pathway.
+
+Editable source: [SVG](assets/portfolio/fly-network-focus.svg),
+[selection and attribution](assets/portfolio/fly-network-focus.json), and
+[reproducible renderer](scripts/render-fly-network.mjs). The source fingerprint
+uses UTF-8/LF bytes consistently across Windows and Linux; JSON values remain
+unchanged. Four focused tests check exact IDs, direction, intervention,
+selection, output hash and cross-platform reproduction. All 31 source/data
+checks and 33 browser cases pass; final release evidence belongs in
+`output/portfolio-network-20261020/verification.json`.
+
+An independent source review matched all six edge rows and their attributes;
+its one description correction identifies MN9 as the simulation readout.
+Current source/visual review and desktop/phone captures are in the same output
+folder. The canonical UX sheet reflects the accepted science-first layout.
+
+[Desktop preview](https://drive.google.com/file/d/1It0OK_xQtJiSqes5nLy913lZfpHij1hO/view?usp=drivesdk)
+and [phone preview](https://drive.google.com/file/d/1xwgciN0qHZKLIfSy3R9syIRRjuDzG1F6/view?usp=drivesdk)
+are in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+No saved result, source export, renderer, geometry or movement rule changed.
+Next action: see T-173.
+
 ## Public-facing copy - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-public) now leads with

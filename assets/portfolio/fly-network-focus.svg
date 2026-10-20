@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="430" viewBox="0 0 600 430" role="img" aria-labelledby="network-title network-desc">
+  <title id="network-title">Selected model connections around Roundup and MN9</title>
+  <desc id="network-desc">Schematic of seven neurons and six directed connections selected from a bounded FlyWire model export. Two selected inputs to Roundup remain unchanged. Three selected Roundup outputs, including its connection to the motor neuron MN9, the simulation readout, are dashed to mark connections zeroed in the cut condition. One other input to MN9 remains unchanged. Other model connections are omitted; all Roundup outgoing connections were zeroed in the experiment. This is connectivity, not neural activity, anatomy, or proof of a causal signal route. Line widths do not encode strength or sign.</desc>
+  <metadata>Source: demos/fly/network-data.json. Selection and attribution: fly-network-focus.json. Rebuild: node scripts/render-fly-network.mjs.</metadata>
+  <style>
+    text { font-family: 'Source Sans 3', Arial, sans-serif; fill: #243446; }
+    .edge { fill: none; stroke-width: 3; }
+    .unchanged { stroke: #788799; }
+    .cut { stroke: #b95726; stroke-dasharray: 8 7; }
+    .node { stroke-width: 2; }
+    .other { fill: #e4eaf0; stroke: #788799; }
+    .roundup { fill: #b95726; stroke: #b95726; }
+    .readout { fill: #126b68; stroke: #126b68; }
+    .label { font-size: 26px; font-weight: 600; }
+    .legend { font-size: 24px; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#788799"/></marker>
+    <marker id="cut-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#b95726"/></marker>
+  </defs>
+  <rect width="600" height="430" fill="#fff"/>
+  <circle class="node other" cx="29" cy="33" r="9"/>
+  <text class="legend" x="49" y="41">Other selected neurons</text>
+  <path data-edge-row="7017932" data-source="720575940624023188" data-target="720575940623211725" data-intervention="unchanged" class="edge unchanged" d="M 99.82 124.78 L 224.66 169.75" marker-end="url(#arrow)"><title>720575940624023188 → 720575940623211725; connection unchanged by the intervention</title></path>
+  <path data-edge-row="7614185" data-source="720575940625164176" data-target="720575940623211725" data-intervention="unchanged" class="edge unchanged" d="M 99.37 257.10 L 225.66 202.78" marker-end="url(#arrow)"><title>720575940625164176 → 720575940623211725; connection unchanged by the intervention</title></path>
+  <path data-edge-row="6541012" data-source="720575940623211725" data-target="720575940660219265" data-intervention="zeroed" class="edge cut" d="M 303.76 200.78 L 451.08 264.01" marker-end="url(#cut-arrow)"><title>720575940623211725 → 720575940660219265; outgoing model connection zeroed in cut condition</title></path>
+  <path data-edge-row="6540857" data-source="720575940623211725" data-target="720575940630820919" data-intervention="zeroed" class="edge cut" d="M 303.57 168.80 L 454.14 102.12" marker-end="url(#cut-arrow)"><title>720575940623211725 → 720575940630820919; outgoing model connection zeroed in cut condition</title></path>
+  <path data-edge-row="6541071" data-source="720575940623211725" data-target="720575940621261296" data-intervention="zeroed" class="edge cut" d="M 306.99 184.01 L 485.01 179.62" marker-end="url(#cut-arrow)"><title>720575940623211725 → 720575940621261296; outgoing model connection zeroed in cut condition</title></path>
+  <path data-edge-row="4506535" data-source="720575940619853515" data-target="720575940660219265" data-intervention="unchanged" class="edge unchanged" d="M 345.51 310.61 L 448.93 287.34" marker-end="url(#arrow)"><title>720575940619853515 → 720575940660219265; connection unchanged by the intervention</title></path>
+  <circle data-node-id="720575940619853515" class="node other" cx="326" cy="315" r="15"><title>Unannotated neuron; source ID 720575940619853515</title></circle>
+  <circle data-node-id="720575940621261296" class="node other" cx="510" cy="179" r="15"><title>Unannotated neuron; source ID 720575940621261296</title></circle>
+  <circle data-node-id="720575940623211725" class="node roundup" cx="267" cy="185" r="35"><title>Roundup (lesion target); source ID 720575940623211725</title></circle>
+  <circle data-node-id="720575940624023188" class="node other" cx="81" cy="118" r="15"><title>Unannotated neuron; source ID 720575940624023188</title></circle>
+  <circle data-node-id="720575940625164176" class="node other" cx="81" cy="265" r="15"><title>Unannotated neuron; source ID 720575940625164176</title></circle>
+  <circle data-node-id="720575940630820919" class="node other" cx="477" cy="92" r="15"><title>Unannotated neuron; source ID 720575940630820919</title></circle>
+  <circle data-node-id="720575940660219265" class="node readout" cx="486" cy="279" r="28"><title>MN9 (saved readout); source ID 720575940660219265</title></circle>
+  <text class="label" x="267" y="244" text-anchor="middle">Roundup</text>
+  <text class="label" x="486" y="332" text-anchor="middle">MN9 readout</text>
+  <line class="edge unchanged" x1="24" y1="373" x2="69" y2="373" marker-end="url(#arrow)"/>
+  <text class="legend" x="87" y="381">Connections left unchanged</text>
+  <line class="edge cut" x1="24" y1="410" x2="69" y2="410" marker-end="url(#cut-arrow)"/>
+  <text class="legend" x="87" y="418">Roundup outputs cut</text>
+</svg>
