@@ -1,0 +1,26 @@
+{
+  "description": "Unmodified screenshot crop of the existing one-error attribution and reconstruction-error plots; synthetic data, one population, five noise seeds.",
+  "selected_errors_per_stimulus": 1,
+  "crop_css_pixels": {
+    "x": 8,
+    "y": 607,
+    "width": 374,
+    "height": 599
+  },
+  "image_pixels": {
+    "width": 748,
+    "height": 1198
+  },
+  "source_sections": [
+    "rare-errors.html: #seed-diagnostics .diagnostics-heading through .result-note (two existing SVG plots)",
+    "assets/portfolio/study.js: select(1) and metric()",
+    "assets/portfolio/rare-errors/data.js"
+  ],
+  "source_study_provenance": "assets/portfolio/rare-errors/provenance.json",
+  "source_sha256_utf8_lf": {
+    "rare-errors.html": "dd2ff74e420eca76db75bafc12346d96792f288cc5e2647771fd363b0c109fff",
+    "assets/portfolio/study.js": "9fec7cf4cf33c41355460c2d7e725798bd6f405aca6bacadae706d8f02006b00",
+    "assets/portfolio/rare-errors/data.js": "5167d1bc52bed7f031f7b347de8c37fa09f7d50cbe3f262925a999481d9ef461"
+  },
+  "generator": "scripts/render-rare-errors-preview.mjs"
+}

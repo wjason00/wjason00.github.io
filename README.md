@@ -4,6 +4,32 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Reader orientation and previews - 20 October 2026
+
+The [portfolio](https://wjason00.github.io/?v=20261020-refinement) now provides
+direct research-area links before the long Fly account. A supported result
+heading explains the paired chart immediately. The neural-signal preview shows
+the existing attribution and reconstruction plots at one error per stimulus,
+including all five noise seeds, separate scales and the full-range caveat.
+Its [capture source](scripts/render-rare-errors-preview.mjs) and
+[provenance](assets/portfolio/rare-errors-results-preview.json) preserve the
+selected setting and original source hashes; no values or source figures changed.
+
+The Fly recording uses the existing accessible Play/Pause, seek, time and
+full-screen controls. Its poster stays clear before playback, with native
+controls retained when JavaScript is unavailable. Browser checks cover actual
+keyboard playback, seeking, offscreen pausing and the native fallback, alongside
+research anchor placement and the existing responsive project flows.
+
+Astra/Ultra supplied the three design recommendations and accepted the combined
+desktop and phone presentation. Review records, captures and final publication
+evidence belong in `output/portfolio-refinement-20261020/`. The canonical UX sheet
+now covers research-area navigation, focused previews and playback fallback.
+
+[Desktop preview](https://drive.google.com/file/d/1YGdOtWpRKhu95CJQ16r_wVBQu1OD72rq/view?usp=drivesdk)
+and [phone preview](https://drive.google.com/file/d/12SUrJMlUPtArwWrxB54KfsPSFjMfzF9F/view?usp=drivesdk)
+are in the existing review folder. T-173 owns this portfolio pass.
+
 ## Focused circuit figure - 20 October 2026
 
 The [Fly project](https://wjason00.github.io/?v=20261020-network#fly-circuit)

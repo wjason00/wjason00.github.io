@@ -168,7 +168,14 @@
         id="experience"
         aria-labelledby="experience-title"
       >
-        <div class="section-heading research__heading"><h2 id="experience-title">Research</h2></div>
+        <div class="section-heading research__heading">
+          <h2 id="experience-title">Research</h2>
+          <nav class="research-index" aria-label="Research areas">
+            <a href="#fly-circuit">Fly circuit</a>
+            <a href="#dpca">Neural signals</a>
+            <a href="#supervised-work">EEG modelling</a>
+          </nav>
+        </div>
         <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
           <header class="fly-project-heading"><h3 id="fly-title">Fly feeding circuit</h3><p>Does disconnecting Roundup, a circuit neuron, reduce activity in motor neuron MN9?</p></header>
           <div class="fly-media" id="fly-visuals" aria-label="Circuit intervention and paired simulation result">
@@ -182,7 +189,7 @@
               <figcaption id="fly-network-caption">Selected model connections; schematic layout. The experiment cuts all Roundup outputs; only selected links are shown. Incoming connections remain. This is wiring, not activity flow.</figcaption>
             </figure>
             <figure class="research-result-figure fly-comparison">
-              <h4>Paired simulation result</h4>
+              <h4>Fewer MN9 spikes in all 15 simulated pairs</h4>
               <a href="./assets/portfolio/fly-paired-comparison.svg" aria-label="Open the paired MN9 spike-count comparison">
                 <img src="./assets/portfolio/fly-paired-comparison.svg" width="420" height="500" loading="lazy"
                   alt="Fifteen paired simulated MN9 spike counts at recurrent gains 0.8, 1.0 and 1.2. Each matched seed has fewer spikes after Roundup’s outgoing weights are zeroed." />
@@ -210,6 +217,7 @@
               <a class="research-study-link" href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
             </div>
             <figure class="fly-replay">
+              <div class="video-demo" data-recording-label="illustrative 3D fly replay">
               <video id="fly-preview" controls playsinline muted preload="none"
                 poster="./assets/portfolio/fly-preview-20261020.webp"
                 width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
@@ -217,6 +225,12 @@
                 <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
                 <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
               </video>
+              <div class="video-controls" role="group" aria-label="Fly replay playback">
+                <button class="video-play" type="button">Play</button>
+                <label><span class="sr-only">Scrub the fly replay</span><input class="video-range" type="range" min="0" max="100" step="0.1" value="0" /></label>
+                <output class="video-time">0:00 / 0:09</output>
+              </div>
+              </div>
               <figcaption id="fly-replay-caption">Prescribed sugar input, intact circuit, trial 1; ¼ speed. <strong>Uncalibrated movement from a separate simulation archive</strong>, with assumed relaxation after 1 s. The film is separate from the paired comparison.</figcaption>
             </figure>
           </section>
@@ -240,10 +254,10 @@
             <p class="research-item__scope">Six trial mixes · five noise seeds · synthetic neural activity</p>
             <a class="research-study-link" href="./rare-errors.html">Explore the rare-error experiment <span aria-hidden="true">↗</span></a>
           </div>
-          <a class="research-feature__preview" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
-            <img src="./assets/portfolio/rare-errors-preview.png" width="1366" height="744" loading="lazy"
-              alt="Study preview: choose the number of error trials and compare signal attribution with reconstruction error" />
-            <span>Change the trial mix. Inspect the result. <span aria-hidden="true">↗</span></span>
+          <a class="research-feature__preview research-feature__preview--results" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
+            <img src="./assets/portfolio/rare-errors-results-preview.png" width="748" height="1198" loading="lazy"
+              alt="Five synthetic noise-seed results at one error per stimulus: mean choice attribution 97.63%, with mean normalized reconstruction error 0.1000. Each plot shows all five seeds, on separate scales; ranges are not confidence intervals." />
+            <span>One error per stimulus. Explore the other trial mixes. <span aria-hidden="true">↗</span></span>
           </a>
         </article>
       <section class="supervised-work" id="supervised-work" aria-labelledby="supervised-title">

@@ -78,6 +78,8 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toBeVisible();
   await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toContainText(/stimulus and choice cannot be separated/);
   await expect(rareErrors.getByRole('link', { name: /Explore the rare-error experiment/ })).toHaveAttribute('href', './rare-errors.html');
+  await expect(rareErrors.locator('.research-feature__preview img')).toHaveAttribute('src', './assets/portfolio/rare-errors-results-preview.png');
+  await expect(rareErrors.locator('.research-feature__preview img')).toHaveAttribute('alt', /one error per stimulus.*all five seeds.*not confidence intervals/);
 
   const projects = [
     { id: 'morphbrain', purpose: /signalling molecules SHH and BMP\s+affect developmental patterning/, limit: /not calibrated to biological/ },
@@ -122,6 +124,29 @@ test('the Fly question precedes its media and default copy speaks to visitors', 
   const visibleCopy = await page.locator('main').innerText();
   expect(visibleCopy).not.toMatch(/no numerical findings are displayed|reload evidence|complete 30-cell grid|independently audited/i);
 });
+
+for (const width of [1366, 390]) {
+  test(`research choices reach each account below the header at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto('/');
+    const index = page.getByRole('navigation', { name: 'Research areas' });
+    for (const [name, target] of [['Neural signals', '#dpca'], ['EEG modelling', '#supervised-work'], ['Fly circuit', '#fly-circuit']]) {
+      const link = index.getByRole('link', { name, exact: true });
+      await link.scrollIntoViewIfNeeded();
+      await link.focus();
+      await link.press('Enter');
+      await expect(page).toHaveURL(new RegExp(`${target}$`));
+      await expect(page.locator(target)).toBeInViewport();
+      await expect.poll(async () => {
+        const top = await page.locator(target).evaluate(element => element.getBoundingClientRect().top);
+        const headerBottom = await page.locator('.site-header').evaluate(element => element.getBoundingClientRect().bottom);
+        return Math.abs(top - headerBottom - 20) <= 2;
+      }).toBe(true);
+    }
+    await expect(page.locator('.fly-comparison h4')).toHaveText('Fewer MN9 spikes in all 15 simulated pairs');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  });
+}
 
 for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
   test(`first screen exposes the Fly circuit and prioritises the paired result at ${viewport.width}px`, async ({ page }) => {
@@ -190,7 +215,8 @@ for (const width of [1366, 820, 390]) {
     await expect(page.locator('#fly-visuals .fly-circuit h4')).toHaveText('The circuit intervention');
     await expect(page.locator('#fly-visuals .fly-circuit figcaption')).toContainText('Selected model connections; schematic layout.');
     await expect(page.locator('#fly-visuals .fly-circuit > a')).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
-    await expect(video).toHaveAttribute('controls', '');
+    await expect(replay.locator('.video-demo')).toHaveClass(/is-enhanced/);
+    await expect(video).not.toHaveAttribute('controls');
     await expect(video).toHaveAttribute('preload', 'none');
     await expect(video).not.toHaveAttribute('autoplay');
     await expect(video).toHaveAttribute('aria-describedby', 'fly-replay-caption');
