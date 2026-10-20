@@ -25,6 +25,8 @@ for (const width of [390, 1366]) {
   });
 
   test(`body replay keeps controls contextual and uses one scroll area at ${width}px`, async ({ page }) => {
+    // This full compare/block/replay flow uses software WebGL on the CI runner.
+    test.setTimeout(60_000);
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/demos/fly/#body');
     await expect(page.getByRole('tab', { name: '3D fly', exact: true })).toHaveAttribute('aria-selected', 'true');
