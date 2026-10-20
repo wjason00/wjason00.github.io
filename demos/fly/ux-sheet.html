@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,follow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'none'; style-src 'sha256-5TV0yFp+UilOEIXARsQjj8YDLZyBejMo3Ry4hv++3ow='; font-src 'self'; img-src 'self' data:; connect-src 'none'">
-<meta name="description" content="The Fly explorer’s UX review, Basic and Advanced design contract, release checklist and proposed observational tasks, 20 October 2026.">
+<meta name="description" content="The portfolio and Fly explorer’s UX review, disclosure design contract, release checklist and proposed observational tasks, 20 October 2026.">
 <title>UX review and design rules · Fly explorer · 20 October 2026</title>
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <style>
@@ -22,7 +22,7 @@
 <a class="skip" href="#main">Skip to design rules</a>
 <nav class="page-nav" aria-label="Review navigation"><a href="./?v=20261020-simple">Back to the Fly explorer</a><a href="../../third-party-notices.html#fly">Project sources</a></nav>
 <main id="main">
-<header class="sheet-header"><p class="context">Fly explorer · 20 October 2026</p><h1>UX review and design rules</h1><p class="scope">Connections, 3D neurons and 3D fly. A continuing design contract; not a release-verification receipt.</p></header>
+<header class="sheet-header"><p class="context">Portfolio and Fly explorer · 20 October 2026</p><h1>UX review and design rules</h1><p class="scope">The portfolio homepage, Connections, 3D neurons and 3D fly. A continuing design contract; not a release-verification receipt.</p></header>
 
 <section class="front-sheet" aria-label="Governing rules">
 <p class="principle">The scientific scene and its readout are the default. Advanced reveals specialised tools, never the meaning.</p>
@@ -47,6 +47,18 @@
 </section>
 
 <div class="deeper">
+<details id="homepage-contract"><summary>Portfolio homepage: choose a project before reading its methods</summary><div class="detail-body">
+<p>The homepage helps a visitor choose work to inspect. The explorer helps them inspect a scientific scene and change its settings. Their disclosure controls serve different tasks: use local <strong>Methods &amp; sources</strong> on each software project, and <strong>Advanced</strong> for specialised explorer settings.</p>
+<ul>
+<li>Keep the research question, personal contribution, main result, critical limit and one primary next action visible. For software, keep its purpose, working status and interpretation limit visible. Optional methods must not carry the only explanation of what the project does or what its result means.</li>
+<li>Use one shared software preview stage. A project account supplies the concise purpose and primary route; its preview-return link supports returning to the stage. Do not repeat the same question, description or competing launch paths across the gallery, account and call to action.</li>
+<li>Keep one native <code>details</code> disclosure per software project. Consolidate related methods under internal headings, preserving existing deep-link IDs and source/download links. Keyboard access and the method text must work without JavaScript.</li>
+<li>Keep the Fly result figure beside its question and saved comparison result. All 15 paired comparisons and the simulation-to-behaviour limit remain visible with methods closed. Keep the timing and rare-error experiments directly discoverable.</li>
+<li>Test the closed default surface, keyboard expansion, direct links into optional material, preview navigation and both phone and desktop widths. A shorter page still fails if it hides the evidence or changes its scope.</li>
+</ul>
+<p>This contract records the intended hierarchy. Passing layout and interaction checks does not establish that a new visitor understands the research; use the proposed observer tasks below to assess that separately.</p>
+</div></details>
+
 <details id="audit"><summary>Audit and implementation guardrails</summary><div class="detail-body">
 <p>The body previously gave scene annotations, raster, event stepping, activity badges and contact metrics equal prominence. Anatomy repeated its neuron picker and placed experimental controls above static shapes. Selection explanations mixed role, limitations and audit metadata. The remedy is prioritisation, not removing scientific access.</p>
 <ul>

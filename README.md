@@ -4,6 +4,35 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Homepage disclosure — 20 October 2026
+
+The [portfolio](https://wjason00.github.io/?v=20261020-portfolio) now has a
+shorter introduction and compact software accounts. Each project keeps its
+purpose, main action and critical limit visible, with one native **Methods &
+sources** disclosure for supporting detail. MorphBrain's synthetic study keeps
+its existing deep-link ID inside the combined disclosure. The single preview
+stage, launch routes and gallery behaviour are retained.
+
+The Fly contribution, full saved result and interpretation limit remain visible;
+the longer framing paragraph remains in its evidence disclosure. The timing
+follow-up and rare-error question/result wording introduced in `bc44506` are
+preserved. Frozen results, source figures and scientific runtimes are unchanged.
+
+The [canonical UX sheet](demos/fly/ux-sheet.html#homepage-contract) now distinguishes
+homepage project selection from specialised explorer settings. The build and 12
+affected browser checks passed, including keyboard use without JavaScript,
+native disclosure deep links, four responsive widths, gallery playback and actual
+model loading/recovery. Desktop and phone captures in both themes were inspected.
+Release and public-file verification belong in the local receipt
+`output/portfolio-ux-20261020/verification.json`; these checks do not establish
+visitor comprehension or new scientific validation.
+
+Review captures: [desktop opening](https://drive.google.com/file/d/1dm5Vjtw5w6EBGSPUyqUQtmRH83uowB9T/view)
+and [phone project accounts](https://drive.google.com/file/d/1Pj1Uje0GV0NbmFxZq59tYbLCqN5aAqNC/view),
+in the [existing design review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+The complete LinkedIn package remains owned by T-178 in the Applications local-site
+record; no live profile edit is part of this release. Next action: see T-173.
+
 ## Portfolio refinement — 19 October 2026
 
 The homepage now puts a compact factual introduction and research before the

@@ -65,7 +65,7 @@
     />
     <title>Jason Wang — Computational Neuroscience &amp; Machine Learning</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-portfolio" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -161,10 +161,8 @@
           <p class="intro__context">UCL · Neuroscience undergraduate</p>
           <h1 id="intro-title">Jason Wang</h1>
           <p class="intro__text">
-            I’m Jason, a UCL neuroscience undergraduate interested in
-            computational neuroscience and machine learning. My recent projects ask which
-            predictions survive changes in a model or its analysis, including a
-            sensitivity study of a published fly feeding-circuit model.
+            I study neuroscience at UCL and build models to explore
+            how neural circuits work and where their predictions break down.
           </p>
         </div>
         <div class="intro__links">
@@ -202,12 +200,13 @@
           <div class="research-feature__copy">
             <p class="eyebrow">Connectome modelling · October 2026</p>
             <h3 id="fly-title">Does the circuit effect hold?</h3>
-            <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
+            <p>I proposed and directed this sensitivity study of a published fly feeding-circuit model.</p>
             <p>In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p>
-            <p><a href="./demos/fly/">Inspect source neurons and the illustrative fly replay</a></p>
+            <p><a href="./demos/fly/?v=20261020-simple">Explore the fly model</a></p>
             <p class="research-result-limit">Exploratory model sensitivity: one circuit intervention, output neuron and input regime, at three selected gains. These simulated spikes do not establish a change in real feeding behaviour.</p>
             <details class="project-notes research-evidence">
               <summary>Methods, limits &amp; evidence</summary>
+              <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
               <p>All 30 scientific runs passed independent saved-output verification. Each trial lasted one simulated second. Within each seed, intact and disconnected conditions at all three gains shared both input candidates and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched in these saved runs. Both this shared-candidate design and an execution correction were post-failure amendments, not preregistered.</p>
               <p>Five input seeds are not five animals. No statistical significance, biological validation, novelty or full replication of the source paper is claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.</p>
               <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
@@ -255,7 +254,7 @@
             <p class="eyebrow">Selected personal projects</p>
             <h2 id="projects-title">Models &amp; software</h2>
           </div>
-          <p>Explore the previews, then read the methods and limits.</p>
+          <p>Try a model or watch the tools in use.</p>
         </div>
         <figure
           class="project-gallery gallery"
@@ -531,15 +530,10 @@
           id="morphbrain"
           aria-labelledby="morphbrain-title"
         >
-          <div class="project__number" aria-hidden="true">01</div>
           <div class="project__identity">
-            <p class="eyebrow">Interactive model</p>
             <h3 id="morphbrain-title">MorphBrain</h3>
-            <p class="project__question">
-              What happens when you change the signals?
-            </p>
             <a
-              class="button button--primary"
+              class="text-link"
               href="./demos/morphbrain/"
               data-launch-demo
               >Try the model <span aria-hidden="true">↗</span></a
@@ -560,7 +554,7 @@
               measurements.
             </p>
             <details class="project-notes" id="morphbrain-notes">
-              <summary>Experiment notes &amp; sources</summary>
+              <summary>Methods &amp; sources</summary>
               <p>
                 To reproduce the demo example, leave both source strengths at 1×
                 and remove BMP bilateral region 1 (either outermost handle).
@@ -603,11 +597,7 @@
                 molecular intervention. Further numerical details are available
                 in the demo’s evidence panel.
               </p>
-            </details>
-            <details class="project-notes" id="morphbrain-synthetic-study">
-              <summary>
-                Can measurements distinguish diffusion from clearance?
-              </summary>
+              <h4 id="morphbrain-synthetic-study">Can measurements distinguish diffusion from clearance?</h4>
               <p>
                 <strong>Synthetic parameter recovery:</strong> a separate 1D
                 study examined which measurements distinguish diffusion from
@@ -634,11 +624,8 @@
           id="model-morpher"
           aria-labelledby="model-morpher-title"
         >
-          <div class="project__number" aria-hidden="true">02</div>
           <div class="project__identity">
-            <p class="eyebrow">Geometry prototype</p>
             <h3 id="model-morpher-title">Model Morpher</h3>
-            <p class="project__question">Morphing without matching vertices.</p>
             <a
               class="text-link"
               href="https://github.com/wjason00/model-morpher"
@@ -659,7 +646,7 @@
               anatomy or model biological development.
             </p>
             <details class="project-notes">
-              <summary>Method &amp; source</summary>
+              <summary>Methods &amp; sources</summary>
               <p>
                 Mesh repair → SDF sampling → interpolation → isosurface
                 extraction. CPU and conditional PyTorch/CUDA paths. Surface
@@ -682,13 +669,8 @@
           id="morphliner"
           aria-labelledby="morphliner-title"
         >
-          <div class="project__number" aria-hidden="true">03</div>
           <div class="project__identity">
-            <p class="eyebrow">Animation software</p>
             <h3 id="morphliner-title">Morphliner</h3>
-            <p class="project__question">
-              From a 3D scene to a finished video.
-            </p>
             <a
               class="text-link"
               href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist"
@@ -709,7 +691,7 @@
               release remains in development.
             </p>
             <details class="project-notes">
-              <summary>Build, verification &amp; credits</summary>
+              <summary>Methods &amp; sources</summary>
               <p>
                 The demo shows camera movement and captions around one model.
                 It is a compressed excerpt of a 1080p export; it does not show
