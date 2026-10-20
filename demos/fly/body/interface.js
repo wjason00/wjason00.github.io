@@ -16,11 +16,9 @@
     const trial = document.getElementById('trial');
     if (!trial.options.length) return;
     const compare = document.getElementById('compare-mode').getAttribute('aria-pressed') === 'true';
-    const input = selectedText('stimulus').replace(/\s*\u00b7\s*/g, ' ');
-    const circuit = compare ? 'Compare: Intact + ' + selectedText('comparison') : selectedText('circuit');
     const speed = Number(document.getElementById('speed').value);
-    const cycle = document.getElementById('repeat').checked ? 'cycling trials' : 'cycle off';
-    const text = [input, circuit, 'trial ' + (Number(trial.value) + 1) + '/30', speed + '\u00d7 speed', compare ? '' : 'single fly', cycle].filter(Boolean).join('; ') + '.';
+    const cycle = document.getElementById('repeat').checked ? 'cycling trials' : '';
+    const text = ['Saved trial ' + (Number(trial.value) + 1) + ' of 30', speed + '\u00d7 speed', compare ? 'comparison active' : '', cycle].filter(Boolean).join(' \u00b7 ');
     if (runSummary.textContent !== text) runSummary.textContent = text;
   }
 

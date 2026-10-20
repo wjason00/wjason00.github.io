@@ -185,8 +185,8 @@
       "file": "interface.js",
       "source": "new portfolio interface",
       "preserved": false,
-      "bytes": 4973,
-      "sha256": "4ed2fb0a940dc3b4e814a222164fa4f51e45f9f65622626d22dbe96570cdf30a",
+      "bytes": 4781,
+      "sha256": "f89e28090bb14f98421059781bf9a8e006cf2bec081ca3a0ba48142e7bedaaf7",
       "transform": "Presentation only: accessible Advanced disclosure, visible run state and drive-block warning, and natural-content iframe sizing."
     }
   ]
