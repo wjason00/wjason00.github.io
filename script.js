@@ -114,8 +114,6 @@ function selectProject(name, focus = false) {
       else if (!video.closest("[hidden]")) prepareVideo(video);
     });
   });
-  gallery.querySelector(".gallery__count").textContent =
-    `0${projectTabs.indexOf(selected) + 1} / 03`;
   if (focus) selected.focus();
 }
 
@@ -182,31 +180,26 @@ document.querySelectorAll("[data-morphliner-showcase]").forEach((showcase) => {
 });
 
 function selectFromHash() {
-  const name = location.hash.replace(/^#(?:preview-)?/, "");
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); }
+  catch { return; }
+  const target = document.getElementById(id);
+  const panel = target?.closest(".gallery-panel");
+  const name = panel ? panel.id.replace(/^preview-/, "") : id.replace(/^preview-/, "");
   if (projectTabs.some((tab) => tab.dataset.project === name))
     selectProject(name);
+  if (target && panel) {
+    for (let ancestor = target.parentElement; ancestor; ancestor = ancestor.parentElement) {
+      if (ancestor instanceof HTMLDetailsElement) ancestor.open = true;
+    }
+    if (target instanceof HTMLDetailsElement) target.open = true;
+    requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+  }
 }
 if (gallery) {
   selectProject("morphbrain");
   selectFromHash();
   window.addEventListener("hashchange", selectFromHash);
-  document.querySelectorAll("[data-show-project]").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      selectProject(link.dataset.showProject, true);
-      if (link.dataset.showView)
-        document
-          .querySelector(`[data-morphliner-view="${link.dataset.showView}"]`)
-          ?.click();
-      history.replaceState(null, "", link.hash);
-      gallery.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "instant"
-          : "smooth",
-        block: "start",
-      });
-    });
-  });
 }
 
 /* The real model is a separate runtime, mounted only during an explicit visit. */

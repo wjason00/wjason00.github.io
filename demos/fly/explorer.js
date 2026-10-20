@@ -78,7 +78,7 @@ export function initExplorer() {
     });
     for (const panel of document.querySelectorAll('[data-explorer-panel]')) panel.hidden = panel.dataset.explorerPanel !== view;
     const body = view === 'body';
-    document.querySelector('.project-intro h1').textContent = body ? 'From saved spikes to movement' : 'The fly feeding circuit';
+    document.querySelector('.project-intro h1').textContent = body ? 'Saved motor activity and illustrative movement' : 'The fly feeding circuit';
     document.querySelector('.project-intro p').textContent = body ? 'Inspect MN9 and MN6 activity alongside the illustrative body replay.' : 'Explore the wiring. Compare the saved motor output.';
     $('paired-controls').hidden = body;
     $('paired-output').hidden = body;
@@ -94,7 +94,7 @@ export function initExplorer() {
     }
     if (body && !bodyFrame.getAttribute('src')) {
       $('body-status').hidden = false;
-      bodyFrame.src = 'body/index.html?v=20261020-simple';
+      bodyFrame.src = 'body/index.html?v=20261020-hierarchy';
     }
     else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }

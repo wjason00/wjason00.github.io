@@ -105,6 +105,7 @@ export function boot(root = document) {
     const summary = data?.metadata.summary?.trim() || '';
     byId('finding').textContent = summary; byId('finding').hidden = !summary;
     status.parentElement.dataset.state = error ? 'error' : data ? 'verified' : 'pending';
+    status.parentElement.hidden = Boolean(data);
     status.textContent = error ? `Evidence could not be displayed: ${error} Reload to retry.` : pending ? 'Pending verified results. No numerical findings are displayed.' : 'Complete 30-cell grid · independently audited · five artificial templates';
     byId('empty-state').querySelector('h3').textContent = error ? 'Evidence unavailable' : 'Pending verified results';
     byId('empty-state').querySelector('p').textContent = error ? 'The last selection is preserved. Reload the evidence file to retry; no unverified values are shown.' : 'The figure will appear when the complete grid and its independent audit are available. No numerical findings are displayed yet.';

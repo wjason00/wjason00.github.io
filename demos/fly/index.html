@@ -6,7 +6,7 @@
 <meta name="description" content="Explore fly circuit connections, reconstructed 3D neurons, paired MN9 simulations and an illustrative 3D fly replay in one source-backed portfolio demo.">
 <link rel="canonical" href="https://wjason00.github.io/demos/fly/">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="fly.css"><link rel="stylesheet" href="morphology.css"><link rel="stylesheet" href="explorer.css?v=20261020-simple">
-<script defer src="archive.js"></script><script type="module" src="explorer.js?v=20261020-simple"></script><script type="module" src="fly.js?v=20261020-simple"></script>
+<script defer src="archive.js"></script><script type="module" src="explorer.js?v=20261020-hierarchy"></script><script type="module" src="fly.js?v=20261020-simple"></script>
 </head>
 <body>
 <main id="fly-explorer" data-view="connections" data-advanced="false">
@@ -29,6 +29,7 @@
 <div class="network-workbench" id="network-workbench">
 <div class="network-stage">
 <div class="network-map" id="connections-panel" data-explorer-panel="connections" role="tabpanel" aria-labelledby="connections-tab">
+<span id="connections" hidden></span>
 <p class="network-count" id="network-summary">Loading source connections…</p>
 <div class="graph-toolbar"><label data-advanced-only>Connections shown<select id="edge-filter"><option value="strong">Strongest links</option><option value="all">All selected links</option></select></label><div class="zoom-controls" aria-label="Network view"><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-reset">Reset view</button></div></div>
 <svg id="network-graph" viewBox="0 0 960 590" role="group" aria-labelledby="network-title network-description"><title id="network-title">Actual source-connectome connections around Roundup</title><desc id="network-description">A weighted, directed subnetwork from the source model. Select neurons or connections to inspect them. Positions are a graph layout, not anatomical coordinates.</desc><defs><marker id="graph-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs><g id="graph-world"></g></svg>
@@ -36,7 +37,7 @@
 <p id="network-error" hidden role="alert"></p>
 </div>
 <div id="anatomy-panel" data-explorer-panel="anatomy" role="tabpanel" aria-labelledby="anatomy-tab" hidden><p id="anatomy-status" role="status"></p><div id="neuron-anatomy"></div></div>
-<div id="body-panel" data-explorer-panel="body" role="tabpanel" aria-labelledby="body-tab" hidden><p id="body-status" role="status" hidden>Loading the body replay. <a href="body/index.html?v=20261020-simple" target="_blank" rel="noopener">Open the replay separately</a>.</p><iframe id="body-frame" title="Illustrative 3D fly replay from a separate saved motor archive"></iframe></div>
+<div id="body-panel" data-explorer-panel="body" role="tabpanel" aria-labelledby="body-tab" hidden><span id="body" hidden></span><p id="body-status" role="status" hidden>Loading the body replay. <a href="body/index.html?v=20261020-hierarchy" target="_blank" rel="noopener">Open the replay separately</a>.</p><iframe id="body-frame" title="Illustrative 3D fly replay from a separate saved motor archive"></iframe></div>
 </div>
 <aside class="network-inspector" id="neuron-inspector" aria-label="Saved output and selected neuron"><div id="paired-output">
 <div class="output-heading"><h2>MN9 output</h2><p>The same input, with Roundup’s outputs kept or cut.</p></div>

@@ -93,6 +93,14 @@ body[data-advanced="false"] .signal-header { min-height: 41px; }
 .advanced-section-heading { margin: 0; padding: 16px 0 12px; font-size: 16px; line-height: 1.3; font-weight: 600; }
 .inspection-sections { margin-top: 14px; }
 
+/* Playback precedes the specimen in both the visual and reading order. On a
+   phone, retain both native camera views in a shorter stage so the fly and its
+   controls are available together without changing the source renderer. */
+.body-stage > .transport { padding-top: 0; padding-bottom: 10px; }
+@container (max-width: 699px) {
+  #scene:not([data-compare="true"]) { height: 340px; }
+}
+
 @media (max-width: 900px) {
   .run-settings { grid-template-columns: minmax(0, 1fr) auto; }
   .run-settings > .native-choices { grid-column: 1; grid-row: 1; grid-template-columns: minmax(130px, .7fr) minmax(220px, 1.3fr); }

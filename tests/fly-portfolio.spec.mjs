@@ -25,8 +25,10 @@ for (const width of [390, 1366]) {
   });
 
   test(`body replay keeps controls contextual and uses one scroll area at ${width}px`, async ({ page }) => {
-    // This full compare/block/replay flow uses software WebGL on the CI runner.
-    test.setTimeout(60_000);
+    // These flows include two native cameras, comparison and iframe resizing.
+    // Traced phone and desktop runs each spent 33s in a successful playback
+    // assertion under GPU readback pressure; retain every check with headroom.
+    test.setTimeout(90_000);
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/demos/fly/#body');
     await expect(page.getByRole('tab', { name: '3D fly', exact: true })).toHaveAttribute('aria-selected', 'true');
@@ -35,7 +37,10 @@ for (const width of [390, 1366]) {
     await expect(page.locator('#body-status')).toBeHidden();
     const scene = frame.locator('#scene');
     const transport = frame.locator('.transport');
-    expect((await transport.boundingBox()).y).toBeGreaterThanOrEqual((await scene.boundingBox()).y + (await scene.boundingBox()).height - 1);
+    const playbackBounds = await transport.boundingBox();
+    const sceneBounds = await scene.boundingBox();
+    expect(playbackBounds.y + playbackBounds.height).toBeLessThanOrEqual(sceneBounds.y + 1);
+    expect(await transport.evaluate(element => Boolean(element.compareDocumentPosition(document.getElementById('scene')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
     await expect(frame.locator('.run-settings')).toBeVisible();
     const fitsFrame = async () => frame.locator('main').evaluate(main => {
       const size = main.getBoundingClientRect();
@@ -59,7 +64,14 @@ for (const width of [390, 1366]) {
       expect(signal.width).toBeGreaterThan(360);
     } else {
       expect(signal.y).toBeGreaterThan(specimen.y);
-      expect(specimen.y).toBeLessThan(844);
+      // The initial phone viewport exposes a complete, operable playback strip
+      // and the identifiable whole-fly region of the native renderer.
+      expect(playbackBounds.y).toBeGreaterThan(0);
+      expect(playbackBounds.y + playbackBounds.height).toBeLessThan(844);
+      const wholeFly = await frame.locator('#whole-0').boundingBox();
+      expect(wholeFly.y + wholeFly.height).toBeLessThan(844);
+      expect(wholeFly.height).toBeGreaterThan(125);
+      expect(specimen.height).toBe(340);
     }
     const raster = frame.locator('#raster');
     expect((await raster.boundingBox()).width).toBeGreaterThan(width > 800 ? 340 : 270);
@@ -69,9 +81,15 @@ for (const width of [390, 1366]) {
     }
     await frame.locator('#play').click();
     await expect(frame.locator('#play')).toHaveText('Pause');
-    await advanced.click();
-    await advanced.click();
-    await expect(frame.locator('#play')).toHaveText('Pause');
+    // Inspect the disclosure transition in the same task: a finite replay can
+    // finish naturally while software WebGL delays separate pointer actions.
+    const disclosureState = await advanced.evaluate(button => {
+      const before = window.FLY_DEMO.getState();
+      button.click();
+      button.click();
+      return { before, after: window.FLY_DEMO.getState() };
+    });
+    expect(disclosureState.after).toEqual(disclosureState.before);
     await frame.locator('#reset').click();
     await advanced.click();
     await expect(advanced).toHaveAttribute('aria-expanded', 'true');

@@ -13,7 +13,8 @@ for (const viewport of viewports) {
     await page.goto('/');
 
     const figure = page.locator('.project-gallery');
-    const poster = page.locator('.hero__spotlight');
+    const poster = page.locator('#preview-morphbrain .project-gallery__visual');
+    const frame = page.locator('.project-gallery .hero__spotlight');
     await expect(figure).toBeVisible();
     await expect(poster).toBeVisible();
     expect(await page.locator('#projects .project-gallery').count()).toBe(1);
@@ -25,10 +26,11 @@ for (const viewport of viewports) {
 
     const figureBox = await figure.boundingBox();
     const posterBox = await poster.boundingBox();
+    const frameBox = await frame.boundingBox();
     expect(figureBox).not.toBeNull();
     expect(posterBox).not.toBeNull();
     expect(posterBox.width).toBeGreaterThanOrEqual(viewport.minimumPosterWidth);
-    expect(posterBox.width / figureBox.width).toBeGreaterThanOrEqual(0.98);
+    expect(frameBox.width / figureBox.width).toBeGreaterThanOrEqual(0.98);
     expect(posterBox.height).toBeGreaterThanOrEqual(300);
 
     const hasHorizontalOverflow = await page.evaluate(
@@ -57,18 +59,19 @@ test('project selection keeps contributions, results and critical limits outside
   await page.goto('/');
 
   const fly = page.locator('#fly-circuit');
-  await expect(fly.locator('.research-feature__copy > p').filter({ hasText: /I (?:proposed|directed)/ })).toBeVisible();
+  await expect(fly.locator('.fly-study-contribution')).toBeVisible();
+  await expect(fly.locator('.fly-study-contribution')).toContainText(/I proposed and directed/);
   await expect(fly.getByText('127,400-neuron implementation of a published fly model', { exact: true })).toBeVisible();
   await expect(fly.getByText('all 15 paired comparisons', { exact: true })).toBeVisible();
-  await expect(fly.locator('.research-feature__copy > .research-result-limit')).toBeVisible();
-  await expect(fly.locator('.research-feature__copy > .research-result-limit')).toContainText(/do not establish a change in real feeding behaviour/);
+  await expect(fly.locator('.fly-study-summary .research-result-limit')).toBeVisible();
+  await expect(fly.locator('.fly-study-summary .research-result-limit')).toContainText(/do not establish a change in real feeding behaviour/);
   await expect(fly.locator('.research-result-figure img')).toBeVisible();
   await expect(fly.locator('details')).not.toHaveAttribute('open');
 
   const timing = fly.locator('.research-followup');
   await expect(timing.getByRole('heading', { name: /Does timing change/ })).toBeVisible();
   await expect(timing.locator('.research-result-limit')).toContainText(/no consistent directional or biological effect/);
-  await expect(timing.getByRole('link', { name: /Explore the timing experiment/ })).toHaveAttribute('href', './demos/fly/timing/');
+  await expect(timing.getByRole('link', { name: /Explore the input-timing study/ })).toHaveAttribute('href', './demos/fly/timing/');
   const rareErrors = page.locator('#dpca');
   await expect(rareErrors.getByRole('heading', { name: /Can stimulus and choice be separated/ })).toBeVisible();
   await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no errors/ })).toBeVisible();
@@ -80,7 +83,13 @@ test('project selection keeps contributions, results and critical limits outside
     { id: 'morphliner', purpose: /camera keyframes/, limit: /Full\s+release remains in development/ },
   ];
   for (const { id, purpose, limit } of projects) {
+    await page.locator(`#select-${id}`).click();
+    const panel = page.locator(`#preview-${id}`);
+    await expect(panel).toBeVisible();
     const project = page.locator(`#${id}`);
+    await expect(panel.locator(`article#${id}`)).toHaveCount(1);
+    await expect(panel.locator('.project-gallery__visual')).toBeVisible();
+    await expect(project.getByRole('heading', { level: 3 })).toBeVisible();
     await expect(project.locator('.project__lede')).toBeVisible();
     await expect(project.locator('.project__lede')).toContainText(purpose);
     await expect(project.locator('.project-limit')).toBeVisible();
@@ -89,7 +98,9 @@ test('project selection keeps contributions, results and critical limits outside
     await expect(methods).toHaveCount(1);
     await expect(methods).not.toHaveAttribute('open');
     await expect(methods.locator(':scope > summary')).toHaveText('Methods & sources');
-    await expect(project.locator('.project__preview-link a')).toHaveAttribute('href', `#preview-${id}`);
+    await expect(project.locator('.project__identity > a')).toBeVisible();
+    for (const other of projects.filter(item => item.id !== id))
+      await expect(page.locator(`#preview-${other.id}`)).toBeHidden();
   }
 
   for (const id of ['experience', 'fly-circuit', 'fly-timing-title', 'dpca', 'projects',
@@ -97,6 +108,51 @@ test('project selection keeps contributions, results and critical limits outside
     'morphbrain', 'morphbrain-notes', 'morphbrain-synthetic-study', 'model-morpher', 'morphliner', 'about']) {
     await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
   }
+});
+
+for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
+  test(`first screen exposes the playable Fly media at ${viewport.width}px`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.goto('/');
+    const video = page.locator('#fly-preview');
+    await expect(video).toHaveAttribute('controls', '');
+    const videoBox = await video.boundingBox();
+    expect(videoBox.width).toBeGreaterThanOrEqual(viewport.width > 1000 ? 600 : 330);
+    expect(videoBox.height).toBeGreaterThanOrEqual(viewport.width > 1000 ? 330 : 185);
+    expect(videoBox.y).toBeGreaterThanOrEqual(0);
+    expect(videoBox.y + videoBox.height).toBeLessThanOrEqual(viewport.height);
+    if (viewport.width > 1000) {
+      const chartBox = await page.locator('.fly-comparison img').boundingBox();
+      expect(chartBox.width).toBeGreaterThanOrEqual(380);
+      expect(chartBox.height).toBeGreaterThanOrEqual(450);
+      expect(chartBox.y + chartBox.height).toBeLessThanOrEqual(viewport.height);
+    }
+  });
+}
+
+test('nested project links activate their complete account and preserve hash navigation', async ({ page }) => {
+  await page.goto('/#morpher-project-limit');
+  await expect(page.locator('#select-model-morpher')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#model-morpher')).toBeVisible();
+  await expect(page.locator('#morpher-project-limit')).toBeInViewport();
+  await expect(page.locator('#preview-morphbrain')).toBeHidden();
+  await page.evaluate(() => { location.hash = 'morphliner-project-limit'; });
+  await expect(page.locator('#select-morphliner')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#morphliner-project-limit')).toBeInViewport();
+  await expect(page.locator('#preview-model-morpher')).toBeHidden();
+});
+
+test('Fly replay and connection links open the matching explorer views', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Open the interactive 3D replay', exact: true }).click();
+  await expect(page).toHaveURL(/\/demos\/fly\/\?[^#]*#body$/);
+  await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'body');
+  await page.goto('/');
+  const connections = page.getByRole('link', { name: 'Inspect the circuit and saved output', exact: true });
+  await expect(connections).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
+  await connections.click();
+  await expect(page).toHaveURL(/\/demos\/fly\/\?/);
+  await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'connections');
 });
 
 for (const width of [1366, 820, 390]) {
@@ -160,6 +216,8 @@ test.describe('homepage methods without JavaScript', () => {
     await expect(page.locator('#fly-preview source')).toHaveAttribute('src', './assets/portfolio/fly-preview-20261020.mp4');
     await expect(page.locator('.fly-comparison img')).toBeVisible();
     for (const id of ['morphbrain', 'model-morpher', 'morphliner']) {
+      await expect(page.locator(`#preview-${id}`)).toBeVisible();
+      await expect(page.locator(`#preview-${id} article#${id}`)).toBeVisible();
       const details = page.locator(`#${id} .project__body > details`);
       const summary = details.locator(':scope > summary');
       await expect(details).not.toHaveAttribute('open');

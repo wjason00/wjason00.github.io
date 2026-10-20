@@ -6,7 +6,7 @@
  <title>Fly body &middot; saved motor replay</title>
  <link rel="stylesheet" href="style.css">
  <link rel="stylesheet" href="native-style.css">
- <link rel="stylesheet" href="embed.css?v=20261020-simple">
+ <link rel="stylesheet" href="embed.css?v=20261020-mobile">
 </head>
 <body data-advanced="false">
 <main>
@@ -38,12 +38,6 @@
      <div class="mode-tabs" aria-label="Replay comparison"><button id="watch-mode" aria-pressed="true">Single fly</button><button id="compare-mode" aria-pressed="false">Compare runs</button></div>
      <button id="body-view">Reset view</button>
     </div>
-    <div id="scene-error" hidden role="alert"></div>
-    <div id="scene" tabindex="0" role="group" data-compare="false" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home" aria-label="Whole fly and simultaneous mouth detail, driven by saved MN9 and MN6 activity. Drag or use arrow keys to turn the whole fly.">
-     <div class="native-condition" id="condition-0"></div><div class="native-condition second" id="condition-1" hidden></div>
-     <div class="native-frame whole" id="whole-0"><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-0"><span>Mouth detail &middot; same pose</span><output id="volume-0"></output><b class="drop-contact" id="drop-contact-0">No mesh contact</b><svg class="droplet-leader" id="drop-leader-0" aria-hidden="true" hidden><path id="drop-line-0"></path><circle id="drop-point-0" r="3"></circle></svg><b class="droplet-label" id="drop-label-0" hidden>Sugar solution</b></div>
-     <div class="native-frame whole" id="whole-1" hidden><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-1" hidden><span>Mouth detail &middot; same pose</span><output id="volume-1" hidden></output><b class="drop-contact" id="drop-contact-1">No mesh contact</b><svg class="droplet-leader" id="drop-leader-1" aria-hidden="true" hidden><path id="drop-line-1"></path><circle id="drop-point-1" r="3"></circle></svg><b class="droplet-label" id="drop-label-1" hidden>Sugar solution</b></div>
-    </div>
     <div class="transport" aria-label="Replay playback">
      <button id="play" class="primary">Present droplet</button>
      <button id="reset" aria-label="Restart replay" title="Restart replay">&#8634;</button>
@@ -51,7 +45,12 @@
      <output id="clip-time" aria-label="Current replay time" aria-live="off">&minus;400.0 ms</output>
      <label class="speed-label" id="body-advanced-speed" data-advanced-only><select id="speed" aria-label="Playback speed"><option value="0.25" selected>&frac14; speed</option><option value="0.5">&frac12; speed</option><option value="1">1&times; speed</option></select></label>
     </div>
-
+    <div id="scene-error" hidden role="alert"></div>
+    <div id="scene" tabindex="0" role="group" data-compare="false" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home" aria-label="Whole fly and simultaneous mouth detail, driven by saved MN9 and MN6 activity. Drag or use arrow keys to turn the whole fly.">
+     <div class="native-condition" id="condition-0"></div><div class="native-condition second" id="condition-1" hidden></div>
+     <div class="native-frame whole" id="whole-0"><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-0"><span>Mouth detail &middot; same pose</span><output id="volume-0"></output><b class="drop-contact" id="drop-contact-0">No mesh contact</b><svg class="droplet-leader" id="drop-leader-0" aria-hidden="true" hidden><path id="drop-line-0"></path><circle id="drop-point-0" r="3"></circle></svg><b class="droplet-label" id="drop-label-0" hidden>Sugar solution</b></div>
+     <div class="native-frame whole" id="whole-1" hidden><span>Whole fly</span></div><div class="native-frame mouth" id="mouth-1" hidden><span>Mouth detail &middot; same pose</span><output id="volume-1" hidden></output><b class="drop-contact" id="drop-contact-1">No mesh contact</b><svg class="droplet-leader" id="drop-leader-1" aria-hidden="true" hidden><path id="drop-line-1"></path><circle id="drop-point-1" r="3"></circle></svg><b class="droplet-label" id="drop-label-1" hidden>Sugar solution</b></div>
+    </div>
     <div class="stage-caption"><p>Drag to rotate. Mouth detail shows the same pose.</p><label class="droplet-label-control" data-advanced-only><input type="checkbox" id="show-droplet-labels" checked> Label droplet</label></div>
     <div class="run-outcome" id="body-advanced-stage" data-advanced-only>
      <h3>At the end of this replay</h3>

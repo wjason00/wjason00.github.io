@@ -4,6 +4,47 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Coherent project layout ? 20 October 2026
+
+The [portfolio](https://wjason00.github.io/?v=20261020-hierarchy) opens with
+Jason's name, factual UCL description and personally revised interests, followed
+immediately by the Fly film and paired evidence. The replay and result are
+labelled above their media; Roundup and MN9 are defined before them. The
+connection-strength and input-timing studies have explicit routes. Supervised
+EEG work is separate from the model studies.
+
+Each software selection now includes its preview and complete account in one
+panel. Purpose, contribution, action and critical limit remain visible; methods
+use one native disclosure. Keyboard switching, nested project links and all
+three accounts without JavaScript remain supported. Phone Fly playback comes
+before the compact source scene; desktop scene and saved raster stay adjacent.
+The timing study starts with its mixed-direction result and all five outcomes,
+then selected counts. Its scheduled/applied-input caveat remains visible while
+candidate raster and audit details are optional.
+
+An actual `gpt-6-astra` reviewer assigned Ultra accepted the revised presentation
+after checking the live candidate; runtime model identity is not independently
+exposed. A separate cold reader identified the earlier disconnected project
+journey and missing neuron definitions. Astra's final caveat correction was
+implemented and checked. These are bounded heuristic reviews, not measured
+visitor research, scientific validation or proof of personal understanding.
+
+The [canonical UX sheet](demos/fly/ux-sheet.html#homepage-contract) records the
+new grouping, first-screen media requirements, voice and evidence boundaries.
+The [implementation plan](docs/superpowers/plans/2026-10-20-portfolio-holistic.md)
+records the complete acceptance criteria. Actual review, captures and release
+verification live in `output/portfolio-holistic-20261020/verification.json`.
+The current combined build passes all 27 source/data and 32 browser checks,
+including native media, project selection, recovery and the separate scroll
+draft. Two long traced replay flows needed a 90-second total test budget after
+GPU readback stalls; every assertion remains in place.
+
+Review the [desktop opening](https://drive.google.com/file/d/1jrXmJnXu2WQwQKFEmuhHH5kyeToeQvTn/view?usp=drivesdk)
+and [phone opening](https://drive.google.com/file/d/14rfAYfj7Sq8SXstDN-WLk6OUlw-nUgCB/view?usp=drivesdk)
+in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+The complete LinkedIn package remains local and owned by T-178. Next action:
+see T-173.
+
 ## Personal wording — 20 October 2026
 
 The portfolio uses **Jason Wang** with the factual descriptor **Neuroscience at

@@ -161,10 +161,10 @@
     {
       "file": "index.html",
       "source": "index.html",
-      "bytes": 12303,
-      "sha256": "9e6159ca773da5139df5c8ca5f7f685ce1927d6c9a367be329018ad3b59461b6",
+      "bytes": 12301,
+      "sha256": "0022c92e5bbad06a3ac57b807c797a25726f363ad8c17f8e01852f98ea15d7bc",
       "preserved": false,
-      "transform": "Progressive disclosure of specialised controls; retain the scene, saved raster, primary controls and scientific boundaries."
+      "transform": "Progressive disclosure of specialised controls; retain the scene, saved raster, primary controls and scientific boundaries. Playback precedes the scene in reading order; compact phone scene preserves the original two source camera views."
     },
     {
       "file": "boot.js",
@@ -176,10 +176,10 @@
     {
       "file": "embed.css",
       "source": "new portfolio packaging",
-      "bytes": 18214,
-      "sha256": "dfabbb090f85b4105ffad089527758a4b08906ae949bd11c6eb48238dc4e7d1f",
+      "bytes": 18612,
+      "sha256": "dedefacba67d5f9f6b636ecfa114dbadfbdc3b97f0c135aeb86ab9a6052a2bc2",
       "preserved": false,
-      "transform": "Presentation only: default/advanced hierarchy, responsive layout and readable essential labels; no changed source geometry, events or movement rules."
+      "transform": "Presentation only: default/advanced hierarchy, responsive layout and readable essential labels; no changed source geometry, events or movement rules. Playback precedes the scene in reading order; compact phone scene preserves the original two source camera views."
     },
     {
       "file": "interface.js",
