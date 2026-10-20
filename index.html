@@ -65,7 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261020-motion" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-reference" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -94,6 +94,7 @@
     />
     <script src="./theme.js"></script>
     <script src="./script.js?v=20261020-network" defer></script>
+    <script src="./assets/portfolio/reference-scene.js" defer></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -142,7 +143,7 @@
           ></a
         >
         <nav class="site-nav" aria-label="Sections of this page">
-          <a href="#experience">Research</a><a href="#projects">Projects</a
+          <a href="#selected-work">Research</a><a href="#projects">Projects</a
           ><a href="#about">Contact <span aria-hidden="true">↗</span></a>
         </nav>
         <button
@@ -156,12 +157,39 @@
       </div>
     </header>
     <main id="main" tabindex="-1">
-      <section class="intro wrap" aria-labelledby="intro-title">
-        <div class="intro__identity"><p class="intro__context">Neuroscience undergraduate at UCL</p><h1 id="intro-title">Jason Wang</h1></div>
+      <section class="intro specimen-opening" aria-labelledby="intro-title">
+        <div class="intro__identity"><p class="intro__context">Neuroscience undergraduate at UCL</p><h1 id="intro-title"><span>Jason</span> <span>Wang</span></h1></div>
         <p class="intro__text">I’m interested in how neurons interact to produce patterns of activity,
             and what we can learn about those interactions from recordings.
             I use computational models to explore these questions.</p>
-        <p class="intro__contact">Interested in research placements.<br><a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a></p>
+        <figure class="specimen-opening__scene">
+          <img src="./demos/portfolio-draft/assets/fly-ghost.png" width="1500" height="1000" fetchpriority="high" alt="" aria-describedby="opening-specimen-caption" />
+          <figcaption id="opening-specimen-caption">Anatomical illustration. <a href="./demos/fly/?v=20261020-reference#body">Explore the 3D fly ↗</a></figcaption>
+        </figure>
+        <div class="intro__contact"><a class="opening-work-link" href="#selected-work">Explore the work <span aria-hidden="true">↓</span></a><a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a></div>
+      </section>
+      <section class="work-index wrap" id="selected-work" aria-labelledby="selected-work-title">
+        <header class="work-index__heading"><h2 id="selected-work-title">Selected work</h2><p>Research questions, working models and the evidence behind them.</p></header>
+        <div class="work-index__grid">
+          <article class="work-index__item">
+            <a class="work-index__image work-index__image--network" href="#fly-circuit" aria-label="Read the Fly feeding-circuit study"><img src="./assets/portfolio/fly-network-focus.svg" width="600" height="430" loading="lazy" alt="Selected model connections around Roundup and MN9; Roundup’s outgoing connections are cut." /></a>
+            <p class="work-index__caption">Selected model connections; schematic layout.</p>
+            <h3>Fly feeding circuit</h3>
+            <p>I proposed and directed a study of how cutting Roundup’s outputs affects motor neuron MN9 when connection strength changes.</p>
+            <p class="work-index__result">Fewer MN9 spikes in all 15 paired model comparisons.</p>
+            <p class="work-index__limit">One output neuron and input regime in a computational model; no change in real feeding behaviour is established.</p>
+            <a href="#fly-circuit">Read the study &amp; paired results <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="work-index__item">
+            <a class="work-index__image work-index__image--signals" href="./rare-errors.html" aria-label="Explore the rare-error experiment"><img src="./assets/portfolio/rare-errors/rare_errors.png" width="1848" height="1344" loading="lazy" alt="Synthetic rare-error study: design rank, choice attribution and reconstruction across trial mixes." /></a>
+            <h3>Separating neural signals</h3>
+            <p>Can stimulus and choice be separated when errors are rare?</p>
+            <p class="work-index__result">Strong choice attribution can coexist with poor reconstruction.</p>
+            <p class="work-index__limit">Synthetic activity, six trial mixes and five noise seeds. With no error trials, this fit cannot separate stimulus and choice.</p>
+            <a href="./rare-errors.html">Explore the experiment <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <a class="work-index__software-link" href="#projects">Explore the interactive models &amp; software <span aria-hidden="true">↓</span></a>
       </section>
       <section
         class="research wrap"
@@ -169,13 +197,15 @@
         aria-labelledby="experience-title"
       >
         <div class="section-heading research__heading">
-          <h2 id="experience-title">Research</h2>
+          <h2 id="experience-title">Study notes</h2>
           <nav class="research-index" aria-label="Research areas">
             <a href="#fly-circuit">Fly circuit</a>
             <a href="#dpca">Neural signals</a>
             <a href="#supervised-work">EEG modelling</a>
           </nav>
         </div>
+        <details class="study-reading" id="fly-study-details">
+          <summary>Fly feeding circuit: study, figures &amp; replay</summary>
         <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
           <header class="fly-project-heading"><h3 id="fly-title">Fly feeding circuit</h3><p>Does disconnecting Roundup, a circuit neuron, reduce activity in motor neuron MN9?</p></header>
           <div class="fly-media" id="fly-visuals" aria-label="Circuit intervention and paired simulation result">
@@ -242,6 +272,9 @@
             <a class="research-study-link" href="./demos/fly/timing/">Explore the input-timing study <span aria-hidden="true">↗</span></a>
           </section>
         </article>
+        </details>
+        <details class="study-reading" id="signal-study-details">
+          <summary>Separating neural signals: study preview</summary>
         <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">
           <div class="research-feature__copy">
             <p class="eyebrow">Separating neural signals</p>
@@ -260,6 +293,7 @@
             <span>One error per stimulus. Explore the other trial mixes. <span aria-hidden="true">↗</span></span>
           </a>
         </article>
+        </details>
       <section class="supervised-work" id="supervised-work" aria-labelledby="supervised-title">
         <h2 id="supervised-title">EEG source modelling</h2><article class="research-item research-item--role">
             <p class="research-item__kind">UCL</p>

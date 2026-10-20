@@ -57,6 +57,7 @@ for (const viewport of viewports) {
 
 test('project selection keeps contributions, results and critical limits outside optional methods', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
 
   const fly = page.locator('#fly-circuit');
   await expect(fly.locator('.fly-study-contribution')).toBeVisible();
@@ -74,6 +75,7 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(timing.locator('.research-result-limit')).toContainText(/one fixed model and measurement window/);
   await expect(timing.getByRole('link', { name: /Explore the input-timing study/ })).toHaveAttribute('href', './demos/fly/timing/');
   const rareErrors = page.locator('#dpca');
+  await page.locator('#signal-study-details > summary').click();
   await expect(rareErrors.getByRole('heading', { name: /Can stimulus and choice be separated/ })).toBeVisible();
   await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toBeVisible();
   await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toContainText(/stimulus and choice cannot be separated/);
@@ -116,6 +118,7 @@ test('project selection keeps contributions, results and critical limits outside
 
 test('the Fly question precedes its media and default copy speaks to visitors', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
   const question = page.locator('.fly-project-heading p');
   await expect(question).toBeVisible();
   await expect(question).toContainText(/Does .*Roundup.*MN9\?/);
@@ -193,10 +196,12 @@ test('nested project links activate their complete account and preserve hash nav
 
 test('Fly replay and connection links open the matching explorer views', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
   await page.getByRole('link', { name: 'Explore the 3D replay', exact: true }).click();
   await expect(page).toHaveURL(/\/demos\/fly\/\?[^#]*#body$/);
   await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'body');
   await page.goto('/');
+  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
   const connections = page.getByRole('link', { name: 'Explore the circuit comparison', exact: true });
   await expect(connections).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
   await connections.click();
@@ -207,8 +212,10 @@ test('Fly replay and connection links open the matching explorer views', async (
 for (const width of [1366, 820, 390]) {
   test(`Fly circuit and paired result precede the separate playable replay at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const video = page.locator('#fly-preview');
+    await page.getByRole('link', { name: /Read the study & paired results/ }).click();
     const chart = page.locator('.fly-comparison img');
     const network = page.locator('#fly-visuals .fly-circuit img');
     const replay = page.locator('.fly-replay-preview');
@@ -278,6 +285,7 @@ test.describe('homepage methods without JavaScript', () => {
 
   test('native disclosures support keyboard use and the synthetic-study deep link', async ({ page }) => {
     await page.goto('/');
+    await page.locator('#fly-study-details > summary').click();
     await expect(page.locator('#fly-preview')).toHaveAttribute('controls', '');
     await expect(page.locator('#fly-preview source')).toHaveAttribute('src', './assets/portfolio/fly-preview-20261020.mp4');
     await expect(page.locator('.fly-comparison img')).toBeVisible();

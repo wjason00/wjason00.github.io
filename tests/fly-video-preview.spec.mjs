@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('Fly preview plays on request, seeks and pauses when it leaves the screen', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
   const video = page.locator('#fly-preview');
   const player = page.locator('.video-demo').filter({ has: video });
   const play = player.locator('.video-play');

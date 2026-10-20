@@ -1,32 +1,57 @@
 import { expect, test } from '@playwright/test';
 
 for (const width of [1366, 390]) {
-  test(`opening introduces the actual research without a full-screen hero at ${width}px`, async ({ page }) => {
+  test(`specimen opening leads to a readable work index at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
     await page.goto('/');
-    await page.evaluate(() => document.fonts.ready);
-    const question = page.locator('.fly-project-heading p');
-    await expect(question).toBeInViewport();
-    const network = await page.locator('.fly-circuit img').boundingBox();
-    expect(network.y).toBeLessThan(width < 800 ? 844 : 900);
-    await expect(page.locator('.fly-circuit figcaption')).toContainText('This is wiring, not activity flow.');
-    await expect(page.locator('#fly-preview')).not.toHaveAttribute('autoplay');
+    const specimen = page.locator('.specimen-opening__scene img');
+    await specimen.evaluate(image => image.decode());
+    await expect(page.getByRole('heading', { name: 'Jason Wang', exact: true })).toBeInViewport();
+    await expect(specimen).toBeVisible();
+    await expect(page.locator('#opening-specimen-caption')).toContainText('Anatomical illustration');
+    await expect(page.locator('#fly-study-details')).not.toHaveAttribute('open');
+    await page.getByRole('link', { name: /Explore the work/ }).click();
+    await expect(page.getByRole('heading', { name: 'Selected work' })).toBeInViewport();
+    await expect(page.locator('.work-index__item').first()).toContainText('all 15 paired model comparisons');
+    await expect(page.locator('.work-index__item').first()).toContainText('no change in real feeding behaviour');
+    await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+    await expect(page.locator('#fly-study-details')).toHaveAttribute('open', '');
+    await expect(page.locator('.fly-study-contribution')).toBeVisible();
+    await expect(page.locator('.fly-circuit img')).toBeVisible();
+    await expect(page.locator('.fly-comparison img')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
 
-test('reduced motion keeps selected software and scientific evidence fully present', async ({ page }) => {
+test('reduced motion preserves the static specimen and complete selected software', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
+  await page.locator('#selected-work').scrollIntoViewIfNeeded();
+  expect(await page.locator('.specimen-opening__scene img').evaluate(element => getComputedStyle(element).transform)).toBe('none');
   const tab = page.locator('#select-morphbrain');
   await tab.scrollIntoViewIfNeeded(); await tab.focus(); await tab.press('ArrowRight');
   const panel = page.locator('#preview-model-morpher');
   await expect(page.locator('#select-model-morpher')).toBeFocused();
   await expect(panel).toBeVisible();
   await expect(panel.locator('#model-morpher')).toBeVisible();
-  const visual = panel.locator('.project-gallery__visual');
-  expect(await visual.evaluate(element => element.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running').length)).toBe(0);
-  await page.locator('.fly-circuit img').scrollIntoViewIfNeeded();
-  await expect(page.locator('.fly-circuit img')).toBeVisible();
-  expect(await page.locator('#fly-visuals').evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+});
+
+test('native study disclosure reveals figures without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/');
+  await expect(page.locator('.specimen-opening__scene img')).toBeVisible();
+  const summary = page.locator('#fly-study-details > summary');
+  await summary.scrollIntoViewIfNeeded(); await summary.focus(); await summary.press('Enter');
+  await expect(page.locator('.fly-comparison img')).toBeVisible();
+  await expect(page.locator('#fly-preview')).toHaveAttribute('controls', '');
+  await context.close();
+});
+
+test('legacy scientific hashes reveal the corresponding complete native account', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const [hash, disclosure] of [['fly-visuals', 'fly-study-details'], ['fly-strength-study', 'fly-study-details'], ['fly-timing-title', 'fly-study-details'], ['dpca', 'signal-study-details']]) {
+    await page.goto(`/#${hash}`);
+    await expect(page.locator(`#${disclosure}`)).toHaveAttribute('open', '');
+    await expect(page.locator(`#${hash}`)).toBeInViewport();
+  }
 });

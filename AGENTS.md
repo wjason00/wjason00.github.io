@@ -8,4 +8,6 @@ The Fly explorer's review, design contract and future release checklist live in
 For website/UI design, also read the shared working-practices playbook's
 "Website and interface design - 20 October 2026 (Jason)" rule. The concrete
 MotionSites-inspired portfolio plan is in
-[the composition plan](docs/superpowers/plans/2026-10-20-motionsites-direction.md).
+[the reference-led plan](docs/superpowers/plans/2026-10-20-reference-led-websites.md).
+Jason rejected the earlier slate-panel composition; its plan and review remain
+historical evidence, not the current visual brief.

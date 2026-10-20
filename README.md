@@ -4,6 +4,33 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Specific-reference correction - 20 October 2026
+
+Jason rejected the slate-panel composition and clarified that the direction must
+come from specific rendered sites. The current [portfolio](https://wjason00.github.io/?v=20261020-reference)
+uses [ISOMORPH.LAB](https://isomorph-lab.framer.website/) for a specimen-led opening,
+[Lusion Projects](https://lusion.co/projects) for an image-first work index, and
+[Lovable's artist portfolio](https://parallax-artist-portfolio-037d6adf.lovable.app/)
+for the route from a visual overview into detailed reading. The exact MotionSites
+3D Jack recorded-preview observation is retained in the reference report; it is
+not described as a live interaction or a copied template.
+
+The opening reuses the licensed neutral FlyBody illustration, explicitly labelled
+as anatomy. Scrolling changes its presentation only. The work index keeps each
+research contribution, finding, scope and next action visible. Native study
+disclosures retain the full figures, sources and separate playable replay. Every
+existing scientific hash reveals its containing study; keyboard and no-script
+access remain available. Scientific assets, data and runtimes are unchanged.
+
+The [current plan](docs/superpowers/plans/2026-10-20-reference-led-websites.md)
+and [UX sheet](demos/fly/ux-sheet.html) supersede the rejected composition's visual
+contract. Its earlier release/test receipts remain dated technical evidence,
+not design approval. Exact reference captures, current screenshots and release
+verification belong in `output/reference-led-20261020/`. The same explicit user
+request also authorises local restyles of MorphBrain, Neuro and the LinkedIn
+editing desk, each adapted to its own function and preserved audience.
+Next action: see T-173.
+
 ## MotionSites-inspired composition - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-motion) adopts the stronger
