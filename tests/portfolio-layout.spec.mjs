@@ -75,7 +75,7 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(rareErrors.getByRole('link', { name: /Explore the rare-error experiment/ })).toHaveAttribute('href', './rare-errors.html');
 
   const projects = [
-    { id: 'morphbrain', purpose: /Move or remove SHH and BMP sources/, limit: /not calibrated to biological/ },
+    { id: 'morphbrain', purpose: /SHH and BMP signals affect\s+developmental patterning/, limit: /not calibrated to biological/ },
     { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/ },
     { id: 'morphliner', purpose: /camera keyframes/, limit: /Full\s+release remains in development/ },
   ];

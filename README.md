@@ -4,6 +4,23 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Personal wording — 20 October 2026
+
+The portfolio uses **Jason Wang** with the factual descriptor **Neuroscience at
+UCL**, consistently across the homepage, study, source/licence and recovery
+pages. Page/social metadata and the sharing image use the same identity.
+The introduction follows Jason's personally revised application wording about
+neuron interactions, population activity and inference from recordings. Project
+summaries use direct first-person descriptions supported by the existing
+contribution record; slogan-like captions and the repeated contact invitation
+are removed. Scientific results, limits, media and source runtimes are retained.
+
+The private source manifest and release receipt are in
+`output/portfolio-voice-20261020/`. Personally revised/adopted wording is the
+voice reference; submission alone is not treated as proof of unaided authorship.
+The canonical UX sheet records this editorial rule for future changes.
+The build and 15 affected browser cases passed. Next action: see T-173.
+
 ## Fly film and compact evidence — 20 October 2026
 
 The [Fly project](https://wjason00.github.io/?v=20261020-fly-media#fly-visuals)
