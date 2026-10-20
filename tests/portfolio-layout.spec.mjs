@@ -64,23 +64,25 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(fly.getByText('127,400-neuron implementation of a published fly model', { exact: true })).toBeVisible();
   await expect(fly.getByText('all 15 paired comparisons', { exact: true })).toBeVisible();
   await expect(fly.locator('.fly-study-summary .research-result-limit')).toBeVisible();
-  await expect(fly.locator('.fly-study-summary .research-result-limit')).toContainText(/do not establish a change in real feeding behaviour/);
+  await expect(fly.locator('.fly-study-summary .research-result-limit')).toContainText(/does not establish a change in real feeding behaviour/);
   await expect(fly.locator('.research-result-figure img')).toBeVisible();
   await expect(fly.locator('details')).not.toHaveAttribute('open');
 
   const timing = fly.locator('.research-followup');
   await expect(timing.getByRole('heading', { name: /Does timing change/ })).toBeVisible();
-  await expect(timing.locator('.research-result-limit')).toContainText(/no consistent directional or biological effect/);
+  await expect(timing.locator('.research-result-limit')).toContainText(/no consistent direction/i);
+  await expect(timing.locator('.research-result-limit')).toContainText(/one fixed model and measurement window/);
   await expect(timing.getByRole('link', { name: /Explore the input-timing study/ })).toHaveAttribute('href', './demos/fly/timing/');
   const rareErrors = page.locator('#dpca');
   await expect(rareErrors.getByRole('heading', { name: /Can stimulus and choice be separated/ })).toBeVisible();
-  await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no errors/ })).toBeVisible();
+  await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toBeVisible();
+  await expect(rareErrors.locator('.research-feature__copy > p').filter({ hasText: /With no error trials/ })).toContainText(/stimulus and choice cannot be separated/);
   await expect(rareErrors.getByRole('link', { name: /Explore the rare-error experiment/ })).toHaveAttribute('href', './rare-errors.html');
 
   const projects = [
-    { id: 'morphbrain', purpose: /SHH and BMP signals affect\s+developmental patterning/, limit: /not calibrated to biological/ },
+    { id: 'morphbrain', purpose: /signalling molecules SHH and BMP\s+affect developmental patterning/, limit: /not calibrated to biological/ },
     { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/ },
-    { id: 'morphliner', purpose: /camera keyframes/, limit: /Full\s+release remains in development/ },
+    { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype in development/ },
   ];
   for (const { id, purpose, limit } of projects) {
     await page.locator(`#select-${id}`).click();
@@ -108,6 +110,17 @@ test('project selection keeps contributions, results and critical limits outside
     'morphbrain', 'morphbrain-notes', 'morphbrain-synthetic-study', 'model-morpher', 'morphliner', 'about']) {
     await expect(page.locator(`[id="${id}"]`)).toHaveCount(1);
   }
+});
+
+test('the Fly question precedes its media and default copy speaks to visitors', async ({ page }) => {
+  await page.goto('/');
+  const question = page.locator('.fly-project-heading p');
+  await expect(question).toBeVisible();
+  await expect(question).toContainText(/Does .*Roundup.*MN9\?/);
+  expect(await question.evaluate(element => Boolean(element.compareDocumentPosition(document.getElementById('fly-visuals')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  await expect(page.locator('#fly-circuit')).not.toContainText('Pending verified results');
+  const visibleCopy = await page.locator('main').innerText();
+  expect(visibleCopy).not.toMatch(/no numerical findings are displayed|reload evidence|complete 30-cell grid|independently audited/i);
 });
 
 for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 }]) {
@@ -144,11 +157,11 @@ test('nested project links activate their complete account and preserve hash nav
 
 test('Fly replay and connection links open the matching explorer views', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: 'Open the interactive 3D replay', exact: true }).click();
+  await page.getByRole('link', { name: 'Explore the 3D replay', exact: true }).click();
   await expect(page).toHaveURL(/\/demos\/fly\/\?[^#]*#body$/);
   await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'body');
   await page.goto('/');
-  const connections = page.getByRole('link', { name: 'Inspect the circuit and saved output', exact: true });
+  const connections = page.getByRole('link', { name: 'Explore the circuit comparison', exact: true });
   await expect(connections).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
   await connections.click();
   await expect(page).toHaveURL(/\/demos\/fly\/\?/);
@@ -165,9 +178,9 @@ for (const width of [1366, 820, 390]) {
     await expect(video).toHaveAttribute('preload', 'none');
     await expect(video).not.toHaveAttribute('autoplay');
     await expect(video).toHaveAttribute('aria-describedby', 'fly-replay-caption');
-    await expect(page.locator('#fly-replay-caption')).toContainText(/Separate archive; uncalibrated movement/);
+    await expect(page.locator('#fly-replay-caption')).toContainText(/Uncalibrated movement from a separate simulation archive/);
     await expect(page.locator('#fly-replay-caption')).toContainText('assumed relaxation after 1 s');
-    await expect(page.locator('#fly-replay-caption')).toContainText('does not show the paired experiment');
+    await expect(page.locator('#fly-replay-caption')).toContainText('film is separate from the paired comparison');
     await expect(chart).toHaveAttribute('src', './assets/portfolio/fly-paired-comparison.svg');
     const videoBox = await video.boundingBox();
     const chartBox = await chart.boundingBox();

@@ -3,17 +3,17 @@
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width,initial-scale=1">
- <title>Fly body &middot; saved motor replay</title>
+ <title>Fly motor activity | Jason Wang</title>
  <link rel="stylesheet" href="style.css">
  <link rel="stylesheet" href="native-style.css">
  <link rel="stylesheet" href="embed.css?v=20261020-mobile">
 </head>
 <body data-advanced="false">
 <main>
- <p class="archive-boundary"><strong>Illustrative body replay.</strong> Separate author archive; prescribed sensory input and uncalibrated movement.</p>
+ <p class="archive-boundary"><strong>Illustrative, uncalibrated movement.</strong> A separate simulation archive supplies motor spikes. Sensory input is prescribed; contact does not feed back.</p>
  <p id="load-status" role="status">Loading the fly geometry&hellip;</p>
 
- <section class="viewer" aria-label="Native fly neural replay" id="viewer">
+ <section class="viewer" aria-label="Fly motor activity and illustrative movement" id="viewer">
   <div class="replay-layout">
    <section class="run-rail run-settings" aria-labelledby="run-settings-title">
     <h2 id="run-settings-title" class="sr-only">Run settings</h2>
@@ -22,13 +22,13 @@
      <label id="single-control">Circuit<select id="circuit"></select></label>
      <div class="advanced-run-controls" id="body-advanced-settings" data-advanced-only>
       <label id="compare-control" hidden>Compare intact with<select id="comparison"></select></label>
-      <label class="trial-control">Saved trial<select id="trial"></select></label>
-      <label class="loop-control"><input id="repeat" type="checkbox"> Cycle saved trials</label>
+      <label class="trial-control">Trial<select id="trial"></select></label>
+      <label class="loop-control"><input id="repeat" type="checkbox"> Cycle trials</label>
      </div>
     </div>
     <button id="body-advanced-toggle" class="advanced-toggle" type="button" aria-expanded="false" aria-controls="body-advanced-settings body-advanced-view body-advanced-speed body-advanced-stage body-advanced-navigation body-advanced-flow movement-details">Advanced</button>
     <p id="body-run-summary" class="body-run-summary" role="status">Sugar 100 Hz; Intact; trial 1; 0.25&times; speed.</p>
-    <p class="native-source" data-advanced-only><span id="trial-description">Saved trial 1 of 30</span><br>Author&rsquo;s saved simulation archive</p>
+    <p class="native-source" data-advanced-only><span id="trial-description">Trial 1 of 30</span><br>Precomputed simulation archive</p>
     <div class="active-blocks" id="active-blocks" hidden><p id="active-block-status" role="status"></p><button id="clear-motor-blocks" type="button">Clear drive blocks</button></div>
     <p id="pairing-note" class="pairing-note" hidden>A is intact; B is the selected disconnection. Matching trial numbers do not establish paired inputs between these archive runs.</p>
    </section>
@@ -59,10 +59,10 @@
    </div>
    <section class="neural-panel" id="neural-details" aria-labelledby="motor-signals-title">
      <section class="signal" aria-labelledby="motor-signals-title">
-      <div class="signal-header"><h2 id="motor-signals-title">Exact saved motor spikes <span>Left and right, from the same saved simulated trial</span></h2></div>
+      <div class="signal-header"><h2 id="motor-signals-title">Motor neuron spikes <span>MN9 and MN6 &middot; left and right &middot; one simulated trial</span></h2></div>
 
-      <canvas id="raster" role="img" aria-label="Exact saved MN9 and MN6 spike times; each tick is one simulated spike."></canvas>
-      <div class="signal-caption"><p>Each tick is a saved simulated spike. Neural activity: 0&ndash;1 s; later movement is assumed relaxation.</p><p data-advanced-only>Blue/purple: MN9. Brown: MN6. Drive blocks preserve these saved events.</p><span id="neural-time" data-advanced-only></span></div>
+      <canvas id="raster" role="img" aria-label="MN9 and MN6 spike times; each tick is one simulated spike."></canvas>
+      <div class="signal-caption"><p>Each tick is one simulated spike. Neural activity: 0&ndash;1 s; later movement is assumed relaxation.</p><p data-advanced-only>Blue/purple: MN9. Brown: MN6. Drive blocks preserve these saved events.</p><span id="neural-time" data-advanced-only></span></div>
       <div class="motor-navigation" id="body-advanced-navigation" data-advanced-only><label for="motor-event-group">Step through<select id="motor-event-group"><option value="all">MN9 and MN6 spikes</option><option value="MN9">MN9 spikes only</option><option value="MN6">MN6 spikes only</option></select></label><button id="previous-motor-event" type="button">Previous spike</button><button id="next-motor-event" type="button">Next spike</button><p id="motor-step-note" aria-live="off"></p></div>
      </section>
      <section class="sensory-flow" id="body-advanced-flow" aria-labelledby="flow-title" data-advanced-only>
@@ -92,20 +92,20 @@
    </section>
 
    <details class="inspection-detail body-methods" id="sources-details">
-    <summary><span class="detail-title">Sources and limits</span><span class="detail-description">Archive, assumptions and reuse terms</span></summary>
+    <summary><span class="detail-title">Methods &amp; sources</span><span class="detail-description">Motor activity, movement assumptions and reuse</span></summary>
     <div class="detail-content source-copy" id="methods">
-     <p>This is a replay of an author&rsquo;s simulation archive, separate from the paired Roundup experiment in Connections. Its assumed, uncalibrated body mapping does not measure an animal eating, predict swallowed volume or feed sensory feedback into the brain.</p>
+     <p>This is a replay from a separate simulation archive, separate from the paired Roundup experiment in Connections. Its assumed, uncalibrated body mapping does not measure an animal eating, predict swallowed volume or feed sensory feedback into the brain.</p>
      <p>The signal display follows prescribed input into a saved brain simulation, then saved motor output into the assumed body mapping. Motor markers brighten for 40 ms after saved spikes. This replay export contains motor spike times, not sensory spike times. The paired comparison in Connections uses a separate dataset.</p>
-     <p>The <a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-024-07763-9">Shiu et al. (2024)</a> author simulation archive supplies sugar (100 Hz) or water (200 Hz), three circuit conditions and 30 repeats per case. MN9 and MN6 come from the same saved file and trial. Matching repeat numbers across conditions do not establish paired inputs.</p>
+     <p>The separate simulation archive contains sugar-input (100 Hz) and water-input (200 Hz) runs, three circuit conditions and 30 repeats per condition. The neural model is from <a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-024-07763-9">Shiu et al. (2024)</a>. MN9 and MN6 come from the same saved file and trial. Matching repeat numbers across conditions do not establish paired inputs.</p>
      <p>MN9 is mapped to the main reach and head coupling; left and right MN6 signals drive the respective distal source joints. The source calls those parts <code>labrum_left</code> and <code>labrum_right</code>; their correspondence to feeding anatomy remains unqualified. No movement parameters were fitted to animal videos. The neural interval is 0&ndash;1 s, followed by assumed actuator relaxation.</p>
      <p>Geometric mouth&ndash;droplet contact gates an illustrative volume change. This is not fluid physics, pumping, swallowing or a closed sensory loop. The body is not registered to the FlyWire neuron coordinates shown in the anatomy view.</p>
-     <p><a target="_blank" rel="noopener" href="https://github.com/TuragaLab/flybody/tree/d015e9bfe441bd90ae431bac24c55cb74bdbce26">FlyBody geometry</a> is redistributed under <a href="licenses/FlyBody-APACHE-2.0.txt">Apache 2.0</a>; <a href="../vendor/THREE-LICENSE.txt">Three.js</a> and the <a href="licenses/fly-model-MIT.txt">source neural model</a> retain their MIT licenses. Geometry is losslessly gzip-compressed; motor events and motor/contact policies are unchanged. <a href="provenance.json">Package provenance</a>.</p>
+     <p><a target="_blank" rel="noopener" href="https://github.com/TuragaLab/flybody/tree/d015e9bfe441bd90ae431bac24c55cb74bdbce26">FlyBody geometry</a> is redistributed under <a href="licenses/FlyBody-APACHE-2.0.txt">Apache 2.0</a>; <a href="../vendor/THREE-LICENSE.txt">Three.js</a> and the <a href="licenses/fly-model-MIT.txt">source neural model</a> retain their MIT licenses. <a href="provenance.json">Source and processing details</a>.</p>
     </div>
    </details>
   </div>
  </section>
 
- <footer>Source anatomy: FlyBody &middot; source neural archive: Shiu et al. &middot; body mapping and contact: illustrative</footer>
+ <footer>Source anatomy: FlyBody &middot; neural model: Shiu et al. &middot; body mapping and contact: illustrative</footer>
 </main>
 <script src="../vendor/three.min.js"></script>
 <script src="native-feeding-events.js"></script>
@@ -119,7 +119,7 @@
 <script src="sensory-cues.js"></script>
 <script src="droplet-callout.js"></script>
 <script src="motor-navigation.js"></script>
-<script src="interface.js?v=20261020-simple"></script>
+<script src="interface.js?v=20261020-public"></script>
 <script src="boot.js"></script>
 </body>
 </html>

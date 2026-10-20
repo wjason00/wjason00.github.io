@@ -65,7 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261020-hierarchy" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-public" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -93,7 +93,7 @@
       crossorigin
     />
     <script src="./theme.js"></script>
-    <script src="./script.js?v=20261020-hierarchy" defer></script>
+    <script src="./script.js?v=20261020-public" defer></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -168,12 +168,12 @@
         id="experience"
         aria-labelledby="experience-title"
       >
-        <div class="section-heading research__heading"><h2 id="experience-title">Selected studies</h2></div>
+        <div class="section-heading research__heading"><h2 id="experience-title">Research</h2></div>
         <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
-          <header class="fly-project-heading"><h3 id="fly-title">Fly circuit</h3><p>Roundup is a feeding-circuit neuron; MN9 is the motor neuron measured in this published model.</p></header>
+          <header class="fly-project-heading"><h3 id="fly-title">Fly feeding circuit</h3><p>Does disconnecting Roundup, a circuit neuron, reduce activity in motor neuron MN9?</p></header>
           <div class="fly-media" id="fly-visuals" aria-label="Illustrative fly replay and saved experimental result">
             <figure class="fly-replay">
-              <h4>Illustrative body replay <span>· separate archive</span></h4>
+              <h4>Illustrative 3D replay</h4>
               <video id="fly-preview" controls playsinline muted preload="none"
                 poster="./assets/portfolio/fly-preview-20261020.webp"
                 width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
@@ -181,7 +181,7 @@
                 <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
                 <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
               </video>
-              <figcaption id="fly-replay-caption">Sugar input, intact, trial 1; ¼ speed. <strong>Separate archive; uncalibrated movement</strong>, including assumed relaxation after 1 s. This film does not show the paired experiment. <a href="./demos/fly/?v=20261020-hierarchy#body">Open the interactive 3D replay</a>.</figcaption>
+              <figcaption id="fly-replay-caption">Prescribed sugar input, intact circuit, trial 1; ¼ speed. <strong>Uncalibrated movement from a separate simulation archive</strong>, with assumed relaxation after 1 s. The film is separate from the paired comparison. <a href="./demos/fly/?v=20261020-public#body">Explore the 3D replay</a>.</figcaption>
             </figure>
             <figure class="research-result-figure fly-comparison">
               <h4>Paired simulation result</h4>
@@ -189,40 +189,40 @@
                 <img src="./assets/portfolio/fly-paired-comparison.svg" width="420" height="500" loading="lazy"
                   alt="Fifteen paired simulated MN9 spike counts at recurrent gains 0.8, 1.0 and 1.2. Each matched seed has fewer spikes after Roundup’s outgoing weights are zeroed." />
               </a>
-              <figcaption>One-second simulated MN9 spike counts. Five input seeds per gain; each line joins a matched seed. Seeds are inputs, not animals.</figcaption>
+              <figcaption>MN9 motor-neuron spikes over one simulated second. Each line joins a matched input seed; five seeds at each connection strength.</figcaption>
             </figure>
           </div>
 <div class="research-feature__copy fly-study-summary" id="fly-strength-study">
-          <div><h4>Connection-strength study</h4><p class="fly-study-contribution">I proposed and directed this study of a published fly model, comparing the disconnection at three connection strengths.</p></div>
-          <div><p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p><p class="research-result-limit">Exploratory model sensitivity: one circuit intervention, output neuron and input regime, at three selected gains. These simulated spikes do not establish a change in real feeding behaviour.</p><a class="research-study-link" href="./demos/fly/?v=20261020-hierarchy#connections">Inspect the circuit and saved output</a></div>
+          <div><h4>Connection-strength study</h4><p class="fly-study-contribution">I proposed and directed a study of whether removing Roundup’s outputs still reduces MN9 activity when connection strength changes.</p></div>
+          <div><p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p><p class="research-result-limit">The result concerns one motor neuron and input regime in a computational model; it does not establish a change in real feeding behaviour.</p><a class="research-study-link" href="./demos/fly/?v=20261020-public#connections">Explore the circuit comparison</a></div>
           </div>
           <details class="project-notes research-evidence">
-              <summary>Methods, limits &amp; evidence</summary>
-              <p>I proposed and directed a study asking whether disconnecting one feeding-circuit neuron still reduces simulated motor-neuron output when recurrent connection strength changes.</p>
-              <p>All 30 scientific runs passed independent saved-output verification. Each trial lasted one simulated second. Within each seed, intact and disconnected conditions at all three gains shared both input candidates and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched in these saved runs. Both this shared-candidate design and an execution correction were post-failure amendments, not preregistered.</p>
-              <p>Five input seeds are not five animals. No statistical significance, biological validation, novelty or full replication of the source paper is claimed. The source paper documents left-right inversion of the dataset and uses corrected biological sides. Genetic-driver coverage and historical cell-ID lineage remain unverified.</p>
+              <summary>Methods &amp; sources</summary>
+              <p>Thirty one-second simulations compare Roundup’s outgoing connections kept or cut at three recurrent gains and five matched input seeds.</p>
+              <p>Within each seed, both conditions at all three gains shared candidate and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched across these runs. The shared-input design and an execution correction were adopted after initial failures; the design was not preregistered.</p>
+              <p>The five seeds represent alternative model inputs, not animals. The comparison covers one neuron intervention, motor output and input regime. The source paper corrects left–right labels in its dataset; genetic-driver coverage and historical cell-ID lineage are not established here.</p>
               <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
               <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-              <p><a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The compact chart redraws the same 15 saved pairs; the film records the unchanged renderer over −0.4 to 2.0 simulated seconds and adds no behavioural validation.</p>
+              <p><a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The chart shows the 15 matched simulation pairs. The video covers −0.4 to 2.0 simulated seconds, using a separate motor archive and an illustrative movement mapping.</p>
           </details>
           <section class="research-followup" aria-labelledby="fly-timing-title">
-            <p class="eyebrow">Input-timing study · separate follow-up</p>
+            <p class="eyebrow">Input timing</p>
             <h4 id="fly-timing-title">Does timing change the effect of cutting more connections?</h4>
-            <p>I proposed and directed a comparison of removing Roundup’s direct connection to MN9 with removing all its outputs, under two sensory-input timing patterns. The difference between the cuts changed in different directions across five artificial input templates.</p>
-            <p class="research-result-limit">One fixed model and measurement window; no consistent directional or biological effect established.</p>
+            <p>I proposed and directed a comparison of cutting only Roundup’s connection to MN9 with cutting all its outputs. Across five artificial input templates, shifted timing increased, decreased or left unchanged the difference between the cuts.</p>
+            <p class="research-result-limit">No consistent direction across these five templates. This is a simulation result from one fixed model and measurement window.</p>
             <a class="research-study-link" href="./demos/fly/timing/">Explore the input-timing study <span aria-hidden="true">↗</span></a>
           </section>
         </article>
         <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">
           <div class="research-feature__copy">
-            <p class="eyebrow">Supporting methods study · dPCA</p>
+            <p class="eyebrow">Separating neural signals</p>
             <h3 id="dpca-title">Can stimulus and choice be separated when errors are rare?</h3>
             <p>
-              This synthetic-data study tests whether a choice-labelled component both reflects choice and reconstructs the known choice signal.
-              With rare errors, strong choice attribution coexists with poorer reconstruction than in the balanced setting.
-              With no errors, the analysis refuses the unidentifiable fit.
+              When stimulus and choice usually agree, can the analysis tell their signals apart?
+              In this synthetic study, a component can be strongly labelled as choice-related while reconstructing the known choice signal poorly.
+              With no error trials, stimulus and choice cannot be separated by this fit.
             </p>
-            <p class="research-item__scope">Six saved trial mixes · five noise seeds · one synthetic population</p>
+            <p class="research-item__scope">Six trial mixes · five noise seeds · synthetic neural activity</p>
             <a class="research-study-link" href="./rare-errors.html">Explore the rare-error experiment <span aria-hidden="true">↗</span></a>
           </div>
           <a class="research-feature__preview" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
@@ -232,13 +232,13 @@
           </a>
         </article>
       <section class="supervised-work" id="supervised-work" aria-labelledby="supervised-title">
-        <h2 id="supervised-title">Supervised EEG work at UCL</h2><article class="research-item research-item--role">
+        <h2 id="supervised-title">EEG source modelling</h2><article class="research-item research-item--role">
             <p class="research-item__kind">UCL</p>
             <h3>Undergraduate Research Assistant</h3>
             <p>
               I work with Professor Lorenzo Fabrizi in UCL’s
               <a href="https://www.ucl.ac.uk/life-sciences/mpsl" target="_blank" rel="noreferrer">Medawar Pain and Somatosensory Labs</a>.
-              My supervised work focuses on EEG source modelling: relating
+              My work focuses on EEG source modelling: relating
               models of brain activity to signals measured at the scalp.
             </p>
           </article></section>
@@ -252,7 +252,7 @@
           <div>
             <h2 id="projects-title">Models &amp; software</h2>
           </div>
-          <p>Choose a project to see its model, purpose and methods together.</p>
+          <p>Explore neural patterning, shape transitions and 3D animation.</p>
         </div>
         <figure
           class="project-gallery gallery"
@@ -391,9 +391,9 @@
           </div>
           <div class="project__body">
             <p class="project__lede">
-              I developed MorphBrain to explore how SHH and BMP signals affect
-              developmental patterning. You can move or remove the sources and
-              compare the regions assigned by the model.
+              I developed MorphBrain to explore how the signalling molecules SHH and BMP
+              affect developmental patterning. Move or remove a source to see
+              how the regions assigned by the model change.
             </p>
 
             <p class="project-limit">
@@ -636,8 +636,7 @@
             </p>
 
             <p class="project-limit" id="morphliner-project-limit">
-              Working prototype with local project saving and H.264 export. Full
-              release remains in development.
+              Prototype in development, with local project saving and H.264 export.
             </p>
             <details class="project-notes">
               <summary>Methods &amp; sources</summary>

@@ -32,10 +32,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <title>When errors are rare — Jason Wang</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20261020-public" />
     <link rel="stylesheet" href="./assets/portfolio/study.css" />
     <script src="./theme.js"></script>
-    <script src="./script.js" defer></script>
+    <script src="./script.js?v=20261020-public" defer></script>
     <script src="./assets/portfolio/rare-errors/data.js" defer></script>
     <script src="./assets/portfolio/study.js" defer></script>
   </head>
@@ -62,22 +62,21 @@
     </header>
     <main id="main" class="wrap" tabindex="-1">
       <section class="study-intro" aria-labelledby="study-title">
-        <p class="study-category">Synthetic methods study / dPCA</p>
-        <h1 id="study-title">What if mistakes are missing?</h1>
+        <p class="study-category">Separating neural signals</p>
+        <h1 id="study-title">When stimulus and choice agree</h1>
         <p class="lede">
           In this synthetic task, stimulus A should lead to choice A, and B to
           B. When almost every choice is correct, can an analysis tell the
           stimulus and choice signals apart?
         </p>
         <p class="study-meta">
-          Synthetic data · 80 training trials · 5 noise seeds · saved results,
-          September 2026
+          Synthetic neural activity · 80 training trials · 5 noise seeds
         </p>
       </section>
       <section class="trial-design" id="trial-settings" aria-labelledby="trial-settings-title">
           <div class="trial-design__heading">
             <h2 id="trial-settings-title">Choose the trial mix.</h2>
-            <p class="saved-setting">Saved results; no new fit is run</p>
+            <p class="saved-setting">Explore precomputed fits</p>
           </div>
           <div class="trial-design__controls">
           <p id="count-label">
@@ -146,8 +145,7 @@
             1 error per stimulus · 80 trials total · design rank 4 of 4
           </p>
           <p class="design-note">
-            One filled dot = one synthetic training trial. Counts are imposed by
-            the study, rather than sampled behaviour.
+            One filled dot = one synthetic training trial. The trial mix is set by the study.
           </p>
           <noscript
             ><p class="no-js-note">
@@ -157,7 +155,7 @@
           >
           </section>
           <section class="study-results" aria-labelledby="result-title">
-            <p class="result-context">Saved result</p>
+            <p class="result-context">Selected result</p>
           <h2 id="result-title">A clean label. A noisier estimate.</h2>
           <p id="result-explanation">
             The component is strongly choice-driven, yet its reconstruction is

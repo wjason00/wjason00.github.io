@@ -4,6 +4,36 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Public-facing copy - 20 October 2026
+
+The [portfolio](https://wjason00.github.io/?v=20261020-public) now leads with
+research questions, contributions and findings. The homepage explains the Fly
+intervention before its media and introduces the rare-error question before
+analysis terminology. Software descriptions explain what visitors can explore.
+The explorer/replay/timing pages use direct instructions and clearer loading,
+error and result labels. Essential model limits stay beside their claims;
+methods retain the detailed protocols, sources and active-condition warnings.
+
+The timing follow-up explicitly includes increased, decreased and unchanged
+differences. Body sources distinguish attribution of the neural model from the
+separate simulation archive, whose creator is not established by the inspected
+exports. No numerical outputs, simulation algorithms, geometry or movement rules
+changed. The fixed film/chart assets retain their existing source receipts.
+
+A bounded cold reader supplied six findings; the corrections and an actual
+Astra/Ultra source acceptance review are saved in
+`output/portfolio-public-20261020/`. The current combined build passes 27
+source/data and 33 browser checks. Desktop and phone captures preserve the
+first-screen media layout. Release verification belongs in
+`output/portfolio-public-20261020/verification.json`.
+
+[Desktop preview](https://drive.google.com/file/d/1vHlTqKu0fmq84HziVJDazEuG5Bbi6p1k/view?usp=drivesdk)
+and [phone preview](https://drive.google.com/file/d/11JczP0ANa7SBE_XetFYqva_Q9WWzwt7e/view?usp=drivesdk)
+are in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
+The canonical UX sheet now makes public-facing clarity an explicit rule; the
+shared working-practices playbook records Jason's persistent instruction.
+Next action: see T-173.
+
 ## Coherent project layout ? 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-hierarchy) opens with

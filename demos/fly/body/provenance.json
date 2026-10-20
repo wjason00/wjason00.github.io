@@ -161,10 +161,10 @@
     {
       "file": "index.html",
       "source": "index.html",
-      "bytes": 12301,
-      "sha256": "0022c92e5bbad06a3ac57b807c797a25726f363ad8c17f8e01852f98ea15d7bc",
+      "bytes": 12291,
+      "sha256": "7d435d88accaf2e7392ebb00942b2ddcf819451779757a1580f80450fc6ec848",
       "preserved": false,
-      "transform": "Progressive disclosure of specialised controls; retain the scene, saved raster, primary controls and scientific boundaries. Playback precedes the scene in reading order; compact phone scene preserves the original two source camera views."
+      "transform": "Progressive disclosure of specialised controls; retain the scene, saved raster, primary controls and scientific boundaries. Playback precedes the scene in reading order; compact phone scene preserves the original two source camera views. Visitor-facing wording and clearer archive/model attribution; data and movement rules unchanged."
     },
     {
       "file": "boot.js",
@@ -185,9 +185,9 @@
       "file": "interface.js",
       "source": "new portfolio interface",
       "preserved": false,
-      "bytes": 4781,
-      "sha256": "f89e28090bb14f98421059781bf9a8e006cf2bec081ca3a0ba48142e7bedaaf7",
-      "transform": "Presentation only: accessible Advanced disclosure, visible run state and drive-block warning, and natural-content iframe sizing."
+      "bytes": 4776,
+      "sha256": "28b0b2db566a70cb1797ec7d671b48e9bbd908e1e144c78f4a6e11a8f73a7b59",
+      "transform": "Presentation only: accessible Advanced disclosure, visible run state and drive-block warning, and natural-content iframe sizing. Visitor-facing wording and clearer archive/model attribution; data and movement rules unchanged."
     }
   ]
 }

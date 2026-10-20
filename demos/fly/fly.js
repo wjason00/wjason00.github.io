@@ -35,8 +35,8 @@ function render(){
  $('time').value=Math.round(time*1000);$('time-label').value=`${Math.round(time*1000)} ms`;
  const a=countThrough(pair.intact.spikes,time),b=countThrough(pair.cut.spikes,time);
  $('result').setAttribute('aria-live',playing?'off':'polite');
- $('result').textContent=`${cut?'Cut':'Kept'} selected · ${cut?b:a} MN9 spikes at ${Math.round(time*1000)} ms. Full saved trial: ${pair.intact.count} kept, ${pair.cut.count} cut (${pair.intact.count-pair.cut.count} fewer after the cut).`;
- $('experiment-summary').textContent=`Saved comparison · Gain ${Number($('gain').value).toFixed(1)}× · Seed ${$('seed').value} · Roundup outputs ${cut?'cut':'kept'}`;
+ $('result').textContent=`${cut?'Cut':'Kept'} selected · ${cut?b:a} MN9 spikes at ${Math.round(time*1000)} ms. Full simulated trial: ${pair.intact.count} kept, ${pair.cut.count} cut (${pair.intact.count-pair.cut.count} fewer after the cut).`;
+ $('experiment-summary').textContent=`Simulation comparison · Gain ${Number($('gain').value).toFixed(1)}× · Seed ${$('seed').value} · Roundup outputs ${cut?'cut':'kept'}`;
  $('play').textContent=playing?'Pause':time>=1?'Replay':'Play';
 }
 function pause(){playing=false;cancelAnimationFrame(frame);render();}

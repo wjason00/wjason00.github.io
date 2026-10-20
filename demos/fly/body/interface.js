@@ -18,7 +18,7 @@
     const compare = document.getElementById('compare-mode').getAttribute('aria-pressed') === 'true';
     const speed = Number(document.getElementById('speed').value);
     const cycle = document.getElementById('repeat').checked ? 'cycling trials' : '';
-    const text = ['Saved trial ' + (Number(trial.value) + 1) + ' of 30', speed + '\u00d7 speed', compare ? 'comparison active' : '', cycle].filter(Boolean).join(' \u00b7 ');
+    const text = ['Trial ' + (Number(trial.value) + 1) + ' of 30', speed + '\u00d7 speed', compare ? 'comparison active' : '', cycle].filter(Boolean).join(' \u00b7 ');
     if (runSummary.textContent !== text) runSummary.textContent = text;
   }
 
@@ -57,7 +57,7 @@
     const active = blocks.filter(input => input.checked);
     blockNote.hidden = active.length === 0;
     blockStatus.textContent = active.length
-      ? active.map(input => input.id === 'block-mn9' ? 'MN9' : 'MN6').join(' and ') + ' drive blocked. Saved spikes are retained.'
+      ? active.map(input => input.id === 'block-mn9' ? 'MN9' : 'MN6').join(' and ') + ' drive blocked. Spike traces are unchanged.'
       : '';
   }
 

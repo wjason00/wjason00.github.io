@@ -78,23 +78,23 @@ export function initExplorer() {
     });
     for (const panel of document.querySelectorAll('[data-explorer-panel]')) panel.hidden = panel.dataset.explorerPanel !== view;
     const body = view === 'body';
-    document.querySelector('.project-intro h1').textContent = body ? 'Saved motor activity and illustrative movement' : 'The fly feeding circuit';
-    document.querySelector('.project-intro p').textContent = body ? 'Inspect MN9 and MN6 activity alongside the illustrative body replay.' : 'Explore the wiring. Compare the saved motor output.';
+    document.querySelector('.project-intro h1').textContent = body ? 'Explore the fly’s motor activity' : 'The fly feeding circuit';
+    document.querySelector('.project-intro p').textContent = body ? 'Replay simulated motor spikes alongside an illustrative 3D fly.' : 'How does disconnecting Roundup, a feeding-circuit neuron, change motor output?';
     $('paired-controls').hidden = body;
     $('paired-output').hidden = body;
     $('neuron-inspector').hidden = body;
     $('network-workbench').classList.toggle('body-view', body);
     document.querySelector('.experiment').classList.toggle('body-view', body);
-    $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions or recorded activity' : view === 'anatomy' ? 'Static source skeletons · FlyWire v630' : 'Saved motor spikes · assumed body movement';
+    $('layout-note').textContent = view === 'connections' ? 'Graph layout · not anatomical positions or recorded activity' : view === 'anatomy' ? 'Static source skeletons · FlyWire v630' : 'Simulated motor spikes · illustrative movement';
     $('view-title').textContent = view === 'connections' ? 'Roundup’s neighbourhood' : view === 'anatomy' ? 'Reconstructed neurons' : 'Motor replay';
-    $('view-description').textContent = body ? 'A separate saved author archive drives this replay. Body movement is an uncalibrated illustration.' : view === 'anatomy' ? 'Real source geometry. Cut and gain change the saved comparison, not these static shapes.' : 'Select a neuron or connection. The chart shows saved model output.';
+    $('view-description').textContent = body ? 'Play or scrub the replay. Compare movement with MN9 and MN6 activity.' : view === 'anatomy' ? 'Explore reconstructed neuron shapes. Cut and gain change the simulated output, not this anatomy.' : 'Select a neuron or connection. Compare its wiring with simulated motor output.';
     if (view === 'anatomy') {
       try { await anatomy.open(); }
       catch { $('anatomy-status').textContent = 'The 3D anatomy could not load. Check your connection, then select this view again. Neuron explanations and saved results remain available.'; }
     }
     if (body && !bodyFrame.getAttribute('src')) {
       $('body-status').hidden = false;
-      bodyFrame.src = 'body/index.html?v=20261020-hierarchy';
+      bodyFrame.src = 'body/index.html?v=20261020-public';
     }
     else if (body) bodyFrame.contentWindow?.postMessage({ type: 'fly-body-measure' }, window.location.origin);
   }

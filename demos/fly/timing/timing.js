@@ -106,9 +106,9 @@ export function boot(root = document) {
     byId('finding').textContent = summary; byId('finding').hidden = !summary;
     status.parentElement.dataset.state = error ? 'error' : data ? 'verified' : 'pending';
     status.parentElement.hidden = Boolean(data);
-    status.textContent = error ? `Evidence could not be displayed: ${error} Reload to retry.` : pending ? 'Pending verified results. No numerical findings are displayed.' : 'Complete 30-cell grid · independently audited · five artificial templates';
-    byId('empty-state').querySelector('h3').textContent = error ? 'Evidence unavailable' : 'Pending verified results';
-    byId('empty-state').querySelector('p').textContent = error ? 'The last selection is preserved. Reload the evidence file to retry; no unverified values are shown.' : 'The figure will appear when the complete grid and its independent audit are available. No numerical findings are displayed yet.';
+    status.textContent = error ? `Results could not load: ${error} Try again.` : pending ? 'Results are not yet available.' : 'Five artificial templates · 30 simulation conditions';
+    byId('empty-state').querySelector('h3').textContent = error ? 'Results unavailable' : 'Results not yet available';
+    byId('empty-state').querySelector('p').textContent = error ? 'Your selection is preserved. Try again to load the results.' : 'The comparison will appear here when the complete results and their independent checks are available.';
     if (!data) return;
     const previous = template.value;
     template.replaceChildren(...data.templates.map(item => { const option = document.createElement('option'); option.value = item.id; option.textContent = item.label; return option; }));
@@ -173,7 +173,7 @@ export function boot(root = document) {
   template.addEventListener('change', () => { model.select(template.value, pattern.value); render(); });
   pattern.addEventListener('change', () => { model.select(template.value, pattern.value); render(); });
   async function reload() {
-    const token = ++request; byId('reload').disabled = true; status.textContent = 'Loading the evidence file…';
+    const token = ++request; byId('reload').disabled = true; status.textContent = 'Loading results…';
     try { const response = await fetch(new URL('data.json', import.meta.url), { cache: 'no-store' }); if (!response.ok) throw new Error(`Evidence file returned ${response.status}.`); const data = await response.json(); if (token === request) model.accept(data); }
     catch (error) { if (token === request) model.reject(error); }
     if (token === request) { byId('reload').disabled = false; render(); }

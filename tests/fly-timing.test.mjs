@@ -41,7 +41,7 @@ test('actual error renderer hides stale results, explains the failure, and leave
   try {
     const app = boot({ getElementById: id => nodes[id] }); app.model.select('1004', 'staggered'); await app.reload();
     assert.equal(nodes.results.hidden, true); assert.equal(nodes['empty-state'].hidden, false);
-    assert.match(nodes.status.textContent, /independent audit/); assert.equal(heading.textContent, 'Evidence unavailable');
+    assert.match(nodes.status.textContent, /independent audit/); assert.equal(heading.textContent, 'Results unavailable');
     assert.equal(nodes.template.value, '1004'); assert.equal(nodes.pattern.value, 'staggered');
     assert.equal(app.model.state.templateId, '1004');
     assert.equal(nodes.finding.hidden, true); assert.equal(nodes.finding.textContent, '');

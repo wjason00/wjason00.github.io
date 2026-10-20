@@ -16,7 +16,13 @@ for (const width of [390, 1366]) {
     await expect(page.locator('#paired-output')).toBeHidden();
     await expect(page.locator('.framing')).toBeHidden();
     await expect(body).toHaveAttribute('src', /^body\/index\.html\?v=/);
-    await expect(page.locator('#view-description')).toContainText('separate saved author archive');
+    await expect(page.locator('.project-intro h1')).toHaveText('Explore the fly’s motor activity');
+    await expect(page.locator('#view-description')).toContainText(/Play or scrub the replay/);
+    const replayBoundary = page.frameLocator('#body-frame').locator('.archive-boundary');
+    await expect(replayBoundary).toBeVisible();
+    await expect(replayBoundary).toContainText(/separate simulation archive/i);
+    await expect(replayBoundary).toContainText(/uncalibrated movement/i);
+    await expect(replayBoundary).toContainText(/Sensory input is prescribed; contact does not feed back/);
     await page.getByRole('tab', { name: 'Connections', exact: true }).click();
     await expect(page.locator('#paired-controls')).toBeVisible();
     await expect(page.locator('.framing')).toBeHidden();
