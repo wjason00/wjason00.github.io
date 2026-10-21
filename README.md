@@ -4,11 +4,41 @@ A static portfolio for computational neuroscience and machine-learning researche
 labs and placement selectors. Research questions, methods and evidence come first;
 geometry and animation tools provide supporting software examples.
 
+## Research gallery - 21 October 2026
+
+Jason selected draft C and authorised implementation with Fable figure refinement
+(T-210). This release uses the accepted ice-white/green composition, Spectral
+headings, lilac actions and compact anatomical introduction. Research appears in
+the first phone screen; complete studies and working software remain available
+through their existing links and controls. The homepage-specific design lives in
+`assets/portfolio/gallery-home.css`; its old specimen/index block was removed.
+
+Actual Claude Fable 5.1 reviewed candidate versions of both figures; its adopted
+corrections are included in these final exports. The circuit schematic
+now distinguishes inputs, other targets and the MN9 readout, and states that
+arrows encode direction, not sign or strength. The neural-signals preview labels
+the dPCA/choice-present condition, separates all five seeds into readable rows,
+and retains the exact values, means, ranges and original axis domains. The
+editable SVG accompanies its PNG. These are presentation changes; frozen source
+data, scientific runtimes and the paired 15-comparison figure are preserved.
+
+The candidate passes 33 source/data checks and all 43 browser cases against the
+assembled site, including 320px layouts, keyboard routes, no-script accounts,
+theme persistence and model-loading recovery. Final desktop/phone captures in
+both themes were inspected. Fable did not re-review the post-disposition exports;
+an independent source-fidelity review checked those final figures.
+
+The [implementation plan](docs/superpowers/plans/2026-10-21-research-gallery.md)
+and [UX sheet](demos/fly/ux-sheet.html#homepage-contract) own the design contract.
+Local Fable receipts, source audit, final captures and release verification live
+in `output/gallery-20261021/`. This section supersedes the earlier visual
+directions below. Next action: see T-210.
+
 ## Specific-reference correction - 20 October 2026
 
 Jason rejected the slate-panel composition and clarified that the direction must
-come from specific rendered sites. The current [portfolio](https://wjason00.github.io/?v=20261020-reference)
-uses [ISOMORPH.LAB](https://isomorph-lab.framer.website/) for a specimen-led opening,
+come from specific rendered sites. The 20 October [portfolio release](https://wjason00.github.io/?v=20261020-reference)
+used [ISOMORPH.LAB](https://isomorph-lab.framer.website/) for a specimen-led opening,
 [Lusion Projects](https://lusion.co/projects) for an image-first work index, and
 [Lovable's artist portfolio](https://parallax-artist-portfolio-037d6adf.lovable.app/)
 for the route from a visual overview into detailed reading. The exact MotionSites
@@ -22,9 +52,9 @@ disclosures retain the full figures, sources and separate playable replay. Every
 existing scientific hash reveals its containing study; keyboard and no-script
 access remain available. Scientific assets, data and runtimes are unchanged.
 
-The [current plan](docs/superpowers/plans/2026-10-20-reference-led-websites.md)
-and [UX sheet](demos/fly/ux-sheet.html) supersede the rejected composition's visual
-contract. Its earlier release/test receipts remain dated technical evidence,
+The [20 October plan](docs/superpowers/plans/2026-10-20-reference-led-websites.md)
+superseded the rejected composition's visual contract at that release. Its
+release/test receipts remain dated technical evidence,
 not design approval. Exact reference captures, current screenshots and release
 verification belong in `output/reference-led-20261020/`. The same explicit user
 request also authorises local restyles of MorphBrain, Neuro and the LinkedIn

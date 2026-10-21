@@ -1,17 +1,20 @@
 import { expect, test } from '@playwright/test';
 
-for (const width of [1366, 390]) {
-  test(`specimen opening leads to a readable work index at ${width}px`, async ({ page }) => {
+for (const width of [1366, 390, 320]) {
+  test(`research gallery opens with a compact identity and a readable study entry at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
     await page.goto('/');
     const specimen = page.locator('.specimen-opening__scene img');
     await specimen.evaluate(image => image.decode());
-    await expect(page.getByRole('heading', { name: 'Jason Wang', exact: true })).toBeInViewport();
+    await expect(page.getByRole('heading', { name: 'How neurons work together.', exact: true })).toBeInViewport();
     await expect(specimen).toBeVisible();
     await expect(page.locator('#opening-specimen-caption')).toContainText('Anatomical illustration');
     await expect(page.locator('#fly-study-details')).not.toHaveAttribute('open');
+    const workTop = await page.locator('#selected-work').evaluate(element => element.getBoundingClientRect().top);
+    expect(workTop).toBeLessThan(width < 800 ? 700 : 600);
+    await expect(page.getByRole('link', { name: 'Explore the work', exact: true })).toBeInViewport();
     await page.getByRole('link', { name: /Explore the work/ }).click();
-    await expect(page.getByRole('heading', { name: 'Selected work' })).toBeInViewport();
+    await expect(page.getByRole('heading', { name: 'Selected research', exact: true })).toBeInViewport();
     await expect(page.locator('.work-index__item').first()).toContainText('all 15 paired model comparisons');
     await expect(page.locator('.work-index__item').first()).toContainText('no change in real feeding behaviour');
     await page.getByRole('link', { name: /Read the study & paired results/ }).click();

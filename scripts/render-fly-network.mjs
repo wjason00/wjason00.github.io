@@ -29,13 +29,13 @@ export function renderNetwork(data) {
   const selection = selectNetwork(data);
   const otherTargets = selection.outgoing.filter(edge => edge.target !== data.mn9);
   const positions = new Map([
-    [data.roundup, { x: 267, y: 185, r: 35 }],
-    [data.mn9, { x: 486, y: 279, r: 28 }],
-    [selection.incoming[0].source, { x: 81, y: 118, r: 15 }],
-    [selection.incoming[1].source, { x: 81, y: 265, r: 15 }],
-    [otherTargets[0].target, { x: 477, y: 92, r: 15 }],
-    [otherTargets[1].target, { x: 510, y: 179, r: 15 }],
-    [selection.otherReadout[0].source, { x: 326, y: 315, r: 15 }],
+    [data.roundup, { x: 250, y: 202, r: 33 }],
+    [data.mn9, { x: 500, y: 283, r: 27 }],
+    [selection.incoming[0].source, { x: 72, y: 145, r: 14 }],
+    [selection.incoming[1].source, { x: 72, y: 265, r: 14 }],
+    [otherTargets[0].target, { x: 500, y: 122, r: 14 }],
+    [otherTargets[1].target, { x: 500, y: 202, r: 14 }],
+    [selection.otherReadout[0].source, { x: 352, y: 319, r: 14 }],
   ]);
   if (positions.size !== selection.nodes.length) throw new Error('Layout contains overlapping node identities.');
   const paths = selection.edges.map(edge => {
@@ -67,23 +67,31 @@ export function renderNetwork(data) {
     .roundup { fill: #b95726; stroke: #b95726; }
     .readout { fill: #126b68; stroke: #126b68; }
     .label { font-size: 26px; font-weight: 600; }
-    .legend { font-size: 24px; }
+    .legend { font-size: 21px; }
+    .role { font-size: 21px; fill: #526574; }
+    .scope { font-size: 20px; fill: #526574; }
   </style>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#788799"/></marker>
     <marker id="cut-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 Z" fill="#b95726"/></marker>
   </defs>
   <rect width="600" height="430" fill="#fff"/>
-  <circle class="node other" cx="29" cy="33" r="9"/>
-  <text class="legend" x="49" y="41">Other selected neurons</text>
+  <text class="label" x="28" y="34">Roundup output intervention</text>
+  <text class="scope" x="28" y="62">Selected connections · schematic; others omitted</text>
+  <text class="role" x="72" y="108" text-anchor="middle">Inputs</text>
+  <text class="role" x="500" y="86" text-anchor="middle">Other targets</text>
 ${paths.join('\n')}
 ${circles.join('\n')}
-  <text class="label" x="267" y="244" text-anchor="middle">Roundup</text>
-  <text class="label" x="486" y="332" text-anchor="middle">MN9 readout</text>
-  <line class="edge unchanged" x1="24" y1="373" x2="69" y2="373" marker-end="url(#arrow)"/>
-  <text class="legend" x="87" y="381">Connections left unchanged</text>
-  <line class="edge cut" x1="24" y1="410" x2="69" y2="410" marker-end="url(#cut-arrow)"/>
-  <text class="legend" x="87" y="418">Roundup outputs cut</text>
+  <text class="label" x="250" y="259" text-anchor="middle">Roundup</text>
+  <text class="role" x="250" y="284" text-anchor="middle">outputs cut</text>
+  <text class="role" x="352" y="354" text-anchor="middle">Other input</text>
+  <text class="label" x="500" y="334" text-anchor="middle">MN9</text>
+  <text class="role" x="500" y="358" text-anchor="middle">readout</text>
+  <line class="edge unchanged" x1="28" y1="388" x2="70" y2="388" marker-end="url(#arrow)"/>
+  <text class="legend" x="88" y="395">Unchanged</text>
+  <line class="edge cut" x1="292" y1="388" x2="334" y2="388" marker-end="url(#cut-arrow)"/>
+  <text class="legend" x="352" y="395">Roundup outputs zeroed</text>
+  <text class="scope" x="28" y="423">Arrows show direction; sign and strength not encoded.</text>
 </svg>
 `;
   return { svg, selection };

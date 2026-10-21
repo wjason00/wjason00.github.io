@@ -1,26 +1,111 @@
 {
-  "description": "Unmodified screenshot crop of the existing one-error attribution and reconstruction-error plots; synthetic data, one population, five noise seeds.",
+  "format": "rare-errors-portfolio-figure-2",
+  "description": "Replot of unchanged saved one-error synthetic results; all five original noise seeds, fixed population, dPCA choice-present condition.",
   "selected_errors_per_stimulus": 1,
-  "crop_css_pixels": {
-    "x": 8,
-    "y": 607,
-    "width": 374,
-    "height": 599
-  },
-  "image_pixels": {
-    "width": 748,
-    "height": 1198
-  },
-  "source_sections": [
-    "rare-errors.html: #seed-diagnostics .diagnostics-heading through .result-note (two existing SVG plots)",
-    "assets/portfolio/study.js: select(1) and metric()",
-    "assets/portfolio/rare-errors/data.js"
+  "selected_noise_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
   ],
-  "source_study_provenance": "assets/portfolio/rare-errors/provenance.json",
-  "source_sha256_utf8_lf": {
-    "rare-errors.html": "dd2ff74e420eca76db75bafc12346d96792f288cc5e2647771fd363b0c109fff",
-    "assets/portfolio/study.js": "9fec7cf4cf33c41355460c2d7e725798bd6f405aca6bacadae706d8f02006b00",
-    "assets/portfolio/rare-errors/data.js": "5167d1bc52bed7f031f7b347de8c37fa09f7d50cbe3f262925a999481d9ef461"
+  "selection": "condition=choice_present; model=dPCA; status=fit; errors_per_stimulus=1; noise_seed ascending. Same condition as the previous screenshot preview.",
+  "sources": [
+    {
+      "path": "assets/portfolio/rare-errors/metrics.csv",
+      "sha256": "d2aefaadc12439db7fc7bc5106e939bcc2a127d2c39d4295ee5aa5f11a9a87cd",
+      "sha256_utf8_lf": "7d0a9f1dec1b40e1dcef42bcc2196cc67a370781f45f3d708a1af418c42422d0"
+    },
+    {
+      "path": "assets/portfolio/rare-errors/data.js",
+      "sha256": "98d76e89a4fb46277d21a4b9805477d835598cacfc2756238d4200aabbb0ff2e",
+      "sha256_utf8_lf": "5167d1bc52bed7f031f7b347de8c37fa09f7d50cbe3f262925a999481d9ef461"
+    },
+    {
+      "path": "assets/portfolio/rare-errors/provenance.json",
+      "sha256": "ec0f6e60549b94b05014cd4d2cb4d57de12e07dc6a3c5ac875e0e382e8283fbb",
+      "sha256_utf8_lf": "d28577bfc5aecf297f36b6555a7e5ec7d77bd819281bb169ce73bd353bd728d6"
+    },
+    {
+      "path": "assets/portfolio/study.css",
+      "sha256": "dfc637758f2ace2009244226f241f74b6a26161d4cc2dbf38429cef846fe108b",
+      "sha256_utf8_lf": "244e634561dce51ce76c284b41a39fea374d0c98d26bf12cdc2e735d52b58d5c"
+    }
+  ],
+  "metrics": [
+    {
+      "key": "choice_intended_purity",
+      "values": [
+        0.9680080218901684,
+        0.9910893514448227,
+        0.9718351615601751,
+        0.9709861649391825,
+        0.9794372135423575
+      ],
+      "mean": 0.9762711826753413,
+      "min": 0.9680080218901684,
+      "max": 0.9910893514448227,
+      "axis_domain": [
+        0,
+        1
+      ],
+      "percent": true
+    },
+    {
+      "key": "choice_branch_target_nmse",
+      "values": [
+        0.09970259245308448,
+        0.11217715159262447,
+        0.09537924466424523,
+        0.09999344234591649,
+        0.09291302034577775
+      ],
+      "mean": 0.10003309028032968,
+      "min": 0.09291302034577775,
+      "max": 0.11217715159262447,
+      "axis_domain": [
+        0,
+        0.12
+      ],
+      "percent": false
+    }
+  ],
+  "uncertainty": "All five seed observations and full min–max range. Not independent biological replicates or confidence intervals.",
+  "palette": {
+    "0": "#376b91",
+    "1": "#a05e22",
+    "2": "#7461a6",
+    "3": "#287c75",
+    "4": "#a04d68"
   },
-  "generator": "scripts/render-rare-errors-preview.mjs"
+  "palette_source": "Original light-mode seed palette in assets/portfolio/study.css; unchanged.",
+  "image_pixels": {
+    "width": 1200,
+    "height": 1440
+  },
+  "dimensions_css_pixels": {
+    "width": 600,
+    "height": 720
+  },
+  "outputs": [
+    {
+      "path": "assets/portfolio/rare-errors-results-preview.svg",
+      "sha256": "5926abcd3fff767533756429e56e5456de56a831d811dbe5f7974a6d928ddc5a",
+      "sha256_utf8_lf": "5926abcd3fff767533756429e56e5456de56a831d811dbe5f7974a6d928ddc5a"
+    },
+    {
+      "path": "assets/portfolio/rare-errors-results-preview.png",
+      "sha256": "fc0312ebcf67d53d6f6937cfa91450ed3b473f0d0243d142f55bdd4501c0cdd5",
+      "sha256_utf8_lf": "88dda87c913c87908e0dfea3f4bdc042d15c4ab76324054c1a135b7c2eb46ba4"
+    }
+  ],
+  "checks": {
+    "frozen_source_hash": true,
+    "all_10_values_equal_existing_presentation": true,
+    "all_5_seeds_included": true,
+    "previous_axes_preserved": true,
+    "palette_preserved": true
+  },
+  "generator": "node scripts/render-rare-errors-preview.mjs",
+  "claim_boundary": "Presentation only; no new fit, simulation, inference or biological result."
 }

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="720" viewBox="0 0 600 720" role="img" aria-labelledby="rare-title rare-desc">
+    <title id="rare-title">Choice attribution and reconstruction at one error per stimulus</title>
+    <desc id="rare-desc">Saved synthetic results in a fixed population. All five noise seeds are shown and labelled by row. Upper plot: choice attribution, zero to 100 percent. Lower plot: choice reconstruction error, zero to 0.12. These are different measures with separate scales. Means appear beside each title; full seed ranges are not confidence intervals. No biological data.</desc>
+    <metadata>Source: assets/portfolio/rare-errors/metrics.csv. Exact values and hashes: rare-errors-results-preview.json. Rebuild: node scripts/render-rare-errors-preview.mjs.</metadata>
+    <style>text{font-family:Arial,sans-serif;fill:#243446}.heading{font-size:28px;font-weight:600}.subtitle{font-size:22px;fill:#526574}.panel-title{font-size:23px;font-weight:600}.mean{font-size:30px;font-weight:600}.direction,.tick,.range,.seed-label{font-size:21px;fill:#526574}.foot{font-size:20px;fill:#526574}</style>
+    <rect width="600" height="720" fill="#fff"/>
+    <text class="heading" x="28" y="36">One error per stimulus</text>
+    <text class="subtitle" x="28" y="66">dPCA · choice-present · 5 noise seeds</text>
+    <text class="foot" x="28" y="92">Fixed synthetic population · one of six trial mixes</text>
+    <g data-panel="choice_intended_purity">
+      <text class="panel-title" x="28" y="116">Choice attribution</text>
+      <text class="direction" x="28" y="145">Higher = more choice-driven</text>
+      <text class="mean" x="558" y="116" text-anchor="end">97.63%</text>
+      <text class="direction" x="558" y="145" text-anchor="end">mean</text>
+      <line x1="80" x2="80" y1="165" y2="294" stroke="#e1e6e8"/><text x="80" y="322" text-anchor="middle" class="tick">0%</text>
+<line x1="197.5" x2="197.5" y1="165" y2="294" stroke="#e1e6e8"/><text x="197.5" y="322" text-anchor="middle" class="tick">25%</text>
+<line x1="315" x2="315" y1="165" y2="294" stroke="#e1e6e8"/><text x="315" y="322" text-anchor="middle" class="tick">50%</text>
+<line x1="432.5" x2="432.5" y1="165" y2="294" stroke="#e1e6e8"/><text x="432.5" y="322" text-anchor="middle" class="tick">75%</text>
+<line x1="550" x2="550" y1="165" y2="294" stroke="#e1e6e8"/><text x="550" y="322" text-anchor="middle" class="tick">100%</text><line x1="80" x2="550" y1="294" y2="294" stroke="#8c9ca7"/>
+      <text class="foot" x="24" y="226" text-anchor="middle" transform="rotate(-90 24 226)">Seed</text><text x="62" y="185" text-anchor="end" class="seed-label">0</text><circle data-metric="choice_intended_purity" data-seed="0" data-value="0.9680080218901684" cx="534.9637702883792" cy="178" r="6.5" fill="#376b91"><title>Seed 0: 96.80%</title></circle>
+<text x="62" y="209" text-anchor="end" class="seed-label">1</text><circle data-metric="choice_intended_purity" data-seed="1" data-value="0.9910893514448227" cx="545.8119951790667" cy="202" r="6.5" fill="#a05e22"><title>Seed 1: 99.11%</title></circle>
+<text x="62" y="233" text-anchor="end" class="seed-label">2</text><circle data-metric="choice_intended_purity" data-seed="2" data-value="0.9718351615601751" cx="536.7625259332823" cy="226" r="6.5" fill="#7461a6"><title>Seed 2: 97.18%</title></circle>
+<text x="62" y="257" text-anchor="end" class="seed-label">3</text><circle data-metric="choice_intended_purity" data-seed="3" data-value="0.9709861649391825" cx="536.3634975214159" cy="250" r="6.5" fill="#287c75"><title>Seed 3: 97.10%</title></circle>
+<text x="62" y="281" text-anchor="end" class="seed-label">4</text><circle data-metric="choice_intended_purity" data-seed="4" data-value="0.9794372135423575" cx="540.3354903649081" cy="274" r="6.5" fill="#a04d68"><title>Seed 4: 97.94%</title></circle>
+      <text class="range" x="28" y="361">Full seed range: 96.80%–99.11%</text>
+    </g>
+<g data-panel="choice_branch_target_nmse">
+      <text class="panel-title" x="28" y="409">Choice reconstruction error</text>
+      <text class="direction" x="28" y="438">Lower = closer to target</text>
+      <text class="mean" x="558" y="409" text-anchor="end">0.1000</text>
+      <text class="direction" x="558" y="438" text-anchor="end">mean</text>
+      <line x1="80" x2="80" y1="458" y2="587" stroke="#e1e6e8"/><text x="80" y="615" text-anchor="middle" class="tick">0</text>
+<line x1="197.5" x2="197.5" y1="458" y2="587" stroke="#e1e6e8"/><text x="197.5" y="615" text-anchor="middle" class="tick">0.03</text>
+<line x1="315" x2="315" y1="458" y2="587" stroke="#e1e6e8"/><text x="315" y="615" text-anchor="middle" class="tick">0.06</text>
+<line x1="432.5" x2="432.5" y1="458" y2="587" stroke="#e1e6e8"/><text x="432.5" y="615" text-anchor="middle" class="tick">0.09</text>
+<line x1="550" x2="550" y1="458" y2="587" stroke="#e1e6e8"/><text x="550" y="615" text-anchor="middle" class="tick">0.12</text><line x1="80" x2="550" y1="587" y2="587" stroke="#8c9ca7"/>
+      <text class="foot" x="24" y="519" text-anchor="middle" transform="rotate(-90 24 519)">Seed</text><text x="62" y="478" text-anchor="end" class="seed-label">0</text><circle data-metric="choice_branch_target_nmse" data-seed="0" data-value="0.09970259245308448" cx="470.50182044124756" cy="471" r="6.5" fill="#376b91"><title>Seed 0: 0.0997</title></circle>
+<text x="62" y="502" text-anchor="end" class="seed-label">1</text><circle data-metric="choice_branch_target_nmse" data-seed="1" data-value="0.11217715159262447" cx="519.3605104044459" cy="495" r="6.5" fill="#a05e22"><title>Seed 1: 0.1122</title></circle>
+<text x="62" y="526" text-anchor="end" class="seed-label">2</text><circle data-metric="choice_branch_target_nmse" data-seed="2" data-value="0.09537924466424523" cx="453.56870826829385" cy="519" r="6.5" fill="#7461a6"><title>Seed 2: 0.0954</title></circle>
+<text x="62" y="550" text-anchor="end" class="seed-label">3</text><circle data-metric="choice_branch_target_nmse" data-seed="3" data-value="0.09999344234591649" cx="471.64098252150626" cy="543" r="6.5" fill="#287c75"><title>Seed 3: 0.1000</title></circle>
+<text x="62" y="574" text-anchor="end" class="seed-label">4</text><circle data-metric="choice_branch_target_nmse" data-seed="4" data-value="0.09291302034577775" cx="443.90932968762957" cy="567" r="6.5" fill="#a04d68"><title>Seed 4: 0.0929</title></circle>
+      <text class="range" x="28" y="654">Full seed range: 0.0929–0.1122</text>
+    </g>
+    <text class="foot" x="28" y="687">Separate scales · each point is one noise seed</text>
+    <text class="foot" x="28" y="713">Full ranges across seeds; no confidence intervals</text>
+  </svg>

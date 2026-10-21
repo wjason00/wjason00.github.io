@@ -47,6 +47,13 @@ test('selection and caption preserve the scope of the intervention', () => {
   assert.match(svg, /not neural activity, anatomy, or proof of a causal signal route/);
   assert.match(svg, /Line widths do not encode strength or sign/);
   assert.match(svg, /aria-labelledby="network-title network-desc"/);
+  assert.match(svg, /Selected connections · schematic; others omitted/);
+  assert.match(svg, />Inputs<\/text>/);
+  assert.match(svg, />Other targets<\/text>/);
+  assert.match(svg, />readout<\/text>/);
+  assert.match(svg, /Roundup outputs zeroed/);
+  assert.match(svg, /Arrows show direction; sign and strength not encoded/);
+  assert.match(svg, />Other input<\/text>/);
 });
 
 test('source fingerprint is stable across Windows and Linux line endings', () => {

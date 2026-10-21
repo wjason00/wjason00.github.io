@@ -32,3 +32,8 @@ demos/fly/morphology-provenance.json -text whitespace=cr-at-eol
 # Generated circuit figure and its receipt name exact output bytes.
 assets/portfolio/fly-network-focus.svg -text
 assets/portfolio/fly-network-focus.json -text
+
+# Generated rare-error vector and receipt name exact output bytes.
+assets/portfolio/rare-errors-results-preview.svg -text
+assets/portfolio/rare-errors-results-preview.json -text
+assets/portfolio/rare-errors-results-preview.png -text
