@@ -36,6 +36,11 @@
 .gallery-signals{display:grid;grid-template-columns:1fr 1.12fr;gap:94px;align-items:center;padding-block:84px}
 .gallery-signals .gallery-figure{max-width:440px;margin:auto;background:#f4f6f7;padding:14px}
 .gallery-signals .gallery-figure figcaption{padding:11px 10px 3px}
+.gallery-signals .gallery-calibration{width:100%;padding:30px 26px;background:var(--soft);color:var(--ink)}
+.gallery-calibration .gallery-kind{font-size:15px;color:var(--muted)}
+.gallery-calibration ol{padding-left:24px;margin:24px 0;font:400 27px/1.35 var(--display)}
+.gallery-calibration li+li{margin-top:24px}
+.gallery-calibration figcaption{color:var(--muted)}
 .gallery-signals .gallery-feature__copy{max-width:540px}
 .gallery-signals h2{font-size:43px}
 .study-reading{border-top:1px solid var(--line)}

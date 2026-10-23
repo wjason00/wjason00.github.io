@@ -9,7 +9,7 @@
     />
     <meta
       name="description"
-      content="Neuroscience undergraduate at UCL, interested in neural circuits, population activity and computational models."
+      content="Neuroscience undergraduate at UCL, interested in brain modelling, simulation and machine learning."
     />
     <meta name="author" content="Jason Wang" />
     <meta
@@ -31,20 +31,20 @@
     />
     <meta
       property="og:description"
-      content="Neuroscience undergraduate at UCL, interested in neural circuits, population activity and computational models."
+      content="Neuroscience undergraduate at UCL, interested in brain modelling, simulation and machine learning."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wjason00.github.io/" />
     <meta
       property="og:image"
-      content="https://wjason00.github.io/assets/og-portfolio.png?v=20261020-voice"
+      content="https://wjason00.github.io/assets/portfolio/model-morpher.webp"
     />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="840" />
+    <meta property="og:image:height" content="620" />
     <meta
       property="og:image:alt"
-      content="Jason Wang, Neuroscience at UCL, with an illustrative 3D fly replay"
+      content="A 3D mesh rendered in Model Morpher, a project by Jason Wang"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -53,11 +53,11 @@
     />
     <meta
       name="twitter:description"
-      content="Neuroscience undergraduate at UCL, interested in neural circuits, population activity and computational models."
+      content="Neuroscience undergraduate at UCL, interested in brain modelling, simulation and machine learning."
     />
     <meta
       name="twitter:image"
-      content="https://wjason00.github.io/assets/og-portfolio.png?v=20261020-voice"
+      content="https://wjason00.github.io/assets/portfolio/model-morpher.webp"
     />
     <meta
       name="twitter:image:alt"
@@ -159,19 +159,19 @@
     </header>
     <main id="main" tabindex="-1">
       <section class="intro gallery-opening wrap" aria-labelledby="intro-title">
-        <div class="gallery-opening__copy"><h1 id="intro-title">How neurons<br>work together.</h1><p>I’m Jason, a neuroscience undergraduate at UCL. I’m interested in how neurons interact, and what models and recordings can tell us about those interactions.</p><div class="gallery-actions"><a class="gallery-action" href="#selected-work">Explore the work</a><a class="text-link" href="#about">A little about me</a></div></div>
-        <figure class="specimen-opening__scene"><img src="./demos/portfolio-draft/assets/fly-specimen.png" width="1500" height="1000" fetchpriority="high" alt="" aria-describedby="opening-specimen-caption"><figcaption id="opening-specimen-caption">Anatomical illustration. <a href="./third-party-notices.html#fly">Source and licence</a></figcaption></figure>
+        <div class="gallery-opening__copy"><h1 id="intro-title">Modelling brains.<br>Learning from data.</h1><p>I’m Jason, a neuroscience undergraduate at UCL interested in brain simulation and machine learning.</p><div class="gallery-actions"><a class="gallery-action" href="#selected-work">Explore the work</a><a class="text-link" href="#about">Get in touch</a></div></div>
+        <figure class="specimen-opening__scene"><img src="./assets/portfolio/model-morpher.webp" width="840" height="620" fetchpriority="high" alt="Three-dimensional brain mesh rendered in Model Morpher." aria-describedby="opening-specimen-caption"><figcaption id="opening-specimen-caption">Mesh rendered in <a href="#model-morpher">Model Morpher</a>. <a href="./third-party-notices.html#model-morpher">Source and licence</a></figcaption></figure>
       </section>
       <section class="gallery-research" id="selected-work" aria-labelledby="selected-work-title"><div class="wrap">
-        <header class="gallery-research__heading"><h2 id="selected-work-title">Selected research</h2><p>Circuits, signals and models</p></header>
+        <header class="gallery-research__heading"><h2 id="selected-work-title">Selected research</h2><p>Developmental models &amp; machine learning</p></header>
         <article class="gallery-feature work-index__item">
-          <figure class="gallery-figure"><a href="./demos/fly/#connections" aria-label="Explore the model connections around Roundup and MN9"><img src="./assets/portfolio/fly-network-focus.svg" width="600" height="430" alt="Selected model connections around Roundup and motor neuron MN9, with Roundup’s outputs marked as cut."></a><figcaption>Selected model connections; schematic layout. The experiment cuts all Roundup outputs. This shows wiring, not activity flow.</figcaption></figure>
-          <div class="gallery-feature__copy"><p class="gallery-kind">Fly circuit modelling</p><h3>What changes when a neuron’s outputs are cut?</h3><p>I proposed and directed a study of cutting Roundup’s outputs while varying connection strength. MN9, a motor neuron, produced fewer spikes in all 15 paired model comparisons.</p><p class="gallery-limit">One output neuron and input regime in a computational model; no change in real feeding behaviour is established.</p><div class="gallery-actions"><a class="gallery-action" href="#fly-circuit">Read the study &amp; paired results</a><a class="text-link" href="./demos/fly/#connections">Explore the circuit</a></div></div>
+          <figure class="gallery-figure"><a href="#morphbrain" aria-label="Read about MorphBrain"><img src="./assets/portfolio/morphbrain.webp" width="960" height="640" alt="Saved SHH and BMP concentration fields in MorphBrain’s illustrative patterning model."></a><figcaption>Demonstrated stage: simulated molecular patterning. The separate atlas view is a geometry reference.</figcaption></figure>
+          <div class="gallery-feature__copy"><p class="gallery-kind">MorphBrain · developmental modelling</p><h3>Could molecular signals shape the brain?</h3><p>How could molecular patterning affect brain growth and folding? I developed reaction–diffusion components and compared SHH/BMP signalling conditions as work on the patterning stage of that question.</p><p class="gallery-limit">The folding aim remains open. The public demo shows illustrative patterning, not a biologically validated growth-to-folding model.</p><div class="gallery-actions"><a class="gallery-action" href="#morphbrain">Explore MorphBrain</a><a class="text-link" href="./demos/morphbrain/">Open the model</a></div></div>
         </article>
       </div></section>
-      <section class="gallery-signals wrap" aria-labelledby="gallery-signals-title">
-        <figure class="gallery-figure"><a href="./rare-errors.html" aria-label="Explore the synthetic rare-error experiment"><img src="./assets/portfolio/rare-errors-results-preview.png" width="600" height="720" loading="lazy" alt="Choice attribution and reconstruction at one error per stimulus, showing all five noise seeds on separate scales."></a><figcaption>One error per stimulus; all five noise seeds. The two measures use different scales.</figcaption></figure>
-        <div class="gallery-feature__copy"><p class="gallery-kind">Synthetic rare-error experiment</p><h2 id="gallery-signals-title">Attribution is only part of the picture.</h2><p>Can stimulus and choice be separated when errors are rare? In this experiment, strong choice attribution can coexist with poor reconstruction.</p><p class="gallery-limit">Synthetic activity across six trial mixes and five noise seeds. With no error trials, this fit cannot separate stimulus and choice.</p><div class="gallery-actions"><a class="gallery-action" href="./rare-errors.html">Explore the experiment</a><a class="text-link" href="#dpca">Read the study preview</a></div></div>
+      <section class="gallery-signals wrap" id="g27" aria-labelledby="gallery-signals-title">
+        <figure class="gallery-figure gallery-calibration"><p class="gallery-kind">The evaluation question</p><ol><li>Use early calibration trials.</li><li>Choose CSP or a Riemannian decoder.</li><li>Compare on later trials at a fixed decision time.</li></ol><figcaption>Chronological comparison of two EEG decoding approaches; a retrospective evaluation, not a live deployment result.</figcaption></figure>
+        <div class="gallery-feature__copy"><p class="gallery-kind">g.tec BR41N.IO · G27 team project</p><h2 id="gallery-signals-title">Can a little calibration choose the better decoder?</h2><p>Our team asked whether early EEG calibration data could select between common spatial patterns (CSP) and a Riemannian decoder. I shared evaluation work through pull requests and obtained and relayed the organisers’ scoring rules, distinguishing their peak-time score from our fixed-time comparison.</p><p class="gallery-limit">Selection did not beat fixed CSP at 60 calibration trials per session. This was a retrospective comparison using previously inspected later trials.</p><div class="gallery-actions"><a class="gallery-action" href="https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present" target="_blank" rel="noreferrer">View the team presentation</a></div></div>
       </section>
       <section
         class="research wrap"
@@ -267,6 +267,7 @@
               With no error trials, stimulus and choice cannot be separated by this fit.
             </p>
             <p class="research-item__scope">Six trial mixes · five noise seeds · synthetic neural activity</p>
+            <p class="research-item__scope">Supporting synthetic methods exploration developed with AI assistance.</p>
             <a class="research-study-link" href="./rare-errors.html">Explore the rare-error experiment <span aria-hidden="true">↗</span></a>
           </div>
           <a class="research-feature__preview research-feature__preview--results" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
@@ -436,17 +437,27 @@
           </div>
           <div class="project__body">
             <p class="project__lede">
-              I developed MorphBrain to explore how the signalling molecules SHH and BMP
-              affect developmental patterning. Move or remove a source to see
-              how the regions assigned by the model change.
+              MorphBrain explores how molecular patterning could affect
+              brain growth and folding through differential growth. I implemented
+              reaction–diffusion components and compared SHH/BMP signalling conditions.
+              The public model demonstrates the patterning stage: move or remove a
+              source to see how the regions assigned by the model change.
             </p>
 
             <p class="project-limit">
-              Illustrative model. Parameters are not calibrated to biological
-              measurements.
+              Illustrative patterning model. Parameters are not calibrated to biological
+              measurements. The current demo does not yet couple patterning to 3D growth and folding.
             </p>
             <details class="project-notes" id="morphbrain-notes">
               <summary>Methods &amp; sources</summary>
+              <p>
+                The original aim connects molecular patterning to differential-growth
+                mechanics, informed by Tallinen’s brain-folding work, with real atlas
+                geometry as the intended mechanistic outcome. Exploratory growth/mechanics
+                and separate atlas playback do not establish that outcome or a replication
+                of Tallinen. Presenting MorphBrain at UCL led to a supervised
+                research opportunity.
+              </p>
               <p>
                 To reproduce the demo example, leave both source strengths at 1×
                 and remove BMP bilateral region 1 (either outermost handle).
@@ -717,8 +728,9 @@
           </div>
           <div class="contact__body">
             <p>
-              I’m interested in research placements in computational
-              neuroscience and machine learning.
+              I’m interested in paid internships, scientific software work and
+              research opportunities in brain modelling, computational neuroscience
+              and machine learning.
             </p>
             <a class="contact__email" href="mailto:jason.wang.25@ucl.ac.uk"
               >jason.wang.25@ucl.ac.uk <span aria-hidden="true">↗</span></a

@@ -1,8 +1,24 @@
 # Jason Wang — portfolio
 
-A static portfolio for computational neuroscience and machine-learning researchers,
-labs and placement selectors. Research questions, methods and evidence come first;
-geometry and animation tools provide supporting software examples.
+A static portfolio about brain modelling, simulation, machine learning and scientific
+software, with routes for paid internships and research opportunities. Research
+questions, personal contributions and evidence lead each account.
+
+## Professional focus - 23 October 2026
+
+MorphBrain and the g.tec BR41N.IO/G27 team evaluation now lead the selected work.
+MorphBrain keeps its molecular-patterning-to-growth-and-folding aim distinct from
+the demonstrated patterning stage. G27 asks whether early calibration can choose
+between CSP and Riemannian EEG decoders; selection did not beat fixed CSP at 60
+calibration trials per session in the retrospective comparison. The public team
+presentation is linked, with Jason’s contribution and previously inspected later
+trials stated alongside the result.
+
+The accepted white/green, Spectral and lilac gallery design remains. Full Fly and
+synthetic dPCA accounts remain in the supporting study disclosures, with dPCA’s
+personal contribution boundary explicit. Existing demos, scientific results, assets
+and runtime code are unchanged. Contact now includes paid internships, scientific
+software work and research. T-244 owns publication and verification.
 
 ## Research gallery - 21 October 2026
 
@@ -437,7 +453,7 @@ the checked workflow below. T-065 and the local release receipts record deployme
 
 ## Explore
 
-- **Research:** the fly sensitivity study leads, followed by the synthetic dPCA methods study, with checked figures, aggregate downloads and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling; the held independent EEG study is excluded.
+- **Research:** MorphBrain and G27 lead; Fly and the synthetic dPCA methods study retain their complete supporting accounts, figures and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling; the held independent EEG study is excluded.
 - **Rare-error study:** six saved trial allocations, five noise seeds, an explicit zero-error non-fit,
   full curves and downloadable metrics/configuration/provenance. Downloads do not include the analysis code.
 - **MorphBrain:** a keyboard-operable saved-image comparison and an on-demand interactive model.
