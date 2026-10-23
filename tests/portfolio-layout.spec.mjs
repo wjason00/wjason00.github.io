@@ -57,7 +57,7 @@ for (const viewport of viewports) {
 
 test('project selection keeps contributions, results and critical limits outside optional methods', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+  await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
 
   const fly = page.locator('#fly-circuit');
   await expect(fly.locator('.fly-study-contribution')).toBeVisible();
@@ -84,7 +84,7 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(rareErrors.locator('.research-feature__preview img')).toHaveAttribute('alt', /one error per stimulus.*all five seeds.*not confidence intervals/);
 
   const projects = [
-    { id: 'morphbrain', purpose: /signalling molecules SHH and BMP\s+affect developmental patterning/, limit: /not calibrated to biological/ },
+    { id: 'morphbrain', purpose: /molecular patterning could affect\s+brain growth and folding/, limit: /not calibrated to biological/ },
     { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/ },
     { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype in development/ },
   ];
@@ -118,7 +118,7 @@ test('project selection keeps contributions, results and critical limits outside
 
 test('the Fly question precedes its media and default copy speaks to visitors', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+  await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   const question = page.locator('.fly-project-heading p');
   await expect(question).toBeVisible();
   await expect(question).toContainText(/Does .*Roundup.*MN9\?/);
@@ -196,12 +196,12 @@ test('nested project links activate their complete account and preserve hash nav
 
 test('Fly replay and connection links open the matching explorer views', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+  await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   await page.getByRole('link', { name: 'Explore the 3D replay', exact: true }).click();
   await expect(page).toHaveURL(/\/demos\/fly\/\?[^#]*#body$/);
   await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'body');
   await page.goto('/');
-  await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+  await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   const connections = page.getByRole('link', { name: 'Explore the circuit comparison', exact: true });
   await expect(connections).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
   await connections.click();
@@ -215,7 +215,7 @@ for (const width of [1366, 820, 390]) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const video = page.locator('#fly-preview');
-    await page.getByRole('link', { name: /Read the study & paired results/ }).click();
+    await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
     const chart = page.locator('.fly-comparison img');
     const network = page.locator('#fly-visuals .fly-circuit img');
     const replay = page.locator('.fly-replay-preview');
