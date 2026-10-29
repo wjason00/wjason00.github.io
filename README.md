@@ -4,6 +4,31 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
+## Local presentation candidate — 29 October 2026
+
+T-366 prepares a small update inspired by the project accounts on
+[Sonali's portfolio](https://www.sonali.ca/): direct project shortcuts, concise
+purpose text and separately labelled personal contributions. The existing
+gallery palette, typography, imagery and full study accounts are retained.
+Twitter image alt now describes the mesh actually used in its preview.
+
+This is a **local candidate**, not a published update. The public release below
+remains the earlier version. Reference inspection was limited to HTML; rendered
+reference and desktop/phone review have not passed. Chrome control timed out,
+the connected test browser was occupied, and isolated CLI/browser-test startup
+failed with out-of-memory errors. Do not treat source checks as visual approval.
+
+The public artifact builds and its internal links resolve. All existing
+non-browser tests pass. A separate source review checked the new anchors,
+gallery-panel routing, CSS scope and retained scientific wording. No scientific
+assets, results or runtimes were edited. The
+[bounded plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) owns scope;
+local execution details are in `output/oxford-20261029/verification.json`.
+Next step: restore a usable browser session, check the rendered candidate and
+reference, then publish the verified commit. The separate Oxford introduction
+and teammate messages are in the existing
+[Oxford responses owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
+
 ## Professional focus - 23 October 2026
 
 MorphBrain and the g.tec BR41N.IO/G27 team evaluation now lead the selected work.
