@@ -4,30 +4,57 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Cursor-driven homepage rebuild in progress - 30 October 2026
+## Cursor-driven homepage - local candidate, 30 October 2026
 
-Jason rejected the earlier static, incremental compositions and authorised a
-full redo. A fresh homepage is being built with isolated CSS/controller and a
-cursor-responsive 3D atlas surface. The previous complete accounts, figures and
-demos are preserved on `work.html`; legacy project/research links will route
-there. This replaces the media-stage approach as the main direction.
+The homepage is rebuilt with its own HTML, stylesheet and controller. A live
+atlas surface fills the opening: real cursor movement displaces/lights nearby
+points and changes the view; dragging or arrow keys rotates it. Project hover
+changes orientation/accent and reveals a tilting preview. Native recordings and
+live-model links lead into the projects. The complete scientific accounts,
+original G27 figures and existing demos remain on `work.html`; old scientific
+hashes are registered by the new controller, and internal return links now use
+explicit work-page fragments. The new home loads none of the old gallery CSS/JS.
 
-The actual geometry/engine scaffold exists:4096points from the already-public
-CC0dHCPweek36population-averagewhite-matter surface, real cursor proximity
-lighting/displacement, hover parallax, drag orbit, keyboard/touch and project
-view changes. Its eight tests cover geometry fit, interaction and idle/lifecycle
-behaviour. An independent decode reproduced all sampled coordinates exactly.
-The display response is interface artwork, not neural activity or biological
-dynamics. No solver, private input or scientific result was changed.
+[Open the local preview](http://127.0.0.1:4187/?v=20261030-surface). This is a local
+candidate; no publication or Jason design approval is claimed.
 
-Claude's first fresh-home dispatch was rejected before inference by the shared
-5-hour account limit (reset14:40UTC). No new Claude visual output is claimed at
-this checkpoint. The visual job is prepared to resume after the verified reset;
-actual cursor/touch/desktop/phone QA remains required before acceptance.
-Current contract/receipts are in `output/rebuild-20261030/`; T-366 and the
-[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) own the
-15:00UTC cap and remaining work. No publication. The material below is history
-of the rejected media-stage candidate, not current design approval.
+Actual Claude Opus5.5 authored the new index/experience-home CSS/controller in
+300.18seconds after its verified14:40provider reset. The earlier429call produced
+no inference and is preserved separately. Codex implemented the dedicated scene
+engine/source export; root corrected three factual-copy ambiguities, mechanical
+return links and responsive/noJS issues found in actual Chrome. The three copy
+corrections distinguish15pairedcomparisons, retain G27's inspected-training/
+shifted-window/separate-fit/assumed-feedback limits, and clarify that Jason
+obtained and relayed the organisers' scoring rules.
+
+The scene contains4096deterministically sampled points from the already-public
+CC0dHCPweek36population-averagewhite-matter surface. An independent decode
+reproduced every coordinate/index and the SVG fallback. Cursor response is
+interface artwork, not neural activity, development or anatomical validation.
+No private input, scientific result, solver or saved morph geometry changed.
+Provenance: `assets/portfolio/brain-surface-source.json`.
+
+Actual signed-in Chrome verified desktop hover changed point influence from0
+to0.974, yaw and canvas pixels; real120pxdrag changed yaw0.249rad. Real Arrow keys
+and project hover changed the same surface. Root inspected desktop and corrected
+phone captures. At320CSSpx, scrollWidth=clientWidth305 and canvas305x320; synthetic
+touch drag rotated the surface and released correctly. Hardware touch remains
+untested. NoJS retains the visible source illustration and15ordinary work links;
+inactive reset/theme controls are hidden. Earlier phone issues were corrected.
+
+Build/internal references pass for191files/32,548,216bytes and13HTMLfiles. All44
+source tests, new controller/scene/spec syntax and whitespace checks pass. The
+new browser specs contain pointer-pixel, drag, keyboard, touch, fallback and
+legacy-route scenarios, but the full Playwright suite was not executed. Browser
+Home reset, video playback/live-model launch, legacy redirect flows and dark/
+reduced-motion emulation are unverified; source/engine rules and native controls
+remain. Responsive evidence uses same-origin CSS iframes, not physical devices.
+Temporary QA hosts are removed; the preview returns200 with exact source bytes.
+
+Current receipts: `output/rebuild-20261030/final-verification.json` and the
+[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md). T-366 owns
+local completion. Original figure/data restrictions and separate publication
+authority remain. Earlier directions below are dated history.
 
 ## Earlier local interactive work stage - 30 October 2026
 

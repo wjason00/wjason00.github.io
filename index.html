@@ -14,12 +14,12 @@
     <meta name="author" content="Jason Wang" />
     <meta
       name="theme-color"
-      content="#f3f5f2"
+      content="#eef3ef"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#142b25"
+      content="#0e211c"
       media="(prefers-color-scheme: dark)"
     />
     <link rel="canonical" href="https://wjason00.github.io/" />
@@ -65,8 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20261021-gallery" />
-    <link rel="stylesheet" href="./assets/portfolio/gallery-home.css?v=20261030-workstage" />
+    <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261030-rebuild" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -94,8 +93,7 @@
       crossorigin
     />
     <script src="./theme.js"></script>
-    <script src="./script.js?v=20261030-workstage" defer></script>
-    <script src="./assets/portfolio/reference-scene.js?v=20261030-workstage" defer></script>
+    <script type="module" src="./assets/portfolio/experience-home.js?v=20261030-rebuild"></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -134,655 +132,260 @@
       }
     </script>
   </head>
-  <body class="portfolio-home">
-    <a class="skip-link" href="#main">Skip to main content</a>
-    <header class="site-header" id="top">
-      <div class="site-header__inner">
-        <a class="site-name" href="#top"
-          >Jason Wang<span class="site-name__detail"
-            >Neuroscience at UCL</span
-          ></a
-        >
-        <nav class="site-nav" aria-label="Sections of this page">
-          <a href="#selected-work">Research</a><a href="#projects">Software</a
-          ><a href="#about">About</a>
-        </nav>
-        <button
-          class="theme-toggle"
-          type="button"
-          aria-label="Switch colour theme"
-        >
-          <span class="theme-toggle__glyph" aria-hidden="true">◐</span
-          ><span class="sr-only">Theme</span>
-        </button>
-      </div>
+  <body class="xp">
+    <a class="xp-skip" href="#main">Skip to main content</a>
+    <header class="xp-bar" id="top">
+      <a class="xp-bar__name" href="#top">Jason Wang</a>
+      <nav class="xp-bar__nav" aria-label="Sections of this page">
+        <a href="#projects">Work</a>
+        <a href="#about">About</a>
+        <a href="./work.html">Full work page</a>
+      </nav>
+      <button class="xp-theme" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <span aria-hidden="true">◐</span>
+      </button>
     </header>
+
     <main id="main" tabindex="-1">
-      <section class="intro gallery-opening wrap" aria-labelledby="intro-title">
-        <div class="gallery-opening__copy">
-          <h1 id="intro-title">Jason Wang</h1>
-          <p>UCL neuroscience student building models, signal analyses and scientific software.</p>
-          <nav class="opening-nav" aria-label="Explore my work">
-            <a href="#selected-work"><span>Research</span><small>Models, methods and findings</small></a>
-            <a href="#projects"><span>Software</span><small>Interactive models and tools</small></a>
-            <a href="#about"><span>About</span><small>Background and contact</small></a>
-          </nav>
+      <section class="atlas" aria-labelledby="home-title" data-atlas>
+        <div class="atlas__stage">
+          <img
+            class="atlas__fallback"
+            src="./assets/portfolio/brain-surface.svg"
+            alt="Points sampled from a week-36 fetal white-matter atlas surface, drawn as a static outline of the brain"
+            width="900"
+            height="900"
+          />
+          <canvas
+            id="portfolio-scene"
+            class="atlas__canvas"
+            tabindex="0"
+            role="img"
+            aria-label="Interactive atlas surface: 4,096 points from a week-36 fetal white-matter atlas"
+            aria-describedby="scene-help"
+          ></canvas>
+          <p class="atlas__probe" data-probe aria-hidden="true">Drag to turn</p>
+        </div>
+
+        <div class="atlas__copy">
+          <h1 id="home-title">Jason Wang</h1>
+          <p class="atlas__lede">
+            Neuroscience student at UCL. I build models, signal analyses and
+            scientific software for looking at brains.
+          </p>
+        </div>
+
+        <nav class="atlas__index" aria-label="Projects">
+          <ul>
+            <li><a href="#work-model-morpher" data-scene-project="model-morpher"><span class="atlas__name">Model Morpher</span><span class="atlas__verb">Play</span></a></li>
+            <li><a href="#work-morphliner" data-scene-project="morphliner"><span class="atlas__name">Morphliner</span><span class="atlas__verb">Play</span></a></li>
+            <li><a href="#work-fly" data-scene-project="fly"><span class="atlas__name">Fly circuit</span><span class="atlas__verb">Play</span></a></li>
+            <li><a href="#work-morphbrain" data-scene-project="morphbrain"><span class="atlas__name">MorphBrain</span><span class="atlas__verb">Try</span></a></li>
+            <li><a href="#work-g27" data-scene-project="g27"><span class="atlas__name">EEG decoding</span><span class="atlas__verb">Figure</span></a></li>
+          </ul>
+          <div class="atlas__peek" data-peek aria-hidden="true">
+            <img data-peek-for="model-morpher" src="./assets/portfolio/model-morpher.webp" alt="" width="840" height="620" loading="lazy" decoding="async" />
+            <img data-peek-for="morphliner" src="./assets/portfolio/morphliner-poster.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
+            <img data-peek-for="fly" src="./assets/portfolio/fly-preview-20261020.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
+            <img data-peek-for="morphbrain" src="./assets/portfolio/morphbrain-feature.svg" alt="" width="1000" height="760" loading="lazy" decoding="async" />
+            <img data-peek-for="g27" src="./assets/portfolio/g27/timing-original.png" alt="" width="1720" height="980" loading="lazy" decoding="async" />
+          </div>
+        </nav>
+
+        <div class="atlas__foot">
+          <p class="atlas__caption">
+            <span>Interactive atlas surface study</span>
+            <button class="atlas__source-btn" type="button" popovertarget="atlas-source">About this surface</button>
+          </p>
+          <p class="atlas__help" id="scene-help">
+            Move over the surface, drag to turn it, or focus it and use the arrow keys. Home resets the view.
+          </p>
+          <p class="atlas__readout" data-readout aria-live="off"><span data-readout-points>4,096 points</span> <span data-readout-view></span></p>
+          <button class="atlas__reset" type="button" data-reset-scene>Reset view</button>
+        </div>
+
+        <div class="atlas__source" id="atlas-source" popover>
+          <p>
+            4,096 vertices sampled from the week-36 population-average white-matter
+            surface of the <a href="https://doi.org/10.12751/g-node.qj5hs7" target="_blank" rel="noreferrer">dHCP fetal surface atlas</a> (CC0).
+          </p>
+          <p>
+            The way points glow and part around your cursor is interface artwork.
+            It is not neural activity, biological dynamics or development, and the
+            display orientation is not anatomically validated.
+          </p>
+          <p><a href="./assets/portfolio/brain-surface-source.json">Sampling and source record (JSON)</a></p>
+          <button type="button" popovertarget="atlas-source" popovertargetaction="hide">Close</button>
         </div>
       </section>
-      <section class="projects work-stage" id="projects" aria-labelledby="projects-title">
-        <h2 class="sr-only" id="projects-title">Models &amp; software</h2>
-        <figure class="project-gallery gallery" aria-label="Play, drag or try four projects">
-          <div class="gallery-tabs" aria-label="Choose a project">
-            <a href="#preview-model-morpher" id="select-model-morpher" class="gallery-tab" data-project="model-morpher"><strong>Model Morpher</strong><small>Drag</small></a>
-            <a href="#preview-morphliner" id="select-morphliner" class="gallery-tab" data-project="morphliner"><strong>Morphliner</strong><small>Play</small></a>
-            <a href="#preview-fly" id="select-fly" class="gallery-tab" data-project="fly"><strong>Fly replay</strong><small>Play</small></a>
-            <a href="#preview-morphbrain" id="select-morphbrain" class="gallery-tab" data-project="morphbrain"><strong>MorphBrain</strong><small>Try</small></a>
-          </div>
-          <div class="hero__spotlight">
-            <section class="gallery-panel" id="preview-model-morpher" aria-labelledby="select-model-morpher">
-              <figure class="opening-media stage-media" id="opening-morpher">
-                <div class="video-demo gallery-media opening-recording" data-recording-label="Model Morpher recording">
-                  <video controls playsinline preload="none" width="1440" height="1080"
-                    poster="./assets/portfolio/model-morpher.webp"
-                    aria-label="Model Morpher prototype recording" aria-describedby="opening-morpher-limit">
-                    <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4">
-                    Your browser does not support this recording. <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the recording</a>.
-                  </video>
-                  <div class="video-controls" role="group" aria-label="Model Morpher recording controls">
-                    <button class="video-play" type="button">Play</button>
-                    <label><span class="sr-only">Drag through the Model Morpher recording</span><input class="video-range" type="range" min="0" max="100" step="2" value="0"></label>
-                    <output class="video-time">0:00 / 0:05</output>
-                  </div>
-                </div>
-                <figcaption class="stage-caption"><p><strong>Model Morpher</strong> Press Play, then drag the bar to move between a dentate gyrus and a whole mouse-brain surface, blended through their distance fields.
-                  <span id="opening-morpher-limit">Geometric interpolation, not anatomical correspondence or development.</span></p>
-                  <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the recording</a>
-                </figcaption>
-              </figure>
-              <details class="stage-account">
-                <summary>Model Morpher: method, sources and limits</summary>
-<article
-          class="project"
-          id="model-morpher"
-          aria-labelledby="model-morpher-title"
-        >
-          <div class="project__identity">
-            <h3 id="model-morpher-title">Model Morpher</h3>
-            <a
-              class="text-link"
-              href="https://github.com/wjason00/model-morpher"
-              target="_blank"
-              rel="noreferrer"
-              >Explore the source <span aria-hidden="true">↗</span></a
-            >
-          </div>
-          <div class="project__body">
-            <p class="project__lede">
-              I developed this prototype to explore transitions between 3D surfaces
-              without matching vertices. It blends their distance fields and
-              extracts an intermediate shape.
-            </p>
 
-            <p class="project-limit" id="morpher-project-limit">
-              The transition is geometric; it does not track corresponding
-              anatomy or model biological development.
+      <section class="work" id="projects" aria-labelledby="work-heading">
+        <header class="work__head">
+          <h2 id="work-heading">Work</h2>
+          <p>
+            Play the recordings here. Each project’s full method, sources and
+            limits are on the <a href="./work.html">full work page</a>.
+          </p>
+        </header>
+
+        <article class="entry" id="work-model-morpher" data-scene-project="model-morpher" aria-labelledby="work-model-morpher-title">
+          <div class="entry__media">
+            <video controls playsinline preload="none" width="1440" height="1080"
+              poster="./assets/portfolio/model-morpher.webp"
+              aria-label="Model Morpher recording: a dentate gyrus surface becoming a whole mouse-brain surface">
+              <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
+              <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the Model Morpher recording (MP4)</a>
+            </video>
+          </div>
+          <div class="entry__text">
+            <h3 id="work-model-morpher-title">Model Morpher</h3>
+            <p class="entry__kind">3D surface interpolation,5.5 s recording</p>
+            <p>
+              Blends the distance fields of two 3D surfaces and extracts the shapes
+              in between, without matching vertices. Here, a dentate gyrus becomes a
+              whole mouse brain (Allen CCF meshes via BrainGlobe).
             </p>
-            <details class="project-notes">
-              <summary>Methods &amp; sources</summary>
-              <p>
-                Mesh repair → SDF sampling → interpolation → isosurface
-                extraction. CPU and conditional PyTorch/CUDA paths. Surface
-                quality depends on mesh repair and resolution; memory use grows
-                cubically with grid resolution.
-              </p>
-              <p>
-                The recording uses Allen Mouse CCF meshes from BrainGlobe,
-                including a dentate-gyrus-to-whole-brain transition. Image/data
-                credit: Allen Institute. Noncommercial research demonstration.
-                Inputs are independently centred and scaled. This fixed-camera
-                capture uses 30 generated surfaces on a 128-cubed grid.
-                <a href="./assets/portfolio/model-morpher-capture.json"
-                  >Capture settings and provenance</a
-                >.
-                <a href="./third-party-notices.html"
-                  >Sources and licence details</a
-                >.
-              </p>
-            </details>
+            <p class="entry__limit">Geometric interpolation, not anatomical correspondence or development.</p>
+            <p class="entry__actions">
+              <a href="./work.html#model-morpher" data-scene-project="model-morpher">Full account</a>
+              <a href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">Source code</a>
+            </p>
           </div>
         </article>
-              </details>
-            </section>
-            <section class="gallery-panel" id="preview-fly" aria-labelledby="select-fly">
-              <figure class="fly-replay stage-media">
-                <div class="video-demo" data-recording-label="illustrative 3D fly replay">
-                <video id="fly-preview" controls playsinline muted preload="none"
-                  poster="./assets/portfolio/fly-preview-20261020.webp"
-                  width="1280" height="720" aria-label="Play the recorded illustrative 3D fly replay"
-                  aria-describedby="fly-replay-caption">
-                  <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
-                  <a href="./assets/portfolio/fly-preview-20261020.mp4">Watch the recorded fly replay (MP4)</a>
-                </video>
-                <div class="video-controls" role="group" aria-label="Fly replay playback">
-                  <button class="video-play" type="button">Play</button>
-                  <label><span class="sr-only">Scrub the fly replay</span><input class="video-range" type="range" min="0" max="100" step="0.1" value="0" /></label>
-                  <output class="video-time">0:00 / 0:09</output>
-                </div>
-                </div>
-                <figcaption class="stage-caption"><p><strong>Fly replay</strong> <span id="fly-replay-caption">Prescribed sugar input, intact circuit, trial 1; ¼ speed. <strong>Uncalibrated movement from a separate simulation archive</strong>, with assumed relaxation after 1&nbsp;s. Illustrative mapping; the film is separate from the paired comparison.</span></p>
-                  <a href="#fly-circuit">Read the study</a> <a href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
-                </figcaption>
-              </figure>
-            </section>
-            <section
-              class="gallery-panel"
-              id="preview-morphbrain"
-              aria-labelledby="select-morphbrain"
-            >
-<div class="project-gallery__visual stage-media">
-              <div class="compare-stage" id="morphbrain-demo">
-                <div class="compare-stage__labels" aria-hidden="true">
-                  <span>Signal contours</span><span>Model regions</span>
-                </div>
-                <div class="compare-pair">
-                  <div class="field-reference" aria-hidden="true">
-                    <img
-                      src="./assets/portfolio/morphbrain-field.svg"
-                      width="214"
-                      height="321"
-                      alt=""
-                    />
-                  </div>
-                  <div class="comparison" data-position="15">
-                    <img
-                      src="./assets/portfolio/morphbrain-field.svg"
-                      width="214"
-                      height="321"
-                      alt="SHH and BMP concentration contours within model tissue; exterior diffusion values omitted"
-                      decoding="async"
-                    />
-                    <img
-                      class="comparison__reveal"
-                      src="./assets/portfolio/morphbrain-regions.svg"
-                      width="240"
-                      height="360"
-                      alt="The same reference run decoded into dorsal, intermediate and ventral regions"
-                      decoding="async"
-                    />
-                    <span class="comparison__seam" aria-hidden="true"
-                      ><span>↔</span></span
-                    >
-                    <input
-                      class="comparison__input"
-                      id="compare-input"
-                      type="range"
-                      min="0"
-                      max="100"
-                      value="15"
-                      aria-label="Reveal the positional readout over the concentration field"
-                    />
-                  </div>
-                </div>
-                <div class="region-legend" aria-label="Decoded regions">
-                  <span><i class="dorsal"></i>Dorsal</span
-                  ><span><i class="intermediate"></i>Intermediate</span
-                  ><span><i class="ventral"></i>Ventral</span>
-                </div>
-                <p class="compare-stage__hint">
-                  <span aria-hidden="true">↔</span>
-                  <label for="compare-input"
-                    >Drag the right-hand view to reveal the signals</label
-                  >
-                </p>
-                <p class="compare-stage__scope">Contours within model tissue; exterior diffusion values omitted. Same computed state in both views.</p>
-              </div>
-              <div class="stage-caption stage-caption--try">
-                <p><strong>MorphBrain</strong> Drag to compare signal contours with the regions the model assigns, then try the live model. Illustrative patterning; the folding aim remains open.</p>
-                <a class="stage-try" href="./demos/morphbrain/" data-launch-demo>Try the live model</a>
-              </div>
-</div>
-<details class="stage-account">
-  <summary>MorphBrain: method, sources and limits</summary>
-<article
-          class="project"
-          id="morphbrain"
-          aria-labelledby="morphbrain-title"
-        >
-          <div class="project__identity">
-            <h3 id="morphbrain-title">MorphBrain</h3>
-            <a
-              class="text-link"
-              href="./demos/morphbrain/"
-              data-launch-demo
-              >Try the model <span aria-hidden="true">↗</span></a
-            >
-            <p class="project__requirements">
-              Interactive demo · JavaScript &amp; WebGL
-            </p>
-          </div>
-          <div class="project__body">
-            <p class="project__lede">
-              MorphBrain explores how molecular patterning could affect
-              brain growth and folding through differential growth. I implemented
-              reaction–diffusion components and compared SHH/BMP signalling conditions.
-              The public model demonstrates the patterning stage: move or remove a
-              source to see how the regions assigned by the model change.
-            </p>
 
-            <p class="project-limit">
-              Illustrative patterning model. Parameters are not calibrated to biological
-              measurements. The current demo does not yet couple patterning to 3D growth and folding.
+        <article class="entry" id="work-morphliner" data-scene-project="morphliner" aria-labelledby="work-morphliner-title">
+          <div class="entry__media">
+            <video controls playsinline preload="none" width="1920" height="1080"
+              poster="./assets/portfolio/morphliner-poster.jpg"
+              aria-label="Morphliner recording: an exported camera sequence">
+              <source src="./assets/portfolio/morphliner-demo.mp4" type="video/mp4" />
+              <a href="./assets/portfolio/morphliner-demo.mp4">Open the Morphliner recording (MP4)</a>
+            </video>
+          </div>
+          <div class="entry__text">
+            <h3 id="work-morphliner-title">Morphliner</h3>
+            <p class="entry__kind">Browser 3D animation editor,6.5 s export</p>
+            <p>
+              An editor I’m developing for arranging a 3D scene, setting camera
+              keyframes and exporting the animation. This recording is an exported
+              camera sequence.
             </p>
-            <details class="project-notes" id="morphbrain-notes">
-              <summary>Methods &amp; sources</summary>
-              <p>
-                The original aim connects molecular patterning to differential-growth
-                mechanics, informed by Tallinen’s brain-folding work, with real atlas
-                geometry as the intended mechanistic outcome. Exploratory growth/mechanics
-                and separate atlas playback do not establish that outcome or a replication
-                of Tallinen. Presenting MorphBrain at UCL led to a supervised
-                research opportunity.
-              </p>
-              <p>
-                To reproduce the demo example, leave both source strengths at 1×
-                and remove BMP bilateral region 1 (either outermost handle).
-                Keep all six SHH source pairs. Run the condition and compare the
-                converged endpoints: dorsal identity changes from 48.8% to
-                45.6%, intermediate from 12.5% to 15.7%, and ventral stays at
-                38.7%. In this run, 3.2% of model tissue changes identity. These
-                are model outputs, not measured biological effects.
-              </p>
-              <p>
-                The solver starts both fields at zero and stops when each
-                field’s relative update is at most 10<sup>−4</sup> and the
-                decoded identity holds for five consecutive qualifying steps. A
-                1,000-iteration cap rejects unsettled runs. Solver iterations
-                represent numerical relaxation, not developmental time.
-              </p>
-              <p>
-                The biological context includes
-                <a
-                  href="https://doi.org/10.1038/35049541"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Jessell (2000)</a
-                >
-                and
-                <a
-                  href="https://doi.org/10.1126/science.aam5887"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Zagorski et al. (2017)</a
-                >; these support the qualitative mechanism, not the chosen
-                decoder parameters. The independent atlas view uses CC0
-                population-average GW21–36 surfaces from the
-                <a
-                  href="https://doi.org/10.12751/g-node.qj5hs7"
-                  target="_blank"
-                  rel="noreferrer"
-                  >dHCP fetal surface atlas</a
-                >. The atlas is a separate data reference, not a response to the
-                molecular intervention. Further numerical details are available
-                in the demo’s evidence panel.
-              </p>
-              <h4 id="morphbrain-synthetic-study">Can measurements distinguish diffusion from clearance?</h4>
-              <p>
-                <strong>Synthetic parameter recovery:</strong> a separate 1D
-                study examined which measurements distinguish diffusion from
-                clearance. After source shutoff with zero-flux boundaries, the
-                total-amount time course constrains clearance but contains no
-                diffusion information. In the noiseless seven-reading
-                comparison, one spatial arrangement left roughly as many
-                plausible parameter pairs as a local trace; reversing the
-                arrangement was much less informative. Recovery benefits from
-                knowing the generating model, source and calibration. This is a
-                within-model result, not biological validation or a re-analysis
-                of experimental assays.
-              </p>
-              <p>
-                This separate 1D experiment compares total amount, a local trace
-                and spatial observations. It does not calibrate the public 2D
-                demo.
-              </p>
-            </details>
+            <p class="entry__limit">Prototype in development. The editor view on the full page is a screenshot, not a live editor.</p>
+            <p class="entry__actions">
+              <a href="./work.html#morphliner" data-scene-project="morphliner">Full account</a>
+              <a href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist" target="_blank" rel="noreferrer">Visit Morphliner</a>
+            </p>
           </div>
         </article>
-</details>
-</section>
-            <section
-              class="gallery-panel"
-              id="preview-morphliner"
-              aria-labelledby="select-morphliner"
-            >
-<div class="project-gallery__visual stage-media">
-              <div class="morphliner-showcase" data-morphliner-showcase>
-            <div class="media-switch" role="group" aria-label="Morphliner gallery demo views">
-              <button type="button" data-morphliner-view="recording" aria-pressed="true">Demo</button>
-              <button type="button" data-morphliner-view="editor" aria-pressed="false">Editor</button>
-              <button type="button" data-morphliner-view="render" aria-pressed="false">Another scene</button>
-            </div>
-            <div class="video-demo gallery-media morphliner-editor morphliner-demo"
-              data-morphliner-panel="recording" data-recording-label="Morphliner gallery demo">
-              <div class="video-stage">
-                <video controls playsinline preload="none" width="1920" height="1080"
 
-                  poster="./assets/portfolio/morphliner-poster.jpg"
-                  aria-label="Morphliner gallery demo: exported Trainer camera sequence">
-                  <source src="./assets/portfolio/morphliner-demo.mp4" type="video/mp4" />
-                  Your browser does not support this video.
-                </video>
-              </div>
-              <div class="video-controls" role="group" aria-label="Morphliner gallery demo playback">
-                <button class="video-play" type="button">Play</button>
-                <label><span class="sr-only">Scrub Morphliner gallery demo</span>
-                  <input class="video-range" type="range" min="0" max="100" step="0.1" value="0" />
-                </label>
-                <output class="video-time">0:00 / 0:06</output>
-              </div>
-              <div class="demo-chapters" role="group" aria-label="Jump to a shot in Morphliner gallery demo">
-                <button type="button" data-video-seek="0" aria-pressed="true"><span>01</span> Opening</button>
-                <button type="button" data-video-seek="1.57" aria-pressed="false"><span>02</span> Detail</button>
-                <button type="button" data-video-seek="3.6" aria-pressed="false"><span>03</span> Profile</button>
-              </div>
-              <p class="demo-caption">Trainer camera sequence · 6.5-second demo excerpt</p>
-            </div>
-            <a class="morphliner-editor-still" data-morphliner-panel="editor"
-              href="./assets/portfolio/morphliner-editor.jpg" target="_blank" rel="noreferrer"
-              aria-label="Open the full-size Morphliner editor screenshot">
-              <img src="./assets/portfolio/morphliner-editor.jpg" width="1280" height="720"
-                alt="The Trainer scene in Morphliner, with camera controls, captions and an animation timeline"
-                loading="lazy" />
-              <span>Editor screenshot · open full size ↗</span>
+        <article class="entry" id="work-fly" data-scene-project="fly" aria-labelledby="work-fly-title">
+          <div class="entry__media">
+            <video controls playsinline muted preload="none" width="1280" height="720"
+              poster="./assets/portfolio/fly-preview-20261020.webp"
+              aria-label="Recorded illustrative 3D fly replay">
+              <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
+              <a href="./assets/portfolio/fly-preview-20261020.mp4">Open the fly replay (MP4)</a>
+            </video>
+          </div>
+          <div class="entry__text">
+            <h3 id="work-fly-title">Fly feeding circuit</h3>
+            <p class="entry__kind">Whole-brain fly model,9 s replay</p>
+            <p>
+              In a 127,400-neuron implementation of a published fly model, cutting
+              Roundup’s outputs reduced spiking in motor neuron MN9 in all 15 paired comparisons. The replay shows simulated motor spikes on a 3D fly.
+            </p>
+            <p class="entry__limit">One motor neuron in a computational model. The replay’s movement is uncalibrated and illustrative, from a separate simulation archive.</p>
+            <p class="entry__actions">
+              <a href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
+              <a href="./work.html#fly-circuit" data-scene-project="fly">Read the study</a>
+            </p>
+          </div>
+        </article>
+
+        <article class="entry" id="work-morphbrain" data-scene-project="morphbrain" aria-labelledby="work-morphbrain-title">
+          <div class="entry__media entry__media--plate">
+            <a href="./demos/morphbrain/" aria-label="Try the live MorphBrain model">
+              <img src="./assets/portfolio/morphbrain-feature.svg" width="1000" height="760" loading="lazy" decoding="async"
+                alt="Contours of SHH and BMP within the model tissue, beside the same computed state's dorsal, intermediate and ventral positional identities." />
             </a>
-            <figure class="morphliner-render-view" data-morphliner-panel="render">
-              <img class="morphliner-render" src="./assets/portfolio/morphliner.webp"
-                width="1920" height="1080" loading="lazy"
-                alt="A separate Morphliner product render: red and gold lipstick on a mauve stage" />
-              <figcaption>Beauty Shade Sweep · a separate product render</figcaption>
-            </figure>
           </div>
-              <div class="stage-caption">
-                <p><strong>Morphliner</strong> A browser 3D animation editor I’m developing. Play the 6.5&nbsp;s exported camera sequence; Editor is a screenshot, not the live editor.</p>
-                <a href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist" target="_blank" rel="noreferrer">Visit Morphliner</a>
-              </div>
-</div>
-<details class="stage-account">
-  <summary>Morphliner: method, sources and limits</summary>
-<article
-          class="project"
-          id="morphliner"
-          aria-labelledby="morphliner-title"
-        >
-          <div class="project__identity">
-            <h3 id="morphliner-title">Morphliner</h3>
-            <a
-              class="text-link"
-              href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist"
-              target="_blank"
-              rel="noreferrer"
-              >Visit Morphliner <span aria-hidden="true">↗</span></a
-            >
-          </div>
-          <div class="project__body">
-            <p class="project__lede">
-              I’m developing a browser-based 3D animation editor. You can arrange
-              a scene, set camera keyframes and export the animation.
+          <div class="entry__text">
+            <h3 id="work-morphbrain-title">MorphBrain</h3>
+            <p class="entry__kind">Patterning model,runs in the browser</p>
+            <p>
+              Move or remove SHH and BMP sources and watch the regions the model
+              assigns change. I implemented the reaction–diffusion components and
+              compared signalling conditions.
             </p>
-
-            <p class="project-limit" id="morphliner-project-limit">
-              Prototype in development, with local project saving and H.264 export.
+            <p class="entry__limit">Illustrative patterning; parameters are not calibrated, and the folding aim remains open.</p>
+            <p class="entry__actions">
+              <a class="entry__primary" href="./demos/morphbrain/">Try the model</a>
+              <a href="./work.html#morphbrain" data-scene-project="morphbrain">Full account</a>
             </p>
-            <details class="project-notes">
-              <summary>Methods &amp; sources</summary>
-              <p>
-                The demo shows camera movement and captions around one model.
-                It is a compressed excerpt of a 1080p export; it does not show
-                mesh morphing.
-              </p>
-              <p>
-                The gallery separates the product render, editor screenshot
-                and exported sequence. The editor
-                uses React and three.js, with GPU and CPU fallback paths.
-              </p>
-              <p>
-                <a href="./assets/portfolio/morphliner-export.mp4"
-                  >View a full Free export · 9 seconds</a
-                > (720p, including the end card).
-              </p>
-            </details>
           </div>
         </article>
-</details>
-</section>
+
+        <article class="entry" id="work-g27" data-scene-project="g27" aria-labelledby="work-g27-title">
+          <div class="entry__media entry__media--plate">
+            <a href="./assets/portfolio/g27/timing-original.png" aria-label="Open the team timing figure at full size">
+              <img src="./assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" decoding="async"
+                alt="Team figure: later training trials correct (%) against decision time after the trial trigger, 0 to 8 s. A bold line stays near the 50% chance level until about 3 s, then rises to around 80%. Marked points: 82/120 at +3.5 s and 99/120 at +4.25 s." />
+            </a>
           </div>
-        </figure>
-        <p class="stage-next"><a href="#selected-work">Research, figures and data</a></p>
-
-
-
+          <div class="entry__text">
+            <h3 id="work-g27-title">When does EEG imagery become decodable?</h3>
+            <p class="entry__kind">G27, a g.tec BR41N.IO team project</p>
+            <p>
+              Our team asked whether early calibration could choose between CSP and
+              Riemannian decoders, and how decoding depends on decision time. I contributed evaluation pull requests and obtained and relayed the organisers’ scoring rules.
+            </p>
+            <p class="entry__limit">Unchanged team figure. Separate fits on shifted 1 s windows, scored on previously inspected later training trials; feedback onset assumed. Three participants, six sessions; not a held-out gain.</p>
+            <p class="entry__actions">
+              <a href="./work.html#g27" data-scene-project="g27">Full account</a>
+            </p>
+          </div>
+        </article>
       </section>
-      <section class="gallery-research" id="selected-work" aria-labelledby="selected-work-title"><div class="wrap">
-        <header class="gallery-research__heading"><h2 id="selected-work-title">Selected research</h2></header>
-        <article class="gallery-signals g27" id="g27" aria-labelledby="gallery-signals-title">
-          <p class="case-row"><span><b>01</b>G27, a g.tec BR41N.IO team project</span><span>EEG imagery decoding</span></p>
-          <h3 id="gallery-signals-title">When in the trial does EEG imagery become decodable?</h3>
-          <figure class="plate g27-timing" id="g27-timing">
-            <a class="plate__image" href="./assets/portfolio/g27/timing-original.png" aria-label="Open the team timing figure at full size"><img src="./assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" alt="Team figure: later training trials correct (%) against decision time after the trial trigger, 0 to 8 s, where each time is the end of a causal 1 s window. A bold line stays near the 50% chance level until about 3 s, then rises to around 80%, with fainter lines around it. Marked points: 82/120 at +3.5 s in blue and 99/120 at +4.25 s in orange. Bands label get ready, instructed imagery, and feedback may be on, with its start assumed, not recorded."></a>
-            <figcaption><p>Each point is a separate fit on a shifted 1&nbsp;s window, scored on later training trials that had already been inspected. Feedback onset is assumed, not measured. 3 participants, 6 sessions. Team figure from the G27 presentation, slide 6, unchanged.</p><a href="./assets/portfolio/g27/timing-original.png">Full size</a></figcaption>
-          </figure>
-          <div class="g27-aside">
-            <section class="g27-result" aria-labelledby="g27-selector-title">
-              <h4 id="g27-selector-title">Calibration did not pick a better decoder</h4>
-              <p class="g27-count"><data value="75">75/120</data><span>selector, choosing CSP or Riemannian</span></p>
-              <p class="g27-count"><data value="82">82/120</data><span>fixed CSP</span></p>
-              <p class="g27-note">With 60 early calibration trials per session.</p>
-            </section>
-            <section class="g27-result" aria-labelledby="g27-marked-title">
-              <h4 id="g27-marked-title">Marked in the figure</h4>
-              <p class="g27-count"><data value="82">82/120</data><span><i class="g27-dot g27-dot--blue" aria-hidden="true"></i>at +3.5&nbsp;s</span></p>
-              <p class="g27-count"><data value="99">99/120</data><span><i class="g27-dot g27-dot--orange" aria-hidden="true"></i>at +4.25&nbsp;s</span></p>
-              <p class="g27-note">The same inspected trials at two decision times: a timing comparison, not a held-out gain.</p>
-            </section>
-            <dl class="g27-brief">
-              <dt>Question</dt><dd>Can a little early calibration choose between CSP and Riemannian decoders?</dd>
-              <dt>My part</dt><dd>Evaluation pull requests, and the organisers’ scoring rules: their peak-time score versus our fixed-time comparison.</dd>
-              <dt>Limit</dt><dd>Retrospective, on previously inspected later trials; 3 participants, 6 sessions.</dd>
-            </dl>
-            <div class="gallery-actions"><a class="gallery-action" href="https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present" target="_blank" rel="noreferrer">View the team presentation</a></div>
-          </div>
-          <div class="g27-plates">
-            <figure class="plate g27-montage" id="g27-montage">
-              <a class="plate__image" href="./assets/portfolio/g27/montage-original.png" aria-label="Open the team electrode-layout figure at full size"><img src="./assets/portfolio/g27/montage-original.png" width="1352" height="1031" loading="lazy" alt="Team figure: a topology fit from 0 to 1 for 12 recording files, participants P1 to P3, pre and post, training and test, under two candidate electrode layouts. The layout in the bundled paper fits near 0.9 for every file except P1 post, where the layout drawn in montage.png fits better."></a>
-              <figcaption><p><strong>Which electrode layout fits the recordings?</strong> Higher means nearer electrodes carry more similar signal: a negative rank correlation used as a topology-fit proxy, not accuracy or probability. The mapping is inferred and left–right orientation is unresolved. 12 recording files from 3 participants. Team figure, slide 8, unchanged.</p><a href="./assets/portfolio/g27/montage-original.png">Full size</a></figcaption>
-            </figure>
-            <figure class="plate plate--light gallery-figure gallery-calibration">
-              <a class="plate__image" href="./assets/portfolio/eeg-evaluation.svg" aria-label="Inspect the EEG evaluation design"><picture><source media="(max-width: 700px)" srcset="./assets/portfolio/eeg-evaluation-mobile.svg" width="600" height="840"><img src="./assets/portfolio/eeg-evaluation.svg" width="1200" height="770" loading="lazy" alt="Evaluation design: early calibration informs a choice of CSP or Riemannian decoder, compared with fixed CSP on later trials at one fixed decision time."></picture></a>
-              <figcaption><p><strong>How the decoders were compared.</strong> Design schematic, with no measured accuracy values. This was a retrospective comparison using previously inspected later trials.</p></figcaption>
-            </figure>
-          </div>
-          <details class="g27-account" id="g27-account">
-            <summary>Full G27 account: method, my part and limits</summary>
-            <p><strong>Question.</strong> Our team tested whether early EEG calibration data could select between common spatial patterns (CSP) and a Riemannian decoder for each session, and how decoding depends on when in the trial the decision is made.</p>
-            <p><strong>Calibration.</strong> With 60 early calibration trials per session, the selector scored 75/120 against 82/120 for fixed CSP. Selection did not beat the fixed decoder.</p>
-            <p><strong>Timing.</strong> Each point in the timing figure is a separate fit on a causal one-second window ending at that decision time, shifted along the trial and scored on later training trials that we had already inspected. The marked points are 82/120 at +3.5&nbsp;s and 99/120 at +4.25&nbsp;s. Feedback onset was assumed, not recorded, and the trials were not held out, so the difference is a timing comparison, not a held-out gain. The data cover 3 participants and 6 sessions.</p>
-            <p><strong>Electrode layout.</strong> The electrode mapping was inferred and its left–right orientation is unresolved. The layout figure compares two candidate layouts for each of 12 recording files from 3 participants, not 12 independent participants. Its fit is a negative rank correlation, not accuracy or probability.</p>
-            <p><strong>My part.</strong> I shared evaluation work through pull requests and obtained and relayed the organisers’ scoring rules, distinguishing their peak-time score from our fixed-time comparison. The figures are the G27 team’s, shown unchanged from the team presentation.</p>
-            <p><a href="https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present" target="_blank" rel="noreferrer">Team presentation</a> · <a href="./assets/portfolio/g27/source.json">Figure sources and checksums (JSON)</a></p>
-          </details>
-        </article>
-        <article class="gallery-feature work-index__item">
-          <p class="case-row gallery-kind"><span><b>02</b>MorphBrain</span><span>Developmental modelling</span></p>
-          <figure class="gallery-figure gallery-figure--patterning"><a href="#morphbrain" aria-label="Read about MorphBrain"><img src="./assets/portfolio/morphbrain-feature.svg" width="1000" height="760" loading="lazy" alt="Contours of SHH and BMP within the model tissue, beside the same computed state's dorsal, intermediate and ventral positional identities."></a><figcaption>The same computed state, shown as tissue fields and a positional readout. Exterior diffusion values are omitted from this view. <a href="./assets/portfolio/morphbrain-feature.svg">Inspect the figure</a></figcaption></figure>
-          <div class="gallery-feature__copy"><h3>Move a signal.<br>Change a pattern.</h3><p>A workbench for exploring how molecular signals assign regions in a neural tissue model.</p><dl class="project-contribution"><dt>My contribution</dt><dd>I developed reaction–diffusion components and compared SHH/BMP signalling conditions.</dd><dt>Try the model</dt><dd>Move or remove signalling sources and compare the regions assigned by the model.</dd></dl><p class="gallery-limit">The folding aim remains open. The public demo shows illustrative patterning, not a biologically validated growth-to-folding model.</p><div class="gallery-actions"><a class="gallery-action" href="#morphbrain">Explore MorphBrain</a><a class="text-link" href="./demos/morphbrain/">Open the model</a></div></div>
-        </article>
-      </div></section>
-      <section
-        class="research wrap"
-        id="experience"
-        aria-labelledby="experience-title"
-      >
-        <div class="section-heading research__heading">
-          <h2 id="experience-title">Study notes</h2>
-          <nav class="research-index" aria-label="Research areas">
-            <a href="#fly-circuit">Fly circuit</a>
-            <a href="#dpca">Neural signals</a>
-            <a href="#supervised-work">EEG modelling</a>
-          </nav>
-        </div>
-        <details class="study-reading" id="fly-study-details">
-          <summary>Fly feeding circuit: study, figures &amp; replay</summary>
-        <article class="research-feature research-feature--result" id="fly-circuit" aria-labelledby="fly-title">
-          <header class="fly-project-heading"><h3 id="fly-title">Fly feeding circuit</h3><p>Does disconnecting Roundup, a circuit neuron, reduce activity in motor neuron MN9?</p></header>
-          <div class="fly-media" id="fly-visuals" aria-label="Circuit intervention and paired simulation result">
-            <figure class="fly-circuit">
-              <h4>The circuit intervention</h4>
-              <a href="./demos/fly/?v=20261020-network#connections" aria-label="Explore the circuit connections">
-                <img src="./assets/portfolio/fly-network-focus.svg" width="600" height="430"
-                  alt="Selected model connections around Roundup and motor neuron MN9. Roundup's outgoing connections are marked as cut; its incoming connections remain."
-                  aria-describedby="fly-network-caption" />
-              </a>
-              <figcaption id="fly-network-caption">Selected model connections; schematic layout. The experiment cuts all Roundup outputs; only selected links are shown. Incoming connections remain. This is wiring, not activity flow.</figcaption>
-            </figure>
-            <figure class="research-result-figure fly-comparison">
-              <h4>Fewer MN9 spikes in all 15 simulated pairs</h4>
-              <a href="./assets/portfolio/fly-paired-comparison.svg" aria-label="Open the paired MN9 spike-count comparison">
-                <img src="./assets/portfolio/fly-paired-comparison.svg" width="420" height="500" loading="lazy"
-                  alt="Fifteen paired simulated MN9 spike counts at recurrent gains 0.8, 1.0 and 1.2. Each matched seed has fewer spikes after Roundup’s outgoing weights are zeroed." />
-              </a>
-              <figcaption>MN9 motor-neuron spikes over one simulated second. Each line joins a matched input seed; five seeds at each connection strength.</figcaption>
-            </figure>
-          </div>
-<div class="research-feature__copy fly-study-summary" id="fly-strength-study">
-          <div><h4>Connection-strength study</h4><p class="fly-study-contribution">I proposed and directed a study of whether removing Roundup’s outputs still reduces MN9 activity when connection strength changes.</p></div>
-          <div><p class="fly-study-result">In a <strong>127,400-neuron implementation of a published fly model</strong>, setting Roundup’s outgoing weights to zero reduced MN9 spiking in <strong>all 15 paired comparisons</strong>: three connection strengths and five input seeds.</p><p class="research-result-limit">The result concerns one motor neuron and input regime in a computational model; it does not establish a change in real feeding behaviour.</p><a class="research-study-link" href="./demos/fly/?v=20261020-network#connections">Explore the circuit comparison</a></div>
-          </div>
-          <details class="project-notes research-evidence">
-              <summary>Methods &amp; sources</summary>
-              <p>Thirty one-second simulations compare Roundup’s outgoing connections kept or cut at three recurrent gains and five matched input seeds.</p>
-              <p>Within each seed, both conditions at all three gains shared candidate and accepted sensory inputs. A refractory-eligibility filter rejected some candidates; accepted inputs matched across these runs. The shared-input design and an execution correction were adopted after initial failures; the design was not preregistered.</p>
-              <p>The five seeds represent alternative model inputs, not animals. The comparison covers one neuron intervention, motor output and input regime. The source paper corrects left–right labels in its dataset; genetic-driver coverage and historical cell-ID lineage are not established here.</p>
-              <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11446845/" target="_blank" rel="noreferrer">Shiu et al. (2024), source paper</a> · <a href="https://github.com/philshiu/Drosophila_brain_model/tree/91bdd1e7dcf193f3e7ca5a8933497fcef63b7960" target="_blank" rel="noreferrer">Pinned source model</a></p>
-              <p><a href="./assets/portfolio/research-20261015/fly-summary.csv" download>Download aggregate results (CSV)</a> · <a href="./assets/portfolio/research-20261015/evidence.json" download>Evidence and source hashes (JSON)</a></p>
-              <p><a href="./assets/portfolio/fly-network-focus.json">Network selection and sources</a> · <a href="./assets/portfolio/research-20261015/fly-circuit.png">Original full results figure</a> · <a href="./assets/portfolio/fly-media-provenance.json">Video and chart provenance</a> · <a href="./demos/fly/body/provenance.json">Separate body-replay source</a>. The chart shows the 15 matched simulation pairs. The video covers −0.4 to 2.0 simulated seconds, using a separate motor archive and an illustrative movement mapping.</p>
-          </details>
-          <section class="fly-replay-preview" aria-labelledby="fly-replay-title">
-            <div class="fly-replay-intro">
-              <h4 id="fly-replay-title">Explore the 3D fly</h4>
-              <p>Replay simulated motor spikes alongside whole-fly and mouth views. Rotate the fly or step through the activity in the interactive replay. The recorded replay is illustrative movement from a separate simulation archive, not the paired comparison.</p>
-              <a class="research-study-link" href="#preview-fly">Play the recorded replay</a> <a class="research-study-link" href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
-            </div>
-          </section>
-          <section class="research-followup" aria-labelledby="fly-timing-title">
-            <p class="eyebrow">Input timing</p>
-            <h4 id="fly-timing-title">Does timing change the effect of cutting more connections?</h4>
-            <p>I proposed and directed a comparison of cutting only Roundup’s connection to MN9 with cutting all its outputs. Across five artificial input templates, shifted timing increased, decreased or left unchanged the difference between the cuts.</p>
-            <p class="research-result-limit">No consistent direction across these five templates. This is a simulation result from one fixed model and measurement window.</p>
-            <a class="research-study-link" href="./demos/fly/timing/">Explore the input-timing study <span aria-hidden="true">↗</span></a>
-          </section>
-        </article>
-        </details>
-        <details class="study-reading" id="signal-study-details">
-          <summary>Separating neural signals: study preview</summary>
-        <article class="research-feature research-feature--supporting" id="dpca" aria-labelledby="dpca-title">
-          <div class="research-feature__copy">
-            <p class="eyebrow">Separating neural signals</p>
-            <h3 id="dpca-title">Can stimulus and choice be separated when errors are rare?</h3>
-            <p>
-              When stimulus and choice usually agree, can the analysis tell their signals apart?
-              In this synthetic study, a component can be strongly labelled as choice-related while reconstructing the known choice signal poorly.
-              With no error trials, stimulus and choice cannot be separated by this fit.
-            </p>
-            <p class="research-item__scope">Six trial mixes · five noise seeds · synthetic neural activity</p>
-            <p class="research-item__scope">Supporting synthetic methods exploration developed with AI assistance.</p>
-            <a class="research-study-link" href="./rare-errors.html">Explore the rare-error experiment <span aria-hidden="true">↗</span></a>
-          </div>
-          <a class="research-feature__preview research-feature__preview--results" href="./rare-errors.html" aria-label="Open the interactive rare-error study">
-            <img src="./assets/portfolio/rare-errors-results-preview.png" width="600" height="720" loading="lazy"
-              alt="Five synthetic noise-seed results at one error per stimulus: mean choice attribution 97.63%, with mean normalized reconstruction error 0.1000. Each plot shows all five seeds, on separate scales; ranges are not confidence intervals." />
-            <span>One error per stimulus. Explore the other trial mixes. <span aria-hidden="true">↗</span></span>
-          </a>
-        </article>
-        </details>
-      <section class="supervised-work" id="supervised-work" aria-labelledby="supervised-title">
-        <h2 id="supervised-title">EEG source modelling</h2><article class="research-item research-item--role">
-            <p class="research-item__kind">UCL</p>
-            <h3>Undergraduate Research Assistant</h3>
-            <p>
-              I work with Professor Lorenzo Fabrizi in UCL’s
-              <a href="https://www.ucl.ac.uk/life-sciences/mpsl" target="_blank" rel="noreferrer">Medawar Pain and Somatosensory Labs</a>.
-              My work focuses on EEG source modelling: relating
-              models of brain activity to signals measured at the scalp.
-            </p>
-          </article></section>
-</section>
-      <section class="contact" id="about" aria-labelledby="contact-title">
-        <div class="wrap contact__inner">
-          <div>
-            <h2 id="contact-title">About &amp; contact</h2>
-          </div>
-          <div class="contact__body">
-            <p>
-              I study neuroscience at UCL and build tools for exploring brains
-              and data. I’m particularly interested in simulation, machine
-              learning and making scientific ideas easier to inspect.
-            </p>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+        <div class="about__body">
+          <p>
+            I study neuroscience at UCL and build tools for exploring brains and
+            data. As an undergraduate research assistant with Professor Lorenzo
+            Fabrizi in UCL’s Medawar Pain and Somatosensory Labs, I work on EEG
+            source modelling: relating models of brain activity to signals measured
+            at the scalp.
+          </p>
+          <p>
+            Also on the full work page: a synthetic study of
+            <a href="./rare-errors.html">separating stimulus and choice signals when errors are rare</a>,
+            and <a href="./work.html#fly-circuit">the fly input-timing comparison</a>.
+          </p>
+          <div class="contact" id="contact">
             <p>
               I’m interested in paid internships, scientific software work and
               research opportunities in brain modelling, computational neuroscience
               and machine learning.
             </p>
-            <a class="contact__email" href="mailto:jason.wang.25@ucl.ac.uk"
-              >jason.wang.25@ucl.ac.uk <span aria-hidden="true">↗</span></a
-            >
             <p class="contact__links">
-              <a
-                href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio"
-                >Request my CV</a
-              ><a
-                href="https://github.com/wjason00"
-                target="_blank"
-                rel="noreferrer"
-                >GitHub ↗</a
-              ><a
-                href="https://www.linkedin.com/in/-jasonwang/"
-                target="_blank"
-                rel="noreferrer"
-                >LinkedIn ↗</a
-              >
+              <a class="contact__mail" href="mailto:jason.wang.25@ucl.ac.uk">jason.wang.25@ucl.ac.uk</a>
+              <a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a>
+              <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn</a>
             </p>
           </div>
         </div>
       </section>
     </main>
-    <footer class="site-footer">
-      <p class="site-footer__name">Jason Wang</p>
-      <nav class="site-footer__links" aria-label="Site information">
-        <a href="./third-party-notices.html">Sources &amp; licences</a
-        ><a href="#top">Back to top ↑</a>
+
+    <footer class="xp-foot">
+      <p>Jason Wang</p>
+      <nav aria-label="Site information">
+        <a href="./work.html">Full work page</a>
+        <a href="./third-party-notices.html">Sources &amp; licences</a>
+        <a href="#top">Back to top</a>
       </nav>
     </footer>
-    <dialog class="demo-dialog" aria-labelledby="demo-dialog-title">
-      <div class="demo-dialog__bar">
-        <h2 id="demo-dialog-title">
-          MorphBrain <span>Interactive model</span>
-        </h2>
-        <div>
-          <a href="./demos/morphbrain/" target="_blank" rel="noreferrer"
-            >Open full page ↗</a
-          ><button type="button" class="demo-close" autofocus>
-            Close <span aria-hidden="true">×</span>
-          </button>
-        </div>
-      </div>
-      <p class="demo-dialog__note">
-        Illustrative model; parameters are not calibrated to biological
-        measurements.
-      </p>
-      <div class="demo-dialog__status" role="status" aria-live="polite" hidden>
-        <p data-demo-message>Loading the model interface…</p>
-        <div data-demo-recovery hidden><button type="button" class="demo-retry">Retry</button><a href="./demos/morphbrain/">Open the model full page</a></div>
-      </div>
-      <div class="demo-dialog__mount"></div>
-    </dialog>
   </body>
 </html>

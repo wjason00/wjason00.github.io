@@ -1,30 +1,39 @@
 # Sonali-inspired portfolio opening implementation plan
 
-## Current full homepage rebuild - 30 October 2026
+## Current full homepage rebuild - completed local scope, 30 October 2026
 
-14:10UTC: Jason explicitly rejects iterative static passes and asks for a full
-redo with cursor interaction appropriate to computational neuroscience. This
-supersedes the media-stage approach as the main experience. New bounded50-minute
-unit ends15:00UTC, including pointer/touch verification and records; no publication.
-Freshindex/experience-home.css/controller must not load oldhomepageCSS/scripts.
-The complete existing accounts/figures/demos are preserved on work.html, with
-legacyhashrouting and clear links from the new home. Root owns this preservation,
-buildwhitelist/publicCC0displaypoint derivation/tests/docs/control. ActualClaude
-owns freshhomevisualcomposition/HTML/CSS/controller. Separateengineworker owns
-brain-scene.js; interface is agreed in output/rebuild-20261030/source-contract.txt.
+Jason14:10authorisedfullredo/cursorinteraction. The replacement now uses isolated
+index/experience-home.css/controller and a real atlas point scene. The prior full
+accounts/figures/demos are preserved inwork.html with registered legacy hashes
+and explicit internal return links. Actual Opus5.5 authored the visual home in
+300.18s after the14:40quota reset; initial429produced no inference. Root/worker
+owned geometry/engine/tests/build/records; root applied factual and phone fixes.
 
-The hero uses4096sampledvertices from already-publicCC0dHCPweek36population-average
-white-matter GLB. Independent audit reproduces all12288Float32coordinates exactly
-and the same staticSVG fallback; no omitted node transforms/hash/claim mismatch.
-Pointerlighting/displacement is interface artwork, not neural activity/dynamics.
-Realhoverparallax/localresponse, dragorbit, keyboard and touch are acceptance
-requirements; decorativecursoraloneorCSS-onlyhoveris insufficient. No solver,
-Torch/GPUrender/newexperiment/privateinput. Scientificfigures/results unchanged.
-Referencepointerbehaviour and Claude design/build must be verified from actual
-execution; sourcechecks or screenshots alone cannot certify the interaction.
+- [x] Derive4096displaypoints from the already-publicCC0week36WM atlas.
+- [x] Independently reproduce allcoordinates/indices/fallback; no source mismatch.
+- [x] Build hoverpointresponse/parallax, realdragorbit, keyboard/touch/projectviews.
+- [x] ActualClaude replaces homepage HTML/CSS/controller, no oldgallery imports.
+- [x] Preserve complete accounts/originalfigures/source credit/scientific limits.
+- [x] Correct three newcopy ambiguities and existing cross-page return links.
+- [x] Actualdesktoppointer/drag/Arrow/projecthover change scene+canvaspixels.
+- [x] Correct phone minwidth/spacing/noJS controls;320CSS andsynthetictouch pass.
+- [x] Inspect desktop/phonecaptures; source44tests/build13HTML/diff/syntax pass.
+- [x] Remove temporary QA hosts, verifyHTTPsourcebytes, save checkpoint/records.
+
+Actual desktop influence0->0.974, dragyawdelta0.249rad; corrected phone
+scrollWidth=clientWidth305/canvas305x320, touchyaw-.4700->-.1920 anddragrelease.
+The touch is synthetic; physicaltouch untested. Actual fullPlaywright, browser
+Home reset, realmedia/live-model playback, oldhashredirect flows and dark/RM
+emulation remain unperformed/inconclusive; no claimofthosepasses. Source native
+controls/routes/reduced-motion rules and engine8unitcases are preserved.
+
+Finalbuild191files/32,548,216bytes/13HTML refs. No scientificcompute/newprivate
+input/publication. Browser lease positivelyreleased applications14:55:56, focused
+operator closed own tab. Finalreceipt output/rebuild-20261030/final-verification.json.
+This supersedes earlier homepage compositions; their receipts retain history.
 
 
-## Current interaction correction - 30 October 2026
+## Earlier media-stage correction - 30 October 2026
 
 Jason's13:41feedback rejects static090be75 while retaining clearer information;
 13:46steering adds Scale and others. New bounded25-minute pass ends14:06UTC.
