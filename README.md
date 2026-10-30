@@ -4,71 +4,57 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Local redesign candidate — 30 October 2026
+## Local redesign candidate ? 30 October 2026
 
-Jason still finds local `eaa6e52` bland and requested a proper Model Morpher
-recapture plus actual Claude review. Comparing the saved openings identifies the
-loss: the generic slogan and faint artwork displaced the earlier specimen and
-editorial contrast. The proposed next composition puts stacked navigation beside
-a substantial real demonstration. This remains a proposal for the requested
-review, not visual approval.
+Actual Claude Opus 5.5 reviewed [Sonali's landing](https://www.sonali.ca/) and
+this portfolio through connected Claude in Chrome. Its useful correction was to
+let the specimen dominate, with a quieter contents list. The opening now shows
+one real Model Morpher player beside a serif identity and Research / Software /
+About contents. The generic slogan, faint numerical brain and duplicate header
+labels are gone. Serif project headings and the curved research edge restore
+editorial contrast; the gallery links back to the single player.
 
-T-366 now includes a type-led opening adapted from the rendered landing of
-[Sonali's portfolio](https://www.sonali.ca/): large native Research / Software /
-About links, a concise introduction and original decorative numerical artwork.
-The cool white/green/lilac identity, complete study accounts and software routes
-remain. The reference's subpages and phone behaviour were not inspected.
+The [local preview](http://127.0.0.1:4187/?v=claude-review) runs on this computer.
+This is a local candidate, not a public release or Jason's visual approval.
+Actual Claude's review and browser receipts are in
+`output/sonali-20261030/claude-live-review.jsonl` and `claude-final-qa.jsonl`.
 
-Jason rejected the initial opening-only pass as too basic. The project visuals
-have consequently been rebuilt: MorphBrain now has reproducible vector contours
-and exact categorical regions from the shipped demo's default computed state,
-including the interactive comparison. G27 has desktop and phone evaluation
-schematics. On phones, the visual follows the project title and precedes the
-longer account. Scientific model code and empirical outcomes are unchanged.
+The genuine recapture retains all 30 surfaces from the unchanged original
+production pipeline. The fixed parallel camera is fitted to the projected union
+of every vertex across all frames, with at least 12% padding per side relative
+to the object's projected span. An independent audit reproduced the fit and
+verified every source mesh, video and poster hash. No geometry was edited or
+recomputed for the tighter framing. Public settings/provenance are in
+`assets/portfolio/model-morpher-capture.json`; local meshes and render receipts
+remain under `output/recapture-20261030/` and `output/recapture-tight-20261030/`.
+Independent centring/rescaling makes this a geometric morph, not anatomical
+correspondence or development. Playback starts only on user action.
 
-The MorphBrain reference data is an exported illustrative model state, not subject
-data. Field contours deliberately show tissue only; nonzero exterior diffusion
-is omitted, not set to zero. The category cells, orientation and spatial aspect
-are preserved exactly. Regenerate with
-`python scripts/render-morphbrain-feature.py` (requires NumPy and contourpy), or
-use `--check` to verify exact asset bytes. Source/provenance is beside the SVGs.
-The G27 images encode evaluation design, not measured accuracy curves.
+Claude measured actual responsive iframe widths of 1366, 390 and 320 CSS pixels
+in both themes: no overflow; research starts below 600/700px respectively; one
+Morpher player; native routes and image sources work. Actual Play/Pause, seeking,
+offscreen pause and no-script native controls/disclosures were exercised.
+These are same-origin iframe checks in signed-in Chrome, not real-device tests.
+Reduced-motion-specific browser emulation and the full Playwright suite were
+not run. Existing no-autoplay and reduced-motion source contracts remain.
 
-This is a **local review candidate**, not a new public release or visual approval.
-The [local preview address](http://127.0.0.1:4187/?v=visuals#selected-work) requires
-this computer's preview server, which is currently stopped. Build, tests and
-desktop/phone captures for `eaa6e52` are recorded in
+The first final check caught an inherited low-contrast Expand label and an overly
+fine/short phone scrubber. The final focused check passed after corrections:
+9.74:1 control contrast, full-width phone tracks, a meaningful 0.11-second input
+increment and research entry at 661/695px for 320/390px widths. No-script native
+controls remain available. This final check used actual Opus5.5 in Chrome; its
+receipt is `output/sonali-20261030/claude-controls-verified.jsonl`.
+
+MorphBrain's source-based vector fields/categories and G27's design schematics
+remain intact. MorphBrain is illustrative patterning; nonzero exterior diffusion
+is omitted by the declared tissue display mask. G27's negative retrospective
+result is unchanged. No private data or scientific solver was changed.
+
+The [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) and T-366
+own the checkpoint and verification limits. Oxford drafts remain in their
+[existing owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
+Earlier local candidates and their checks remain dated evidence in Git and
 `output/sonali-20261030/verification.json`.
-
-The original public DG/root atlas meshes and clean Model Morpher production
-source are now located. The new [capture harness](scripts/capture-model-morpher.py)
-checks resources before heavy imports, uses the unchanged production pipeline,
-saves actual returned meshes and renders them from one fixed camera without UI
-or cursor. Its default is preflight only; `--run --mode production` opts in to
-the 128-grid/30-frame capture, with a wall-clock cap and two CPU cores. No missing
-frames are invented. Independent centring/rescaling remains a geometric morph,
-not anatomical correspondence or development. Local preparation/run receipts
-are in `output/recapture-20261030/`; footage must be inspected before integration.
-
-Production capture and the camera-only refinement both succeeded. All 30 actual
-surfaces are saved; the refined 1440×1080 video and lossless endpoint poster now
-replace the old recording in the local candidate. The video is 5.5 seconds,
-including repeated endpoint pauses. Start/mid/end exports were inspected; an
-independent review found no clipping, cursor or framing defect. All 20 source,
-two input, 30 mesh and 38 output hashes match. Public capture settings are in
-`assets/portfolio/model-morpher-capture.json`; full local receipts are under
-`output/recapture-20261030/run-20261030T111127282221Z-render-saved-production/`.
-The broader opening revision and actual Claude review remain unfinished.
-
-Actual Claude input is still pending: Claude Code returned expired OAuth and
-the personal sign-in flow remains unresolved. No further failed diagnostic or
-alternate browser route was attempted in the resumed block. The exact bounded
-review prompt is saved in `output/sonali-20261030/claude-recapture-review.txt`;
-Codex reviews are not Claude signoff. The
-[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) owns the scoped
-implementation; next action is owned by T-366. Earlier pass evidence remains in
-`output/oxford-20261029/verification.json`. The separate Oxford drafts remain in
-[Oxford responses owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
 
 ## Professional focus - 23 October 2026
 

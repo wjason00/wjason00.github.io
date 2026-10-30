@@ -144,8 +144,8 @@
           ></a
         >
         <nav class="site-nav" aria-label="Sections of this page">
-          <a href="#selected-work">Research</a><a href="#projects">Projects</a
-          ><a href="#about">Contact <span aria-hidden="true">↗</span></a>
+          <a href="#selected-work">Research</a><a href="#projects">Software</a
+          ><a href="#about">About</a>
         </nav>
         <button
           class="theme-toggle"
@@ -159,21 +159,36 @@
     </header>
     <main id="main" tabindex="-1">
       <section class="intro gallery-opening wrap" aria-labelledby="intro-title">
-        <div class="opening-art" aria-hidden="true">
-          <img src="./assets/portfolio/neural-field.svg" width="700" height="500" alt="" />
-        </div>
         <div class="gallery-opening__copy">
-          <h1 id="intro-title">Modelling brains.<br>Learning from data.</h1>
-          <p>I’m Jason, a second-year neuroscience student at UCL, exploring brain simulation and machine learning.</p>
+          <h1 id="intro-title">Jason Wang</h1>
+          <p>UCL neuroscience student.<br>Models, signals and scientific software.</p>
+          <nav class="opening-nav" aria-label="Explore my work">
+            <a href="#selected-work"><span>Research</span><small>Models, methods and findings</small></a>
+            <a href="#projects"><span>Software</span><small>Interactive models and tools</small></a>
+            <a href="#about"><span>About</span><small>Background and contact</small></a>
+          </nav>
         </div>
-        <nav class="opening-nav" aria-label="Explore my work">
-          <a href="#selected-work">Research</a>
-          <a href="#projects">Software</a>
-          <a href="#about">About</a>
-        </nav>
+        <figure class="opening-media" id="opening-morpher">
+          <div class="video-demo gallery-media opening-recording" data-recording-label="Model Morpher recording">
+            <video controls playsinline preload="none" width="1440" height="1080"
+              poster="./assets/portfolio/model-morpher.webp"
+              aria-label="Model Morpher prototype recording" aria-describedby="opening-morpher-limit">
+              <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4">
+              Your browser does not support this recording. <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the recording</a>.
+            </video>
+            <div class="video-controls" role="group" aria-label="Model Morpher recording controls">
+              <button class="video-play" type="button">Play</button>
+              <label><span class="sr-only">Scrub the Model Morpher recording</span><input class="video-range" type="range" min="0" max="100" step="2" value="0"></label>
+              <output class="video-time">0:00 / 0:05</output>
+            </div>
+          </div>
+          <figcaption><a href="#model-morpher">Model Morpher</a> · software prototype
+            <span id="opening-morpher-limit">Geometric interpolation, not anatomical correspondence or development.</span>
+          </figcaption>
+        </figure>
       </section>
       <section class="gallery-research" id="selected-work" aria-labelledby="selected-work-title"><div class="wrap">
-        <header class="gallery-research__heading"><h2 id="selected-work-title">Selected research</h2><p>Developmental models &amp; machine learning</p></header>
+        <header class="gallery-research__heading"><h2 id="selected-work-title">Selected research</h2></header>
         <article class="gallery-feature work-index__item">
           <figure class="gallery-figure gallery-figure--patterning"><a href="#morphbrain" aria-label="Read about MorphBrain"><img src="./assets/portfolio/morphbrain-feature.svg" width="1000" height="760" alt="Contours of SHH and BMP within the model tissue, beside the same computed state's dorsal, intermediate and ventral positional identities."></a><figcaption>The same computed state, shown as tissue fields and a positional readout. Exterior diffusion values are omitted from this view. <a href="./assets/portfolio/morphbrain-feature.svg">Inspect the figure</a></figcaption></figure>
           <div class="gallery-feature__copy"><p class="gallery-kind">MorphBrain · developmental modelling</p><h3>Move a signal.<br>Change a pattern.</h3><p>A workbench for exploring how molecular signals assign regions in a neural tissue model.</p><dl class="project-contribution"><dt>My contribution</dt><dd>I developed reaction–diffusion components and compared SHH/BMP signalling conditions.</dd><dt>Try the model</dt><dd>Move or remove signalling sources and compare the regions assigned by the model.</dd></dl><p class="gallery-limit">The folding aim remains open. The public demo shows illustrative patterning, not a biologically validated growth-to-folding model.</p><div class="gallery-actions"><a class="gallery-action" href="#morphbrain">Explore MorphBrain</a><a class="text-link" href="./demos/morphbrain/">Open the model</a></div></div>
@@ -540,46 +555,8 @@
               aria-labelledby="select-model-morpher"
             >
 <div class="project-gallery__visual">
-              <div
-                class="video-demo gallery-media"
-                data-recording-label="Model Morpher recording"
-              >
-                <video
-                  controls
-                  playsinline
-                  preload="none"
-                  width="1440"
-                  height="1080"
-                  poster="./assets/portfolio/model-morpher.webp"
-                  aria-label="Model Morpher prototype recording"
-                  aria-describedby="morpher-project-limit"
-                >
-                  <source
-                    src="./assets/model-morpher/dentate-to-brain.mp4"
-                    type="video/mp4"
-                  />
-                  Your browser does not support this recording.
-                </video>
-                <div
-                  class="video-controls"
-                  role="group"
-                  aria-label="Model Morpher recording controls"
-                >
-                  <button class="video-play" type="button">Play</button
-                  ><label
-                    ><span class="sr-only"
-                      >Scrub the Model Morpher recording</span
-                    ><input
-                      class="video-range"
-                      type="range"
-                      min="0"
-                      max="100"
-                      step="0.1"
-                      value="0" /></label
-                  ><output class="video-time">0:00 / 0:05</output>
-                </div>
-              </div>
-
+              <a class="opening-replay" href="#opening-morpher"><img src="./assets/portfolio/model-morpher.webp" width="1440" height="1080" loading="lazy" alt="Model Morpher's whole-brain endpoint, shown from the recording's fixed camera."><span>Play the surface transition at the top</span></a>
+              <p class="recording-download"><a href="./assets/model-morpher/dentate-to-brain.mp4">Open the recording</a></p>
 </div>
 <article
           class="project"

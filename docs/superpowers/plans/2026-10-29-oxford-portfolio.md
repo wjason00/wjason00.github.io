@@ -1,6 +1,56 @@
 # Sonali-inspired portfolio opening implementation plan
 
-## Recapture and review follow-up — 30 October 2026
+## Claude review and specimen-led composition ? 30 October 2026
+
+Jason restored sign-in and resumed the goal at 11:34 UTC. Actual Claude Opus5.5
+(high requested; effective effort not exposed) inspected Sonali and the local
+portfolio through the connected Chrome extension. It rejected the dominant
+stacked index proposal: the model should dominate, with quiet contents. This is
+a change based on the rendered review and the small specimen inside the old
+video stage, not merely a request for larger type.
+
+Design: cool white #f8fbfa, deep green #173f36, soft green #e3ede6, lilac #e6d9fb
+and muted #506b63. Spectral carries identity/contents/project headings; Source
+Sans carries prose and controls. Desktop pairs factual identity/contents with a
+substantial real specimen; phone orders identity, media and contents. Remove the
+slogan/numerical decoration and duplicate player, retain all gallery hashes and
+accounts. A projected union of all actual geometry replaces an arbitrary CSS
+crop. Essential model limits remain beside the player; motion is opt-in.
+
+Root owns HTML/CSS/docs/records; test worker owns the two presentation tests;
+capture worker owns only the bounded camera-fit renderer and new local output.
+The independent camera audit decoded all 30 VTPs and reproduced the shared fit,
+with no geometry/hash mismatch. Actual Chrome QA measured six width/theme
+conditions and real media/native interactions. A sandboxed same-origin child
+provided a genuine no-script rendering. Viewport evidence is explicitly iframe
+CSS testing, not a physical phone or a resized top-level window.
+
+The 25-minute target was exceeded: the native resize command failed to change
+CSS width, and the final check found a low-contrast injected Expand button plus
+a weak phone scrubber. The source corrections are saved; the focused60s check
+timed out after observing an earlier CSS specificity issue, subsequently fixed.
+No new render was started after the resource advisory. Browser lease passed to
+T-215; one bounded optional post-correction check may return through that owner.
+That timed-out result was not treated as sign-off. A subsequent focused
+Opus5.5 check completed in 34 seconds, closed its own tab and passed the
+corrected controls. Its unchanged-light-panel observation is intentional for
+source-image readability in both themes. No extra geometry computation followed.
+
+- [x] Obtain actual Claude review and reconcile its composition critique.
+- [x] Fit the unchanged actual surfaces with one shared camera; independent audit.
+- [x] Implement the single-player opening, consistent contents and serif hierarchy.
+- [x] Check six responsive conditions, no-script accounts and user-driven media.
+- [x] Correct the Expand contrast and phone keyboard/scrubber defects.
+- [x] Reconcile the final post-correction browser confirmation: actual Opus5.5
+  passed contrast 9.74:1, phone grid/track width, 0.11s input-event seeking,
+  research bounds and the no-script enhancement guard. Native keyboard behaviour
+  was exercised before the increment change; post-fix seeking used an input event.
+- [x] Save final receipt/checkpoint/owner log and read back exact status.
+
+Publication is outside this local-candidate scope. T-244's earlier published
+update does not supply standing authority for a new release. No publication.
+
+## Earlier bounded recapture and review preparation ? 30 October 2026
 
 Jason finds `eaa6e52` improved but bland and asks for a proper recapture and
 Claude review. The resumed pass preserves that checkpoint and the Oxford drafts;

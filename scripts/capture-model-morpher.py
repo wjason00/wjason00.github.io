@@ -440,17 +440,56 @@ def render_frames(args, report, frames, pv, np, run_dir):
     bounds = np.asarray([list(m.bounds) for m in frames], dtype=float)
     low = bounds[:, [0, 2, 4]].min(axis=0)
     high = bounds[:, [1, 3, 5]].max(axis=0)
-    centre = (low + high) / 2
     radius = float(np.linalg.norm(high - low) / 2)
     if not math.isfinite(radius) or radius <= 0:
         raise RuntimeError("Invalid returned mesh bounds")
     width, height = cfg["window_size"]
+    if not math.isclose(width / height, 4 / 3):
+        raise RuntimeError("Fixed sequence framing requires a 4:3 render canvas")
     direction = np.array([0.7, -1.0, 2.8], dtype=float)
     direction /= np.linalg.norm(direction)
+    forward = -direction
+    right = np.cross(forward, np.array([0.0, -1.0, 0.0]))
+    right /= np.linalg.norm(right)
+    screen_up = np.cross(right, forward)
+    # Every actual vertex contributes; no per-frame camera fitting or mesh edits.
+    basis = np.column_stack((right, screen_up, direction))
+    projected_low = np.full(3, np.inf)
+    projected_high = np.full(3, -np.inf)
+    vertex_count = 0
+    for mesh in frames:
+        points = np.asarray(mesh.points, dtype=float)
+        if not len(points) or not np.isfinite(points).all():
+            raise RuntimeError("Cannot frame empty or non-finite returned vertices")
+        projected = points @ basis
+        projected_low = np.minimum(projected_low, projected.min(axis=0))
+        projected_high = np.maximum(projected_high, projected.max(axis=0))
+        vertex_count += len(points)
+    projected_midpoint = (projected_low + projected_high) / 2
+    centre = basis @ projected_midpoint
+    projected_span = projected_high - projected_low
+    margin_each_side = 0.12
+    padded_span = projected_span[:2] * (1 + 2 * margin_each_side)
+    parallel_scale = float(max(padded_span[1], padded_span[0] / (width / height)) / 2)
+    if not math.isfinite(parallel_scale) or parallel_scale <= 0:
+        raise RuntimeError("Invalid projected sequence extent")
     position = centre + direction * radius * 4
     camera = [position.tolist(), centre.tolist(), [0, -1, 0]]
     report["render"] = {"camera_position": camera, "projection": "parallel",
-        "parallel_scale": radius * 1.12, "union_bounds": [low.tolist(), high.tolist()],
+        "parallel_scale": parallel_scale, "union_bounds": [low.tolist(), high.tolist()],
+        "framing": {"method": "All actual vertices of all returned frames, one shared camera",
+            "frame_count": len(frames), "vertex_count_including_all_frames": vertex_count,
+            "camera_right": right.tolist(), "camera_screen_up": screen_up.tolist(),
+            "camera_outward_direction": direction.tolist(),
+            "projected_union_min_uv_depth": projected_low.tolist(),
+            "projected_union_max_uv_depth": projected_high.tolist(),
+            "projected_padded_bounds_uv": [(projected_low[:2] - projected_span[:2] * margin_each_side).tolist(),
+                                            (projected_high[:2] + projected_span[:2] * margin_each_side).tolist()],
+            "margin_fraction_each_side": margin_each_side, "aspect_ratio": width / height,
+            "projection_formula": "u=dot(vertex,right); v=dot(vertex,screen_up); d=dot(vertex,outward_direction)",
+            "scale_formula": "parallel_scale=0.5*max((v_max-v_min)*1.24,(u_max-u_min)*1.24/aspect)",
+            "centre_formula": "right*(u_min+u_max)/2 + screen_up*(v_min+v_max)/2 + outward_direction*(d_min+d_max)/2",
+            "fixed_camera_centre_all_frames": centre.tolist(), "per_frame_fit_or_crop": False},
         "background": "#f2f6f5", "clay_color": "#7a929b", "anatomical_view_label": None,
         "no_UI_or_pointer": True, "geometry_smoothing_for_capture": False}
     png_dir = run_dir / "rendered"
@@ -465,7 +504,7 @@ def render_frames(args, report, frames, pv, np, run_dir):
                 reset_camera=False)
             plotter.camera_position = camera
             plotter.enable_parallel_projection()
-            plotter.camera.parallel_scale = radius * 1.12
+            plotter.camera.parallel_scale = parallel_scale
             plotter.reset_camera_clipping_range()
             plotter.screenshot(str(png_dir / f"returned-{index:03d}.png"), return_img=False)
     finally:

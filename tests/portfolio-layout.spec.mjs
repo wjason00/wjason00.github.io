@@ -22,6 +22,7 @@ for (const viewport of viewports) {
       Boolean(section.compareDocumentPosition(document.querySelector('.project-gallery')) & Node.DOCUMENT_POSITION_FOLLOWING),
     )).toBe(true);
     expect(await page.locator('video[poster$="model-morpher.webp"]').count()).toBe(1);
+    await expect(page.locator('#opening-morpher video source')).toHaveAttribute('src', './assets/model-morpher/dentate-to-brain.mp4');
     expect(await page.locator('[data-morphliner-showcase]').count()).toBe(1);
 
     const figureBox = await figure.boundingBox();
@@ -95,6 +96,11 @@ test('project selection keeps contributions, results and critical limits outside
     const project = page.locator(`#${id}`);
     await expect(panel.locator(`article#${id}`)).toHaveCount(1);
     await expect(panel.locator('.project-gallery__visual')).toBeVisible();
+    if (id === 'model-morpher') {
+      await expect(panel.locator('video')).toHaveCount(0);
+      await expect(panel.getByRole('link', { name: /Play the surface transition at the top/ })).toHaveAttribute('href', '#opening-morpher');
+      await expect(panel.getByRole('link', { name: 'Open the recording', exact: true })).toHaveAttribute('href', './assets/model-morpher/dentate-to-brain.mp4');
+    }
     await expect(project.getByRole('heading', { level: 3 })).toBeVisible();
     await expect(project.locator('.project__lede')).toBeVisible();
     await expect(project.locator('.project__lede')).toContainText(purpose);

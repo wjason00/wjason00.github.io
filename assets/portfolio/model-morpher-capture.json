@@ -66,14 +66,14 @@
   "render": {
     "camera_position": [
       [
-        -4148.427468708261,
-        -2563.8594755060562,
-        -3750.876989090855
+        -4151.796592909451,
+        -2563.8353054533445,
+        -3746.937836481554
       ],
       [
-        -4225.2060546875,
-        -2454.17578125,
-        -4057.9913330078125
+        -4228.57517888869,
+        -2454.1516111972883,
+        -4054.052180398511
       ],
       [
         0,
@@ -82,7 +82,7 @@
       ]
     ],
     "projection": "parallel",
-    "parallel_scale": 93.8082259098283,
+    "parallel_scale": 46.4648530328255,
     "union_bounds": [
       [
         -4276.02978515625,
@@ -95,6 +95,57 @@
         -4003.261474609375
       ]
     ],
+    "framing": {
+      "method": "All actual vertices of all returned frames, one shared camera",
+      "frame_count": 30,
+      "vertex_count_including_all_frames": 724813,
+      "camera_right": [
+        -0.9701425001453319,
+        0.0,
+        0.24253562503633297
+      ],
+      "camera_screen_up": [
+        -0.07940259890547474,
+        -0.9448909269751494,
+        -0.31761039562189897
+      ],
+      "camera_outward_direction": [
+        0.22916971156507793,
+        -0.3273853022358256,
+        0.9166788462603117
+      ],
+      "projected_union_min_uv_depth": [
+        3069.3272968565893,
+        3904.802910929267,
+        -3937.210393402553
+      ],
+      "projected_union_max_uv_depth": [
+        3168.809536336824,
+        3979.746222272534,
+        -3826.5337316366754
+      ],
+      "projected_padded_bounds_uv": [
+        [
+          3057.3894281189614,
+          3895.809713568075
+        ],
+        [
+          3180.7474050744518,
+          3988.739419633726
+        ]
+      ],
+      "margin_fraction_each_side": 0.12,
+      "aspect_ratio": 1.3333333333333333,
+      "projection_formula": "u=dot(vertex,right); v=dot(vertex,screen_up); d=dot(vertex,outward_direction)",
+      "scale_formula": "parallel_scale=0.5*max((v_max-v_min)*1.24,(u_max-u_min)*1.24/aspect)",
+      "centre_formula": "right*(u_min+u_max)/2 + screen_up*(v_min+v_max)/2 + outward_direction*(d_min+d_max)/2",
+      "fixed_camera_centre_all_frames": [
+        -4228.57517888869,
+        -2454.1516111972883,
+        -4054.052180398511
+      ],
+      "per_frame_fit_or_crop": false
+    },
     "background": "#f2f6f5",
     "clay_color": "#7a929b",
     "anatomical_view_label": null,
@@ -190,7 +241,7 @@
   ],
   "video": {
     "file": "assets/model-morpher/dentate-to-brain.mp4",
-    "sha256": "52607465580fd027c1fd5c5e3b90409eac2c54d46f3644f1b4d1d62e80afe67f",
+    "sha256": "2d6818e6d06d3a22ac823d759197416bd89a394a82df2859d35500201849522c",
     "width": 1440,
     "height": 1080,
     "durationSeconds": 5.5,
@@ -198,8 +249,9 @@
   },
   "poster": {
     "file": "assets/portfolio/model-morpher.webp",
-    "sha256": "8bd4d8e3ee8513cd995c90f0704dd88120c6acb4477f7639319e1cb4918a78f1",
+    "sha256": "4ef102036b3361b744467a18261f5f8e0c3871b025981bfcc541bedb36426090",
     "decodedVideoTimeSeconds": 4,
     "processing": "Lossless full frame; no crop or colour adjustment."
-  }
+  },
+  "renderHarnessSha256": "383bc4b0726bbbc2f1c1637c9dfac7dceb70a087781cd7367fc9ed04c7496027"
 }
