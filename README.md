@@ -16,8 +16,8 @@ follow the work stage. All3existing recordings remain; none was invented or
 newly rendered. There is one Morpher player, relocated rather than duplicated.
 
 The [local preview](http://127.0.0.1:4187/?v=20261030-workstage) runs on this
-computer. This source checkpoint is local only. **Final browser/visual review is
-pending at this checkpoint; no publication or Jason design approval is claimed.**
+computer. This source checkpoint is local only. **Final interaction/phone acceptance is
+incomplete; no publication or Jason design approval is claimed.**
 
 Actual Claude Opus5.5 inspected [Sonali](https://www.sonali.ca/) and
 [Scale](https://scale.com/) in signed-in Chrome. Sonali supplied stateful project
@@ -38,14 +38,25 @@ Morphliner's Editor is explicitly a screenshot. Without scripts the four stages
 remain stacked, with native video controls and disclosures. The dead old
 specimen-scroll handler was removed; native hash/disclosure reveal remains.
 
-Build/internal links pass for184files/32,152,580bytes and12HTMLfiles. All36source/
+Build/internal links pass for184files/32,150,749bytes and12HTMLfiles. All36source/
 data tests, source/browser-spec syntax, duplicate-ID/single-player/no-autoplay
 inventory and whitespace checks pass. Native figures and recordings returnHTTP200
 with source-exact bytes. A read-only comparison found the full accounts unchanged
 apart from whitespace and no scientific/caption defect. The revised browser specs
 cover the new stage and functional flows; the full Playwright suite was not run.
-Current Chrome screenshots/interaction results will be added after the bounded
-final review; source checks do not establish visual quality.
+Actual Chrome captured1366-light and320-light before corrections. It found old
+same-specificity gallery grid/padding rules overriding the stage. Root removed
+those rules, kept the selector in one row, shortened the media area, hid its
+scrollbar and enlarged the theme target to44px. The focused desktop capture now
+shows one-row tabs and Morpher Play in view; root inspected it. This is only
+partial visual acceptance. Morphliner playback stayed paused at0 in a scripted
+click check, with controls measured below the viewport; the actual cause remains
+unresolved (real user activation and stage geometry need checking). Corrected
+phone, live MorphBrain, noJS and reduced-motion browser checks are unperformed.
+The operators self-ended after58.87/30.58seconds, before their150/60second caps;
+those terminal results are not full passes. No additional browser/design work
+followed the14:06cap. The final build is184files/32,150,749bytes, temporary QA host
+removed, and preview source bytes match. T-366 remains open for those checks.
 
 Scientific runtimes, private inputs, measured results, saved morph geometry,
 MorphBrain vector fields and G27 native PNGs are unchanged. Morpher is geometric

@@ -26,13 +26,28 @@ reduced-motion fallbacks and lazy runtime launch are preserved in source.
 - [x] Correct no-script control visibility and reduced-motion specificity.
 - [x] Verify local HTTP media/figures match source bytes; caption review no defects.
 - [ ] Finish actual-Claude desktop/phone visual and interaction review.
-- [ ] Remove temporary QA host; save final receipt/checkpoint/control readback.
+- [x] Remove temporary QA host; save final receipt/checkpoint/control readback.
 
 Full Playwright execution is unperformed; updated functional specs are not a
 browser pass. Final Chrome review awaits the sole lease after the existing
 applications/laptop units. No additional render, experiment, dependency or
 publication. The original14:06cap remains; incomplete verification must be saved
 as incomplete. Current receipts are in `output/interaction-20261030/`.
+
+### End-of-cap checkpoint
+
+Source/browser work stopped before14:06UTC. Actual first QA self-ended58.87s
+within150s and found legacy CSS overrides; root removed obsolete gallery grid/
+padding rules, fixed selector row/scrollbar and theme44px. Focused QA self-ended
+30.58s within60s: desktop selector top276px all4inone row, root-inspected capture
+shows Morpher Play in view. Morphliner stayed paused at0 after scripted click,
+controls bottom1202 against900viewport; actual playback cause unresolved. Fly
+selection became visible, but its pause check is weak because playback never
+started. Corrected320phone, liveTry/noJS/reduced-motion remain unverified. Do not
+call the source candidate fully accepted. Final build184files/32,150,749bytes;
+QA host removed. Lease released to applications14:05:46. Remaining unit is
+Morphliner geometry/real-click playback and corrected phone/model/fallback QA.
+Only source/receipt/control closeout followed the cap, no new design/browser run.
 
 ## Earlier figure-led follow-up - 30 October 2026
 

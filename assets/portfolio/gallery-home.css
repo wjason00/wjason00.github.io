@@ -29,7 +29,7 @@
 
 /* Work stage: one inset dark plate. The project index swaps the real media
    in place; copy stays short and the full accounts sit in native details. */
-.portfolio-home .work-stage{--stage:#10241e;--stage-ink:#eef4ef;--stage-muted:#bcd0c6;--stage-rule:rgba(238,244,239,.14);--stage-media-h:clamp(280px,calc(100svh - 380px),760px);max-width:none;margin:0;padding:0 clamp(8px,1vw,14px) 48px}
+.portfolio-home .work-stage{--stage:#10241e;--stage-ink:#eef4ef;--stage-muted:#bcd0c6;--stage-rule:rgba(238,244,239,.14);--stage-media-h:clamp(280px,calc(100svh - 420px),760px);max-width:none;margin:0;padding:0 clamp(8px,1vw,14px) 48px}
 .portfolio-home .work-stage .gallery{display:block;max-width:none;margin:0;padding:0;background:var(--stage);color:var(--stage-ink);border:0;border-radius:18px;box-shadow:none;overflow:hidden}
 .portfolio-home .work-stage .gallery-tabs{display:flex;gap:6px;margin:0;padding:8px;overflow-x:auto;border-bottom:1px solid var(--stage-rule);scrollbar-width:thin}
 .portfolio-home .work-stage .gallery-tab{flex:1 0 auto;display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:54px;margin:0;padding:12px 20px;background:transparent;border:1px solid transparent;border-radius:12px;color:var(--stage-ink);font:600 clamp(17px,1.45vw,22px)/1.2 var(--display);letter-spacing:-.01em;text-decoration:none;box-shadow:none}
@@ -196,24 +196,6 @@
 .portfolio-home .research h2,.portfolio-home .projects__heading h2,.portfolio-home .supervised-work>h2{font:600 30px/1.15 var(--display);letter-spacing:-.025em}
 .portfolio-home .supervised-work{margin-top:44px;padding-top:30px}
 
-/* Software: dark band, horizontal strip of image tiles with caption rows */
-.portfolio-home .projects{--ink:#ecf5ef;--muted:#c0d4ca;--paper:#163a31;--card:#1f3e35;--soft:#244a3e;--line:#567969;--link:#e6d9fb;width:100%;max-width:none;margin:0;padding:64px max(var(--gutter),calc((100% - var(--width))/2)) 74px;background:#163a31;color:var(--ink)}
-.portfolio-home .project-gallery .gallery-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:28px;border:0}
-.portfolio-home .gallery-tab{display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0;padding:0;background:none;border:0;color:var(--ink);text-decoration:none}
-.portfolio-home .gallery-tab__image{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:#000}
-.portfolio-home .gallery-tab__image img{display:block;width:100%;height:100%;object-fit:cover}
-.portfolio-home #select-morphbrain .gallery-tab__image{background:#e9eee9}
-.portfolio-home #select-morphbrain .gallery-tab__image img{padding:10px;object-fit:contain}
-.portfolio-home .gallery-tab>span:last-child{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:14px;line-height:1.4}
-.portfolio-home .gallery-tab strong{order:-1;font-size:17px;font-weight:600}
-.portfolio-home .gallery-tab small{font-size:14px;color:var(--muted)}
-.portfolio-home .gallery-tab:hover strong{text-decoration:underline;text-underline-offset:.2em}
-.portfolio-home .gallery-tab:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
-.portfolio-home .gallery-tab[aria-current="true"] .gallery-tab__image,.portfolio-home .gallery-tab[aria-selected="true"] .gallery-tab__image,.portfolio-home .gallery-tab.is-active .gallery-tab__image{outline:3px solid var(--accent);outline-offset:3px}
-.portfolio-home .project-gallery .hero__spotlight{border-radius:6px;background:var(--card)}
-.portfolio-home .project-gallery .gallery-panel>.project{padding:32px}
-.portfolio-home .projects .project__identity h3{font:600 32px/1.15 var(--display);letter-spacing:-.025em}
-.portfolio-home .project-gallery__visual .compare-stage{height:auto;min-height:440px;padding:1px 0 20px;background:#e7ede8;color:#173f36}
 .portfolio-home .compare-stage__labels{color:#365543;font-size:14px}
 .portfolio-home .region-legend,.portfolio-home .compare-stage__hint{color:#506b63;font-size:14px}
 .compare-stage__scope{max-width:440px;margin:12px auto 0;padding-inline:20px;font-size:12px;line-height:1.4;color:#506b63;text-align:center}
@@ -262,8 +244,6 @@
   .study-reading>summary{font-size:18px}
   .portfolio-home .research{padding-bottom:44px}
   .portfolio-home .research h2,.portfolio-home .projects__heading h2,.portfolio-home .supervised-work>h2{font-size:26px}
-  .portfolio-home .projects{padding-block:40px 46px}
-  .portfolio-home .project-gallery .gallery-tabs{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
   .portfolio-home .gallery-tab{scroll-snap-align:start}
   .portfolio-home .project-gallery .gallery-panel>.project{padding:24px 20px}
   .portfolio-home .contact{padding-block:44px}
@@ -273,3 +253,9 @@
 @media(max-width:600px){:root{--header-height:92px}.portfolio-home .site-header__inner{height:var(--header-height);min-height:var(--header-height)}.portfolio-home .site-nav{gap:25px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:480px){:root{--header-height:64px}.portfolio-home .site-header__inner{height:64px;min-height:64px}.portfolio-home .site-nav{display:none}}
+
+/* Keep the stage selector in one row and retain full touch targets. */
+.portfolio-home .work-stage .gallery-tabs{flex-wrap:nowrap;scrollbar-width:none}
+.portfolio-home .work-stage .gallery-tabs::-webkit-scrollbar{display:none}
+.portfolio-home .work-stage .gallery-tab{flex-direction:row}
+.portfolio-home .theme-toggle{width:44px;height:44px;min-width:44px;min-height:44px}
