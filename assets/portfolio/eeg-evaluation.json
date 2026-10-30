@@ -1,0 +1,33 @@
+{
+  "asset": "eeg-evaluation.svg",
+  "claim_status": "evaluation schematic",
+  "title": "Choosing an EEG decoder from early calibration",
+  "created": "2026-10-30",
+  "source": {
+    "path": "index.html",
+    "section": "#g27",
+    "conceptual_source": [
+      "Use early calibration trials.",
+      "Choose CSP or a Riemannian decoder.",
+      "Compare on later trials at a fixed decision time."
+    ],
+    "exact_result_and_qualification": "Selection did not beat fixed CSP at 60 calibration trials per session. This was a retrospective comparison using previously inspected later trials.",
+    "evaluation_question": "Our team tested whether early EEG calibration data could select between common spatial patterns (CSP) and a Riemannian decoder.",
+    "scoring_distinction": "The public account distinguishes the organisers’ peak-time score from the team’s fixed-time comparison. The figure depicts only the fixed-time comparison."
+  },
+  "encoding": {
+    "session_band": "Categorical chronological sequence: early calibration then later trials. Segment widths and spacing are illustrative and encode no counts or duration.",
+    "fork": "Calibration informs a choice between two decoder alternatives. It does not specify which decoder was chosen in any session.",
+    "green_solid_path": "CSP decoder option, with redundant direct text label.",
+    "lilac_dashed_path": "Riemannian decoder option, with redundant direct text label.",
+    "common_bracket": "Both alternatives use the same fixed decision time in later-trial evaluation. The line is not a time axis.",
+    "reference": "The chosen decoder is compared with fixed CSP.",
+    "result": "Qualitative result at the single calibration count stated in the public account. No accuracy or effect size is inferred."
+  },
+  "data": "No empirical data, private files, EEG waveforms, trial-level values or invented quantitative outcomes were used.",
+  "original_artwork": true,
+  "format": {"width": 1200, "height": 770, "viewBox": "0 0 1200 770"},
+  "font": "Source Sans 3 with Arial and sans-serif fallbacks; lettering remains editable SVG text.",
+  "html_requirement": "Retain the complete existing result and retrospective/previously-inspected qualification in HTML alongside the image. Keep detailed contribution and scoring-rule context in HTML.",
+  "limitations": "The design schematic is not independent scientific validation and must never be described as blind, held-out, prospective or a live deployment result."
+}

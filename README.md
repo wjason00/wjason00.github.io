@@ -4,29 +4,42 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Local presentation candidate — 29 October 2026
+## Local redesign candidate — 30 October 2026
 
-T-366 prepares a small update inspired by the project accounts on
-[Sonali's portfolio](https://www.sonali.ca/): direct project shortcuts, concise
-purpose text and separately labelled personal contributions. The existing
-gallery palette, typography, imagery and full study accounts are retained.
-Twitter image alt now describes the mesh actually used in its preview.
+T-366 now includes a type-led opening adapted from the rendered landing of
+[Sonali's portfolio](https://www.sonali.ca/): large native Research / Software /
+About links, a concise introduction and original decorative numerical artwork.
+The cool white/green/lilac identity, complete study accounts and software routes
+remain. The reference's subpages and phone behaviour were not inspected.
 
-This is a **local candidate**, not a published update. The public release below
-remains the earlier version. Reference inspection was limited to HTML; rendered
-reference and desktop/phone review have not passed. Chrome control timed out,
-the connected test browser was occupied, and isolated CLI/browser-test startup
-failed with out-of-memory errors. Do not treat source checks as visual approval.
+Jason rejected the initial opening-only pass as too basic. The project visuals
+have consequently been rebuilt: MorphBrain now has reproducible vector contours
+and exact categorical regions from the shipped demo's default computed state,
+including the interactive comparison. G27 has desktop and phone evaluation
+schematics. On phones, the visual follows the project title and precedes the
+longer account. Scientific model code and empirical outcomes are unchanged.
 
-The public artifact builds and its internal links resolve. All existing
-non-browser tests pass. A separate source review checked the new anchors,
-gallery-panel routing, CSS scope and retained scientific wording. No scientific
-assets, results or runtimes were edited. The
-[bounded plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) owns scope;
-local execution details are in `output/oxford-20261029/verification.json`.
-Next step: restore a usable browser session, check the rendered candidate and
-reference, then publish the verified commit. The separate Oxford introduction
-and teammate messages are in the existing
+The MorphBrain reference data is an exported illustrative model state, not subject
+data. Field contours deliberately show tissue only; nonzero exterior diffusion
+is omitted, not set to zero. The category cells, orientation and spatial aspect
+are preserved exactly. Regenerate with
+`python scripts/render-morphbrain-feature.py` (requires NumPy and contourpy), or
+use `--check` to verify exact asset bytes. Source/provenance is beside the SVGs.
+The G27 images encode evaluation design, not measured accuracy curves.
+
+This is a **local review candidate**, not a new public release or visual approval.
+The working [local preview](http://127.0.0.1:4187/?v=visuals#selected-work) requires
+this computer's preview server. Build, tests and desktop/phone captures are
+recorded in `output/sonali-20261030/verification.json`. Model Morpher's original
+screen recording remains: the exact existing geometry sequence was not found in
+the bounded source check, so it has not been relit or replaced with invented work.
+
+Actual Claude input is still pending: Claude Code returned expired OAuth and
+desktop control failed during initialization. This has been reported to Jason;
+Codex reviews are not Claude signoff. The
+[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) owns the scoped
+implementation; next action is owned by T-366. Earlier pass evidence remains in
+`output/oxford-20261029/verification.json`. The separate Oxford drafts remain in
 [Oxford responses owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
 
 ## Professional focus - 23 October 2026

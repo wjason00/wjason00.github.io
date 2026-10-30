@@ -1,0 +1,32 @@
+{
+  "asset": "eeg-evaluation-mobile.svg",
+  "claim_status": "evaluation schematic",
+  "created": "2026-10-30",
+  "responsive_variant_of": "eeg-evaluation.svg",
+  "source": {
+    "path": "index.html",
+    "section": "#g27",
+    "conceptual_source": [
+      "Use early calibration trials.",
+      "Choose CSP or a Riemannian decoder.",
+      "Compare on later trials at a fixed decision time."
+    ],
+    "exact_result_and_qualification": "Selection did not beat fixed CSP at 60 calibration trials per session. This was a retrospective comparison using previously inspected later trials."
+  },
+  "encoding": {
+    "direction": "Top to bottom categorical evaluation sequence; lengths encode no trial counts or durations.",
+    "calibration_band": "Early trials inform the decoder choice.",
+    "fork": "CSP and Riemannian are alternatives; no session-level choice is asserted.",
+    "green_solid": "CSP, redundantly labelled.",
+    "lilac_dashed": "Riemannian, redundantly labelled.",
+    "shared_bracket_and_band": "A shared fixed-time evaluation rule on later trials.",
+    "comparison": "Compare the decoder choice with fixed CSP."
+  },
+  "data": "No empirical values, private files, EEG waveform traces, invented scores or outcome magnitudes were used.",
+  "original_artwork": true,
+  "format": {"width": 600, "height": 840, "viewBox": "0 0 600 840"},
+  "essential_label_font_size_minimum_svg_px": 30,
+  "smallest_label_font_size_svg_px": 27,
+  "html_requirement": "Keep the exact result and retrospective/previously-inspected qualification visibly in the adjacent HTML. The mobile graphic omits the long visible outcome paragraph; its accessible description preserves that scope.",
+  "limitations": "Evaluation schematic only; not scientific validation, blind or held-out testing, prospective evaluation or live deployment."
+}

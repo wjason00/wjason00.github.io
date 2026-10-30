@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="770" viewBox="0 0 1200 770" role="img" aria-labelledby="eeg-title eeg-desc">
+  <title id="eeg-title">Choosing an EEG decoder from early calibration</title>
+  <desc id="eeg-desc">Evaluation schematic. Early calibration trials inform a choice between CSP and a Riemannian decoder. The choice is compared with fixed CSP on later trials at one fixed decision time. Selection did not beat fixed CSP at 60 calibration trials per session. This was a retrospective team evaluation; later trials had previously been inspected. Shapes, distances and paths encode the design, not measured values.</desc>
+  <defs>
+    <marker id="eeg-green-arrow" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8" fill="none" stroke="#28624f" stroke-width="2"/></marker>
+    <marker id="eeg-purple-arrow" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8" fill="none" stroke="#77609b" stroke-width="2"/></marker>
+    <marker id="eeg-ink-arrow" markerWidth="12" markerHeight="12" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 10 5 0 10" fill="none" stroke="#23463d" stroke-width="2"/></marker>
+  </defs>
+  <rect width="1200" height="770" fill="#f5f8f5"/>
+  <g transform="translate(0 -130)" font-family="'Source Sans 3',Arial,sans-serif" fill="#183f35">
+
+    <!-- Session order is categorical: there is no numerical time/trial axis. -->
+    <text x="64" y="220" font-size="41" letter-spacing="-.7">Early calibration</text>
+    <text x="574" y="220" font-size="41" letter-spacing="-.7">Later trials</text>
+    <rect x="64" y="246" width="360" height="52" fill="#d5e6db"/>
+    <rect x="424" y="246" width="712" height="52" fill="#e4e7ed"/>
+    <path d="M64 272H1115" stroke="#23463d" stroke-width="2" marker-end="url(#eeg-ink-arrow)"/>
+    <path d="M424 246V298" stroke="#f5f8f5" stroke-width="8"/>
+
+    <!-- The fork is a choice of decoder, never a waveform or an accuracy curve. -->
+    <path d="M246 298V476" fill="none" stroke="#23463d" stroke-width="3"/>
+    <text x="64" y="418" font-size="42" letter-spacing="-.5">Choose a</text>
+    <text x="64" y="463" font-size="42" letter-spacing="-.5">decoder</text>
+    <circle cx="246" cy="497" r="20" fill="#f5f8f5" stroke="#23463d" stroke-width="3"/>
+
+    <path d="M266 497C340 497 345 405 440 405H1052" fill="none" stroke="#28624f" stroke-width="6" marker-end="url(#eeg-green-arrow)"/>
+    <path d="M266 497C340 497 345 563 440 563H1052" fill="none" stroke="#77609b" stroke-width="6" stroke-dasharray="17 10" marker-end="url(#eeg-purple-arrow)"/>
+    <text x="448" y="383" font-size="50" letter-spacing="-.9" fill="#28624f">CSP</text>
+    <text x="448" y="541" font-size="50" letter-spacing="-.9" fill="#685187">Riemannian</text>
+
+    <!-- Common endpoint: a shared evaluation rule, not a peak-time search. -->
+    <path d="M1078 371V597M1066 371H1090M1066 597H1090" fill="none" stroke="#23463d" stroke-width="3"/>
+    <text x="700" y="348" font-size="42" letter-spacing="-.5" fill="#526b61">One fixed decision time</text>
+    <path d="M1078 611V647H502" fill="none" stroke="#23463d" stroke-width="2" marker-end="url(#eeg-ink-arrow)"/>
+    <text x="64" y="659" font-size="38" letter-spacing="-.5">Compare with fixed CSP</text>
+
+    <path d="M64 703H1136" stroke="#b5c6bc" stroke-width="1.5"/>
+    <text x="64" y="764" font-size="44" letter-spacing="-.8">Selection did not beat fixed CSP.</text>
+    <text x="64" y="808" font-size="31" fill="#526b61">At 60 calibration trials per session.</text>
+    <text x="64" y="859" font-size="28" fill="#526b61">Retrospective · later trials previously inspected</text>
+  </g>
+</svg>

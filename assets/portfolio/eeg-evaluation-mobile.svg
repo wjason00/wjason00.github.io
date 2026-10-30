@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="840" viewBox="0 0 600 840" role="img" aria-labelledby="eeg-mobile-title eeg-mobile-desc">
+  <title id="eeg-mobile-title">EEG decoder selection evaluation schematic</title>
+  <desc id="eeg-mobile-desc">Early calibration trials inform a choice between CSP and a Riemannian decoder. The choice is compared with fixed CSP using later trials at one fixed decision time. Selection did not beat fixed CSP at 60 calibration trials per session. This was a retrospective team comparison using previously inspected later trials. This is a categorical evaluation schematic; path geometry and segment lengths encode no measured values, durations or trial counts.</desc>
+  <defs>
+    <marker id="mobile-ink-arrow" markerWidth="14" markerHeight="14" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 1 10 6 0 11" fill="none" stroke="#23463d" stroke-width="2.5"/></marker>
+  </defs>
+  <rect width="600" height="840" fill="#f5f8f5"/>
+  <g font-family="Arial, sans-serif" fill="#183f35">
+    <text x="42" y="59" font-size="27" fill="#526b61">Evaluation schematic</text>
+
+    <text x="300" y="125" text-anchor="middle" font-size="39" letter-spacing="-.8">Early calibration</text>
+    <path d="M42 149H558V207H42Z" fill="#d5e6db"/>
+    <path d="M300 149V241" stroke="#23463d" stroke-width="3" fill="none"/>
+    <circle cx="300" cy="257" r="16" stroke="#23463d" stroke-width="3" fill="#f5f8f5"/>
+    <text x="300" y="321" text-anchor="middle" font-size="30" fill="#526b61">Choose a decoder</text>
+
+    <!-- Candidate alternatives are directly labelled and distinguished by stroke. -->
+    <path d="M284 257C210 257 153 286 153 350V455" fill="none" stroke="#28624f" stroke-width="6"/>
+    <path d="M316 257C390 257 447 286 447 350V455" fill="none" stroke="#77609b" stroke-width="6" stroke-dasharray="16 10"/>
+    <rect x="85" y="363" width="136" height="63" fill="#f5f8f5"/>
+    <rect x="334" y="363" width="226" height="63" fill="#f5f8f5"/>
+    <text x="153" y="408" text-anchor="middle" font-size="44" letter-spacing="-.8" fill="#28624f">CSP</text>
+    <text x="447" y="405" text-anchor="middle" font-size="35" letter-spacing="-.8" fill="#685187">Riemannian</text>
+
+    <!-- Both alternatives meet the same later-trial evaluation rule. -->
+    <path d="M42 480H558V612H42Z" fill="#e4e7ed"/>
+    <path d="M153 455V520H447V455" fill="none" stroke="#23463d" stroke-width="3"/>
+    <path d="M300 520V549" stroke="#23463d" stroke-width="3" fill="none"/>
+    <text x="300" y="591" text-anchor="middle" font-size="39" letter-spacing="-.8">Later trials</text>
+    <text x="300" y="659" text-anchor="middle" font-size="33" letter-spacing="-.5">One fixed decision time</text>
+    <path d="M300 683V724" stroke="#23463d" stroke-width="3" fill="none" marker-end="url(#mobile-ink-arrow)"/>
+    <text x="300" y="769" text-anchor="middle" font-size="36" letter-spacing="-.6">Compare with fixed CSP</text>
+    <path d="M42 807H558" stroke="#b5c6bc" stroke-width="1.5"/>
+  </g>
+</svg>
