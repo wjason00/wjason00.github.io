@@ -252,5 +252,5 @@
     "Geometric interpolation after independent centring/scaling of inputs; not anatomical correspondence, registration, growth or development.",
     "Native physical relative sizes and atlas coordinates are not retained; display orientation is numerical, not anatomically validated."
   ],
-  "reuseScope": "User-authorised local prototype; original Allen/BrainGlobe source terms and citation apply; no CC0 claim and no publication authorised"
+  "reuseScope": "Publication authorised by Jason on 30 October 2026; original Allen/BrainGlobe source terms and citation apply; no CC0 claim"
 }

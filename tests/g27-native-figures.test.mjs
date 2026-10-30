@@ -14,9 +14,8 @@ test('G27 figures retain the original embedded PPTX bytes and dimensions', async
   assert.equal(provenance.sourcePresentation, 'https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present');
   assert.ok(provenance.revision);
   assert.match(provenance.credit, /G27 team presentation/);
-  assert.match(provenance.reuseScope, /User-authorised local candidate/);
+  assert.match(provenance.reuseScope, /Publication authorised by Jason on 30 October 2026/);
   assert.match(provenance.reuseScope, /no public licence asserted/);
-  assert.match(provenance.reuseScope, /no publication authorised/);
   assert.equal(provenance.figures.length, originals.length);
 
   for (const original of originals) {
