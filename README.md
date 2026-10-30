@@ -4,6 +4,202 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
+## Approved release candidate - 30 October 2026 (T-376)
+
+Jason approved the hero direction and, at 17:26 UTC, the project-figure version:
+"This looks good. Can you finalise this?" The accepted homepage and Model Morpher
+visuals are frozen at `d3cea26`. [Open the approved local preview](http://127.0.0.1:4187/).
+This finalisation adds release checks and records, without changing the design,
+scientific results, source figures, recordings or saved geometry.
+
+The release build contains 197 public files/33,092,055 bytes, below the 32 MiB budget;
+all 14 HTML internal-reference checks and 58 source tests pass. CI now includes the
+Fly source tests, preserves the CommonJS package tests and uses serial execution.
+Its stale 404 assertion now expects
+the existing `/work.html#experience` recovery route. Four new Model Morpher
+browser cases cover frame pixels/metadata, controls/playback, no-JS and 320px
+usability. Static Playwright discovery finds 55 tests in 10 files; the full browser
+suite has not been executed locally. Pages must pass its required CI before a
+deployment can be reported successful.
+
+Actual Claude Opus 5.5 checked source `d3cea26` in signed-in Chrome. The legacy
+`/#g27` route opened the full account and loaded its native timing figure. The
+4096-point hero responded to a focused ArrowRight key; a real native Play click
+advanced video to 0.84s. The Morpher slider's real End/Home keys selected 29/0,
+and Middle selected 15/29 = .517 with new canvas rendering. Theme toggled dark and
+was restored to light. The operator closed its own tab and released the browser
+lease. Hero Home reset remains unverified in the browser; no-JS was not repeated
+in this final smoke and retains the earlier browser/source evidence. Hardware
+touch, physical phone and the full Playwright suite remain unverified.
+
+Current release receipt: `output/finalise-20261030/final-verification.json`;
+source checks: `checks.json`; actual browser result: `smoke-result.txt` in that
+same directory. T-376 owns finalisation. Public release remains a separate
+decision: the G27 source manifest still limits its two team figures to local
+reuse, and the Morpher prototype manifest likewise records local scope. No
+public push or deployment has occurred in this finalisation. Original private
+data/code and unpublished UCL/EEG holds remain.
+
+## Accepted cursor-driven homepage - earlier local checkpoint, 30 October 2026
+
+The homepage is rebuilt with its own HTML, stylesheet and controller. A live
+atlas surface fills the opening: real cursor movement displaces/lights nearby
+points and changes the view; dragging or arrow keys rotates it. Project hover
+changes orientation/accent and reveals a tilting preview. Native recordings and
+live-model links lead into the projects. The complete scientific accounts,
+original G27 figures and existing demos remain on `work.html`; old scientific
+hashes are registered by the new controller, and internal return links now use
+explicit work-page fragments. The new home loads none of the old gallery CSS/JS.
+
+[Open the local preview](http://127.0.0.1:4187/?v=20261030-surface). This is a local
+candidate. Jason explicitly approved this direction on30October: "This looks so much nicer. This is exactly what I wanted." No publication is authorised.
+
+Actual Claude Opus5.5 authored the new index/experience-home CSS/controller in
+300.18seconds after its verified14:40provider reset. The earlier429call produced
+no inference and is preserved separately. Codex implemented the dedicated scene
+engine/source export; root corrected three factual-copy ambiguities, mechanical
+return links and responsive/noJS issues found in actual Chrome. The three copy
+corrections distinguish15pairedcomparisons, retain G27's inspected-training/
+shifted-window/separate-fit/assumed-feedback limits, and clarify that Jason
+obtained and relayed the organisers' scoring rules.
+
+The scene contains4096deterministically sampled points from the already-public
+CC0dHCPweek36population-averagewhite-matter surface. An independent decode
+reproduced every coordinate/index and the SVG fallback. Cursor response is
+interface artwork, not neural activity, development or anatomical validation.
+No private input, scientific result, solver or saved morph geometry changed.
+Provenance: `assets/portfolio/brain-surface-source.json`.
+
+Actual signed-in Chrome verified desktop hover changed point influence from0
+to0.974, yaw and canvas pixels; real120pxdrag changed yaw0.249rad. Real Arrow keys
+and project hover changed the same surface. Root inspected desktop and corrected
+phone captures. At320CSSpx, scrollWidth=clientWidth305 and canvas305x320; synthetic
+touch drag rotated the surface and released correctly. Hardware touch remains
+untested. NoJS retains the visible source illustration and15ordinary work links;
+inactive reset/theme controls are hidden. Earlier phone issues were corrected.
+
+Build/internal references pass for191files/32,548,216bytes and13HTMLfiles. All44
+source tests, new controller/scene/spec syntax and whitespace checks pass. The
+new browser specs contain pointer-pixel, drag, keyboard, touch, fallback and
+legacy-route scenarios, but the full Playwright suite was not executed. Browser
+Home reset, video playback/live-model launch, legacy redirect flows and dark/
+reduced-motion emulation are unverified; source/engine rules and native controls
+remain. Responsive evidence uses same-origin CSS iframes, not physical devices.
+Temporary QA hosts are removed; the preview returns200 with exact source bytes.
+
+Current receipts: `output/rebuild-20261030/final-verification.json` and the
+[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md). T-366 owns
+local completion. Original figure/data restrictions and separate publication
+authority remain. Earlier directions below are dated history.
+
+## Project figure development - earlier local checkpoint, 30 October 2026 (T-374)
+
+Jason explicitly approved the cursor-driven hero as exactly the intended direction.
+The hero markup, CSS/controller and scene-engine hashes remain unchanged while
+project figures develop. The homepage Model Morpher entry now links to the
+[interactive saved-surface prototype](http://127.0.0.1:4187/demos/model-morpher/).
+It scrubs30actualsavedproduction surfaces, with First/Middle/Last, user-started
+playback, rotation, optional endpoint ghosts and adjacent opacity-only transitions.
+The original recording remains available. No new solver, geometry or anatomical
+point correspondence is introduced. Middle is15/29, not0.5. Source surfaces are
+Allen Mouse CCF/BrainGlobe; the hero's CC0 attribution does not apply here.
+
+Actual Opus5.5 wrote the figure concepts (116.16s) and the separate prototype
+HTML/CSS/controller (124.34s). Codex implemented the renderer and deterministic
+2048-vertex/frame display export. Independent decoding matched all30source hashes/
+counts/parameters and184320packed coordinates exactly; recorded quantisation error
+bounds hold. Data/provenance live inassets/model-morpher/morph-cloud-source.json.
+
+Actual Chrome verified frames0/15/29 with distinct pixels, t0/.517/1 and actual
+sourcecounts, realdrag/reset, playback/pause, endpointcomparison, phone slider and
+nooverflow. NoJSposter/nativevideo/links work. Root inspecteddesktop/phonecaptures.
+Review found a static/errorposter readout falsely saying frame0; it and alt text
+now correctly identify endpoint29/t1. The focused check timedout60.07s before its
+final narrative, but raw logs record nativeEnd/Home values29/0 and working-tab
+closure. Hardwaretouch/physicalphone/fullPlaywright/trustedphysicalPlayclick and
+completed post-copy-fix browser narrative remain unverified. Checkbox labels,
+not the20pxvisual inputs, provide44pxhit areas. Hero hashes still match.
+
+52source tests/syntax/diff and14HTML internal refs pass. Finalbuild197files/
+33,092,055bytes remains below32MiB. The temporary QA host is removed, preview200
+matches source bytes, and no publication occurred. Currentreceipt:
+output/figure-ideas-20261030/final-verification.json.
+
+Next concepts are proposals, not implemented figures: MorphBrain linked field/
+identity inspection from real arrays/thresholds/masks; Fly paired-comparison and
+circuit inspection with the separate replay explicitly divided; G27 source-linked
+annotations/zoom around its native plots. A G27 numerical redraw requires matching
+120-trial curve data; no curves/readouts will be invented from image pixels. Do
+not turn all projects into point clouds. The accepted hero remains the baseline.
+
+## Earlier local interactive work stage - 30 October 2026
+
+Jason rejected090be75 as static, with recordings less apparent, while retaining
+its clearer information/data. The new candidate puts a substantial playable
+work stage immediately below the opening. Four visible choices swap the real
+Model Morpher, Morphliner and Fly recordings or MorphBrain comparison/model
+launch in place. Play, Drag and Try are direct actions; full accounts remain in
+native disclosures below the media. The G27 original figures and research data
+follow the work stage. All3existing recordings remain; none was invented or
+newly rendered. There is one Morpher player, relocated rather than duplicated.
+
+The [local preview](http://127.0.0.1:4187/?v=20261030-workstage) runs on this
+computer. This source checkpoint is local only. **Final interaction/phone acceptance is
+incomplete; no publication or Jason design approval is claimed.**
+
+Actual Claude Opus5.5 inspected [Sonali](https://www.sonali.ca/) and
+[Scale](https://scale.com/) in signed-in Chrome. Sonali supplied stateful project
+selection; Scale supplied one large inset media stage with information following
+the visuals. Lusion's project index stayed behind its loader; its hover/scroll
+behaviour was not observed or treated as acceptance evidence. The final concept
+uses explicit project selection instead of Scale's scroll-driven media swaps.
+Claude authored production index/CSS/script changes in383.83seconds, within its
+480-second limit (its final prose guessed elapsed time incorrectly). Root then
+corrected two CSS fallback/specificity defects: no inactive custom controls
+without JavaScript, and reduced motion overrides the media cross-fade.
+
+The project index reuses keyboard arrows/Home/End/Space, hash routes and visible
+selection feedback. A visitor-triggered swap cross-fades media over180ms; reduced
+motion is instant. Videos have no autoplay, only one plays at a time, and hidden
+or offscreen media pauses. The actual MorphBrain runtime mounts only after Try;
+Morphliner's Editor is explicitly a screenshot. Without scripts the four stages
+remain stacked, with native video controls and disclosures. The dead old
+specimen-scroll handler was removed; native hash/disclosure reveal remains.
+
+Build/internal links pass for184files/32,150,749bytes and12HTMLfiles. All36source/
+data tests, source/browser-spec syntax, duplicate-ID/single-player/no-autoplay
+inventory and whitespace checks pass. Native figures and recordings returnHTTP200
+with source-exact bytes. A read-only comparison found the full accounts unchanged
+apart from whitespace and no scientific/caption defect. The revised browser specs
+cover the new stage and functional flows; the full Playwright suite was not run.
+Actual Chrome captured1366-light and320-light before corrections. It found old
+same-specificity gallery grid/padding rules overriding the stage. Root removed
+those rules, kept the selector in one row, shortened the media area, hid its
+scrollbar and enlarged the theme target to44px. The focused desktop capture now
+shows one-row tabs and Morpher Play in view; root inspected it. This is only
+partial visual acceptance. Morphliner playback stayed paused at0 in a scripted
+click check, with controls measured below the viewport; the actual cause remains
+unresolved (real user activation and stage geometry need checking). Corrected
+phone, live MorphBrain, noJS and reduced-motion browser checks are unperformed.
+The operators self-ended after58.87/30.58seconds, before their150/60second caps;
+those terminal results are not full passes. No additional browser/design work
+followed the14:06cap. The final build is184files/32,150,749bytes, temporary QA host
+removed, and preview source bytes match. T-366 remains open for those checks.
+
+Scientific runtimes, private inputs, measured results, saved morph geometry,
+MorphBrain vector fields and G27 native PNGs are unchanged. Morpher is geometric
+interpolation, not anatomical correspondence/development; MorphBrain remains
+illustrative patterning; Fly movement uses its separate illustrative archive;
+G27 retains its negative, inspected-training-trial and montage uncertainty limits.
+The native figure provenance and deferred numerical-redraw decision remain valid
+in `assets/portfolio/g27/source.json` and the prior090be75 receipts.
+
+The [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md), T-366 and
+`output/interaction-20261030/final-verification.json` own current checks/limits.
+Oxford drafts stay in their existing owner. Earlier static candidates and their
+browser results remain dated history, not acceptance of this interaction pass.
+Public baseline remainsb150012; publication requires its own authority.
+
 ## Professional focus - 23 October 2026
 
 MorphBrain and the g.tec BR41N.IO/G27 team evaluation now lead the selected work.

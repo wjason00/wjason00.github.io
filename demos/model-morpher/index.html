@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Model Morpher · Interactive 3D surface interpolation</title>
+  <meta name="description" content="Scrub and rotate 30 computed 3D surfaces turning a mouse dentate gyrus into a whole mouse brain in Model Morpher.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#figure">Skip to 3D viewer</a>
+
+  <header class="top">
+    <nav class="crumbs" aria-label="Back">
+      <a href="../../#work-model-morpher">← Back to homepage</a>
+      <span aria-hidden="true">·</span>
+      <a href="../../work.html#model-morpher">Full project account</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">Source code ↗</a>
+    </nav>
+  </header>
+
+  <main id="figure" class="study">
+    <figure class="plate" id="plate">
+      <div class="plate-frame">
+        <canvas id="morph-canvas" class="plate-canvas" width="1440" height="1080"
+                aria-label="Interactive 3D surface view. Drag or use arrow keys to rotate; R or Home resets the angle."
+                aria-describedby="view-help"></canvas>
+        <img id="plate-fallback" class="plate-fallback" src="../../assets/portfolio/model-morpher.webp"
+             alt="Whole-brain endpoint, frame 29, from the original Model Morpher recording." width="1440" height="1080" decoding="async">
+        <p class="plate-badge" id="plate-badge" aria-hidden="true">
+          <span id="badge-stage">Start · Dentate gyrus</span>
+          <span class="plate-badge__sep">·</span>
+          <span>Frame <span id="badge-frame">29</span>/29</span>
+        </p>
+        <p class="plate-hint" id="plate-hint" aria-hidden="true">Drag to rotate</p>
+      </div>
+
+      <div class="triptych" id="triptych" role="group" aria-label="Jump to start, middle or end surface" hidden>
+        <button type="button" class="triptych-card" data-frame="0" aria-current="true">
+          <canvas class="triptych-canvas" data-thumb-frame="0" width="280" height="200" aria-hidden="true"></canvas>
+          <span class="triptych-label">Start · Dentate gyrus</span>
+          <span class="triptych-sub">Frame 0</span>
+        </button>
+        <button type="button" class="triptych-card" data-frame="15" aria-current="false">
+          <canvas class="triptych-canvas" data-thumb-frame="15" width="280" height="200" aria-hidden="true"></canvas>
+          <span class="triptych-label">Middle · In-between</span>
+          <span class="triptych-sub">Frame 15 (t = 15/29)</span>
+        </button>
+        <button type="button" class="triptych-card" data-frame="29" aria-current="false">
+          <canvas class="triptych-canvas" data-thumb-frame="29" width="280" height="200" aria-hidden="true"></canvas>
+          <span class="triptych-label">End · Whole brain</span>
+          <span class="triptych-sub">Frame 29</span>
+        </button>
+      </div>
+
+      <figcaption class="plate-caption">
+        <p class="view-help" id="view-help" hidden>Drag the 3D surface, or focus it and press the arrow keys, to inspect any angle. <kbd>R</kbd> or <kbd>Home</kbd> resets the camera.</p>
+      </figcaption>
+    </figure>
+
+    <section class="rail" aria-labelledby="study-title">
+      <p class="eyebrow">Model Morpher · Python 3D surface tool</p>
+      <h1 id="study-title">Dentate gyrus <span aria-hidden="true">→</span><span class="sr-only">to</span> whole mouse brain</h1>
+      <p class="deck">
+        I built Model Morpher in Python to compute smooth intermediate shapes between two 3D meshes that do not share matching vertices. It turns each surface into a signed distance field, blends the fields and extracts new meshes along the transition — shown here across 30 saved surfaces from the Allen Mouse CCF via BrainGlobe (Allen Institute).
+      </p>
+
+      <div class="band band-controls" id="controls" hidden>
+        <div class="slider-head">
+          <label class="slider-label" for="progress">Scrub through 30 computed surfaces</label>
+        </div>
+        <input id="progress" class="slider" type="range" min="0" max="29" step="1" value="0" aria-describedby="slider-ends">
+        <div class="ticks" aria-hidden="true"></div>
+        <p class="slider-ends" id="slider-ends">
+          <span>0 · Dentate gyrus</span>
+          <span>15 · Middle (15/29)</span>
+          <span>29 · Whole brain</span>
+        </p>
+
+        <div class="button-row">
+          <button type="button" class="btn btn-primary" id="play" aria-pressed="false">Play</button>
+          <button type="button" class="btn" id="reset">Reset view</button>
+        </div>
+
+        <div class="toggles">
+          <label class="toggle">
+            <input type="checkbox" id="ghosts">
+            <span>Overlay start &amp; end outlines <small>(frames 0 and 29)</small></span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="blend">
+            <span>Cross-fade adjacent steps <small>(160 ms opacity only)</small></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="band band-state" aria-labelledby="state-heading">
+        <h2 id="state-heading" class="band-title">Current surface</h2>
+        <p class="state-line" id="state-line">Static endpoint still from the rendered recording. Enable JavaScript to scrub and rotate all 30 saved surfaces.</p>
+        <dl class="state" id="state">
+          <div><dt>Frame</dt><dd><span id="st-frame">29</span><span class="of"> / 29</span></dd></div>
+          <div><dt>Blend</dt><dd id="st-t">29/29</dd></div>
+          <div><dt>Vertices shown</dt><dd id="st-points">Rendered surface; point viewer inactive</dd></div>
+        </dl>
+        <p class="sr-only" id="state-live" aria-live="polite"></p>
+      </div>
+
+      <p class="limit-callout">
+        Geometric interpolation, not anatomical correspondence or development. Each input mesh is centred and scaled independently, and each saved surface is sampled on its own — points do not travel between frames.
+      </p>
+
+      <div class="band band-source">
+        <details class="recording" id="recording">
+          <summary>Watch the 5.5 s rendered mesh recording</summary>
+          <video id="recording-video" controls preload="none" playsinline poster="../../assets/portfolio/model-morpher.webp" width="1440" height="1080">
+            <source src="../../assets/model-morpher/dentate-to-brain.mp4" type="video/mp4">
+            <a href="../../assets/model-morpher/dentate-to-brain.mp4">Download the original recording (MP4)</a>
+          </video>
+          <p class="small">Fixed-camera render of the 30 production meshes before vertex sampling.</p>
+        </details>
+
+        <details class="provenance">
+          <summary>Method, data credit and provenance</summary>
+          <ul>
+            <li>Atlas meshes: dentate gyrus (726) and whole-brain root (997), Allen Mouse CCF v1.2 at 25 µm via BrainGlobe (Allen Institute; Wang et al. 2020, <a href="https://doi.org/10.1016/j.cell.2020.04.007" target="_blank" rel="noreferrer">doi:10.1016/j.cell.2020.04.007</a>).</li>
+            <li>Pipeline: mesh repair → 128³ signed distance field sampling → field interpolation → marching-cubes surface extraction (<a href="https://github.com/wjason00/model-morpher/tree/f14ee067ae183318c033a88ad313b0e36b03d445" target="_blank" rel="noreferrer"><span class="mono">f14ee06</span></a>, target 15,000 faces; all 30 frames returned).</li>
+            <li>Display: 2,048 vertices sampled deterministically per saved mesh under one shared camera scale. Optional cross-fading blends opacity between neighbouring frames for 160 ms without inventing intermediate coordinates.</li>
+            <li>Records: <a href="../../assets/model-morpher/morph-cloud-source.json">point-sample manifest (JSON)</a> · <a href="../../assets/portfolio/model-morpher-capture.json">capture manifest (JSON)</a> · <a href="../../third-party-notices.html">licences &amp; notices</a>.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,257 @@
+{
+  "sourceRepository": "https://github.com/wjason00/model-morpher",
+  "sourceCommit": "f14ee067ae183318c033a88ad313b0e36b03d445",
+  "sourceFiles": {
+    "config.py": "28c154189e0658624526279bd5c33620df60e78cdb0d77a4c7570c2b74097cdd",
+    "core/device.py": "60a8b4cf825f1c1fd817c23c1dfab5f10978aacbe090bf848eb2a607bd005de1",
+    "core/grid.py": "155764b5f1417e4ff3341fc61fca9ab3966b76a041734d8561ae45d7cf4e9ef5",
+    "core/sdf.py": "f4ea03ebb274ab9eecdeb67425abe12865aa6715900f865fda43f57971a1445d",
+    "core/sdf_tools_gpu.py": "b7fccb665e248eb326a7bcbecf4f62e7157b46cf1ad07ca1f96153799f175ce3",
+    "environment.yml": "04a1ce2002ce8a077ca725d82217bd7b9aea4606c82984e4ec15dbf17ebe8e2f",
+    "main.py": "e0a990fe7b121a9fee8aca5f0cfd9f0298f6d23d8403ab20a01daf8b85560396",
+    "mesh_tools.py": "013f790a39f153e32b242b1d5f771c92f85b1884cb1b17637ea7d26a7acad389",
+    "morphing/framer.py": "eb7e6e96c1d9b723f9b0b428b2a91920fe988fe6f6947e7a33d779be69c08226",
+    "processing/isoextraction.py": "27ed0e283dc1a9b142fcc02d1df4e14fdfa6f950b1067b3f60924cc753bd725b",
+    "processing/postprocess.py": "ff25c18b81fc3da878df2f0d5f5daf79e408c1c5a36aadf6a6dbac517846ba71",
+    "requirements.txt": "2083747658966f1e4f753de6039b68fe7b472a39602f473fb4c88ce1396f150f",
+    "sdf_tools_cpu.py": "8fabe6e1248177a000dc9da79a9a2e96c2353d0cfda1d07da953e6b8e9d57dcf",
+    "services/atlas.py": "7d38437cf3871f4db13c1f1843e1a3c3e920f93a30cc560b3cc55a8ba45f9c5a",
+    "ui/atlas_widget.py": "6bef39eabd2cc703519a5ffb8253232a7a027036eb91a88cdb3c85360d5e29a0",
+    "ui/load_anim.py": "c41e8fe053251d120327443790a323bf2bd25f2f7c66db9e6d68ea3f6da4e40c",
+    "ui/load_window.py": "90704c94229a09c22edcc22e4b25723899ddae527319b0a4edf530bc203052de",
+    "ui/preview_widget.py": "04e3f0b2a454c38228258fade24fd5334dd768ff57fd505384eeda8c901af2a6",
+    "viewer.py": "002022bfa10d5c92a3252e53d8a90594b816276133f5fd2811fe858059788d5a",
+    "workers/morph_worker.py": "7511541a806d65a72287c034bccf9e5c25647c33a34bac0150e1c33612a2b5c7"
+  },
+  "atlas": {
+    "name": "Allen Mouse CCF via BrainGlobe",
+    "version": "1.2",
+    "resolutionMicrometres": [
+      25,
+      25,
+      25
+    ],
+    "credit": "Allen Institute",
+    "citation": "Wang et al 2020, https://doi.org/10.1016/j.cell.2020.04.007"
+  },
+  "inputs": [
+    {
+      "id": "726",
+      "name": "Dentate gyrus",
+      "sha256": "ae97739b344e91b6c3c22965be58b47dd709093ed9ad9bdc2c40a00782bd4106"
+    },
+    {
+      "id": "997",
+      "name": "root",
+      "sha256": "69fbcd1d452cdbdd6f6f493563a8aa4c5d9e574e073c06650cbaaf4dd4ac25a9"
+    }
+  ],
+  "config": {
+    "resolution": 128,
+    "frames_per_transition": 30,
+    "target_faces": 15000,
+    "device": "cuda",
+    "gpu_index": 0,
+    "cpu_core_limit": 2,
+    "cpu_thread_environment": 2,
+    "fps": 12,
+    "endpoint_pause_seconds": 1.5,
+    "window_size": [
+      1440,
+      1080
+    ]
+  },
+  "actualReturnedMeshes": 30,
+  "requestedMeshes": 30,
+  "render": {
+    "camera_position": [
+      [
+        -4151.796592909451,
+        -2563.8353054533445,
+        -3746.937836481554
+      ],
+      [
+        -4228.57517888869,
+        -2454.1516111972883,
+        -4054.052180398511
+      ],
+      [
+        0,
+        -1,
+        0
+      ]
+    ],
+    "projection": "parallel",
+    "parallel_scale": 46.4648530328255,
+    "union_bounds": [
+      [
+        -4276.02978515625,
+        -2492.08203125,
+        -4112.72119140625
+      ],
+      [
+        -4174.38232421875,
+        -2416.26953125,
+        -4003.261474609375
+      ]
+    ],
+    "framing": {
+      "method": "All actual vertices of all returned frames, one shared camera",
+      "frame_count": 30,
+      "vertex_count_including_all_frames": 724813,
+      "camera_right": [
+        -0.9701425001453319,
+        0.0,
+        0.24253562503633297
+      ],
+      "camera_screen_up": [
+        -0.07940259890547474,
+        -0.9448909269751494,
+        -0.31761039562189897
+      ],
+      "camera_outward_direction": [
+        0.22916971156507793,
+        -0.3273853022358256,
+        0.9166788462603117
+      ],
+      "projected_union_min_uv_depth": [
+        3069.3272968565893,
+        3904.802910929267,
+        -3937.210393402553
+      ],
+      "projected_union_max_uv_depth": [
+        3168.809536336824,
+        3979.746222272534,
+        -3826.5337316366754
+      ],
+      "projected_padded_bounds_uv": [
+        [
+          3057.3894281189614,
+          3895.809713568075
+        ],
+        [
+          3180.7474050744518,
+          3988.739419633726
+        ]
+      ],
+      "margin_fraction_each_side": 0.12,
+      "aspect_ratio": 1.3333333333333333,
+      "projection_formula": "u=dot(vertex,right); v=dot(vertex,screen_up); d=dot(vertex,outward_direction)",
+      "scale_formula": "parallel_scale=0.5*max((v_max-v_min)*1.24,(u_max-u_min)*1.24/aspect)",
+      "centre_formula": "right*(u_min+u_max)/2 + screen_up*(v_min+v_max)/2 + outward_direction*(d_min+d_max)/2",
+      "fixed_camera_centre_all_frames": [
+        -4228.57517888869,
+        -2454.1516111972883,
+        -4054.052180398511
+      ],
+      "per_frame_fit_or_crop": false
+    },
+    "background": "#f2f6f5",
+    "clay_color": "#7a929b",
+    "anatomical_view_label": null,
+    "no_UI_or_pointer": true,
+    "geometry_smoothing_for_capture": false,
+    "poster_returned_indices": {
+      "poster-start.png": 0,
+      "poster-mid.png": 15,
+      "poster-end.png": 29,
+      "poster.png": 29
+    },
+    "video_frame_to_returned_index": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29,
+      29
+    ],
+    "video_duration_seconds": 5.5
+  },
+  "geometryEditedOrResampled": false,
+  "morphRecomputedForRender": false,
+  "sourceCaptureManifestSha256": "f62dd057e665936fb14f76682897e31b1bb6dbf3771ff3583f951bc85eab9b31",
+  "limitations": [
+    "A geometric SDF interpolation demonstration, not anatomical correspondence, registration, growth or development.",
+    "Original cleaning/repair, centring and diagonal scale matching are applied. Native atlas coordinates and physical relative sizes are not retained.",
+    "Atlas metadata says ASR, 25 micrometres, version 1.2. Camera is a fixed numerical view; anatomical orientation has not been independently validated.",
+    "Topology, connectivity, normals and shape may change through the original extraction/postprocessing. Successful output does not validate anatomy.",
+    "Original production code filters failed extractions. Requested interpolation indices are only recoverable from its returned list when all requested frames return.",
+    "Production CUDA code contains an existing CPU marching-cubes fallback. This harness does not replace, disable or claim to exclude that original behavior; there is no alternative CPU morphing algorithm.",
+    "Endpoint pauses are video repetitions only. There are no invented intermediate meshes, temporal interpolation or inferred anatomical pairings."
+  ],
+  "video": {
+    "file": "assets/model-morpher/dentate-to-brain.mp4",
+    "sha256": "2d6818e6d06d3a22ac823d759197416bd89a394a82df2859d35500201849522c",
+    "width": 1440,
+    "height": 1080,
+    "durationSeconds": 5.5,
+    "decodedFrames": 66
+  },
+  "poster": {
+    "file": "assets/portfolio/model-morpher.webp",
+    "sha256": "4ef102036b3361b744467a18261f5f8e0c3871b025981bfcc541bedb36426090",
+    "decodedVideoTimeSeconds": 4,
+    "processing": "Lossless full frame; no crop or colour adjustment."
+  },
+  "renderHarnessSha256": "383bc4b0726bbbc2f1c1637c9dfac7dceb70a087781cd7367fc9ed04c7496027"
+}

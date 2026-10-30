@@ -100,9 +100,13 @@ function prepareVideo(video) {
 const gallery = document.querySelector(".gallery");
 const projectTabs = [...document.querySelectorAll(".gallery-tab")];
 const panels = [...document.querySelectorAll(".gallery-panel")];
-function selectProject(name, focus = false) {
+/* `prepare` is false only for the default selection at load, so no recording
+   fetches metadata until a visitor picks a project. A visitor's swap marks
+   the stage so CSS can cross-fade the incoming media once. */
+function selectProject(name, focus = false, prepare = true) {
   const selected = projectTabs.find((tab) => tab.dataset.project === name);
   if (!selected) return;
+  const changed = selected.getAttribute("aria-selected") !== "true";
   projectTabs.forEach((tab) => {
     tab.setAttribute("aria-selected", String(tab === selected));
     tab.tabIndex = tab === selected ? 0 : -1;
@@ -111,9 +115,13 @@ function selectProject(name, focus = false) {
     panel.hidden = panel.id !== `preview-${name}`;
     panel.querySelectorAll("video").forEach((video) => {
       if (panel.hidden) video.pause();
-      else if (!video.closest("[hidden]")) prepareVideo(video);
+      else if (prepare && !video.closest("[hidden]")) prepareVideo(video);
     });
   });
+  if (gallery) {
+    gallery.dataset.project = name;
+    if (prepare && changed) gallery.dataset.swapped = "";
+  }
   if (focus) selected.focus();
 }
 
@@ -179,7 +187,7 @@ document.querySelectorAll("[data-morphliner-showcase]").forEach((showcase) => {
   selectView("recording", false);
 });
 
-function selectFromHash() {
+function selectFromHash(event) {
   let id;
   try { id = decodeURIComponent(location.hash.slice(1)); }
   catch { return; }
@@ -187,7 +195,7 @@ function selectFromHash() {
   const panel = target?.closest(".gallery-panel");
   const name = panel ? panel.id.replace(/^preview-/, "") : id.replace(/^preview-/, "");
   if (projectTabs.some((tab) => tab.dataset.project === name))
-    selectProject(name);
+    selectProject(name, false, Boolean(event));
   if (target && panel) {
     for (let ancestor = target.parentElement; ancestor; ancestor = ancestor.parentElement) {
       if (ancestor instanceof HTMLDetailsElement) ancestor.open = true;
@@ -197,7 +205,7 @@ function selectFromHash() {
   }
 }
 if (gallery) {
-  selectProject("morphbrain");
+  selectProject("model-morpher", false, false);
   selectFromHash();
   window.addEventListener("hashchange", selectFromHash);
 }

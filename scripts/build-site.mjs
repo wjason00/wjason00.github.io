@@ -7,7 +7,7 @@ import { execFileSync } from 'node:child_process';
 
 const root = realpathSync(resolve(import.meta.dirname, '..'));
 const destination = resolve(root, '_site');
-const shell = ['index.html', 'rare-errors.html', '404.html', 'styles.css', 'theme.js', 'script.js', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'third-party-notices.html', 'THIRD_PARTY_NOTICES.txt', '.nojekyll'];
+const shell = ['index.html', 'work.html', 'rare-errors.html', '404.html', 'styles.css', 'theme.js', 'script.js', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'third-party-notices.html', 'THIRD_PARTY_NOTICES.txt', '.nojekyll'];
 const directories = ['assets', 'demos', 'licenses'];
 const files = [];
 function collect(path) {

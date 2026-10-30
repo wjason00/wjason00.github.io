@@ -1,0 +1,169 @@
+{
+  "format": "morphbrain-feature-composition-v1",
+  "asset": "assets/portfolio/morphbrain-feature.svg",
+  "caption": "Illustrative computational model. Signal-field contours are shown within model tissue only; nonzero field values in the surrounding medium are omitted, not zero. Vector contours interpolate the same 96 x 144 grid and add no simulation resolution.",
+  "source": {
+    "path": "assets/portfolio/morphbrain-reference.json",
+    "sha256": "54034c1fb663d2d4447c47fc06666b064995de484abfd2e6b3161e17b9fb909b",
+    "exportedAt": "2026-10-30T10:01:53.302Z",
+    "description": "Default condition computed by the unchanged shipped public MorphBrain demo on page load; exported without changing controls.",
+    "stateSha256": "e1df0c1cc0f0fcb17786d53efa8e3e362b540c6ec1380005dd1f2f4ddfb57dfb",
+    "bundle": "demos/morphbrain/assets/index-5iH3yo5N.js",
+    "bundleSha256": "179854265afe9ff1d62e2a3830e64820b7885bcc473ca2bd4bbf3b1ae91d63f1"
+  },
+  "source_dimensions": {
+    "width": 96,
+    "height": 144,
+    "layout": "row-major, y down",
+    "full_domain_shown": "Full 96 x 144 spatial extent; scalar-field content is explicitly clipped to tissue. Classification is masked to tissue.",
+    "aspect_ratio": "2:3"
+  },
+  "arrays_used": [
+    "tissueMask",
+    "bmp",
+    "shh",
+    "fates",
+    "bmpSourceMask",
+    "shhSourceMask"
+  ],
+  "composition": {
+    "viewBox": [
+      0,
+      0,
+      1000,
+      760
+    ],
+    "background": "#e7ede8",
+    "field_domain": {
+      "x": 86.8,
+      "y": 158.0,
+      "width": 326.4,
+      "height": 489.6
+    },
+    "category_domain": {
+      "x": 586.8,
+      "y": 158.0,
+      "width": 326.4,
+      "height": 489.6
+    },
+    "crop": false,
+    "geometric_distortion": false,
+    "data_or_model_controls_changed": false
+  },
+  "field_display": {
+    "type": "interpolated filled contours plus contour lines, clipped to exact tissue cells",
+    "fixed_scale_model_units": [
+      0,
+      25
+    ],
+    "contour_levels": [
+      0.5,
+      2.5,
+      10.0,
+      20.0
+    ],
+    "normalization": "none; no auto or log normalization",
+    "level_selection": "new presentation choice only",
+    "colour": {
+      "SHH": "#E69F00",
+      "BMP": "#0072B2"
+    },
+    "sources": "exact source-mask cells; no enlarged markers",
+    "contour_paths": 26,
+    "coordinate_rounding_grid_units": 0.01,
+    "thin_boundary_layers_preserved": true,
+    "scope": "Within model tissue only; outside-medium values are nonzero and intentionally hidden by the tissue clip, not set to zero.",
+    "outside_field_treatment": "display masking only; underlying exported arrays are unchanged"
+  },
+  "category_display": {
+    "type": "exact row-run SVG cell paths; no smoothing or contour interpolation",
+    "fate_ids": {
+      "1,2": "#4c6fb3",
+      "3": "#6f977e",
+      "4,5": "#c45a35",
+      "0": "transparent/page"
+    },
+    "tissue_mask_applied": true
+  },
+  "prior_raster_sources": [
+    {
+      "path": "assets/portfolio/morphbrain-field.png",
+      "sha256": "0c839f4764e47dacf265007bd3e9d0582b623a6cf3f370adce4e304d945cc2a3",
+      "dimensions": [
+        214,
+        321
+      ],
+      "modified": false,
+      "embedded": false
+    },
+    {
+      "path": "assets/portfolio/morphbrain-regions.png",
+      "sha256": "3e5a08d44f8602089e42fc94c428f9dd4ab1ce0ad731bb9f58071401697f65b7",
+      "dimensions": [
+        240,
+        360
+      ],
+      "modified": false,
+      "embedded": false
+    }
+  ],
+  "generator": {
+    "path": "scripts/render-morphbrain-feature.py",
+    "requirements": {
+      "numpy": "1.26.4",
+      "contourpy": "1.3.3"
+    },
+    "command": "python scripts/render-morphbrain-feature.py",
+    "check_command": "python scripts/render-morphbrain-feature.py --check",
+    "expected_source_sha256": "54034c1fb663d2d4447c47fc06666b064995de484abfd2e6b3161e17b9fb909b",
+    "deterministic": true,
+    "metadata_timestamps": "Only original source export timestamp; no runtime timestamp.",
+    "typography_correction": "The initial shell pipeline converted the multiplication glyph into a question mark; SVG now uses the ASCII numeric entity &#215;. All main-plate geometry and colours are unchanged."
+  },
+  "standalone_panels": {
+    "morphbrain-field.svg": {
+      "path": "assets/portfolio/morphbrain-field.svg",
+      "sha256": "074dd9e3576e58fb038f012231aafdac97a578c9552143cf6fd134d7246a6caf",
+      "bytes": 65828,
+      "viewBox": [
+        0,
+        0,
+        96,
+        144
+      ],
+      "outside_tissue": "transparent",
+      "geometry": "same path strings as main plate; no text outside panel"
+    },
+    "morphbrain-regions.svg": {
+      "path": "assets/portfolio/morphbrain-regions.svg",
+      "sha256": "c9cb072aab9fc392b049a4b9947390fa96aa33f1f306c493e542e00de0bedc77",
+      "bytes": 9739,
+      "viewBox": [
+        0,
+        0,
+        96,
+        144
+      ],
+      "outside_tissue": "transparent",
+      "geometry": "same path strings as main plate; no text outside panel"
+    }
+  },
+  "verification": {
+    "xml_valid": true,
+    "asset_bytes": 76150,
+    "asset_sha256": "0288590e626ab95948e1ea0dc80fd835f81f2e71f92ea4883bdad9f7ed4bc03e",
+    "source_file_unchanged": true,
+    "source_bundle_unchanged": true,
+    "data_fields_modified": false,
+    "renderer_runs_solver": false,
+    "reference_condition": "The existing default condition was computed by the shipped demo on page load, then exported without changing controls.",
+    "browser_render_review": "see output/sonali-20261030/verification.json",
+    "label_font_sizes_viewbox_px": {
+      "primary": 37,
+      "model_status": 32,
+      "secondary": 29
+    },
+    "primary_label_at_350px": 12.95,
+    "primary_label_at_620px": 22.94
+  }
+}

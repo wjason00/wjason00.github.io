@@ -70,7 +70,7 @@ try {
 }
 if (!mobileOnly) execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', resolve(out, 'thumbnail-morphbrain-plate.png'), '-c:v', 'libwebp', '-lossless', '1', '-y', resolve(assets, 'morphbrain.webp')]);
 execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', resolve(out, 'thumbnail-morphbrain-mobile-plate.png'), '-c:v', 'libwebp', '-lossless', '1', '-y', resolve(assets, 'morphbrain-mobile.webp')]);
-execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-ss', '4', '-i', resolve(root, 'assets/model-morpher/dentate-to-brain.mp4'), '-vf', 'crop=840:620:30:60,setsar=1', '-frames:v', '1', '-c:v', 'libwebp', '-lossless', '1', '-y', resolve(assets, 'model-morpher.webp')]);
+execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-ss', '4', '-i', resolve(root, 'assets/model-morpher/dentate-to-brain.mp4'), '-vf', 'setsar=1', '-frames:v', '1', '-c:v', 'libwebp', '-lossless', '1', '-y', resolve(assets, 'model-morpher.webp')]);
 const morphlinerSource = resolve(root, '../Morphliner/frontend/public/marketing/renders/beauty-shade-sweep__poster.webp');
 copyFileSync(morphlinerSource, resolve(assets, 'morphliner.webp'));
 const sha256 = file => createHash('sha256').update(readFileSync(file)).digest('hex');
@@ -78,7 +78,7 @@ const manifest = {
   generatedAt: new Date().toISOString(),
   morphbrain: { width:1200, height:800, source:'demos/morphbrain, default converged reference run', canvases:capture.map(({ data, ...metadata }) => metadata), processing:'Unchanged canvas pixels, same 2:3 physical aspect and equal display size; original app frame radii retained; labels and dark surrounding layout added. No colour or scientific output changes.' },
   morphbrainMobile: { width:900, height:800, source:'Same saved source canvases as desktop MorphBrain plate', processing:'Same 340 by 510 display canvases, unchanged colours and original app frame radii. Narrower margins and gap; labels 32 px and captions 27 px. Desktop plate unchanged.' },
-  modelMorpher: { width:840, height:620, source:'assets/model-morpher/dentate-to-brain.mp4', timeSeconds:4, crop:{x:30,y:60,width:840,height:620}, processing:'Lossless decoded-frame crop; no resizing or colour adjustment. Mouse pointer remains in original evidence.' },
+  modelMorpher: { width:1440, height:1080, source:'assets/model-morpher/dentate-to-brain.mp4', timeSeconds:4, crop:null, processing:'Lossless full decoded endpoint frame from the original-code recapture; no resizing or colour adjustment. Fixed camera, no UI or pointer.', provenance:'assets/portfolio/model-morpher-capture.json' },
   morphliner: { width:1920, height:1080, source:morphlinerSource, sourceSha256:sha256(morphlinerSource), processing:'Original genuine product render copied byte for byte. It is not a frame from the older editor recording.', provenance:'Morphliner frontend/src/content/galleryCopy.ts identifies this featured look poster as a farm render.', videoCaveat:'The similarly named beauty-shade-sweep__loop-16x9.mp4 was inspected and depicts a white capsule/sphere rather than the lipstick poster. It is not copied or used; do not present this poster as a frame from that loop.' },
   assets: ['morphbrain.webp','morphbrain-mobile.webp','model-morpher.webp','morphliner.webp'].map(file => ({ file:`assets/portfolio/${file}`, bytes:statSync(resolve(assets,file)).size, sha256:sha256(resolve(assets,file)) })),
 };

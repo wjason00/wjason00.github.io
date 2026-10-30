@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" role="img" aria-labelledby="g27-peek-title g27-peek-desc">
+  <title id="g27-peek-title">EEG imagery trial timeline and marked decision-time scores</title>
+  <desc id="g27-peek-desc">Trial timeline, 0 to 8 s: 0 to 2 s get ready, instruction at 2 s, 2 to 3.5 s instructed imagery, and from 3.5 s feedback may be on (start assumed, not recorded). Marked 1-second decoder windows score 82/120 at +3.5 s and 99/120 at +4.25 s on previously inspected later training trials.</desc>
+  <rect width="640" height="480" rx="6" fill="#0d1e19"/>
+  <rect x="1" y="1" width="638" height="478" rx="5" fill="none" stroke="#2c4a40" stroke-width="2"/>
+
+  <g font-family="'Source Sans 3', 'Segoe UI', system-ui, sans-serif">
+    <text x="36" y="48" font-family="'DM Mono', ui-monospace, monospace" font-size="17" fill="#e5aed0" letter-spacing="0.5">EEG IMAGERY · TRIAL TIMELINE 0–8 s</text>
+    <text x="36" y="86" font-size="29" font-weight="600" fill="#e4efe8" letter-spacing="-0.4">When does imagery become decodable?</text>
+
+    <!-- 0 to 8 s timeline bar: x=36..596 (560 px = 70 px/s) -->
+    <g transform="translate(36, 128)">
+      <!-- 0-2 s: Get ready (140 px) -->
+      <rect x="0" y="0" width="140" height="54" rx="3" fill="#213831"/>
+      <text x="14" y="34" font-size="19" font-weight="600" fill="#d3e3da">Get ready</text>
+
+      <!-- 2-3.5 s: Instructed imagery (105 px) -->
+      <rect x="142" y="0" width="103" height="54" fill="#1b4d80"/>
+      <text x="153" y="34" font-size="19" font-weight="600" fill="#eef6ff">Imagery</text>
+
+      <!-- 3.5-8 s: Feedback may be on (315 px) -->
+      <rect x="247" y="0" width="313" height="54" rx="3" fill="#5a3422"/>
+      <text x="262" y="34" font-size="19" font-weight="600" fill="#f7e3d7">Feedback may be on (assumed)</text>
+
+      <!-- Trigger markers at 2 s (x=140) and 3.5 s (x=245) -->
+      <line x1="140" y1="-10" x2="140" y2="70" stroke="#e4efe8" stroke-width="2.5"/>
+      <line x1="245" y1="-10" x2="245" y2="70" stroke="#f3d68a" stroke-width="2" stroke-dasharray="5 4"/>
+
+      <!-- Time ticks -->
+      <g font-family="'DM Mono', ui-monospace, monospace" font-size="16" fill="#9db6ac">
+        <text x="0" y="90">0 s</text>
+        <text x="140" y="90" text-anchor="middle" fill="#e4efe8">2 s cue</text>
+        <text x="245" y="90" text-anchor="middle" fill="#f3d68a">3.5 s</text>
+        <text x="560" y="90" text-anchor="end">8 s</text>
+      </g>
+
+      <!-- Causal 1 s windows (70 px wide) -->
+      <!-- 2.5-3.5 s -> +3.5 s (x=175..245) -->
+      <rect x="175" y="114" width="70" height="14" rx="3" fill="#3a86e0" fill-opacity="0.35" stroke="#5da3f5" stroke-width="2"/>
+      <circle cx="245" cy="121" r="7" fill="#3a86e0" stroke="#0d1e19" stroke-width="2"/>
+
+      <!-- 3.25-4.25 s -> +4.25 s (x=227.5..297.5) -->
+      <rect x="227.5" y="142" width="70" height="14" rx="3" fill="#d95a2b" fill-opacity="0.35" stroke="#f07b4f" stroke-width="2"/>
+      <circle cx="297.5" cy="149" r="7" fill="#d95a2b" stroke="#0d1e19" stroke-width="2"/>
+
+      <text x="0" y="127" font-size="16" fill="#9db6ac">1 s EEG windows:</text>
+    </g>
+
+    <!-- Marked points summary -->
+    <line x1="36" y1="312" x2="604" y2="312" stroke="#233d35" stroke-width="1.5"/>
+
+    <circle cx="48" cy="350" r="8" fill="#3a86e0"/>
+    <text x="68" y="357" font-family="'DM Mono', ui-monospace, monospace" font-size="24" font-weight="600" fill="#e4efe8">82/120</text>
+    <text x="168" y="357" font-size="20" fill="#c7dad1">at +3.5 s (1 s window)</text>
+
+    <circle cx="48" cy="394" r="8" fill="#d95a2b"/>
+    <text x="68" y="401" font-family="'DM Mono', ui-monospace, monospace" font-size="24" font-weight="600" fill="#e4efe8">99/120</text>
+    <text x="168" y="401" font-size="20" fill="#c7dad1">at +4.25 s (overlaps feedback 0.75 s)</text>
+
+    <text x="36" y="446" font-size="18" fill="#9db6ac">Near 50% chance until ~3 s, then ~80% · inspected trials</text>
+  </g>
+</svg>

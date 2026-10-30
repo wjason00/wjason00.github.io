@@ -1,0 +1,36 @@
+{
+  "sourcePresentation": "https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present",
+  "revision": "qO3DE4hVvPhtlA",
+  "credit": "G27 team presentation, judging refinement 5 October 2026",
+  "reuseScope": "User-authorised local candidate; upstream repository private; no public licence asserted; no publication authorised",
+  "figures": [
+    {
+      "file": "timing-original.png",
+      "slide": 6,
+      "pptxMember": "ppt/media/image9.png",
+      "sha256": "2bee7a6b7542d9d2cdb5624760525d33b72c8bea849e288ef0e25bc4c8625e35",
+      "processing": "Original embedded figure bytes unchanged; no redraw",
+      "limits": [
+        "Later training trials, previously inspected",
+        "Shifted one-second windows with separate fits",
+        "Feedback onset assumed, not measured",
+        "3 participants, 6 sessions",
+        "82/120 at+3.5s vs99/120 at+4.25s is timing comparison, not held-out gain",
+        "Selector negative finding remains75/120 versus82/120 fixedCSP at60 calibration trials per session"
+      ]
+    },
+    {
+      "file": "montage-original.png",
+      "slide": 8,
+      "pptxMember": "ppt/media/image6.png",
+      "sha256": "5d39a20a61549f2b5d6dda804cd33a177cc3c32aa13daff7a5a2182b97d3d97c",
+      "processing": "Original embedded figure bytes unchanged",
+      "limits": [
+        "Mapping inferred; left-right orientation unresolved",
+        "Fit is negative rank correlation, not accuracy or probability",
+        "All12 recordingfiles from3participants; not12independent participants",
+        "Transfer53to73/80 changes both mapping and16to10channels; do not attribute solely to mapping"
+      ]
+    }
+  ]
+}
