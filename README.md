@@ -6,6 +6,13 @@ questions, personal contributions and evidence lead each account.
 
 ## Local redesign candidate — 30 October 2026
 
+Jason still finds local `eaa6e52` bland and requested a proper Model Morpher
+recapture plus actual Claude review. Comparing the saved openings identifies the
+loss: the generic slogan and faint artwork displaced the earlier specimen and
+editorial contrast. The proposed next composition puts stacked navigation beside
+a substantial real demonstration. This remains a proposal for the requested
+review, not visual approval.
+
 T-366 now includes a type-led opening adapted from the rendered landing of
 [Sonali's portfolio](https://www.sonali.ca/): large native Research / Software /
 About links, a concise introduction and original decorative numerical artwork.
@@ -28,14 +35,35 @@ use `--check` to verify exact asset bytes. Source/provenance is beside the SVGs.
 The G27 images encode evaluation design, not measured accuracy curves.
 
 This is a **local review candidate**, not a new public release or visual approval.
-The working [local preview](http://127.0.0.1:4187/?v=visuals#selected-work) requires
-this computer's preview server. Build, tests and desktop/phone captures are
-recorded in `output/sonali-20261030/verification.json`. Model Morpher's original
-screen recording remains: the exact existing geometry sequence was not found in
-the bounded source check, so it has not been relit or replaced with invented work.
+The [local preview address](http://127.0.0.1:4187/?v=visuals#selected-work) requires
+this computer's preview server, which is currently stopped. Build, tests and
+desktop/phone captures for `eaa6e52` are recorded in
+`output/sonali-20261030/verification.json`.
+
+The original public DG/root atlas meshes and clean Model Morpher production
+source are now located. The new [capture harness](scripts/capture-model-morpher.py)
+checks resources before heavy imports, uses the unchanged production pipeline,
+saves actual returned meshes and renders them from one fixed camera without UI
+or cursor. Its default is preflight only; `--run --mode production` opts in to
+the 128-grid/30-frame capture, with a wall-clock cap and two CPU cores. No missing
+frames are invented. Independent centring/rescaling remains a geometric morph,
+not anatomical correspondence or development. Local preparation/run receipts
+are in `output/recapture-20261030/`; footage must be inspected before integration.
+
+Production capture and the camera-only refinement both succeeded. All 30 actual
+surfaces are saved; the refined 1440×1080 video and lossless endpoint poster now
+replace the old recording in the local candidate. The video is 5.5 seconds,
+including repeated endpoint pauses. Start/mid/end exports were inspected; an
+independent review found no clipping, cursor or framing defect. All 20 source,
+two input, 30 mesh and 38 output hashes match. Public capture settings are in
+`assets/portfolio/model-morpher-capture.json`; full local receipts are under
+`output/recapture-20261030/run-20261030T111127282221Z-render-saved-production/`.
+The broader opening revision and actual Claude review remain unfinished.
 
 Actual Claude input is still pending: Claude Code returned expired OAuth and
-desktop control failed during initialization. This has been reported to Jason;
+the personal sign-in flow remains unresolved. No further failed diagnostic or
+alternate browser route was attempted in the resumed block. The exact bounded
+review prompt is saved in `output/sonali-20261030/claude-recapture-review.txt`;
 Codex reviews are not Claude signoff. The
 [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) owns the scoped
 implementation; next action is owned by T-366. Earlier pass evidence remains in

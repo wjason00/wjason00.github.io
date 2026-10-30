@@ -1,6 +1,59 @@
 # Sonali-inspired portfolio opening implementation plan
 
-## Current scope — 30 October 2026
+## Recapture and review follow-up — 30 October 2026
+
+Jason finds `eaa6e52` improved but bland and asks for a proper recapture and
+Claude review. The resumed pass preserves that checkpoint and the Oxford drafts;
+no capture was still running. Finish this bounded pass by 11:25 UTC with the
+capture/review result or its exact remaining blocker, not another unreviewed
+layout. Root owns README, this plan and T-366. The capture worker owns only
+`scripts/capture-model-morpher.py` and `output/recapture-20261030/`.
+
+Saved opening captures confirm a loss of hierarchy: the generic sans slogan
+and faint numerical brain displace the earlier recognisable specimen and
+editorial contrast. The accepted 21 October Fly-led gallery is a comparison,
+not the immediate predecessor: `b150012` later featured Model Morpher with
+MorphBrain/G27 research. The proposed composition for Claude to challenge is a
+quiet introduction, dominant stacked Research / Software / About links and a
+substantial real Model Morpher demonstration. Keep cool white/deep green/lilac,
+native routes, user-triggered playback and the existing research-entry budget.
+The diagrams should support the accounts rather than carry every visual role.
+Review input is saved in `output/sonali-20261030/claude-recapture-review.txt`.
+
+The original public DG/root meshes have now been located in the existing
+BrainGlobe Allen mouse 25um v1.2 cache. The clean Model Morpher source at
+`f14ee067ae183318c033a88ad313b0e36b03d445` and its dedicated environment are
+available. Absence of a saved old sequence therefore does not prevent a genuine
+new capture. The guarded harness uses the unchanged production preprocessing
+and CUDA morph function, saves actual returned surfaces before rendering and
+blocks video if a requested frame is missing. It records source/input/config
+hashes and uses fixed framing, without UI, cursor or invented geometry. Independent
+centring/scale matching remains a geometric demonstration, not anatomical
+correspondence or development.
+
+- [x] Save stdlib-only preflight and opt-in bounded capture harness.
+- [x] Confirm no capture is running and preserve the source checkout.
+- [x] Complete one production 128-grid/30-frame capture within the remaining cap,
+  inspect its actual outputs and retain the exact receipt.
+- [ ] Obtain actual Claude input through Claude in Chrome after the pending
+  personal sign-in; reconcile feedback before the next layout/release pass.
+
+An earlier Windows commit-memory failure was real, but the fresh 11:06 UTC
+preflight now passes. This authorises an attempt, not a successful import or
+capture claim. No repeated Claude authentication diagnostic or alternate browser
+route is needed while personal sign-in remains pending.
+
+Production run returned all 30 meshes in 63 seconds total; a separate 12-second
+render-only pass used their verified hashes to correct camera and lighting.
+The resulting 1440×1080, 12fps video decodes to 66 frames/5.5 seconds, including
+endpoint repetitions. No geometry was edited or recomputed for this refinement.
+The local candidate uses this video and a full lossless endpoint poster. All
+source/input/mesh/output hashes pass; actual Claude review and the next opening
+composition remain pending. Disk exhaustion interrupted record/checkpoint work;
+after storage recovered only the small integration and records resumed, within
+the original cap. No publication or unrelated cleanup.
+
+## Earlier local revision — 30 October 2026
 
 Jason: “Go ahead and work with Claude on the Portfolio changes.” Build on the
 clean local `ef7163b` candidate in the existing linked worktree. Root owns
