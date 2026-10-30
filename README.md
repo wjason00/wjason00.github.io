@@ -4,57 +4,69 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Local redesign candidate ? 30 October 2026
+## Local figure-led candidate - 30 October 2026
 
-Actual Claude Opus 5.5 reviewed [Sonali's landing](https://www.sonali.ca/) and
-this portfolio through connected Claude in Chrome. Its useful correction was to
-let the specimen dominate, with a quieter contents list. The opening now shows
-one real Model Morpher player beside a serif identity and Research / Software /
-About contents. The generic slogan, faint numerical brain and duplicate header
-labels are gone. Serif project headings and the curved research edge restore
-editorial contrast; the gallery links back to the single player.
+Jason rejected the previous serif/editorial candidate as bland and too much like
+an article. Actual Claude Opus 5.5 inspected [Sonali](https://www.sonali.ca/),
+including its image-led work route, wrote the new composition brief, and then
+**authored the production HTML and homepage CSS**. Source Sans now carries the
+main interface, lowercase research/software/about links frame a compact real
+Morpher player, and larger project images lead into short accounts and native
+detail disclosures. This supersedes the specimen/serif direction at `6b7f905`.
 
-The [local preview](http://127.0.0.1:4187/?v=claude-review) runs on this computer.
-This is a local candidate, not a public release or Jason's visual approval.
-Actual Claude's review and browser receipts are in
-`output/sonali-20261030/claude-live-review.jsonl` and `claude-final-qa.jsonl`.
+The [local preview](http://127.0.0.1:4187/?v=20261030-figure-led) runs on this
+computer. This is a saved implementation candidate. **Final visual acceptance
+is incomplete; it is not a public release or Jason's design approval.**
 
-The genuine recapture retains all 30 surfaces from the unchanged original
-production pipeline. The fixed parallel camera is fitted to the projected union
-of every vertex across all frames, with at least 12% padding per side relative
-to the object's projected span. An independent audit reproduced the fit and
-verified every source mesh, video and poster hash. No geometry was edited or
-recomputed for the tighter framing. Public settings/provenance are in
-`assets/portfolio/model-morpher-capture.json`; local meshes and render receipts
-remain under `output/recapture-20261030/` and `output/recapture-tight-20261030/`.
-Independent centring/rescaling makes this a geometric morph, not anatomical
-correspondence or development. Playback starts only on user action.
+G27 now leads with the actual timing figure from slide 6 and montage figure
+from slide 8, each inline with a full-size image link. The complete presentation
+is a secondary source link. The PNG bytes match the native presentation assets;
+`assets/portfolio/g27/source.json` records revision, slide, member, credit and
+local-only reuse scope. Captions keep the negative selector result, retrospective
+training-trial/window/feedback limits and inferred montage uncertainty visible.
+These are team figures, not new experiments or Jason's sole work.
 
-Claude measured actual responsive iframe widths of 1366, 390 and 320 CSS pixels
-in both themes: no overflow; research starts below 600/700px respectively; one
-Morpher player; native routes and image sources work. Actual Play/Pause, seeking,
-offscreen pause and no-script native controls/disclosures were exercised.
-These are same-origin iframe checks in signed-in Chrome, not real-device tests.
-Reduced-motion-specific browser emulation and the full Playwright suite were
-not run. Existing no-autoplay and reduced-motion source contracts remain.
+The proposed numerical montage redraw was deferred: two original blue bars use
+a swapped-paper candidate rather than the raw `paper_rho` column. Redrawing that
+column would change the displayed comparison. Both original PNGs stay exact;
+figure improvements here are framing, hierarchy, inline access and context.
+MorphBrain's existing source-based vector fields/categories and the genuine
+30-surface Model Morpher recapture are unchanged. The morph is geometric
+interpolation after centring/scaling, not anatomical correspondence/development;
+playback remains user-triggered. No scientific solver or private data changed.
 
-The first final check caught an inherited low-contrast Expand label and an overly
-fine/short phone scrubber. The final focused check passed after corrections:
-9.74:1 control contrast, full-width phone tracks, a meaningful 0.11-second input
-increment and research entry at 661/695px for 320/390px widths. No-script native
-controls remain available. This final check used actual Opus5.5 in Chrome; its
-receipt is `output/sonali-20261030/claude-controls-verified.jsonl`.
+The final build contains 184 public files (32,144,618 bytes); internal references
+in 12 HTML files resolve. All 36 source/data checks, browser-spec syntax checks
+and `git diff --check` pass. A prose/source consistency review found no caption
+or provenance defect. The preview and every image flagged by the partial browser
+check return HTTP 200 with exact source bytes. The temporary QA host was removed.
+HTTP verification does not prove browser decoding or lazy-load behaviour.
 
-MorphBrain's source-based vector fields/categories and G27's design schematics
-remain intact. MorphBrain is illustrative patterning; nonzero exterior diffusion
-is omitted by the declared tissue display mask. G27's negative retrospective
-result is unchanged. No private data or scientific solver was changed.
+The final actual-Claude Chrome review returned one reliable 1366px light result:
+no overflow, research at 471.97px and Source Sans headings. Its subsequent
+measurement/decode call was automatically rejected because the target page could
+not be determined; tab cleanup then timed out. No screenshots or final phone,
+dark-theme, media, no-script or reduced-motion acceptance were obtained for this
+revision. Earlier `6b7f905` browser results do not certify this new composition.
+The browser lease is released; owned QA tab 70057604 may remain. The original
+13:09 UTC cap was not extended for another design/browser run; resumption after
+the CCAT interruption performed only bounded source/preview/status closeout.
+
+Actual model and execution receipts are in `output/modern-20261030/`. Claude's
+first real Codex-worker dispatch selected GPT-6.1 Sol/Ultra but produced no code:
+the Claude parent self-ended after 238.72 seconds and closing its owned job
+stopped the worker after about 90 seconds. Its stale `running` receipt is not
+completion evidence. Claude's subsequent direct implementation exited 0 in
+312.27 seconds. Effective Claude effort was not exposed (high requested for
+implementation; low for final QA). `final-verification.json` records the source
+checkpoint and remaining checks; it explicitly withholds visual acceptance.
 
 The [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) and T-366
-own the checkpoint and verification limits. Oxford drafts remain in their
+own the remaining bounded desktop/phone review. Oxford drafts remain in their
 [existing owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
-Earlier local candidates and their checks remain dated evidence in Git and
-`output/sonali-20261030/verification.json`.
+Public baseline remains `b150012`; publication requires its own authority.
+Previous composition/camera/control checks remain dated history in Git and
+`output/sonali-20261030/`, rather than acceptance of this follow-up.
 
 ## Professional focus - 23 October 2026
 

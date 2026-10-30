@@ -1,6 +1,60 @@
 # Sonali-inspired portfolio opening implementation plan
 
-## Claude review and specimen-led composition ? 30 October 2026
+## Current figure-led follow-up - 30 October 2026
+
+Jason rejected the serif/newspaper direction and asked for most visual work to
+be done by Claude, with individual presentation figures instead of a whole-deck
+primary action. Sonali remains the stated reference assumption; the optional
+clarification received no reply. Actual Claude Opus 5.5 inspected the rendered
+reference/work route, wrote the brief and authored `index.html` plus
+`assets/portfolio/gallery-home.css`. Root owned source assets, tests, docs and
+control state; no concurrent production writer remained when Claude edited.
+
+The candidate uses sans main typography, large lowercase section links, a compact
+single real Morpher player, G27's inline original timing/montage figures first,
+a large MorphBrain model figure, and larger software image tiles. Short accounts
+keep contribution/result/essential limits visible; full accounts use native
+details. Timing and montage PNGs exactly match slide 6/8 embedded members at
+revision `qO3DE4hVvPhtlA`; provenance records team credit and local reuse only.
+The montage redraw was deferred because raw `paper_rho` differs from the original
+swapped-paper bars for P1-pre. No altered numerical figure was produced.
+
+The real Claude-to-Codex dispatch selected GPT-6.1 Sol/Ultra (runtime turn-context
+verified), but its parent self-ended at 238.72 seconds and job cleanup stopped
+the worker before implementation. The stale worker `running` receipt is not
+success. Direct actual-Claude implementation then exited 0 after 312.27 seconds.
+All scientific runtimes, raw data, MorphBrain fields and saved Morpher geometry
+remain unchanged. Local-only scope and T-113/private-data holds remain.
+
+- [x] Actual Claude authored a substantive composition and production HTML/CSS.
+- [x] Select two exact native presentation figures; inline them with source/credit.
+- [x] Preserve negative/retrospective limits and native full-size/deck links.
+- [x] Build 184 files/32,144,618 bytes; resolve all refs in 12 HTML files.
+- [x] Pass 36 source/data tests, browser-spec syntax checks and diff whitespace.
+- [x] Review final captions/source consistency; verify preview/image HTTP bytes.
+- [x] Remove temporary QA host and save a scoped source checkpoint.
+- [ ] Complete desktop/phone screenshots and visual acceptance of this revision.
+- [ ] Complete current phone/dark/media/no-script/reduced-motion browser checks.
+
+Actual Chrome returned only a reliable 1366px light measurement: research top
+471.97px, no overflow and Source Sans. The later measurement/image-decode action
+was automatically rejected because its target page could not be determined;
+owned-tab cleanup timed out. No screenshot/visual acceptance exists. HTTP200
+and byte equality resolve file availability, not lazy-load/browser decoding.
+Full Playwright execution is unperformed; earlier browser checks are historical.
+The client ended before the 13:09 UTC cap. CCAT-interrupted resumption only
+saved/checked sources and records; no new browser/design/render pass extended
+that cap. Browser lease handed directly to the laptop owner. Tab 70057604 may
+remain. Next action belongs to T-366, not an implicit continuing run.
+
+Current receipts: `output/modern-20261030/final-verification.json`,
+`source-tests-receipt.json`, `asset-http-verification.json`, actual Claude
+transcripts and worker terminal observation. Candidate is saved, not visually
+accepted or published. This section supersedes the design/acceptance description
+below; earlier dated receipts retain their original scope.
+
+
+## Earlier Claude review and specimen-led composition - 30 October 2026
 
 Jason restored sign-in and resumed the goal at 11:34 UTC. Actual Claude Opus5.5
 (high requested; effective effort not exposed) inspected Sonali and the local

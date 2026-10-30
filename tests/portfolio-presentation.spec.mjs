@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const width of [1366, 390, 320]) {
-  test(`portfolio opening keeps identity, recording, native routes and research discoverable at ${width}px`, async ({ page }) => {
+  test(`portfolio opening keeps identity, native routes and research discoverable at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
     await page.goto('/');
     const identity = page.getByRole('heading', { level: 1, name: 'Jason Wang', exact: true });
@@ -18,16 +18,9 @@ for (const width of [1366, 390, 320]) {
     for (const [label, href] of [['Research', '#selected-work'], ['Software', '#projects'], ['About', '#about']]) {
       const route = routes.locator(`a[href="${href}"]`);
       await expect(route).toContainText(label);
-      await expect(route.locator('small')).not.toBeEmpty();
       await expect(route).toBeInViewport();
+      if (width < 800) expect((await route.boundingBox()).height).toBeGreaterThanOrEqual(44);
       await expect(page.locator(`.site-nav a[href="${href}"]`)).toHaveText(label);
-    }
-    if (width < 800) {
-      const identityBox = await identity.boundingBox();
-      const specimenBox = await specimen.boundingBox();
-      const routesBox = await routes.boundingBox();
-      expect(specimenBox.y).toBeGreaterThanOrEqual(identityBox.y + identityBox.height);
-      expect(routesBox.y).toBeGreaterThanOrEqual(specimenBox.y + specimenBox.height);
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('#fly-study-details')).not.toHaveAttribute('open');
@@ -44,13 +37,16 @@ for (const width of [1366, 390, 320]) {
     await expect(page.locator('#preview-morphbrain')).toBeVisible();
     await expect(page.locator('#morphbrain .project__lede')).toBeInViewport();
     await expect(page.locator('#g27 a.gallery-action')).toHaveAttribute('href', /^https:\/\/docs\.google\.com\/presentation\/d\/.+\/present$/);
+    for (const file of ['timing-original.png', 'montage-original.png'])
+      await expect(page.locator(`#g27 img[src="./assets/portfolio/g27/${file}"]`)).toBeVisible();
+    await expect(page.locator('#g27 img[src$=".svg"]')).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
 
 test('reduced motion keeps the recording opt-in and selected software complete', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
+  await page.goto('/#opening-morpher');
   const video = page.locator('#opening-morpher video');
   await expect(video).toBeVisible();
   await expect(video).not.toHaveAttribute('autoplay');
@@ -79,9 +75,9 @@ test('native study disclosure reveals figures without JavaScript', async ({ brow
   await context.close();
 });
 
-test('opening recording supports play, pause, keyboard seeking and offscreen pause', async ({ page }) => {
+test('linked recording supports play, pause, keyboard seeking and offscreen pause', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
-  await page.goto('/');
+  await page.goto('/#opening-morpher');
   const specimen = page.locator('#opening-morpher');
   const video = specimen.locator('video');
   const controls = specimen.getByRole('group', { name: 'Model Morpher recording controls' });
