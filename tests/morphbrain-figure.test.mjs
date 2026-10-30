@@ -12,7 +12,8 @@ const hash = text => createHash('sha256').update(text).digest('hex');
 
 test('new figure input is the unchanged shipped default state, with fixed field units', () => {
   assert.equal(hash(JSON.stringify(state)), record.stateSha256);
-  assert.equal(hash(read(record.bundle)), record.bundleSha256);
+  // Recorded hashes use the Windows CRLF checkout; normalise so Linux CI agrees.
+  assert.equal(hash(read(record.bundle).replace(/\r?\n/g, '\r\n')), record.bundleSha256);
   assert.equal(state.convergence.converged, true);
   assert.deepEqual([state.width,state.height], [96,144]);
   for (const field of ['shh','bmp']) {
