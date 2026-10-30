@@ -4,7 +4,7 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Cursor-driven homepage - local candidate, 30 October 2026
+## Accepted cursor-driven homepage - local candidate, 30 October 2026
 
 The homepage is rebuilt with its own HTML, stylesheet and controller. A live
 atlas surface fills the opening: real cursor movement displaces/lights nearby
@@ -16,7 +16,7 @@ hashes are registered by the new controller, and internal return links now use
 explicit work-page fragments. The new home loads none of the old gallery CSS/JS.
 
 [Open the local preview](http://127.0.0.1:4187/?v=20261030-surface). This is a local
-candidate; no publication or Jason design approval is claimed.
+candidate. Jason explicitly approved this direction on30October: "This looks so much nicer. This is exactly what I wanted." No publication is authorised.
 
 Actual Claude Opus5.5 authored the new index/experience-home CSS/controller in
 300.18seconds after its verified14:40provider reset. The earlier429call produced
@@ -55,6 +55,46 @@ Current receipts: `output/rebuild-20261030/final-verification.json` and the
 [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md). T-366 owns
 local completion. Original figure/data restrictions and separate publication
 authority remain. Earlier directions below are dated history.
+
+## Project figure development - 30 October 2026 (T-374)
+
+Jason explicitly approved the cursor-driven hero as exactly the intended direction.
+The hero markup, CSS/controller and scene-engine hashes remain unchanged while
+project figures develop. The homepage Model Morpher entry now links to the
+[interactive saved-surface prototype](http://127.0.0.1:4187/demos/model-morpher/).
+It scrubs30actualsavedproduction surfaces, with First/Middle/Last, user-started
+playback, rotation, optional endpoint ghosts and adjacent opacity-only transitions.
+The original recording remains available. No new solver, geometry or anatomical
+point correspondence is introduced. Middle is15/29, not0.5. Source surfaces are
+Allen Mouse CCF/BrainGlobe; the hero's CC0 attribution does not apply here.
+
+Actual Opus5.5 wrote the figure concepts (116.16s) and the separate prototype
+HTML/CSS/controller (124.34s). Codex implemented the renderer and deterministic
+2048-vertex/frame display export. Independent decoding matched all30source hashes/
+counts/parameters and184320packed coordinates exactly; recorded quantisation error
+bounds hold. Data/provenance live inassets/model-morpher/morph-cloud-source.json.
+
+Actual Chrome verified frames0/15/29 with distinct pixels, t0/.517/1 and actual
+sourcecounts, realdrag/reset, playback/pause, endpointcomparison, phone slider and
+nooverflow. NoJSposter/nativevideo/links work. Root inspecteddesktop/phonecaptures.
+Review found a static/errorposter readout falsely saying frame0; it and alt text
+now correctly identify endpoint29/t1. The focused check timedout60.07s before its
+final narrative, but raw logs record nativeEnd/Home values29/0 and working-tab
+closure. Hardwaretouch/physicalphone/fullPlaywright/trustedphysicalPlayclick and
+completed post-copy-fix browser narrative remain unverified. Checkbox labels,
+not the20pxvisual inputs, provide44pxhit areas. Hero hashes still match.
+
+52source tests/syntax/diff and14HTML internal refs pass. Finalbuild197files/
+33,092,055bytes remains below32MiB. The temporary QA host is removed, preview200
+matches source bytes, and no publication occurred. Currentreceipt:
+output/figure-ideas-20261030/final-verification.json.
+
+Next concepts are proposals, not implemented figures: MorphBrain linked field/
+identity inspection from real arrays/thresholds/masks; Fly paired-comparison and
+circuit inspection with the separate replay explicitly divided; G27 source-linked
+annotations/zoom around its native plots. A G27 numerical redraw requires matching
+120-trial curve data; no curves/readouts will be invented from image pixels. Do
+not turn all projects into point clouds. The accepted hero remains the baseline.
 
 ## Earlier local interactive work stage - 30 October 2026
 

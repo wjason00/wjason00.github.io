@@ -1,0 +1,256 @@
+{
+  "title": "Model Morpher saved-surface study",
+  "frameCount": 30,
+  "pointsPerFrame": 2048,
+  "sourceManifestSha256": "f62dd057e665936fb14f76682897e31b1bb6dbf3771ff3583f951bc85eab9b31",
+  "sourceCapture": "assets/portfolio/model-morpher-capture.json",
+  "sourceRepository": "https://github.com/wjason00/model-morpher",
+  "sourceCommit": "f14ee067ae183318c033a88ad313b0e36b03d445",
+  "atlas": {
+    "name": "Allen Mouse CCF via BrainGlobe",
+    "version": "1.2",
+    "resolutionMicrometres": [
+      25,
+      25,
+      25
+    ],
+    "credit": "Allen Institute",
+    "citation": "Wang et al 2020, https://doi.org/10.1016/j.cell.2020.04.007"
+  },
+  "inputs": [
+    {
+      "id": "726",
+      "name": "Dentate gyrus",
+      "sha256": "ae97739b344e91b6c3c22965be58b47dd709093ed9ad9bdc2c40a00782bd4106"
+    },
+    {
+      "id": "997",
+      "name": "root",
+      "sha256": "69fbcd1d452cdbdd6f6f493563a8aa4c5d9e574e073c06650cbaaf4dd4ac25a9"
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "t": 0.0,
+      "sourcePoints": 19884,
+      "sourceMeshSha256": "bb72b78f79b55e2217d49ad9fb6c349d14f3b56572f0687cead8eb481fc829da"
+    },
+    {
+      "index": 1,
+      "t": 0.034482758620689655,
+      "sourcePoints": 19253,
+      "sourceMeshSha256": "c55e65159009e61c5ad98a86b36ef23d5b20d0010bf7edbc7c15411ff4bf5375"
+    },
+    {
+      "index": 2,
+      "t": 0.06896551724137931,
+      "sourcePoints": 18572,
+      "sourceMeshSha256": "91fd13bb1798f060dfc57d0a726a4a22f171d73e191e718a51b16104810c3e6f"
+    },
+    {
+      "index": 3,
+      "t": 0.10344827586206896,
+      "sourcePoints": 17708,
+      "sourceMeshSha256": "c11d15fa460a3767fded8226bc21a762ed9d2411e05eb3daf8b3a5943bc983d7"
+    },
+    {
+      "index": 4,
+      "t": 0.13793103448275862,
+      "sourcePoints": 16605,
+      "sourceMeshSha256": "195aa51c511d29c4ff85b7a6560d036f8ff40a3074eda9679cb0a5b3469e29d1"
+    },
+    {
+      "index": 5,
+      "t": 0.1724137931034483,
+      "sourcePoints": 15830,
+      "sourceMeshSha256": "d541e488ba2cd6cd24f3d2c2c3472f4f57f691a3038144b19e4053da73720fd2"
+    },
+    {
+      "index": 6,
+      "t": 0.20689655172413793,
+      "sourcePoints": 15075,
+      "sourceMeshSha256": "4011397ffdd6fcd4a07a44f6998b5362a98d500f89598b6b65ed7ce6943183b5"
+    },
+    {
+      "index": 7,
+      "t": 0.2413793103448276,
+      "sourcePoints": 14842,
+      "sourceMeshSha256": "d4efa71f1d164ca140aa9c7897b39d5847e7ebae00251d2e0a3fff89d6320b74"
+    },
+    {
+      "index": 8,
+      "t": 0.27586206896551724,
+      "sourcePoints": 14724,
+      "sourceMeshSha256": "f0e06ff299049a25ae06621831dc1ca30f7a7163230cd665766b647552f8d88d"
+    },
+    {
+      "index": 9,
+      "t": 0.3103448275862069,
+      "sourcePoints": 14601,
+      "sourceMeshSha256": "ddd843512a7ad37925010fa18bf7e31d263b012f212723a401f71b3992b9636b"
+    },
+    {
+      "index": 10,
+      "t": 0.3448275862068966,
+      "sourcePoints": 14800,
+      "sourceMeshSha256": "196edcb5ef3b33c007278dfbe0bfbdfbd8095c7e0a5414137d7d5d0c1ed7ab5e"
+    },
+    {
+      "index": 11,
+      "t": 0.3793103448275862,
+      "sourcePoints": 15216,
+      "sourceMeshSha256": "6a0b1d6f5ec78268ce84ea3966ac20c3eaa5db50b11bcd05cdffc3c0be216227"
+    },
+    {
+      "index": 12,
+      "t": 0.41379310344827586,
+      "sourcePoints": 15701,
+      "sourceMeshSha256": "5edf0ecb4678a841974fb14f2c4234549a8e5030115d81b0dc54187b8b89bea8"
+    },
+    {
+      "index": 13,
+      "t": 0.4482758620689655,
+      "sourcePoints": 16217,
+      "sourceMeshSha256": "9898574f0438c5f80f8b4913715ea0a704a42deea4d4d4a90d67477df09c18a0"
+    },
+    {
+      "index": 14,
+      "t": 0.4827586206896552,
+      "sourcePoints": 16923,
+      "sourceMeshSha256": "e0539369deaa9d88b5e40a808ec3a450f93bbe5f92039dd656602e9ed413fe4f"
+    },
+    {
+      "index": 15,
+      "t": 0.5172413793103449,
+      "sourcePoints": 17790,
+      "sourceMeshSha256": "2410d9fc43524a4e829de45f64fd946e2916a5e5f44e3a102a4f25ddeb6e942b"
+    },
+    {
+      "index": 16,
+      "t": 0.5517241379310345,
+      "sourcePoints": 18852,
+      "sourceMeshSha256": "94cc0f1f7288370c27ffc20418fa603c8b8c25090cebcea1189ddd6a51fc2d64"
+    },
+    {
+      "index": 17,
+      "t": 0.5862068965517241,
+      "sourcePoints": 20099,
+      "sourceMeshSha256": "971dac0f230f975f377a102d1879dd899ba824617359e55441da16e69102d313"
+    },
+    {
+      "index": 18,
+      "t": 0.6206896551724138,
+      "sourcePoints": 21605,
+      "sourceMeshSha256": "76f0bc1646b905f8b9c2344e7e259cef08f00586fa9c5818ad6e8a080502ca30"
+    },
+    {
+      "index": 19,
+      "t": 0.6551724137931034,
+      "sourcePoints": 23196,
+      "sourceMeshSha256": "5aa521b06c7105637cd871ccbfd1fb68ab7b29319ae533a9626911287914d7eb"
+    },
+    {
+      "index": 20,
+      "t": 0.6896551724137931,
+      "sourcePoints": 25644,
+      "sourceMeshSha256": "3e45207b42f04d56ee5e7f5a797da0b32892399a37e04eb186844de3cc0bc793"
+    },
+    {
+      "index": 21,
+      "t": 0.7241379310344828,
+      "sourcePoints": 29489,
+      "sourceMeshSha256": "cd8871295cfaf1e57b252d981a50db95b94ce47f36184de0506f870009668ff9"
+    },
+    {
+      "index": 22,
+      "t": 0.7586206896551724,
+      "sourcePoints": 32365,
+      "sourceMeshSha256": "1251821d3ed5118a0fa54e0a731bd7160966fe74115c0e1a234aa7d704a6cdf3"
+    },
+    {
+      "index": 23,
+      "t": 0.7931034482758621,
+      "sourcePoints": 35255,
+      "sourceMeshSha256": "919a3fb10fac6c65e6e0292c517e8133ecc1987f3962271be3e6ee3fdf3dcad6"
+    },
+    {
+      "index": 24,
+      "t": 0.8275862068965517,
+      "sourcePoints": 37768,
+      "sourceMeshSha256": "370a6f9d68e5fdaaa25dfe38b57544716c248260cc828d1fd2968346d19bf063"
+    },
+    {
+      "index": 25,
+      "t": 0.8620689655172413,
+      "sourcePoints": 39910,
+      "sourceMeshSha256": "1f69cb0c4b952cc0ff8fd3815daa36221f153dc008d5a4e9eb5040c67b57de04"
+    },
+    {
+      "index": 26,
+      "t": 0.896551724137931,
+      "sourcePoints": 41800,
+      "sourceMeshSha256": "dff66d40d36b6075dace289bcca749c856ca3c429ba6a2f74b4313a4087db49b"
+    },
+    {
+      "index": 27,
+      "t": 0.9310344827586207,
+      "sourcePoints": 43496,
+      "sourceMeshSha256": "afa97d944b388480eac5a0fad2d94b25f0e33b97a27ab809abc5fd8a383047e4"
+    },
+    {
+      "index": 28,
+      "t": 0.9655172413793104,
+      "sourcePoints": 45137,
+      "sourceMeshSha256": "57a5676026c9477571b5f6e5a4f627ae00c853ced9807ab81175c93a7b980905"
+    },
+    {
+      "index": 29,
+      "t": 1.0,
+      "sourcePoints": 46456,
+      "sourceMeshSha256": "6324c3a0d50affaa5bb5bb2bd415202f017f5aba66610e11dc022526f095e214"
+    }
+  ],
+  "sampling": "Independent vertex index floor(i*(N-1)/(2048-1)) in each saved surface; not uniform area sampling",
+  "encoding": "Little-endian Int16 XYZ, normalized by 32767, frames contiguous",
+  "encodedBytesSha256": "d1a59fe204701b50ccd24dd15dc81924bd9354eeaba5f1d1e4f87042d257dde1",
+  "encodedBytes": 368640,
+  "displayTransform": {
+    "basis": [
+      [
+        -0.9701425001453319,
+        0.0,
+        0.24253562503633297
+      ],
+      [
+        -0.07940259890547474,
+        -0.9448909269751494,
+        -0.31761039562189897
+      ],
+      [
+        0.22916971156507793,
+        -0.3273853022358256,
+        0.9166788462603117
+      ]
+    ],
+    "projectedCentre": [
+      3119.068416596707,
+      3942.2745666009005,
+      -3881.8720625196142
+    ],
+    "isotropicScale": 55.33833088293886,
+    "sharedAllFrames": true,
+    "anatomicalViewLabel": null
+  },
+  "maxSampleRadius": 1.087782741197407,
+  "maximumCoordinateQuantizationError": 1.5318859382773987e-05,
+  "errorUnits": "Normalized display coordinates; bound includes Int16 rounding and Float32 decode, not millimetres",
+  "limits": [
+    "Thirty actual saved production surfaces; no new geometry or SDF computation.",
+    "Surface topology and vertex counts change. Sample indices do not establish point correspondence.",
+    "The viewer may opacity-crossfade adjacent saved point sets; this is display blending, not an extra computed surface or point trajectory.",
+    "Geometric interpolation after independent centring/scaling of inputs; not anatomical correspondence, registration, growth or development.",
+    "Native physical relative sizes and atlas coordinates are not retained; display orientation is numerical, not anatomically validated."
+  ],
+  "reuseScope": "User-authorised local prototype; original Allen/BrainGlobe source terms and citation apply; no CC0 claim and no publication authorised"
+}
