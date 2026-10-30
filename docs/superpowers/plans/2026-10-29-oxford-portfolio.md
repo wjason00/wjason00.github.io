@@ -1,6 +1,40 @@
 # Sonali-inspired portfolio opening implementation plan
 
-## Current figure-led follow-up - 30 October 2026
+## Current interaction correction - 30 October 2026
+
+Jason's13:41feedback rejects static090be75 while retaining clearer information;
+13:46steering adds Scale and others. New bounded25-minute pass ends14:06UTC.
+Actual Claude inspected Sonali and Scale in signed-in Chrome; Lusion stayed in
+its preloader, so its interaction was not verified. Scale's single media stage
+replaced the initially proposed Sonali work rail. The final composition uses
+explicit project selection and no scroll hijacking or scientific autoplay.
+
+Actual Opus5.5 authored index/CSS/script/reference-scene edits in383.83seconds
+within480s. Root owned tests/docs/control and two CSS integration corrections
+(no-script controls and reduced-motion specificity). Four early project choices
+swap real Morpher/Morphliner/Fly recordings or MorphBrain comparison/direct Try.
+One Morpher player is relocated into its panel. Native full accounts and original
+G27 figures/data follow. User actions, keyboard/hash navigation, noJS controls,
+reduced-motion fallbacks and lazy runtime launch are preserved in source.
+
+- [x] Observe actual Sonali/Scale interactions and save grounded Claude brief.
+- [x] Actual Claude authors substantial large stage and media/project interactions.
+- [x] Expose all3existing recordings and direct MorphBrain launch early.
+- [x] Keep complete accounts/critical scientific qualifiers; no new compute/data.
+- [x] Build184files/32,152,580bytes;12HTML internal references pass.
+- [x] Pass36source tests, source/spec syntax, single-player/IDs/no-autoplay checks.
+- [x] Correct no-script control visibility and reduced-motion specificity.
+- [x] Verify local HTTP media/figures match source bytes; caption review no defects.
+- [ ] Finish actual-Claude desktop/phone visual and interaction review.
+- [ ] Remove temporary QA host; save final receipt/checkpoint/control readback.
+
+Full Playwright execution is unperformed; updated functional specs are not a
+browser pass. Final Chrome review awaits the sole lease after the existing
+applications/laptop units. No additional render, experiment, dependency or
+publication. The original14:06cap remains; incomplete verification must be saved
+as incomplete. Current receipts are in `output/interaction-20261030/`.
+
+## Earlier figure-led follow-up - 30 October 2026
 
 Jason rejected the serif/newspaper direction and asked for most visual work to
 be done by Claude, with individual presentation figures instead of a whole-deck

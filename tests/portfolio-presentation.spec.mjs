@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const width of [1366, 390, 320]) {
-  test(`portfolio opening keeps identity, native routes and research discoverable at ${width}px`, async ({ page }) => {
+  test(`portfolio opening exposes playable work and native research routes at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
     await page.goto('/');
     const identity = page.getByRole('heading', { level: 1, name: 'Jason Wang', exact: true });
@@ -24,8 +24,17 @@ for (const width of [1366, 390, 320]) {
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('#fly-study-details')).not.toHaveAttribute('open');
-    const workTop = await page.locator('#selected-work').evaluate(element => element.getBoundingClientRect().top);
-    expect(workTop).toBeLessThan(width < 800 ? 700 : 600);
+    const stage = page.locator('.project-gallery .hero__spotlight');
+    const stageBox = await stage.boundingBox();
+    if (width < 800) {
+      const identityBox = await identity.boundingBox();
+      const routesBox = await routes.boundingBox();
+      expect(routesBox.y).toBeGreaterThanOrEqual(identityBox.y + identityBox.height);
+      expect(stageBox.y).toBeGreaterThanOrEqual(routesBox.y + routesBox.height);
+    }
+    expect(stageBox.y).toBeLessThan((width < 800 ? 844 : 900) * 0.8);
+    expect(stageBox.width).toBeGreaterThanOrEqual(width < 800 ? width - 48 : 600);
+    expect((await video.boundingBox()).height).toBeGreaterThanOrEqual(width < 800 ? 160 : 300);
     const research = routes.locator('a[href="#selected-work"]');
     await research.focus();
     await research.press('Enter');
@@ -39,7 +48,8 @@ for (const width of [1366, 390, 320]) {
     await expect(page.locator('#g27 a.gallery-action')).toHaveAttribute('href', /^https:\/\/docs\.google\.com\/presentation\/d\/.+\/present$/);
     for (const file of ['timing-original.png', 'montage-original.png'])
       await expect(page.locator(`#g27 img[src="./assets/portfolio/g27/${file}"]`)).toBeVisible();
-    await expect(page.locator('#g27 img[src$=".svg"]')).toHaveCount(0);
+    await expect(page.locator('#g27-timing .plate__image')).toHaveAttribute('href', './assets/portfolio/g27/timing-original.png');
+    await expect(page.locator('#g27-montage .plate__image')).toHaveAttribute('href', './assets/portfolio/g27/montage-original.png');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
@@ -56,6 +66,8 @@ test('reduced motion keeps the recording opt-in and selected software complete',
   const panel = page.locator('#preview-model-morpher');
   await expect(page.locator('#select-model-morpher')).toBeFocused();
   await expect(panel).toBeVisible();
+  await expect(panel.locator('#opening-morpher-limit')).toBeVisible();
+  await panel.locator('details.stage-account > summary').click();
   await expect(panel.locator('#model-morpher')).toBeVisible();
 });
 

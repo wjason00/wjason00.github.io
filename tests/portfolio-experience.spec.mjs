@@ -41,7 +41,8 @@ test('MorphBrain reports an empty frame and retry replaces it; closing releases 
   await page.clock.install();
   await page.route('**/demos/morphbrain/assets/*.js', route => route.abort());
   await page.goto('/');
-  const opener = page.locator('#morphbrain [data-launch-demo]');
+  await page.locator('#select-morphbrain').click();
+  const opener = page.locator('#preview-morphbrain [data-launch-demo]').first();
   await opener.click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
@@ -62,12 +63,27 @@ test('MorphBrain reports an empty frame and retry replaces it; closing releases 
   await expect(page.locator('body')).not.toHaveClass(/demo-is-open/);
 });
 
-test('gallery keyboard navigation, media views and playback stay connected after the move', async ({ page }) => {
+test('four project choices support keyboard selection, real playback and pause on switching', async ({ page }) => {
   await page.goto('/');
-  const brain = page.getByRole('tab', { name: 'Interactive model MorphBrain' });
-  const liner = page.getByRole('tab', { name: 'Browser editor Morphliner' });
-  await brain.press('End');
+  const brain = page.locator('#select-morphbrain');
+  const liner = page.locator('#select-morphliner');
+  const morpher = page.locator('#select-model-morpher');
+  const fly = page.locator('#select-fly');
+  for (const tab of [morpher, liner, fly, brain]) await expect(tab).toHaveAttribute('role', 'tab');
+  await brain.focus();
+  await brain.press('Home');
+  await expect(morpher).toBeFocused();
+  await expect(morpher).toHaveAttribute('aria-selected', 'true');
+  await morpher.press('End');
+  await expect(brain).toBeFocused();
+  await expect(brain).toHaveAttribute('aria-selected', 'true');
+  await brain.press('ArrowLeft');
+  await expect(fly).toBeFocused();
+  await expect(page.locator('#preview-fly #fly-preview')).toBeVisible();
+  await fly.press('Home');
+  await morpher.press('ArrowRight');
   await expect(liner).toHaveAttribute('aria-selected', 'true');
+  await expect(liner).toBeFocused();
   await liner.press('Control+Home');
   await expect(liner).toHaveAttribute('aria-selected', 'true');
   const panel = page.locator('#preview-morphliner');
@@ -79,13 +95,26 @@ test('gallery keyboard navigation, media views and playback stay connected after
   const video = panel.locator('video');
   await panel.locator('.video-play').click();
   await expect.poll(() => video.evaluate(element => !element.paused)).toBe(true);
+  await expect.poll(() => video.evaluate(element => element.currentTime)).toBeGreaterThan(0.1);
   await brain.click();
+  await expect(page.locator('#preview-morphbrain')).toBeVisible();
+  await expect(page.locator('.gallery-panel:not([hidden])')).toHaveCount(1);
   expect(await video.evaluate(element => element.paused)).toBe(true);
 });
 
 test('actual MorphBrain interface clears the loading status and supports Escape from its frame', async ({ page }) => {
   await page.goto('/');
-  await page.locator('#morphbrain [data-launch-demo]').click();
+  await page.locator('#select-morphbrain').click();
+  const panel = page.locator('#preview-morphbrain');
+  const comparison = panel.locator('#compare-input');
+  await expect(comparison).toBeVisible();
+  await comparison.focus();
+  await comparison.press('End');
+  await expect(comparison).toHaveValue('100');
+  await expect.poll(() => panel.locator('.comparison').evaluate(element => element.style.getPropertyValue('--position'))).toBe('100%');
+  const opener = panel.locator('[data-launch-demo]').first();
+  await expect(opener).toBeVisible();
+  await opener.click();
   const frame = page.frameLocator('.demo-dialog iframe');
   await expect(frame.locator('#root')).not.toBeEmpty({ timeout: 20_000 });
   await expect(page.locator('.demo-dialog__status')).toBeHidden({ timeout: 20_000 });

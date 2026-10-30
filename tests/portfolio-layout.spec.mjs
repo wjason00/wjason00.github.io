@@ -8,18 +8,18 @@ const viewports = [
 ];
 
 for (const viewport of viewports) {
-  test(`software preview follows research and keeps its usable width at ${viewport.name}`, async ({ page }) => {
+  test(`playable work leads the research and keeps a substantial stage at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto('/');
 
     const figure = page.locator('.project-gallery');
-    const poster = page.locator('#preview-morphbrain .project-gallery__visual');
+    const poster = page.locator('#opening-morpher video');
     const frame = page.locator('.project-gallery .hero__spotlight');
     await expect(figure).toBeVisible();
     await expect(poster).toBeVisible();
     expect(await page.locator('#projects .project-gallery').count()).toBe(1);
-    expect(await page.locator('#experience').evaluate(section =>
-      Boolean(section.compareDocumentPosition(document.querySelector('.project-gallery')) & Node.DOCUMENT_POSITION_FOLLOWING),
+    expect(await figure.evaluate(stage =>
+      Boolean(stage.compareDocumentPosition(document.querySelector('#selected-work')) & Node.DOCUMENT_POSITION_FOLLOWING),
     )).toBe(true);
     expect(await page.locator('video[poster$="model-morpher.webp"]').count()).toBe(1);
     await expect(page.locator('#opening-morpher video source')).toHaveAttribute('src', './assets/model-morpher/dentate-to-brain.mp4');
@@ -32,7 +32,8 @@ for (const viewport of viewports) {
     expect(posterBox).not.toBeNull();
     expect(posterBox.width).toBeGreaterThanOrEqual(viewport.minimumPosterWidth);
     expect(frameBox.width / figureBox.width).toBeGreaterThanOrEqual(0.98);
-    expect(posterBox.height).toBeGreaterThanOrEqual(300);
+    expect(posterBox.height).toBeGreaterThanOrEqual(viewport.width < 800 ? 200 : 300);
+    expect(posterBox.y).toBeLessThan(viewport.height * 0.8);
 
     const hasHorizontalOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -85,22 +86,30 @@ test('project selection keeps contributions, results and critical limits outside
   await expect(rareErrors.locator('.research-feature__preview img')).toHaveAttribute('alt', /one error per stimulus.*all five seeds.*not confidence intervals/);
 
   const projects = [
-    { id: 'morphbrain', purpose: /molecular patterning could affect\s+brain growth and folding/, limit: /not calibrated to biological/ },
-    { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/ },
-    { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype in development/ },
+    { id: 'morphbrain', purpose: /molecular patterning could affect\s+brain growth and folding/, limit: /not calibrated to biological/, visibleLimit: /Illustrative patterning; the folding aim remains open/ },
+    { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/, visibleLimit: /Geometric interpolation, not anatomical correspondence or development/ },
+    { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype in development/, visibleLimit: /Editor is a screenshot, not the live editor/ },
   ];
-  for (const { id, purpose, limit } of projects) {
+  for (const { id, purpose, limit, visibleLimit } of projects) {
     await page.locator(`#select-${id}`).click();
     const panel = page.locator(`#preview-${id}`);
     await expect(panel).toBeVisible();
+    await expect(page.locator('.gallery-panel:not([hidden])')).toHaveCount(1);
+    await expect(panel.locator('.stage-caption')).toBeVisible();
+    await expect(panel.locator('.stage-caption')).toContainText(visibleLimit);
     const project = page.locator(`#${id}`);
     await expect(panel.locator(`article#${id}`)).toHaveCount(1);
-    await expect(panel.locator('.project-gallery__visual')).toBeVisible();
+    await expect(panel.locator(id === 'morphbrain' ? '.compare-stage' : 'video')).toBeVisible();
     if (id === 'model-morpher') {
-      await expect(panel.locator('video')).toHaveCount(0);
-      await expect(panel.getByRole('link', { name: /Play the surface transition at the top/ })).toHaveAttribute('href', '#opening-morpher');
+      await expect(panel.locator('#opening-morpher video')).toHaveCount(1);
+      await expect(panel.locator('#opening-morpher video')).toBeVisible();
+      await expect(panel.locator('#opening-morpher-limit')).toBeVisible();
       await expect(panel.getByRole('link', { name: 'Open the recording', exact: true })).toHaveAttribute('href', './assets/model-morpher/dentate-to-brain.mp4');
     }
+    const account = panel.locator('details.stage-account');
+    await expect(account).not.toHaveAttribute('open');
+    await account.locator(':scope > summary').click();
+    await expect(account).toHaveAttribute('open', '');
     await expect(project.getByRole('heading', { level: 3 })).toBeVisible();
     await expect(project.locator('.project__lede')).toBeVisible();
     await expect(project.locator('.project__lede')).toContainText(purpose);
@@ -216,39 +225,24 @@ test('Fly replay and connection links open the matching explorer views', async (
 });
 
 for (const width of [1366, 820, 390]) {
-  test(`Fly circuit and paired result precede the separate playable replay at ${width}px`, async ({ page }) => {
+  test(`Fly evidence stays distinct from the directly selectable playable replay at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const video = page.locator('#fly-preview');
+    await expect(video).toHaveAttribute('preload', 'none');
     await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
     const chart = page.locator('.fly-comparison img');
     const network = page.locator('#fly-visuals .fly-circuit img');
-    const replay = page.locator('.fly-replay-preview');
+    const replay = page.locator('#preview-fly');
     await expect(page.locator('#fly-visuals video')).toHaveCount(0);
     await expect(replay.locator('#fly-preview')).toHaveCount(1);
     await expect(page.locator('#fly-visuals .fly-circuit h4')).toHaveText('The circuit intervention');
     await expect(page.locator('#fly-visuals .fly-circuit figcaption')).toContainText('Selected model connections; schematic layout.');
     await expect(page.locator('#fly-visuals .fly-circuit > a')).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
-    await expect(replay.locator('.video-demo')).toHaveClass(/is-enhanced/);
-    await expect(video).not.toHaveAttribute('controls');
-    await expect(video).toHaveAttribute('preload', 'none');
-    await expect(video).not.toHaveAttribute('autoplay');
-    await expect(video).toHaveAttribute('aria-describedby', 'fly-replay-caption');
-    await expect(page.locator('#fly-replay-caption')).toContainText(/Uncalibrated movement from a separate simulation archive/);
-    await expect(page.locator('#fly-replay-caption')).toContainText('assumed relaxation after 1 s');
-    await expect(page.locator('#fly-replay-caption')).toContainText('film is separate from the paired comparison');
     await expect(chart).toHaveAttribute('src', './assets/portfolio/fly-paired-comparison.svg');
-    const videoBox = await video.boundingBox();
     const chartBox = await chart.boundingBox();
     const networkBox = await network.boundingBox();
-    const studyBox = await page.locator('.fly-study-summary').boundingBox();
-    const replayBox = await replay.boundingBox();
-    expect(replayBox.y).toBeGreaterThan(studyBox.y + studyBox.height);
-    expect(videoBox.y).toBeGreaterThan(chartBox.y + chartBox.height);
-    expect(videoBox.width).toBeGreaterThanOrEqual(width > 1000 ? 500 : 330);
-    expect(await replay.evaluate(element => Boolean(document.querySelector('#fly-circuit > .research-evidence').compareDocumentPosition(element) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
-    expect(await replay.evaluate(element => Boolean(element.compareDocumentPosition(document.querySelector('.research-followup')) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
     if (width > 1000) {
       expect(Math.abs(networkBox.y - chartBox.y)).toBeLessThan(3);
       expect(chartBox.x).toBeGreaterThan(networkBox.x + networkBox.width);
@@ -260,8 +254,19 @@ for (const width of [1366, 820, 390]) {
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
-    await video.scrollIntoViewIfNeeded();
-    await video.evaluate(element => element.play());
+    await page.locator('#select-fly').click();
+    await expect(replay).toBeVisible();
+    await expect(replay.locator('.video-demo')).toHaveClass(/is-enhanced/);
+    await expect(video).not.toHaveAttribute('controls');
+    await expect(video).toHaveAttribute('preload', /^(none|metadata)$/);
+    await expect(video).not.toHaveAttribute('autoplay');
+    await expect(video).toHaveAttribute('aria-describedby', 'fly-replay-caption');
+    await expect(replay.locator('#fly-replay-caption')).toBeVisible();
+    await expect(replay.locator('#fly-replay-caption')).toContainText(/Uncalibrated movement from a separate simulation archive/);
+    await expect(replay.locator('#fly-replay-caption')).toContainText('assumed relaxation after 1 s');
+    await expect(replay.locator('#fly-replay-caption')).toContainText('film is separate from the paired comparison');
+    expect((await video.boundingBox()).width).toBeGreaterThanOrEqual(width > 1000 ? 500 : 330);
+    await replay.locator('.video-play').click();
     await expect.poll(() => video.evaluate(element => element.duration)).toBeCloseTo(9.6, 1);
     await expect.poll(() => video.evaluate(element => element.currentTime)).toBeGreaterThan(0.1);
     await page.locator('#about').scrollIntoViewIfNeeded();
@@ -299,6 +304,12 @@ test.describe('homepage methods without JavaScript', () => {
     await expect(page.locator('#fly-visuals video')).toHaveCount(0);
     for (const id of ['morphbrain', 'model-morpher', 'morphliner']) {
       await expect(page.locator(`#preview-${id}`)).toBeVisible();
+      const account = page.locator(`#preview-${id} details.stage-account`);
+      await expect(account).not.toHaveAttribute('open');
+      const accountSummary = account.locator(':scope > summary');
+      await accountSummary.focus();
+      await accountSummary.press('Enter');
+      await expect(account).toHaveAttribute('open', '');
       await expect(page.locator(`#preview-${id} article#${id}`)).toBeVisible();
       const details = page.locator(`#${id} .project__body > details`);
       const summary = details.locator(':scope > summary');

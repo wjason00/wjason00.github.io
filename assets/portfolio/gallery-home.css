@@ -13,33 +13,107 @@
 .portfolio-home .site-name__detail{display:none}
 .portfolio-home .site-nav{gap:28px}
 
-/* Opening: identity line, huge section words, a small supporting player */
-.portfolio-home .gallery-opening{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);grid-template-areas:'identity specimen' 'intro specimen' 'contents specimen';grid-template-rows:auto auto 1fr;gap:0 64px;align-items:start;padding-block:28px 44px}
-.gallery-opening__copy{display:contents}
-.portfolio-home .gallery-opening h1{grid-area:identity;margin:0;font:600 22px/1.25 var(--display);letter-spacing:-.01em}
-.gallery-opening__copy>p{grid-area:intro;max-width:44ch;margin:6px 0 0;font-size:18px;line-height:1.45;color:var(--muted)}
-.opening-nav{grid-area:contents;align-self:end;display:flex;flex-wrap:wrap;gap:0 .3em;margin-top:28px;font:400 clamp(48px,5.6vw,80px)/.95 var(--display);letter-spacing:-.045em}
-.opening-nav a{display:inline-flex;align-items:center;min-height:44px;padding-block:.04em;color:var(--ink);font:inherit;letter-spacing:inherit;text-decoration:none;text-transform:lowercase}
-.opening-nav a:hover span,.opening-nav a:focus-visible span{text-decoration:underline;text-decoration-thickness:.04em;text-underline-offset:.12em}
-.opening-nav a:focus-visible{outline:2px solid var(--link);outline-offset:4px;border-radius:2px}
+/* Opening: a compact name line, then three section words that are routes.
+   The work stage directly below is the page's main opening area. */
+.portfolio-home .gallery-opening{display:block;padding-block:18px 16px}
+.portfolio-home .gallery-opening h1{margin:0;font:600 20px/1.25 var(--display);letter-spacing:-.01em}
+.gallery-opening__copy>p{max-width:56ch;margin:4px 0 0;font-size:17px;line-height:1.45;color:var(--muted)}
+.opening-nav{display:flex;flex-wrap:wrap;gap:0 .32em;margin-top:8px;font:400 clamp(40px,4.4vw,66px)/.95 var(--display);letter-spacing:-.045em}
+.opening-nav a{display:inline-flex;align-items:center;min-height:44px;padding-block:.04em;color:var(--ink);font:inherit;letter-spacing:inherit;text-decoration:none;text-transform:lowercase;transition:color 120ms ease-out}
+.opening-nav a:hover,.opening-nav a:focus-visible{color:#6a4bc0}
+.opening-nav a:hover span,.opening-nav a:focus-visible span{text-decoration:underline;text-decoration-thickness:.05em;text-underline-offset:.12em}
+.opening-nav a:focus-visible{outline:2px solid currentColor;outline-offset:4px;border-radius:2px}
+:root[data-theme="dark"] .opening-nav a:hover,:root[data-theme="dark"] .opening-nav a:focus-visible{color:var(--accent)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .opening-nav a:hover,:root:not([data-theme="light"]) .opening-nav a:focus-visible{color:var(--accent)}}
 .opening-nav small{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.opening-media{grid-area:specimen;align-self:end;min-width:0;margin:0;scroll-margin-top:calc(var(--header-height) + 16px)}
-.opening-recording{background:#f2f6f5;color:#173f36;border-radius:6px;overflow:hidden}
-.opening-recording video{display:block;width:100%;height:200px;object-fit:contain;background:#f2f6f5}
-.opening-recording .video-controls{height:48px;padding:2px 10px;gap:8px;background:#e3ede8;color:#173f36;border-top:1px solid #c3d3cc}
-.opening-recording .video-play{min-height:44px;border-color:#78968a;color:inherit}
-.opening-recording .video-expand{min-height:44px;border-color:#78968a;color:#173f36}
-.opening-recording .video-controls label{display:flex;align-items:center;min-width:0;height:44px;flex:1}
-.opening-recording .video-range{min-height:44px}
-.opening-recording .video-time{font-size:12px;color:inherit}
-@media(max-width:480px){.opening-recording.is-enhanced .video-controls{display:grid;grid-template-columns:auto 1fr auto;height:88px;gap:0 10px;padding:0 10px}.opening-recording .video-controls label{grid-column:1/-1;grid-row:2;width:100%}.opening-recording .video-controls .video-play{grid-column:1;grid-row:1}.opening-recording .video-time{grid-column:2;grid-row:1;text-align:center}.opening-recording .video-expand{grid-column:3;grid-row:1}}
-.opening-media figcaption{margin-top:8px;font-size:14px;line-height:1.4;color:var(--muted)}
-.opening-media figcaption a{font-weight:600;color:var(--ink)}
-#opening-morpher-limit{display:block;margin-top:2px;font-size:13px}
-.opening-replay{display:block;background:#f2f6f5;color:#173f36;text-decoration:none}
-.opening-replay img{display:block;width:100%;height:330px;object-fit:contain}
-.opening-replay span{display:block;padding:12px 20px;font-size:16px;text-decoration:underline;text-underline-offset:.2em}
-.recording-download{padding:0 20px 12px;font-size:14px}
+
+/* Work stage: one inset dark plate. The project index swaps the real media
+   in place; copy stays short and the full accounts sit in native details. */
+.portfolio-home .work-stage{--stage:#10241e;--stage-ink:#eef4ef;--stage-muted:#bcd0c6;--stage-rule:rgba(238,244,239,.14);--stage-media-h:clamp(280px,calc(100svh - 380px),760px);max-width:none;margin:0;padding:0 clamp(8px,1vw,14px) 48px}
+.portfolio-home .work-stage .gallery{display:block;max-width:none;margin:0;padding:0;background:var(--stage);color:var(--stage-ink);border:0;border-radius:18px;box-shadow:none;overflow:hidden}
+.portfolio-home .work-stage .gallery-tabs{display:flex;gap:6px;margin:0;padding:8px;overflow-x:auto;border-bottom:1px solid var(--stage-rule);scrollbar-width:thin}
+.portfolio-home .work-stage .gallery-tab{flex:1 0 auto;display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:54px;margin:0;padding:12px 20px;background:transparent;border:1px solid transparent;border-radius:12px;color:var(--stage-ink);font:600 clamp(17px,1.45vw,22px)/1.2 var(--display);letter-spacing:-.01em;text-decoration:none;box-shadow:none}
+.portfolio-home .work-stage .gallery-tab small{font:400 15px/1.2 var(--display);letter-spacing:0;color:var(--stage-muted)}
+.portfolio-home .work-stage .gallery-tab:hover{background:rgba(238,244,239,.08);border-color:var(--stage-rule)}
+.portfolio-home .work-stage .gallery-tab[aria-selected="true"]{background:#d9ccf5;border-color:#d9ccf5;color:#163a31}
+.portfolio-home .work-stage .gallery-tab[aria-selected="true"] small{color:#163a31}
+.portfolio-home .work-stage .gallery-tab:focus-visible{outline:3px solid #d9ccf5;outline-offset:2px}
+.portfolio-home .work-stage .hero__spotlight{display:block;margin:0;padding:0;background:none;border:0;min-height:0}
+.portfolio-home .work-stage .gallery-panel:not([hidden]){display:block}
+.portfolio-home .work-stage .gallery-panel{margin:0;padding:0;background:none;border:0;scroll-margin-top:var(--header-height)}
+.portfolio-home .work-stage .gallery-panel:not([hidden])+.gallery-panel:not([hidden]){border-top:1px solid var(--stage-rule)}
+.portfolio-home .work-stage .gallery-panel:focus-visible{outline:3px solid #d9ccf5;outline-offset:-3px}
+.portfolio-home .work-stage .stage-media{display:block;width:auto;max-width:none;margin:0;padding:0;background:var(--stage);border:0;border-radius:0}
+.portfolio-home .work-stage .gallery[data-swapped] .gallery-panel:not([hidden]) .stage-media{animation:stage-in 180ms ease-out}
+@keyframes stage-in{from{opacity:0}to{opacity:1}}
+
+/* Real media fills the stage width at a height that keeps Play in view */
+.portfolio-home .work-stage .video-demo{margin:0;border:0;border-radius:0;background:#000;color:var(--stage-ink)}
+.portfolio-home .work-stage video{display:block;width:100%;height:var(--stage-media-h);max-height:none;object-fit:contain;background:#000;border-radius:0}
+.portfolio-home .work-stage .opening-recording,.portfolio-home .work-stage .opening-recording video{background:#f2f6f5}
+.portfolio-home .work-stage .video-controls{position:static;display:flex;align-items:center;gap:12px;min-height:62px;height:auto;margin:0;padding:8px 16px;background:var(--stage);color:var(--stage-ink);border:0;border-top:1px solid var(--stage-rule);opacity:1;transform:none}
+.portfolio-home .work-stage .video-demo:not(.is-enhanced) .video-controls{display:none}
+.portfolio-home .work-stage .video-play{min-width:104px;min-height:46px;padding:0 22px;background:#d9ccf5;border:0;border-radius:999px;color:#163a31;font:600 17px/1 var(--display)}
+.portfolio-home .work-stage .video-play:hover{background:#efe8ff}
+.portfolio-home .work-stage .video-play:focus-visible,.portfolio-home .work-stage .video-expand:focus-visible,.portfolio-home .work-stage .video-range:focus-visible{outline:3px solid #d9ccf5;outline-offset:3px}
+.portfolio-home .work-stage .video-controls label{display:flex;flex:1;align-items:center;min-width:0;height:46px}
+.portfolio-home .work-stage .video-range{width:100%;min-height:44px;accent-color:#d9ccf5}
+.portfolio-home .work-stage .video-time{color:var(--stage-muted);font-size:14px;font-variant-numeric:tabular-nums}
+.portfolio-home .work-stage .video-expand{min-height:44px;padding:0 14px;background:transparent;border:1px solid rgba(238,244,239,.4);border-radius:999px;color:var(--stage-ink)}
+
+/* Short caption: name, what to do, the essential limit */
+.portfolio-home .work-stage .stage-caption{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 28px;margin:0;padding:14px 20px 16px;background:var(--stage);color:var(--stage-muted);font-size:16px;line-height:1.5}
+.portfolio-home .work-stage .stage-caption p{margin:0;max-width:72ch}
+.portfolio-home .work-stage .stage-caption p>strong:first-child{margin-right:.45em;color:var(--stage-ink);font-weight:600}
+.portfolio-home .work-stage .stage-caption strong{color:var(--stage-ink)}
+.portfolio-home .work-stage .stage-caption a{display:inline-flex;align-items:center;min-height:44px;color:#e4dafa;text-underline-offset:.2em}
+.portfolio-home .work-stage .stage-caption a+a{margin-left:16px}
+.portfolio-home .work-stage .stage-caption a:focus-visible{outline:2px solid #d9ccf5;outline-offset:3px}
+.portfolio-home #opening-morpher-limit{display:block;margin-top:2px;color:#e4dafa}
+.portfolio-home .work-stage .stage-try{min-height:54px;padding:0 28px;background:#d9ccf5;border-radius:999px;color:#163a31;font:600 18px/1 var(--display);text-decoration:none}
+.portfolio-home .work-stage .stage-try:hover{background:#efe8ff}
+
+/* MorphBrain: the saved comparison on a light plate, then Try */
+.portfolio-home .work-stage .compare-stage{display:grid;align-content:center;justify-items:center;min-height:var(--stage-media-h);margin:0;padding:clamp(16px,2vw,28px);background:#f2f6f5;color:#163a31;border:0;border-radius:0}
+
+/* Morphliner: Demo / Editor screenshot / Another scene */
+.portfolio-home .work-stage .morphliner-showcase{margin:0;padding:0;background:none;border:0}
+.portfolio-home .work-stage .media-switch{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:10px 16px;background:var(--stage);border:0}
+.portfolio-home .work-stage .media-switch button,.portfolio-home .work-stage .demo-chapters button{min-height:44px;padding:0 16px;background:transparent;border:1px solid rgba(238,244,239,.35);border-radius:999px;color:var(--stage-ink);font:500 15px/1 var(--display)}
+.portfolio-home .work-stage .media-switch button[aria-pressed="true"],.portfolio-home .work-stage .demo-chapters button[aria-pressed="true"]{background:var(--stage-ink);border-color:var(--stage-ink);color:#163a31}
+.portfolio-home .work-stage .media-switch button:focus-visible,.portfolio-home .work-stage .demo-chapters button:focus-visible{outline:3px solid #d9ccf5;outline-offset:2px}
+.portfolio-home .work-stage .demo-chapters{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0 16px 10px;background:var(--stage)}
+.portfolio-home .work-stage .demo-caption{margin:0;padding:0 16px 10px;background:var(--stage);color:var(--stage-muted);font-size:14px}
+.portfolio-home .work-stage .morphliner-editor-still,.portfolio-home .work-stage .morphliner-render-view{display:block;margin:0;background:#000;color:#e4dafa}
+.portfolio-home .work-stage .morphliner-editor-still[hidden],.portfolio-home .work-stage .morphliner-render-view[hidden]{display:none}
+.portfolio-home .work-stage .morphliner-editor-still img,.portfolio-home .work-stage .morphliner-render{display:block;width:100%;height:var(--stage-media-h);object-fit:contain;background:#000}
+.portfolio-home .work-stage .morphliner-editor-still span,.portfolio-home .work-stage .morphliner-render-view figcaption{display:block;padding:10px 16px;background:var(--stage);color:#e4dafa;font-size:15px}
+
+/* Full accounts: a native disclosure that opens onto paper, not dark */
+.portfolio-home .work-stage .stage-account{margin:0;border-top:1px solid var(--stage-rule)}
+.portfolio-home .work-stage .stage-account>summary{min-height:48px;padding:12px 20px;color:var(--stage-muted);font-size:15px;cursor:pointer}
+.portfolio-home .work-stage .stage-account>summary:hover{color:var(--stage-ink)}
+.portfolio-home .work-stage .stage-account>summary:focus-visible{outline:3px solid #d9ccf5;outline-offset:-3px}
+.portfolio-home .work-stage .stage-account[open]{background:var(--paper);color:var(--ink)}
+.portfolio-home .work-stage .stage-account[open]>summary{color:var(--ink)}
+.portfolio-home .work-stage .stage-account .project{max-width:none;margin:0;padding:8px 20px 28px;border:0}
+.portfolio-home .work-stage .stage-next{margin:14px 6px 0;font-size:17px}
+.portfolio-home .work-stage .stage-next a{display:inline-flex;align-items:center;min-height:44px;color:var(--link);font-weight:600}
+
+@media(max-width:700px){
+  .portfolio-home .work-stage{padding-inline:0}
+  .portfolio-home .work-stage .gallery{border-radius:0}
+  .portfolio-home .work-stage .gallery-tab{flex:0 0 auto;min-height:48px;padding:10px 16px;font-size:17px}
+  .portfolio-home .work-stage video,.portfolio-home .work-stage .morphliner-editor-still img,.portfolio-home .work-stage .morphliner-render{height:auto;aspect-ratio:16/10}
+  .portfolio-home .work-stage .compare-stage{min-height:0}
+  .portfolio-home .work-stage .video-controls{flex-wrap:wrap}
+  .portfolio-home .work-stage .video-controls label{flex-basis:100%;order:3}
+  .portfolio-home .work-stage .stage-caption{padding:12px 16px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .portfolio-home .work-stage .gallery[data-swapped] .gallery-panel:not([hidden]) .stage-media{animation:none}
+  .opening-nav a{transition:none}
+}
 
 /* Shared: caption rows, case titles, actions */
 .case-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;margin:0 0 8px;font-size:14px;line-height:1.4;color:var(--muted)}

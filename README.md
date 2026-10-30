@@ -4,69 +4,62 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Local figure-led candidate - 30 October 2026
+## Local interactive work stage - 30 October 2026
 
-Jason rejected the previous serif/editorial candidate as bland and too much like
-an article. Actual Claude Opus 5.5 inspected [Sonali](https://www.sonali.ca/),
-including its image-led work route, wrote the new composition brief, and then
-**authored the production HTML and homepage CSS**. Source Sans now carries the
-main interface, lowercase research/software/about links frame a compact real
-Morpher player, and larger project images lead into short accounts and native
-detail disclosures. This supersedes the specimen/serif direction at `6b7f905`.
+Jason rejected090be75 as static, with recordings less apparent, while retaining
+its clearer information/data. The new candidate puts a substantial playable
+work stage immediately below the opening. Four visible choices swap the real
+Model Morpher, Morphliner and Fly recordings or MorphBrain comparison/model
+launch in place. Play, Drag and Try are direct actions; full accounts remain in
+native disclosures below the media. The G27 original figures and research data
+follow the work stage. All3existing recordings remain; none was invented or
+newly rendered. There is one Morpher player, relocated rather than duplicated.
 
-The [local preview](http://127.0.0.1:4187/?v=20261030-figure-led) runs on this
-computer. This is a saved implementation candidate. **Final visual acceptance
-is incomplete; it is not a public release or Jason's design approval.**
+The [local preview](http://127.0.0.1:4187/?v=20261030-workstage) runs on this
+computer. This source checkpoint is local only. **Final browser/visual review is
+pending at this checkpoint; no publication or Jason design approval is claimed.**
 
-G27 now leads with the actual timing figure from slide 6 and montage figure
-from slide 8, each inline with a full-size image link. The complete presentation
-is a secondary source link. The PNG bytes match the native presentation assets;
-`assets/portfolio/g27/source.json` records revision, slide, member, credit and
-local-only reuse scope. Captions keep the negative selector result, retrospective
-training-trial/window/feedback limits and inferred montage uncertainty visible.
-These are team figures, not new experiments or Jason's sole work.
+Actual Claude Opus5.5 inspected [Sonali](https://www.sonali.ca/) and
+[Scale](https://scale.com/) in signed-in Chrome. Sonali supplied stateful project
+selection; Scale supplied one large inset media stage with information following
+the visuals. Lusion's project index stayed behind its loader; its hover/scroll
+behaviour was not observed or treated as acceptance evidence. The final concept
+uses explicit project selection instead of Scale's scroll-driven media swaps.
+Claude authored production index/CSS/script changes in383.83seconds, within its
+480-second limit (its final prose guessed elapsed time incorrectly). Root then
+corrected two CSS fallback/specificity defects: no inactive custom controls
+without JavaScript, and reduced motion overrides the media cross-fade.
 
-The proposed numerical montage redraw was deferred: two original blue bars use
-a swapped-paper candidate rather than the raw `paper_rho` column. Redrawing that
-column would change the displayed comparison. Both original PNGs stay exact;
-figure improvements here are framing, hierarchy, inline access and context.
-MorphBrain's existing source-based vector fields/categories and the genuine
-30-surface Model Morpher recapture are unchanged. The morph is geometric
-interpolation after centring/scaling, not anatomical correspondence/development;
-playback remains user-triggered. No scientific solver or private data changed.
+The project index reuses keyboard arrows/Home/End/Space, hash routes and visible
+selection feedback. A visitor-triggered swap cross-fades media over180ms; reduced
+motion is instant. Videos have no autoplay, only one plays at a time, and hidden
+or offscreen media pauses. The actual MorphBrain runtime mounts only after Try;
+Morphliner's Editor is explicitly a screenshot. Without scripts the four stages
+remain stacked, with native video controls and disclosures. The dead old
+specimen-scroll handler was removed; native hash/disclosure reveal remains.
 
-The final build contains 184 public files (32,144,618 bytes); internal references
-in 12 HTML files resolve. All 36 source/data checks, browser-spec syntax checks
-and `git diff --check` pass. A prose/source consistency review found no caption
-or provenance defect. The preview and every image flagged by the partial browser
-check return HTTP 200 with exact source bytes. The temporary QA host was removed.
-HTTP verification does not prove browser decoding or lazy-load behaviour.
+Build/internal links pass for184files/32,152,580bytes and12HTMLfiles. All36source/
+data tests, source/browser-spec syntax, duplicate-ID/single-player/no-autoplay
+inventory and whitespace checks pass. Native figures and recordings returnHTTP200
+with source-exact bytes. A read-only comparison found the full accounts unchanged
+apart from whitespace and no scientific/caption defect. The revised browser specs
+cover the new stage and functional flows; the full Playwright suite was not run.
+Current Chrome screenshots/interaction results will be added after the bounded
+final review; source checks do not establish visual quality.
 
-The final actual-Claude Chrome review returned one reliable 1366px light result:
-no overflow, research at 471.97px and Source Sans headings. Its subsequent
-measurement/decode call was automatically rejected because the target page could
-not be determined; tab cleanup then timed out. No screenshots or final phone,
-dark-theme, media, no-script or reduced-motion acceptance were obtained for this
-revision. Earlier `6b7f905` browser results do not certify this new composition.
-The browser lease is released; owned QA tab 70057604 may remain. The original
-13:09 UTC cap was not extended for another design/browser run; resumption after
-the CCAT interruption performed only bounded source/preview/status closeout.
+Scientific runtimes, private inputs, measured results, saved morph geometry,
+MorphBrain vector fields and G27 native PNGs are unchanged. Morpher is geometric
+interpolation, not anatomical correspondence/development; MorphBrain remains
+illustrative patterning; Fly movement uses its separate illustrative archive;
+G27 retains its negative, inspected-training-trial and montage uncertainty limits.
+The native figure provenance and deferred numerical-redraw decision remain valid
+in `assets/portfolio/g27/source.json` and the prior090be75 receipts.
 
-Actual model and execution receipts are in `output/modern-20261030/`. Claude's
-first real Codex-worker dispatch selected GPT-6.1 Sol/Ultra but produced no code:
-the Claude parent self-ended after 238.72 seconds and closing its owned job
-stopped the worker after about 90 seconds. Its stale `running` receipt is not
-completion evidence. Claude's subsequent direct implementation exited 0 in
-312.27 seconds. Effective Claude effort was not exposed (high requested for
-implementation; low for final QA). `final-verification.json` records the source
-checkpoint and remaining checks; it explicitly withholds visual acceptance.
-
-The [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) and T-366
-own the remaining bounded desktop/phone review. Oxford drafts remain in their
-[existing owner](../Applications/private/hackathons-2026/OXFORD_RESPONSES.md#discord-drafts--29-october-2026).
-Public baseline remains `b150012`; publication requires its own authority.
-Previous composition/camera/control checks remain dated history in Git and
-`output/sonali-20261030/`, rather than acceptance of this follow-up.
+The [current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md), T-366 and
+`output/interaction-20261030/final-verification.json` own current checks/limits.
+Oxford drafts stay in their existing owner. Earlier static candidates and their
+browser results remain dated history, not acceptance of this interaction pass.
+Public baseline remainsb150012; publication requires its own authority.
 
 ## Professional focus - 23 October 2026
 
