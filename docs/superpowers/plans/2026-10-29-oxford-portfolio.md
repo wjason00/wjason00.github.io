@@ -1,5 +1,26 @@
 # Sonali-inspired portfolio opening implementation plan
 
+## Approved candidate finalisation - 30 October 2026 (T-376)
+
+Jason17:26UTC approved the completed figure version and requested finalisation.
+Accepted homepage/scene and Model Morpher visual source remain frozen atd3cea26.
+
+- [x] Correct the stale404 browser assertion to the existing work-page route.
+- [x] Include all58source tests in CI, preserving CommonJS and adding Fly, serially.
+- [x] Add four Model Morpher browser cases; static discovery55tests/10files.
+- [x] Build197files/33,092,055bytes;14HTML reference checks and58source tests pass.
+- [x] ActualClaudeChrome smoke: oldG27route/nativefigure, focusedArrowRight,
+  trustednativevideoPlay, sliderEnd/Home/Middle andtheme pass; own tab closed.
+- [x] Reconcile approval/current verification in README andT-374/T-376.
+- [ ] Obtain explicit public release authority for locally scoped team figures.
+- [ ] If authorised, reconcile scope records, push and verify exact-head Pages CI.
+
+BrowserHome reset remains unverified. NoJS was not repeated in the final smoke;
+earlier browser/source fallback evidence remains. FullPlaywright/hardwaretouch/
+physicalphone remain unperformed. No public mutation in this finalisation.
+Current receipt: output/finalise-20261030/final-verification.json. The previous
+sections are historical checkpoints, not the current release verification.
+
 ## Current full homepage rebuild - completed local scope, 30 October 2026
 
 Jason14:10authorisedfullredo/cursorinteraction. The replacement now uses isolated

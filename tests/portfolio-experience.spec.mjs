@@ -131,7 +131,7 @@ test('theme persists on secondary pages and nested 404 offers valid recovery rou
   await page.route('**/missing/deep/path', async route => route.fulfill({ status: 404, contentType: 'text/html', body: readFileSync('404.html', 'utf8') }));
   await page.goto('/missing/deep/path');
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
-  for (const path of ['/', '/#experience', '/demos/fly/', '/rare-errors.html', '/demos/morphbrain/']) {
+  for (const path of ['/', '/work.html#experience', '/demos/fly/', '/rare-errors.html', '/demos/morphbrain/']) {
     await expect(page.locator(`main a[href="${path}"]`)).toBeVisible();
   }
 });

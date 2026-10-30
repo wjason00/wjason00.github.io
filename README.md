@@ -4,7 +4,43 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Accepted cursor-driven homepage - local candidate, 30 October 2026
+## Approved release candidate - 30 October 2026 (T-376)
+
+Jason approved the hero direction and, at 17:26 UTC, the project-figure version:
+"This looks good. Can you finalise this?" The accepted homepage and Model Morpher
+visuals are frozen at `d3cea26`. [Open the approved local preview](http://127.0.0.1:4187/).
+This finalisation adds release checks and records, without changing the design,
+scientific results, source figures, recordings or saved geometry.
+
+The release build contains 197 public files/33,092,055 bytes, below the 32 MiB budget;
+all 14 HTML internal-reference checks and 58 source tests pass. CI now includes the
+Fly source tests, preserves the CommonJS package tests and uses serial execution.
+Its stale 404 assertion now expects
+the existing `/work.html#experience` recovery route. Four new Model Morpher
+browser cases cover frame pixels/metadata, controls/playback, no-JS and 320px
+usability. Static Playwright discovery finds 55 tests in 10 files; the full browser
+suite has not been executed locally. Pages must pass its required CI before a
+deployment can be reported successful.
+
+Actual Claude Opus 5.5 checked source `d3cea26` in signed-in Chrome. The legacy
+`/#g27` route opened the full account and loaded its native timing figure. The
+4096-point hero responded to a focused ArrowRight key; a real native Play click
+advanced video to 0.84s. The Morpher slider's real End/Home keys selected 29/0,
+and Middle selected 15/29 = .517 with new canvas rendering. Theme toggled dark and
+was restored to light. The operator closed its own tab and released the browser
+lease. Hero Home reset remains unverified in the browser; no-JS was not repeated
+in this final smoke and retains the earlier browser/source evidence. Hardware
+touch, physical phone and the full Playwright suite remain unverified.
+
+Current release receipt: `output/finalise-20261030/final-verification.json`;
+source checks: `checks.json`; actual browser result: `smoke-result.txt` in that
+same directory. T-376 owns finalisation. Public release remains a separate
+decision: the G27 source manifest still limits its two team figures to local
+reuse, and the Morpher prototype manifest likewise records local scope. No
+public push or deployment has occurred in this finalisation. Original private
+data/code and unpublished UCL/EEG holds remain.
+
+## Accepted cursor-driven homepage - earlier local checkpoint, 30 October 2026
 
 The homepage is rebuilt with its own HTML, stylesheet and controller. A live
 atlas surface fills the opening: real cursor movement displaces/lights nearby
@@ -56,7 +92,7 @@ Current receipts: `output/rebuild-20261030/final-verification.json` and the
 local completion. Original figure/data restrictions and separate publication
 authority remain. Earlier directions below are dated history.
 
-## Project figure development - 30 October 2026 (T-374)
+## Project figure development - earlier local checkpoint, 30 October 2026 (T-374)
 
 Jason explicitly approved the cursor-driven hero as exactly the intended direction.
 The hero markup, CSS/controller and scene-engine hashes remain unchanged while

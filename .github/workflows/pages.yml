@@ -30,7 +30,7 @@ jobs:
       - name: Install test dependencies
         run: npm ci
       - name: Check data, figures and replay modules
-        run: node --test tests/*.test.*
+        run: node --test --test-concurrency=1 tests/*.test.* demos/fly/tests/*.test.mjs
       - name: Install Chromium for responsive checks
         run: npx playwright install --with-deps chromium
       - name: Check responsive layout
