@@ -11,10 +11,11 @@ test('Fly preview plays on request, seeks and pauses when it leaves the screen',
   await expect(player).toHaveClass(/is-enhanced/);
   expect(await video.evaluate(element => ({ paused: element.paused, time: element.currentTime, nativeControls: element.controls })))
     .toEqual({ paused: true, time: 0, nativeControls: false });
-  await expect(play).toHaveAccessibleName('Play illustrative 3D fly replay');
   await expect(seek).toBeDisabled();
 
+  // The gallery opens on Model Morpher; the fly player is named once its tab is shown.
   await page.locator('#select-fly').click();
+  await expect(play).toHaveAccessibleName('Play illustrative 3D fly replay');
   await play.scrollIntoViewIfNeeded();
   await play.focus();
   await play.press('Enter');

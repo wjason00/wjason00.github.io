@@ -88,7 +88,7 @@ test('project selection keeps contributions, results and critical limits outside
   const projects = [
     { id: 'morphbrain', purpose: /molecular patterning could affect\s+brain growth and folding/, limit: /not calibrated to biological/, visibleLimit: /Illustrative patterning; the folding aim remains open/ },
     { id: 'model-morpher', purpose: /distance fields/, limit: /does not track corresponding\s+anatomy or model biological development/, visibleLimit: /Geometric interpolation, not anatomical correspondence or development/ },
-    { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype in development/, visibleLimit: /Editor is a screenshot, not the live editor/ },
+    { id: 'morphliner', purpose: /camera keyframes/, limit: /Prototype, with local project saving/, visibleLimit: /Editor is a screenshot, not the live editor/ },
   ];
   for (const { id, purpose, limit, visibleLimit } of projects) {
     await page.locator(`#select-${id}`).click();
