@@ -638,3 +638,20 @@ h1, h2, h3, p { margin: 0; }
     font-size: 0.7rem;
   }
 }
+
+/* About: heading column carries quick facts and contact links */
+.about__side { display: flex; flex-direction: column; gap: 1.75rem; min-width: 0; }
+.about__facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.about__facts li { display: grid; gap: 0.15rem; font-size: 1.05rem; }
+.about__label {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-muted);
+}
+.about__links { display: flex; flex-direction: column; align-items: flex-start; gap: 0; margin: 0; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.about__links a { min-height: 44px; display: inline-flex; align-items: center; }
+.about__mail { font-weight: 600; }
+.about__open { padding-top: 1.1rem; border-top: 1px solid var(--rule); }
+@media (max-width: 720px) {
+  .about__facts { grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); }
+  .about__links { flex-direction: row; flex-wrap: wrap; gap: 0 1.5rem; }
+}

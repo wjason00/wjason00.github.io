@@ -313,22 +313,23 @@
 
         <article class="entry" id="work-morphliner" data-scene-project="morphliner" aria-labelledby="work-morphliner-title">
           <div class="entry__media">
-            <video controls playsinline preload="none" width="1920" height="1080"
-              poster="./assets/portfolio/morphliner-poster.jpg"
-              aria-label="Morphliner recording: an exported camera sequence">
-              <source src="./assets/portfolio/morphliner-demo.mp4" type="video/mp4" />
-              <a href="./assets/portfolio/morphliner-demo.mp4">Open the Morphliner recording (MP4)</a>
+            <video controls playsinline preload="none" width="1280" height="720"
+              poster="./assets/portfolio/morphliner-editor.jpg"
+              aria-label="Morphliner recording: the editor with a shoe scene and its camera timeline, then the 6.5 second animation it exported">
+              <source src="./assets/portfolio/morphliner-editor-export.mp4" type="video/mp4" />
+              <a href="./assets/portfolio/morphliner-editor-export.mp4">Open the Morphliner recording (MP4)</a>
             </video>
           </div>
           <div class="entry__text">
             <h3 id="work-morphliner-title">Morphliner</h3>
-            <p class="entry__kind">Browser 3D animation editor, 6.5 s export</p>
+            <p class="entry__kind">Browser 3D animation editor, 8.5 s recording</p>
             <p>
-              An editor I’m developing for arranging a 3D scene, setting camera
-              keyframes and exporting the animation. This recording is an exported
-              camera sequence.
+              A browser editor I built for arranging a 3D scene, setting camera
+              keyframes on a timeline and exporting the animation as video. The
+              recording opens on the editor, then plays the 6.5 s animation it
+              exported from that scene.
             </p>
-            <p class="entry__limit">Prototype in development. The editor view on the full page is a screenshot, not a live editor.</p>
+            <p class="entry__limit">Prototype. The opening is a screenshot of the editor, not a live session; the rest is the exported video.</p>
             <p class="entry__actions">
               <a href="./work.html#morphliner" data-scene-project="morphliner">Full account</a>
               <a href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist" target="_blank" rel="noreferrer">Visit Morphliner</a>
@@ -508,7 +509,20 @@
       </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
-        <h2 id="about-title">About</h2>
+        <div class="about__side">
+          <h2 id="about-title">About</h2>
+          <ul class="about__facts">
+            <li><span class="about__label">Studying</span>Neuroscience, UCL</li>
+            <li><span class="about__label">Research</span>Undergraduate research assistant, UCL</li>
+            <li><span class="about__label">Based in</span>London</li>
+          </ul>
+          <p class="about__links" id="contact">
+            <a class="about__mail" href="mailto:jason.wang.25@ucl.ac.uk">jason.wang.25@ucl.ac.uk</a>
+            <a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a>
+            <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </p>
+        </div>
         <div class="about__body">
           <p>
             I study neuroscience at UCL and build tools for exploring brains and
@@ -522,19 +536,11 @@
             <a href="./rare-errors.html">separating stimulus and choice signals when errors are rare</a>,
             and <a href="./work.html#fly-circuit">the fly input-timing comparison</a>.
           </p>
-          <div class="contact" id="contact">
-            <p>
-              I’m interested in paid internships, scientific software work and
-              research opportunities in brain modelling, computational neuroscience
-              and machine learning.
-            </p>
-            <p class="contact__links">
-              <a class="contact__mail" href="mailto:jason.wang.25@ucl.ac.uk">jason.wang.25@ucl.ac.uk</a>
-              <a href="mailto:jason.wang.25@ucl.ac.uk?subject=CV%20request%20via%20portfolio">Request my CV</a>
-              <a href="https://github.com/wjason00" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://www.linkedin.com/in/-jasonwang/" target="_blank" rel="noreferrer">LinkedIn</a>
-            </p>
-          </div>
+          <p class="about__open">
+            I’m interested in paid internships, scientific software work and
+            research opportunities in brain modelling, computational neuroscience
+            and machine learning.
+          </p>
         </div>
       </section>
     </main>
