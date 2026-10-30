@@ -66,6 +66,7 @@
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261030-rebuild" />
+    <link rel="stylesheet" href="./assets/portfolio/g27-explainer.css?v=20261030-morpher-eeg" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
       is required even same-origin — fonts are always fetched in CORS mode, and a
@@ -188,7 +189,7 @@
             <img data-peek-for="morphliner" src="./assets/portfolio/morphliner-poster.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
             <img data-peek-for="fly" src="./assets/portfolio/fly-preview-20261020.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
             <img data-peek-for="morphbrain" src="./assets/portfolio/morphbrain-feature.svg" alt="" width="1000" height="760" loading="lazy" decoding="async" />
-            <img data-peek-for="g27" src="./assets/portfolio/g27/timing-original.png" alt="" width="1720" height="980" loading="lazy" decoding="async" />
+            <img data-peek-for="g27" src="./assets/portfolio/g27-peek.svg" alt="" width="640" height="480" loading="lazy" decoding="async" />
           </div>
         </nav>
 
@@ -229,25 +230,81 @@
         </header>
 
         <article class="entry" id="work-model-morpher" data-scene-project="model-morpher" aria-labelledby="work-model-morpher-title">
-          <div class="entry__media">
-            <video controls playsinline preload="none" width="1440" height="1080"
-              poster="./assets/portfolio/model-morpher.webp"
-              aria-label="Model Morpher recording: a dentate gyrus surface becoming a whole mouse-brain surface">
-              <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
-              <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the Model Morpher recording (MP4)</a>
-            </video>
+          <div class="entry__media morph-home" data-morph-entry>
+            <div class="morph-home__interactive">
+              <div class="morph-home__triptych" role="group" aria-label="Jump to start, middle or end saved surface">
+                <button class="morph-home__thumb" type="button" data-morph-frame="0" aria-current="false">
+                  <canvas data-morph-thumb="0" width="240" height="180" aria-hidden="true"></canvas>
+                  <span class="morph-home__thumb-step">0 · Start</span>
+                  <span class="morph-home__thumb-name">Dentate gyrus</span>
+                </button>
+                <button class="morph-home__thumb" type="button" data-morph-frame="15" aria-current="true">
+                  <canvas data-morph-thumb="15" width="240" height="180" aria-hidden="true"></canvas>
+                  <span class="morph-home__thumb-step">15 · Middle (15/29)</span>
+                  <span class="morph-home__thumb-name">Computed shape</span>
+                </button>
+                <button class="morph-home__thumb" type="button" data-morph-frame="29" aria-current="false">
+                  <canvas data-morph-thumb="29" width="240" height="180" aria-hidden="true"></canvas>
+                  <span class="morph-home__thumb-step">29 · End</span>
+                  <span class="morph-home__thumb-name">Whole mouse brain</span>
+                </button>
+              </div>
+              <div class="morph-home__stage">
+                <canvas
+                  class="morph-home__canvas"
+                  data-morph-canvas
+                  role="img"
+                  aria-label="Interactive 3D surface morph: 30 saved steps from a mouse dentate gyrus to a whole mouse brain. Drag or use arrow keys to rotate."
+                ></canvas>
+                <p class="morph-home__hud" aria-hidden="true">
+                  <span data-morph-badge>Step 15 of 0–29 · Middle · Computed shape</span>
+                  <span class="morph-home__hud-hint">Drag to turn</span>
+                </p>
+              </div>
+              <div class="morph-home__bar" role="group" aria-label="Scrub through the 30 saved surfaces">
+                <button class="morph-home__btn morph-home__btn--play" type="button" data-morph-play aria-pressed="false">Play</button>
+                <div class="morph-home__slider">
+                  <label class="xp-sr" for="home-morph-range">Scrub through 30 computed surfaces from dentate gyrus (0) to whole mouse brain (29)</label>
+                  <input
+                    id="home-morph-range"
+                    class="morph-home__range"
+                    data-morph-range
+                    type="range"
+                    min="0"
+                    max="29"
+                    step="1"
+                    value="15"
+                  />
+                  <output class="morph-home__out" for="home-morph-range" data-morph-output>15 / 29</output>
+                </div>
+                <button class="morph-home__btn" type="button" data-morph-reset>Reset view</button>
+                <p class="xp-sr" role="status" aria-live="polite" data-morph-live></p>
+              </div>
+            </div>
+            <details class="morph-home__recording" data-morph-recording open>
+              <summary>Watch the 5.5 s rendered mesh recording (MP4)</summary>
+              <video controls playsinline preload="none" width="1440" height="1080"
+                poster="./assets/portfolio/model-morpher.webp"
+                aria-label="Model Morpher recording: a dentate gyrus surface becoming a whole mouse-brain surface">
+                <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
+                <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the Model Morpher recording (MP4)</a>
+              </video>
+            </details>
           </div>
           <div class="entry__text">
             <h3 id="work-model-morpher-title">Model Morpher</h3>
-            <p class="entry__kind">3D surface interpolation,5.5 s recording</p>
+            <p class="entry__kind">Python 3D surface software, 30 saved steps &amp; 5.5 s recording</p>
             <p>
-              Blends the distance fields of two 3D surfaces and extracts the shapes
-              in between, without matching vertices. Here, a dentate gyrus becomes a
-              whole mouse brain (Allen CCF meshes via BrainGlobe).
+              How do you turn one 3D brain structure into another when their meshes
+              share no matching points? I built a Python prototype that turns two
+              surfaces into signed distance fields, blends them and extracts the
+              shapes in between, so the meshes can differ in vertex count or
+              topology. Scrub above to step from a mouse dentate gyrus to a whole
+              mouse brain (Allen Mouse Brain CCF meshes via BrainGlobe).
             </p>
-            <p class="entry__limit">Geometric interpolation, not anatomical correspondence or development.</p>
+            <p class="entry__limit">Geometric interpolation, not anatomical correspondence or development; each saved step is resampled independently, so points do not travel across frames.</p>
             <p class="entry__actions">
-              <a href="./demos/model-morpher/" data-scene-project="model-morpher">Explore the point morph</a>
+              <a class="entry__primary" href="./demos/model-morpher/" data-scene-project="model-morpher">Explore the 3D morph</a>
               <a href="./work.html#model-morpher" data-scene-project="model-morpher">Full account</a>
               <a href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">Source code</a>
             </p>
@@ -265,7 +322,7 @@
           </div>
           <div class="entry__text">
             <h3 id="work-morphliner-title">Morphliner</h3>
-            <p class="entry__kind">Browser 3D animation editor,6.5 s export</p>
+            <p class="entry__kind">Browser 3D animation editor, 6.5 s export</p>
             <p>
               An editor I’m developing for arranging a 3D scene, setting camera
               keyframes and exporting the animation. This recording is an exported
@@ -290,7 +347,7 @@
           </div>
           <div class="entry__text">
             <h3 id="work-fly-title">Fly feeding circuit</h3>
-            <p class="entry__kind">Whole-brain fly model,9 s replay</p>
+            <p class="entry__kind">Whole-brain fly model, 9 s replay</p>
             <p>
               In a 127,400-neuron implementation of a published fly model, cutting
               Roundup’s outputs reduced spiking in motor neuron MN9 in all 15 paired comparisons. The replay shows simulated motor spikes on a 3D fly.
@@ -312,7 +369,7 @@
           </div>
           <div class="entry__text">
             <h3 id="work-morphbrain-title">MorphBrain</h3>
-            <p class="entry__kind">Patterning model,runs in the browser</p>
+            <p class="entry__kind">Patterning model, runs in the browser</p>
             <p>
               Move or remove SHH and BMP sources and watch the regions the model
               assigns change. I implemented the reaction–diffusion components and
@@ -326,24 +383,126 @@
           </div>
         </article>
 
-        <article class="entry" id="work-g27" data-scene-project="g27" aria-labelledby="work-g27-title">
-          <div class="entry__media entry__media--plate">
-            <a href="./assets/portfolio/g27/timing-original.png" aria-label="Open the team timing figure at full size">
-              <img src="./assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" decoding="async"
-                alt="Team figure: later training trials correct (%) against decision time after the trial trigger, 0 to 8 s. A bold line stays near the 50% chance level until about 3 s, then rises to around 80%. Marked points: 82/120 at +3.5 s and 99/120 at +4.25 s." />
-            </a>
-          </div>
+        <article class="entry entry--g27" id="work-g27" data-scene-project="g27" aria-labelledby="work-g27-title">
           <div class="entry__text">
-            <h3 id="work-g27-title">When does EEG imagery become decodable?</h3>
-            <p class="entry__kind">G27, a g.tec BR41N.IO team project</p>
-            <p>
-              Our team asked whether early calibration could choose between CSP and
-              Riemannian decoders, and how decoding depends on decision time. I contributed evaluation pull requests and obtained and relayed the organisers’ scoring rules.
-            </p>
-            <p class="entry__limit">Unchanged team figure. Separate fits on shifted 1 s windows, scored on previously inspected later training trials; feedback onset assumed. Three participants, six sessions; not a held-out gain.</p>
+            <div class="entry__intro">
+              <h3 id="work-g27-title">When does EEG imagery become decodable?</h3>
+              <p class="entry__kind">G27, a g.tec BR41N.IO team project · 3 participants, 6 sessions</p>
+              <p>
+                Participants imagined an instructed task while EEG was recorded. How
+                soon after the instruction can a decoder read it better than chance,
+                and does a short early calibration choose a better decoder for each
+                session? I contributed evaluation pull
+                requests and obtained and relayed the organisers’ scoring rules.
+              </p>
+            </div>
             <p class="entry__actions">
-              <a href="./work.html#g27" data-scene-project="g27">Full account</a>
+              <a href="./work.html#g27" data-scene-project="g27">Full account &amp; second figure</a>
+              <a href="./assets/portfolio/g27/timing-original.png">Open full-size PNG</a>
             </p>
+          </div>
+
+          <div class="g27x" data-g27-explainer>
+            <div class="g27x__visual">
+              <figure class="g27x__plate">
+                <div class="g27x__plot">
+                  <a class="g27x__image-link" href="./assets/portfolio/g27/timing-original.png" aria-label="Open the unchanged team timing figure at full size">
+                    <img src="./assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" decoding="async"
+                      alt="Team figure: later training trials correct (%) against decision time from 0 to 8 s. A bold line stays near the 50% chance level until about 3 s, then rises to around 80%. Marked points: 82/120 at +3.5 s and 99/120 at +4.25 s." />
+                  </a>
+                  <div class="g27x__overlay" data-g27-overlay aria-hidden="true">
+                    <span class="g27x__overlay-tag">Separate x-axis guide</span>
+                    <div class="g27x__layer g27x__layer--step1">
+                      <div class="g27x__band g27x__band--ready"><span class="g27x__band-label">0–2 s · Get ready</span></div>
+                      <div class="g27x__band g27x__band--imagery"><span class="g27x__band-label g27x__band-label--bottom">2–3.5 s · Imagery</span></div>
+                      <div class="g27x__band g27x__band--feedback"><span class="g27x__band-label">From 3.5 s · Feedback may be on (assumed)</span></div>
+                    </div>
+                    <div class="g27x__layer g27x__layer--step2">
+                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">1 s window ending at decision time</span></div>
+                    </div>
+                    <div class="g27x__layer g27x__layer--step3">
+                      <div class="g27x__band g27x__band--chance-zone"><span class="g27x__band-label">Near 50% chance until ~3 s</span></div>
+                      <div class="g27x__band g27x__band--rise-zone"><span class="g27x__band-label">Rises to ~80% after ~3 s</span></div>
+                    </div>
+                    <div class="g27x__layer g27x__layer--step4">
+                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">82/120 (+3.5 s)</span></div>
+                      <div class="g27x__band g27x__band--window-425"><span class="g27x__band-label g27x__band-label--bottom">99/120 (+4.25 s: 3.25–4.25 s)</span></div>
+                      <div class="g27x__band g27x__band--overlap"></div>
+                    </div>
+                    <div class="g27x__layer g27x__layer--step5">
+                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">+3.5 s: 82/120 fixed CSP vs 75/120 selector</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="g27x__timeline" aria-label="Trial protocol timeline from 0 to 8 seconds">
+                  <p class="g27x__timeline-title">Trial protocol (0–8 s, aligned to chart x-axis)</p>
+                  <div class="g27x__bar">
+                    <div class="g27x__seg g27x__seg--ready"><strong>Get ready</strong><span>0–2 s</span></div>
+                    <div class="g27x__seg g27x__seg--imagery"><strong>Instructed imagery</strong><span>2–3.5 s</span></div>
+                    <div class="g27x__seg g27x__seg--feedback"><strong>Feedback may be on (start assumed)</strong><span>from 3.5 s</span></div>
+                  </div>
+                  <div class="g27x__ticks" aria-hidden="true">
+                    <span>0 s</span>
+                    <span>2 s cue (documented)</span>
+                    <span>3.5 s (assumed)</span>
+                    <span>8 s</span>
+                  </div>
+                  <ul class="g27x__legend">
+                    <li><strong>0–2 s:</strong> get ready</li>
+                    <li><strong>2 s:</strong> instruction appears (documented); <strong>2–3.5 s:</strong> instructed imagery</li>
+                    <li><strong>From 3.5 s:</strong> feedback may be on (start assumed, not recorded)</li>
+                  </ul>
+                </div>
+                <figcaption class="g27x__plate-foot">
+                  <p>Unchanged team figure from the G27 presentation (slide 6). Highlight bands are a separate overlay.</p>
+                  <a href="./assets/portfolio/g27/timing-original.png">Full size</a>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="g27x__walk" role="region" aria-label="How to read the EEG timing figure">
+              <p class="g27x__kicker">How to read this figure · 5 steps</p>
+              <div class="g27x__controls" data-g27-controls>
+                <div class="g27x__pills" role="group" aria-label="Choose an explainer step">
+                  <button class="g27x__pill" type="button" data-g27-step="1" aria-current="step">1</button>
+                  <button class="g27x__pill" type="button" data-g27-step="2">2</button>
+                  <button class="g27x__pill" type="button" data-g27-step="3">3</button>
+                  <button class="g27x__pill" type="button" data-g27-step="4">4</button>
+                  <button class="g27x__pill" type="button" data-g27-step="5">5</button>
+                </div>
+                <div class="g27x__nav-row">
+                  <button class="g27x__nav-btn" type="button" data-g27-prev>Previous</button>
+                  <button class="g27x__nav-btn" type="button" data-g27-next>Next</button>
+                  <button class="g27x__all-btn" type="button" data-g27-all aria-pressed="false">All 5 steps</button>
+                </div>
+                <p class="xp-sr" role="status" aria-live="polite" data-g27-live></p>
+              </div>
+
+              <ol class="g27x__steps">
+                <li class="g27x__step is-active" data-step="1">
+                  <h4 class="g27x__step-head"><span class="g27x__step-num">01</span><span class="g27x__step-title">What happens in one trial</span></h4>
+                  <p>From <strong>0–2 s</strong> the participant gets ready. At <strong>2 s</strong> the instruction appears (documented in the protocol), followed by <strong>2–3.5 s</strong> of instructed imagery. From <strong>3.5 s</strong> feedback may be on — that start time is assumed, not recorded in the data.</p>
+                </li>
+                <li class="g27x__step" data-step="2">
+                  <h4 class="g27x__step-head"><span class="g27x__step-num">02</span><span class="g27x__step-title">Decision time &amp; the 50% chance line</span></h4>
+                  <p>At any <strong>decision time</strong> on the horizontal axis, a decoder sees only the <strong>1 s</strong> of EEG ending at that moment. Each point along the curve is a separate decoder fitted to that shifted 1 s window. The horizontal dotted line at <strong>50%</strong> is chance.</p>
+                </li>
+                <li class="g27x__step" data-step="3">
+                  <h4 class="g27x__step-head"><span class="g27x__step-num">03</span><span class="g27x__step-title">Near chance until ~3 s, then ~80%</span></h4>
+                  <p>Scores stay near the <strong>50%</strong> chance line until about <strong>3 s</strong>, then rise to around <strong>80%</strong> once the 1 s window covers the instructed imagery period and beyond.</p>
+                </li>
+                <li class="g27x__step" data-step="4">
+                  <h4 class="g27x__step-head"><span class="g27x__step-num">04</span><span class="g27x__step-title">Why +4.25 s beats +3.5 s (and its limit)</span></h4>
+                  <p>Two points are marked: <strong>82/120</strong> at <strong>+3.5 s</strong> and <strong>99/120</strong> at <strong>+4.25 s</strong>. Because the +4.25 s window spans <strong>3.25–4.25 s</strong>, it overlaps the assumed <strong>3.5 s</strong> feedback start by <strong>0.75 s</strong> — so the later gain may partly reflect feedback.</p>
+                  <p class="g27x__step-note">Limit: both points were scored on already-inspected later training trials, making this a timing comparison rather than a held-out test gain.</p>
+                </li>
+                <li class="g27x__step" data-step="5">
+                  <h4 class="g27x__step-head"><span class="g27x__step-num">05</span><span class="g27x__step-title">Calibration result &amp; my role</span></h4>
+                  <p>In a separate check using <strong>60</strong> early calibration trials per session, choosing between CSP and Riemannian decoders scored <strong>75/120</strong> against <strong>82/120</strong> for fixed CSP — selection did not help.</p>
+                  <p class="g27x__step-note">Team project across <strong>3 participants</strong> and <strong>6 sessions</strong>. I contributed evaluation pull requests and obtained and relayed the organisers’ scoring rules.</p>
+                </li>
+              </ol>
+            </div>
           </div>
         </article>
       </section>

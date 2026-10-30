@@ -1,7 +1,6 @@
-// Model Morpher surface morph study: binds the page controls to the shared
-// point-cloud engine. The HTML is a complete static fallback (poster, recording,
-// caption, source); this script only reveals controls once the engine is ready.
-import { mountMorphViewer } from '../../assets/model-morpher/morph-cloud-viewer.js';
+// Model Morpher interactive 3D surface viewer: binds the scrubber, triptych
+// presets and rotation controls to the 30 saved production surfaces.
+import { mountMorphViewer, renderMorphThumbnail } from '../../assets/model-morpher/morph-cloud-viewer.js';
 
 const LAST = 29;
 const num = new Intl.NumberFormat('en-GB');
@@ -9,6 +8,7 @@ const num = new Intl.NumberFormat('en-GB');
 const $ = (id) => document.getElementById(id);
 const plate = $('plate');
 const canvas = $('morph-canvas');
+const triptych = $('triptych');
 const controls = $('controls');
 const help = $('view-help');
 const slider = $('progress');
@@ -17,6 +17,7 @@ const resetBtn = $('reset');
 const blendBox = $('blend');
 const ghostBox = $('ghosts');
 const presets = Array.from(document.querySelectorAll('[data-frame]'));
+const thumbs = Array.from(document.querySelectorAll('[data-thumb-frame]'));
 const video = $('recording-video');
 
 const out = {
@@ -26,6 +27,7 @@ const out = {
   line: $('state-line'),
   live: $('state-live'),
   badge: $('badge-frame'),
+  stage: $('badge-stage'),
 };
 
 let meta = null;
@@ -33,8 +35,18 @@ let pointsPerFrame = 2048;
 let lastAnnounced = '';
 let wasPlaying = false;
 
-function tText(frame) {
-  return `t = ${frame}/${LAST} = ${(frame / LAST).toFixed(3)}`;
+function stageName(frame) {
+  if (frame === 0) return 'Start · Dentate gyrus';
+  if (frame === LAST) return 'End · Whole mouse brain';
+  if (frame === 15) return 'Middle · Computed shape';
+  return 'Computed shape in between';
+}
+
+function stageSentence(frame) {
+  if (frame === 0) return 'Start surface: mouse dentate gyrus (Allen CCF region 726).';
+  if (frame === LAST) return 'End surface: whole mouse brain (Allen CCF root 997).';
+  if (frame === 15) return 'Middle saved surface (frame 15 of 0–29, blend 15/29) between dentate gyrus and whole brain.';
+  return `Computed intermediate surface — step ${frame + 1} of 30 (blend ${frame}/29).`;
 }
 
 function sourceCount(frame, fromChange) {
@@ -45,7 +57,7 @@ function sourceCount(frame, fromChange) {
 
 function settledSentence(frame, src) {
   const srcText = src == null ? 'unknown' : num.format(src);
-  return `Saved surface ${frame + 1} of ${LAST + 1}, ${tText(frame)}. ${num.format(pointsPerFrame)} points sampled from ${srcText} vertices.`;
+  return `${stageName(frame)}, frame ${frame} of 0 to ${LAST} (${frame}/${LAST}). ${num.format(pointsPerFrame)} vertices shown from ${srcText}.`;
 }
 
 function announce(text) {
@@ -56,15 +68,31 @@ function announce(text) {
 
 function showFallback(message) {
   plate.classList.remove('is-live');
+  if (triptych) triptych.hidden = true;
   controls.hidden = true;
   help.hidden = true;
   out.frame.textContent = '29';
   out.badge.textContent = '29';
-  out.t.textContent = tText(29);
+  if (out.stage) out.stage.textContent = stageName(29);
+  out.t.textContent = '29/29';
   out.points.textContent = 'Rendered surface; point viewer inactive';
   canvas.removeAttribute('tabindex');
   out.line.classList.remove('is-transition');
   out.line.textContent = message;
+}
+
+async function paintTriptych() {
+  if (!thumbs.length) return;
+  try {
+    const data = await import('../../assets/model-morpher/morph-cloud-data.js');
+    const radius = Number(data.metadata?.maxSampleRadius) || 1.0878;
+    for (const thumb of thumbs) {
+      const idx = Number(thumb.dataset.thumbFrame);
+      if (data.frames?.[idx]) renderMorphThumbnail(thumb, data.frames[idx], radius, { theme: 'dark' });
+    }
+  } catch {
+    /* Main viewer handles load errors. */
+  }
 }
 
 function render(state) {
@@ -73,7 +101,8 @@ function render(state) {
 
   out.frame.textContent = String(frame);
   out.badge.textContent = String(frame);
-  out.t.textContent = tText(frame);
+  if (out.stage) out.stage.textContent = stageName(frame);
+  out.t.textContent = `${frame}/${LAST}`;
   out.points.textContent = `${num.format(pointsPerFrame)} of ${src == null ? '—' : num.format(src)}`;
 
   if (Number(slider.value) !== frame) slider.value = String(frame);
@@ -86,15 +115,14 @@ function render(state) {
 
   if (state.transitioning && Number.isFinite(state.fromFrame) && state.fromFrame !== frame) {
     out.line.classList.add('is-transition');
-    out.line.textContent = `Transition: frame ${state.fromFrame} → ${frame} (opacity blend, not a computed shape)`;
+    out.line.textContent = `Cross-fading frame ${state.fromFrame} → ${frame} (opacity only; coordinates unchanged).`;
   } else {
     out.line.classList.remove('is-transition');
     out.line.textContent = state.playing
-      ? 'Playing saved frames in order at 12 frames per second.'
-      : 'One actual saved surface, shown as vertex samples.';
+      ? 'Playing the 30 saved surfaces in order (12 frames per second).'
+      : stageSentence(frame);
   }
 
-  // Live region: only settled, paused states and the moment playback stops.
   if (!state.playing && !state.transitioning) {
     announce(wasPlaying ? `Paused. ${settledSentence(frame, src)}` : settledSentence(frame, src));
   }
@@ -104,35 +132,40 @@ function render(state) {
 let viewer;
 try {
   viewer = mountMorphViewer(canvas, {
+    theme: 'dark',
+    ghosts: Boolean(ghostBox?.checked),
+    blend: Boolean(blendBox?.checked),
     onReady(info) {
       meta = info.metadata || null;
       if (Number.isFinite(info.pointsPerFrame)) pointsPerFrame = info.pointsPerFrame;
       plate.classList.add('is-live');
+      if (triptych) triptych.hidden = false;
       controls.hidden = false;
       help.hidden = false;
       canvas.tabIndex = 0;
       render({ frame: 0, playing: false, transitioning: false });
+      paintTriptych();
     },
     onChange: render,
     onError(err) {
       console.error(err);
-      showFallback('The interactive point view could not load. The poster above and the original recording below are still available.');
+      showFallback('The interactive 3D view could not load. The poster above and the rendered recording below remain available.');
     },
   });
 } catch (err) {
   console.error(err);
-  showFallback('The interactive point view could not start. The poster above and the original recording below are still available.');
+  showFallback('The interactive 3D view could not start. The poster above and the rendered recording below remain available.');
 }
 
 if (viewer) {
-  out.line.textContent = 'Loading the saved point sets…';
+  out.line.textContent = 'Loading the 30 saved surfaces…';
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const applyMotion = () => viewer.setReducedMotion(reduced.matches);
   applyMotion();
   if (reduced.addEventListener) reduced.addEventListener('change', applyMotion);
 
-  try { viewer.setTheme('light'); } catch (err) { console.warn(err); }
+  viewer.setTheme('dark');
   viewer.setBlend(blendBox.checked);
   viewer.setGhosts(ghostBox.checked);
 
@@ -157,12 +190,11 @@ if (viewer) {
   blendBox.addEventListener('change', () => viewer.setBlend(blendBox.checked));
   ghostBox.addEventListener('change', () => viewer.setGhosts(ghostBox.checked));
 
-  // The recording is independent; pause the point view rather than run both.
   if (video) video.addEventListener('play', () => viewer.pause());
 
   if (viewer.ready && typeof viewer.ready.catch === 'function') {
     viewer.ready.catch(() => {
-      showFallback('The interactive point view could not load. The poster above and the original recording below are still available.');
+      showFallback('The interactive 3D view could not load. The poster above and the rendered recording below remain available.');
     });
   }
 

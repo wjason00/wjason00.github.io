@@ -202,6 +202,8 @@ async function startScene() {
   }
 }
 startScene();
+import('./morpher-entry.js').then(m => m.initMorphEntry()).catch(() => {});
+import('./g27-explainer.js').then(m => m.initG27Explainers()).catch(() => {});
 
 /* One recording at a time; playback always starts from the visitor's own click. */
 document.addEventListener('play', event => {

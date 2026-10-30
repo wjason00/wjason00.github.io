@@ -251,7 +251,8 @@ h1, h2, h3, p { margin: 0; }
   opacity: 0; transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(0.96);
   transition: opacity 200ms linear, transform 260ms var(--ease);
 }
-.atlas__peek img[data-peek-for="morphbrain"], .atlas__peek img[data-peek-for="g27"] { object-fit: contain; padding: 0.4rem; }
+.atlas__peek img[data-peek-for="morphbrain"] { object-fit: contain; padding: 0.4rem; }
+.atlas__peek img[data-peek-for="g27"] { object-fit: cover; padding: 0; background: #0d1e19; }
 .atlas__peek img.is-shown { opacity: 1; transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1); }
 @media (hover: hover) and (pointer: fine) {
   .js .atlas__peek { display: block; }
@@ -405,3 +406,235 @@ h1, h2, h3, p { margin: 0; }
 :root:not(.js) [data-reset-scene], :root:not(.js) [data-theme-toggle]{display:none}
 .atlas__help{font-size:.95rem;color:var(--ink)}
 @media(max-width:720px){.atlas__help{display:block;flex-basis:100%;font-size:.875rem}}
+
+.xp-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Homepage Model Morpher: 3-frame triptych + 3D surface stage + scrubber,
+   with the rendered MP4 kept in a progressive secondary disclosure. */
+.morph-home {
+  background: #0b1a16;
+  color: #e4efe8;
+}
+:root:not(.js) .morph-home__interactive,
+.morph-home[data-morph-state="error"] .morph-home__interactive {
+  display: none;
+}
+.morph-home__triptych {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: #0e201b;
+}
+.morph-home__thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.35rem;
+  border: 1px solid rgba(228, 239, 232, 0.16);
+  border-radius: 4px;
+  background: #091713;
+  color: #e4efe8;
+  text-align: left;
+  cursor: pointer;
+}
+.morph-home__thumb:hover {
+  border-color: rgba(228, 239, 232, 0.45);
+}
+.morph-home__thumb[aria-current="true"] {
+  border-color: var(--accent);
+  background: rgba(177, 134, 226, 0.14);
+}
+.morph-home__thumb canvas {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  border-radius: 2px;
+  background: radial-gradient(circle at 50% 50%, #142d26, #081410 78%);
+}
+.morph-home__thumb-step {
+  font: 600 0.7rem/1.2 var(--mono);
+  color: #cdb3ef;
+}
+.morph-home__thumb-name {
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: #d6e6de;
+  overflow-wrap: anywhere;
+}
+.morph-home__stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(ellipse 68% 62% at 50% 50%, #16332b, #091612 76%);
+  border-top: 1px solid rgba(228, 239, 232, 0.14);
+}
+.morph-home__canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+.morph-home__canvas[data-dragging="true"] {
+  cursor: grabbing;
+}
+.morph-home__canvas:focus-visible {
+  outline-offset: -4px;
+}
+.morph-home__hud {
+  position: absolute;
+  inset: 0.55rem 0.75rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+  font: 0.75rem/1.3 var(--mono);
+  color: #d0e3da;
+}
+.morph-home__hud span {
+  padding: 0.18rem 0.45rem;
+  border-radius: 3px;
+  background: rgba(9, 22, 18, 0.78);
+}
+.morph-home__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  padding: 0.55rem 0.75rem;
+  background: #10241e;
+  border-top: 1px solid rgba(228, 239, 232, 0.14);
+}
+.morph-home__btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(228, 239, 232, 0.28);
+  border-radius: 22px;
+  background: transparent;
+  color: #e4efe8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.morph-home__btn:hover {
+  border-color: var(--accent);
+}
+.morph-home__btn--play {
+  background: #e4efe8;
+  border-color: #e4efe8;
+  color: #0e211c;
+}
+.morph-home__btn--play:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0e211c;
+}
+.morph-home__slider {
+  flex: 1 1 9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.morph-home__range {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  accent-color: rgb(177, 134, 226);
+  cursor: pointer;
+}
+.morph-home__out {
+  font: 0.78rem/1 var(--mono);
+  color: #cbe0d7;
+  white-space: nowrap;
+}
+.morph-home__recording {
+  border-top: 1px solid rgba(228, 239, 232, 0.14);
+  background: #0d1d18;
+}
+:root:not(.js) .morph-home__recording > summary,
+.morph-home[data-morph-state="error"] .morph-home__recording > summary {
+  display: none;
+}
+.morph-home__recording > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.85rem;
+  color: #b7cec4;
+  font-size: 0.88rem;
+  cursor: pointer;
+  list-style: none;
+}
+.morph-home__recording > summary::-webkit-details-marker {
+  display: none;
+}
+.morph-home__recording > summary::after {
+  content: "+";
+  font-family: var(--mono);
+}
+.morph-home__recording[open] > summary::after {
+  content: "−";
+}
+.morph-home__recording > summary:hover {
+  color: #e4efe8;
+}
+
+/* Homepage EEG decoding entry: full-width header + side-by-side chart explainer */
+.entry--g27 {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+.entry--g27 .entry__text {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.75rem 2rem;
+}
+.entry--g27 .entry__intro p + p {
+  margin-top: 0.65rem;
+}
+.entry--g27 .entry__intro > p:not(.entry__kind) {
+  margin-top: 0.75rem;
+  max-width: 58ch;
+}
+.entry--g27 .entry__actions {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  .entry--g27 .entry__text {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .morph-home__hud-hint {
+    display: none;
+  }
+  .morph-home__triptych {
+    gap: 0.25rem;
+    padding: 0.35rem;
+  }
+  .morph-home__thumb {
+    padding: 0.28rem;
+  }
+  .morph-home__thumb-name {
+    font-size: 0.7rem;
+  }
+}

@@ -9,6 +9,76 @@ export function rotateXYZ(x, y, z, yaw, pitch) {
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const ease = (v, target, dt) => target + (v - target) * Math.exp(-15 * dt);
 
+function paintCloud(ctx, data, width, height, radius, scale, yaw, pitch, opacity, dark, ghost = false) {
+  if (!ctx || !data || opacity <= 0 || width <= 0 || height <= 0) return;
+  const list = [];
+  const factor = Math.min(width, height) * scale;
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+  const invR = 1 / Math.max(.001, radius);
+  for (let i = 0; i < data.length; i += 3) {
+    const x = data[i], y = data[i + 1], z = data[i + 2];
+    const xx = x * cy + z * sy, zz = z * cy - x * sy;
+    const yy = y * cp - zz * sp, depth = y * sp + zz * cp;
+    const len = Math.max(.18, Math.hypot(xx, yy, depth));
+    const nx = xx / len, ny = yy / len, nz = depth / len;
+    const shade = clamp((depth * invR + 1) / 2, 0, 1);
+    const key = clamp(-.36 * nx + .46 * ny + .81 * nz, 0, 1);
+    list.push([width / 2 + xx * factor, height / 2 - yy * factor, depth, shade, clamp(nz, 0, 1), key]);
+  }
+  list.sort((a, b) => a[2] - b[2]);
+  const baseDot = width < 260 ? .95 : width < 600 ? 1.25 : 1.55;
+  for (const [x, y, , shade, facing, key] of list) {
+    if (ghost) {
+      ctx.fillStyle = dark ? '#8fb5a7' : '#587b74';
+      ctx.globalAlpha = opacity * .11;
+      ctx.beginPath(); ctx.arc(x, y, .95, 0, Math.PI * 2); ctx.fill();
+      continue;
+    }
+    const lit = clamp(.16 + .48 * shade + .46 * key, 0, 1);
+    const spec = clamp((key - .58) / .42, 0, 1);
+    let r, g, b;
+    if (dark) {
+      r = Math.round(34 + lit * 166 + spec * 32);
+      g = Math.round(76 + lit * 158 + spec * 10);
+      b = Math.round(66 + lit * 148 + spec * 34);
+    } else {
+      r = Math.round(138 - lit * 118);
+      g = Math.round(160 - lit * 98);
+      b = Math.round(152 - lit * 100);
+    }
+    const color = `rgb(${r},${g},${b})`;
+    const coreRadius = baseDot * (.76 + shade * .34 + facing * .48);
+    if (facing > .28 && width >= 220) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = opacity * (.05 + facing * .13) * shade;
+      ctx.beginPath(); ctx.arc(x, y, coreRadius * 2.15, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.fillStyle = color;
+    ctx.globalAlpha = opacity * (.10 + .88 * (shade ** 1.65));
+    ctx.beginPath(); ctx.arc(x, y, coreRadius, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+export function renderMorphThumbnail(canvas, points, maxRadius = 1.0878, options = {}) {
+  if (!canvas?.getContext || !points?.length) return false;
+  const win = canvas.ownerDocument?.defaultView ?? globalThis;
+  const rect = canvas.getBoundingClientRect?.() ?? { width: canvas.width || 240, height: canvas.height || 180 };
+  const w = Math.max(60, Math.min(800, rect.width || canvas.width || 240));
+  const h = Math.max(45, Math.min(600, rect.height || canvas.height || 180));
+  const dpr = Math.min(1.5, Math.max(1, win.devicePixelRatio || 1));
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return false;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  const dark = (options.theme ?? 'dark') === 'dark';
+  paintCloud(ctx, points, w, h, maxRadius, fitScaleForRadius(maxRadius),
+    options.yaw ?? 0, options.pitch ?? 0, 1, dark, false);
+  return true;
+}
+
 export function mountMorphViewer(canvas, options = {}) {
   const doc = canvas?.ownerDocument, win = doc?.defaultView ?? globalThis;
   const clock = () => win.performance?.now?.() ?? Date.now();
@@ -17,8 +87,10 @@ export function mountMorphViewer(canvas, options = {}) {
   const listeners = [];
   let ctx, frames = [], metadata = {}, ready = false, destroyed = false, visible = true;
   let width = 0, height = 0, dpr = 1, radius = 1, scale = .46, raf = null, renders = 0;
-  let frame = 0, pendingFrame = 0, blend = false, ghosts = true, playing = false, reduced = false;
-  let transition = null, nextFrameAt = 0, lastTime = 0, theme = 'light';
+  let frame = 0, pendingFrame = Number.isFinite(options.initialFrame) ? options.initialFrame : 0;
+  let blend = Boolean(options.blend), ghosts = options.ghosts === undefined ? true : Boolean(options.ghosts);
+  let playing = false, reduced = false;
+  let transition = null, nextFrameAt = 0, lastTime = 0, theme = options.theme === 'light' ? 'light' : 'dark';
   let yaw = 0, pitch = 0, targetYaw = 0, targetPitch = 0;
   let velocityX = 0, velocityY = 0, resizeObserver, intersectionObserver;
   const pointer = { down: false, id: null, x: 0, y: 0 };
@@ -106,28 +178,7 @@ export function mountMorphViewer(canvas, options = {}) {
     invalidate();
   }
   function drawCloud(index, opacity, ghost = false) {
-    if (opacity <= 0) return;
-    const data = frames[index], list = [];
-    const factor = Math.min(width, height) * scale;
-    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
-    for (let i = 0; i < data.length; i += 3) {
-      const x = data[i], y = data[i + 1], z = data[i + 2];
-      const xx = x * cy + z * sy, zz = z * cy - x * sy;
-      list.push([width / 2 + xx * factor, height / 2 - (y * cp - zz * sp) * factor, y * sp + zz * cp]);
-    }
-    list.sort((a, b) => a[2] - b[2]);
-    const dark = theme === 'dark';
-    for (const [x, y, z] of list) {
-      const shade = clamp((z / radius + 1) / 2, 0, 1);
-      const tone = Math.round(shade * 12);
-      if (ghost) ctx.fillStyle = dark ? '#a5bcb3' : '#6e929b';
-      else if (dark) ctx.fillStyle = `rgb(${76 + tone * 12},${104 + tone * 11},${108 + tone * 10})`;
-      else ctx.fillStyle = `rgb(${132 - tone * 7},${158 - tone * 6},${162 - tone * 5})`;
-      ctx.globalAlpha = opacity * (ghost ? .12 : .42 + shade * .52);
-      const dot = ghost ? 1 : (width < 600 ? 1.05 : 1.25) * (.85 + shade * .5);
-      ctx.beginPath(); ctx.arc(x, y, dot, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
+    paintCloud(ctx, frames[index], width, height, radius, scale, yaw, pitch, opacity, theme === 'dark', ghost);
   }
   function draw(time) {
     raf = null;

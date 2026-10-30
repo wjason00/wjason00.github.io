@@ -11,6 +11,7 @@ async function openStudy(page, width = 1366) {
   await expect(canvas).toHaveAttribute('data-morph-ready', 'true');
   await expect.poll(async () => Number(await canvas.getAttribute('data-render-count'))).toBeGreaterThan(0);
   await expect(page.locator('#controls')).toBeVisible();
+  await expect(page.locator('#triptych')).toBeVisible();
   return canvas;
 }
 
@@ -21,7 +22,7 @@ async function expectFrame(page, canvas, frame) {
   await expect(page.locator('#progress')).toHaveValue(String(frame));
   await expect(page.locator('#st-frame')).toHaveText(String(frame));
   await expect(page.locator('#badge-frame')).toHaveText(String(frame));
-  await expect(page.locator('#st-t')).toHaveText(`t = ${frame}/29 = ${(frame / 29).toFixed(3)}`);
+  await expect(page.locator('#st-t')).toHaveText(`${frame}/29`);
   await expect(page.locator('#st-points')).toHaveText(`2,048 of ${sourceCounts.get(frame)}`);
   await expect(canvas).toHaveAttribute('data-transitioning', 'false');
 }
@@ -59,7 +60,7 @@ test('Model Morpher paints distinct saved surfaces and supports preset and nativ
   }
   expect(new Set(hashes).size).toBe(3);
 
-  const slider = page.getByRole('slider', { name: 'Morph progress (saved frame)' });
+  const slider = page.getByRole('slider', { name: 'Scrub through 30 computed surfaces' });
   await slider.focus();
   await changeFrame(canvas, () => slider.press('Home'));
   await expectFrame(page, canvas, 0);
@@ -103,9 +104,10 @@ test('Model Morpher without JavaScript shows its endpoint poster and usable nati
     await expect(poster).toHaveAttribute('alt', 'Whole-brain endpoint, frame 29, from the original Model Morpher recording.');
     await expect.poll(() => poster.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(page.locator('#st-frame')).toHaveText('29');
-    await expect(page.locator('#st-t')).toHaveText('t = 29/29 = 1.000');
+    await expect(page.locator('#st-t')).toHaveText('29/29');
     await expect(page.locator('#st-points')).toHaveText('Rendered surface; point viewer inactive');
     await expect(page.locator('#controls')).toBeHidden();
+    await expect(page.locator('#triptych')).toBeHidden();
     await expect(page.locator('#view-help')).toBeHidden();
     await expect(page.locator('button:visible, input:visible')).toHaveCount(0);
     await page.locator('#recording summary').click();
@@ -135,7 +137,7 @@ test('Model Morpher is operable at 320px with full checkbox labels and a usable 
     await label.click();
     await expect(checkbox).toBeChecked({ checked: !checked });
   }
-  const slider = page.getByRole('slider', { name: 'Morph progress (saved frame)' });
+  const slider = page.getByRole('slider', { name: 'Scrub through 30 computed surfaces' });
   await slider.scrollIntoViewIfNeeded();
   const box = await slider.boundingBox();
   expect(box).not.toBeNull();
