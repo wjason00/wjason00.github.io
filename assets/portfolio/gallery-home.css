@@ -259,3 +259,7 @@
 .portfolio-home .work-stage .gallery-tabs::-webkit-scrollbar{display:none}
 .portfolio-home .work-stage .gallery-tab{flex-direction:row}
 .portfolio-home .theme-toggle{width:44px;height:44px;min-width:44px;min-height:44px}
+
+/* Legacy work-page recording uses the same bounded media height as its peers. */
+.portfolio-home .work-stage .morphliner-showcase .video-stage{height:var(--stage-media-h);aspect-ratio:auto}
+@media(max-width:700px){.portfolio-home .work-stage .morphliner-showcase .video-stage{height:auto;aspect-ratio:16/10}}

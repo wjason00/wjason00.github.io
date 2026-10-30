@@ -4,7 +4,32 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Local interactive work stage - 30 October 2026
+## Cursor-driven homepage rebuild in progress - 30 October 2026
+
+Jason rejected the earlier static, incremental compositions and authorised a
+full redo. A fresh homepage is being built with isolated CSS/controller and a
+cursor-responsive 3D atlas surface. The previous complete accounts, figures and
+demos are preserved on `work.html`; legacy project/research links will route
+there. This replaces the media-stage approach as the main direction.
+
+The actual geometry/engine scaffold exists:4096points from the already-public
+CC0dHCPweek36population-averagewhite-matter surface, real cursor proximity
+lighting/displacement, hover parallax, drag orbit, keyboard/touch and project
+view changes. Its eight tests cover geometry fit, interaction and idle/lifecycle
+behaviour. An independent decode reproduced all sampled coordinates exactly.
+The display response is interface artwork, not neural activity or biological
+dynamics. No solver, private input or scientific result was changed.
+
+Claude's first fresh-home dispatch was rejected before inference by the shared
+5-hour account limit (reset14:40UTC). No new Claude visual output is claimed at
+this checkpoint. The visual job is prepared to resume after the verified reset;
+actual cursor/touch/desktop/phone QA remains required before acceptance.
+Current contract/receipts are in `output/rebuild-20261030/`; T-366 and the
+[current plan](docs/superpowers/plans/2026-10-29-oxford-portfolio.md) own the
+15:00UTC cap and remaining work. No publication. The material below is history
+of the rejected media-stage candidate, not current design approval.
+
+## Earlier local interactive work stage - 30 October 2026
 
 Jason rejected090be75 as static, with recordings less apparent, while retaining
 its clearer information/data. The new candidate puts a substantial playable

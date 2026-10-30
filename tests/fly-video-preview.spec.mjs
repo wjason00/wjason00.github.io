@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('Fly preview plays on request, seeks and pauses when it leaves the screen', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   const video = page.locator('#fly-preview');
   const player = page.locator('.video-demo').filter({ has: video });
@@ -14,6 +14,7 @@ test('Fly preview plays on request, seeks and pauses when it leaves the screen',
   await expect(play).toHaveAccessibleName('Play illustrative 3D fly replay');
   await expect(seek).toBeDisabled();
 
+  await page.locator('#select-fly').click();
   await play.scrollIntoViewIfNeeded();
   await play.focus();
   await play.press('Enter');
@@ -37,7 +38,7 @@ test('Fly preview plays on request, seeks and pauses when it leaves the screen',
   await play.focus();
   await play.press('Space');
   await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-  await page.locator('.intro').scrollIntoViewIfNeeded();
+  await page.locator('#about').scrollIntoViewIfNeeded();
   await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
   await expect(play).toHaveAccessibleName('Play illustrative 3D fly replay');
 });
@@ -46,7 +47,7 @@ test.describe('native playback fallback', () => {
   test.use({ javaScriptEnabled: false });
 
   test('Fly preview keeps native controls when scripts are disabled', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/work.html');
     const video = page.locator('#fly-preview');
     const player = page.locator('.video-demo').filter({ has: video });
     await expect(video).toHaveAttribute('controls', '');

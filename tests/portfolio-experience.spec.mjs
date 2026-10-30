@@ -40,7 +40,7 @@ for (const width of [390, 1366]) {
 test('MorphBrain reports an empty frame and retry replaces it; closing releases it and restores focus', async ({ page }) => {
   await page.clock.install();
   await page.route('**/demos/morphbrain/assets/*.js', route => route.abort());
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.locator('#select-morphbrain').click();
   const opener = page.locator('#preview-morphbrain [data-launch-demo]').first();
   await opener.click();
@@ -64,7 +64,7 @@ test('MorphBrain reports an empty frame and retry replaces it; closing releases 
 });
 
 test('four project choices support keyboard selection, real playback and pause on switching', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   const brain = page.locator('#select-morphbrain');
   const liner = page.locator('#select-morphliner');
   const morpher = page.locator('#select-model-morpher');
@@ -103,7 +103,7 @@ test('four project choices support keyboard selection, real playback and pause o
 });
 
 test('actual MorphBrain interface clears the loading status and supports Escape from its frame', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.locator('#select-morphbrain').click();
   const panel = page.locator('#preview-morphbrain');
   const comparison = panel.locator('#compare-input');

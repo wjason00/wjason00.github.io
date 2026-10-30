@@ -10,7 +10,7 @@ const viewports = [
 for (const viewport of viewports) {
   test(`playable work leads the research and keeps a substantial stage at ${viewport.name}`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
-    await page.goto('/');
+    await page.goto('/work.html');
 
     const figure = page.locator('.project-gallery');
     const poster = page.locator('#opening-morpher video');
@@ -58,7 +58,7 @@ for (const viewport of viewports) {
 }
 
 test('project selection keeps contributions, results and critical limits outside optional methods', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
 
   const fly = page.locator('#fly-circuit');
@@ -132,7 +132,7 @@ test('project selection keeps contributions, results and critical limits outside
 });
 
 test('the Fly question precedes its media and default copy speaks to visitors', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   const question = page.locator('.fly-project-heading p');
   await expect(question).toBeVisible();
@@ -146,7 +146,7 @@ test('the Fly question precedes its media and default copy speaks to visitors', 
 for (const width of [1366, 390]) {
   test(`research choices reach each account below the header at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
-    await page.goto('/');
+    await page.goto('/work.html');
     const index = page.getByRole('navigation', { name: 'Research areas' });
     for (const [name, target] of [['Neural signals', '#dpca'], ['EEG modelling', '#supervised-work'], ['Fly circuit', '#fly-circuit']]) {
       const link = index.getByRole('link', { name, exact: true });
@@ -170,7 +170,7 @@ for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 
   test(`Fly entry exposes the circuit and prioritises the paired result at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto('/#fly-circuit');
+    await page.goto('/work.html#fly-circuit');
     await page.evaluate(() => document.fonts.ready);
     const network = page.locator('#fly-visuals .fly-circuit img');
     const chart = page.locator('#fly-visuals .fly-comparison img');
@@ -198,7 +198,7 @@ for (const viewport of [{ width: 1366, height: 900 }, { width: 390, height: 844 
 }
 
 test('nested project links activate their complete account and preserve hash navigation', async ({ page }) => {
-  await page.goto('/#morpher-project-limit');
+  await page.goto('/work.html#morpher-project-limit');
   await expect(page.locator('#select-model-morpher')).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#model-morpher')).toBeVisible();
   await expect(page.locator('#morpher-project-limit')).toBeInViewport();
@@ -210,12 +210,12 @@ test('nested project links activate their complete account and preserve hash nav
 });
 
 test('Fly replay and connection links open the matching explorer views', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   await page.getByRole('link', { name: 'Explore the 3D replay', exact: true }).click();
   await expect(page).toHaveURL(/\/demos\/fly\/\?[^#]*#body$/);
   await expect(page.locator('#fly-explorer')).toHaveAttribute('data-view', 'body');
-  await page.goto('/');
+  await page.goto('/work.html');
   await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
   const connections = page.getByRole('link', { name: 'Explore the circuit comparison', exact: true });
   await expect(connections).toHaveAttribute('href', /\/demos\/fly\/\?[^#]*#connections$/);
@@ -228,7 +228,7 @@ for (const width of [1366, 820, 390]) {
   test(`Fly evidence stays distinct from the directly selectable playable replay at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto('/');
+    await page.goto('/work.html');
     const video = page.locator('#fly-preview');
     await expect(video).toHaveAttribute('preload', 'none');
     await page.getByRole('navigation', { name: 'Research areas' }).getByRole('link', { name: 'Fly circuit', exact: true }).click();
@@ -291,11 +291,11 @@ for (const width of [1366, 820, 390]) {
   });
 }
 
-test.describe('homepage methods without JavaScript', () => {
+test.describe('work-page methods without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
   test('native disclosures support keyboard use and the synthetic-study deep link', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/work.html');
     await page.locator('#fly-study-details > summary').click();
     await expect(page.locator('#fly-preview')).toHaveAttribute('controls', '');
     await expect(page.locator('#fly-preview source')).toHaveAttribute('src', './assets/portfolio/fly-preview-20261020.mp4');
@@ -323,7 +323,7 @@ test.describe('homepage methods without JavaScript', () => {
       await expect(details).not.toHaveAttribute('open');
     }
 
-    await page.goto('/#morphbrain-synthetic-study');
+    await page.goto('/work.html#morphbrain-synthetic-study');
     await expect(page.locator('#morphbrain-notes')).toHaveAttribute('open', '');
     await expect(page.locator('#morphbrain-synthetic-study')).toBeVisible();
   });

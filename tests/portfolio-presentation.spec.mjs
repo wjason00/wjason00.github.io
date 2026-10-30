@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 for (const width of [1366, 390, 320]) {
-  test(`portfolio opening exposes playable work and native research routes at ${width}px`, async ({ page }) => {
+  test(`work page keeps playable work and native research routes at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
-    await page.goto('/');
+    await page.goto('/work.html');
     const identity = page.getByRole('heading', { level: 1, name: 'Jason Wang', exact: true });
     const specimen = page.locator('#opening-morpher');
     const video = specimen.getByLabel('Model Morpher prototype recording');
@@ -56,7 +56,7 @@ for (const width of [1366, 390, 320]) {
 
 test('reduced motion keeps the recording opt-in and selected software complete', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/#opening-morpher');
+  await page.goto('/work.html#opening-morpher');
   const video = page.locator('#opening-morpher video');
   await expect(video).toBeVisible();
   await expect(video).not.toHaveAttribute('autoplay');
@@ -74,7 +74,7 @@ test('reduced motion keeps the recording opt-in and selected software complete',
 test('native study disclosure reveals figures without JavaScript', async ({ browser }) => {
   // Isolate native access from smooth-scroll animation when traversing anchors.
   const context = await browser.newContext({ javaScriptEnabled: false, reducedMotion: 'reduce' });
-  const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/');
+  const page = await context.newPage(); await page.goto('http://127.0.0.1:4173/work.html');
   await expect(page.locator('#opening-morpher video')).toBeVisible();
   await expect(page.locator('#opening-morpher video')).toHaveAttribute('controls', '');
   await expect(page.locator('#opening-morpher-limit')).toBeVisible();
@@ -89,7 +89,7 @@ test('native study disclosure reveals figures without JavaScript', async ({ brow
 
 test('linked recording supports play, pause, keyboard seeking and offscreen pause', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
-  await page.goto('/#opening-morpher');
+  await page.goto('/work.html#opening-morpher');
   const specimen = page.locator('#opening-morpher');
   const video = specimen.locator('video');
   const controls = specimen.getByRole('group', { name: 'Model Morpher recording controls' });
@@ -133,7 +133,7 @@ test('linked recording supports play, pause, keyboard seeking and offscreen paus
 test('legacy scientific hashes reveal the corresponding complete native account', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const [hash, disclosure] of [['fly-visuals', 'fly-study-details'], ['fly-strength-study', 'fly-study-details'], ['fly-timing-title', 'fly-study-details'], ['dpca', 'signal-study-details']]) {
-    await page.goto(`/#${hash}`);
+    await page.goto(`/work.html#${hash}`);
     await expect(page.locator(`#${disclosure}`)).toHaveAttribute('open', '');
     await expect(page.locator(`#${hash}`)).toBeInViewport();
   }

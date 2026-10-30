@@ -1,5 +1,29 @@
 # Sonali-inspired portfolio opening implementation plan
 
+## Current full homepage rebuild - 30 October 2026
+
+14:10UTC: Jason explicitly rejects iterative static passes and asks for a full
+redo with cursor interaction appropriate to computational neuroscience. This
+supersedes the media-stage approach as the main experience. New bounded50-minute
+unit ends15:00UTC, including pointer/touch verification and records; no publication.
+Freshindex/experience-home.css/controller must not load oldhomepageCSS/scripts.
+The complete existing accounts/figures/demos are preserved on work.html, with
+legacyhashrouting and clear links from the new home. Root owns this preservation,
+buildwhitelist/publicCC0displaypoint derivation/tests/docs/control. ActualClaude
+owns freshhomevisualcomposition/HTML/CSS/controller. Separateengineworker owns
+brain-scene.js; interface is agreed in output/rebuild-20261030/source-contract.txt.
+
+The hero uses4096sampledvertices from already-publicCC0dHCPweek36population-average
+white-matter GLB. Independent audit reproduces all12288Float32coordinates exactly
+and the same staticSVG fallback; no omitted node transforms/hash/claim mismatch.
+Pointerlighting/displacement is interface artwork, not neural activity/dynamics.
+Realhoverparallax/localresponse, dragorbit, keyboard and touch are acceptance
+requirements; decorativecursoraloneorCSS-onlyhoveris insufficient. No solver,
+Torch/GPUrender/newexperiment/privateinput. Scientificfigures/results unchanged.
+Referencepointerbehaviour and Claude design/build must be verified from actual
+execution; sourcechecks or screenshots alone cannot certify the interaction.
+
+
 ## Current interaction correction - 30 October 2026
 
 Jason's13:41feedback rejects static090be75 while retaining clearer information;
