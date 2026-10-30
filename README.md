@@ -44,7 +44,7 @@ theme persistence and model-loading recovery. Final desktop/phone captures in
 both themes were inspected. Fable did not re-review the post-disposition exports;
 an independent source-fidelity review checked those final figures.
 
-The [implementation plan](docs/superpowers/plans/2026-10-21-research-gallery.md)
+The [implementation plan](https://github.com/wjason00/wjason00.github.io/blob/094cc9d/docs/superpowers/plans/2026-10-21-research-gallery.md)
 and [UX sheet](demos/fly/ux-sheet.html#homepage-contract) own the design contract.
 Local Fable receipts, source audit, final captures and release verification live
 in `output/gallery-20261021/`. This section supersedes the earlier visual
@@ -68,7 +68,7 @@ disclosures retain the full figures, sources and separate playable replay. Every
 existing scientific hash reveals its containing study; keyboard and no-script
 access remain available. Scientific assets, data and runtimes are unchanged.
 
-The [20 October plan](docs/superpowers/plans/2026-10-20-reference-led-websites.md)
+The [20 October plan](https://github.com/wjason00/wjason00.github.io/blob/094cc9d/docs/superpowers/plans/2026-10-20-reference-led-websites.md)
 superseded the rejected composition's visual contract at that release. Its
 release/test receipts remain dated technical evidence,
 not design approval. Exact reference captures, current screenshots and release
@@ -99,7 +99,7 @@ Helper preview and the local LinkedIn review owner contain pointers. These
 record future adoption and preserve each existing audience. This release
 implements the public portfolio; it does not restyle or publish those apps.
 
-The [implementation plan](docs/superpowers/plans/2026-10-20-motionsites-direction.md)
+The [implementation plan](https://github.com/wjason00/wjason00.github.io/blob/094cc9d/docs/superpowers/plans/2026-10-20-motionsites-direction.md)
 and canonical [UX sheet](demos/fly/ux-sheet.html) explain the concrete contract.
 Current Astra reviews, light/dark captures, propagation receipt and public
 verification belong in `output/motionsites-direction-20261020/`.
@@ -227,7 +227,7 @@ visitor research, scientific validation or proof of personal understanding.
 
 The [canonical UX sheet](demos/fly/ux-sheet.html#homepage-contract) records the
 new grouping, first-screen media requirements, voice and evidence boundaries.
-The [implementation plan](docs/superpowers/plans/2026-10-20-portfolio-holistic.md)
+The [implementation plan](https://github.com/wjason00/wjason00.github.io/blob/094cc9d/docs/superpowers/plans/2026-10-20-portfolio-holistic.md)
 records the complete acceptance criteria. Actual review, captures and release
 verification live in `output/portfolio-holistic-20261020/verification.json`.
 The current combined build passes all 27 source/data and 32 browser checks,
