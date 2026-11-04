@@ -1,0 +1,11 @@
+{
+  "source": "fly-paired-comparison.svg",
+  "sha256": "469f6cac420767eeb5460f8fe7fc94b24aea8f7bbbb5eea50b251626d9e6095f",
+  "extraction": "Exact data-gain/data-seed/data-intact/data-cut attributes, no arithmetic transformation",
+  "coverage": "All15 pairs,5input seeds per gain0.8/1.0/1.2",
+  "unit": "MN9 spikes in one simulated second",
+  "limits": "Exploratory model sensitivity, inputs not animals; no biological or significance claim",
+  "independent_archive_check": "Auditor matched all15SVG pairs to frozen primaryCSV and all30archive count/spike lengths; no mismatch",
+  "primary_csv": "paired-results-v4.csv",
+  "primary_csv_sha256": "bff77cb68d9892b0a1cbe903e927029542ecba4952c6137884407a3f390c4b22"
+}

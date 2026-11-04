@@ -1,0 +1,105 @@
+{
+  "title": "Three exact saved Model Morpher surfaces",
+  "frames": [
+    {
+      "frame": 0,
+      "t": 0.0,
+      "vertices": 19884,
+      "triangles": 39760,
+      "sourceFileSha256": "bb72b78f79b55e2217d49ad9fb6c349d14f3b56572f0687cead8eb481fc829da",
+      "sourcePositionBytesSha256": "005018dae9d1594c77c6630ee1a094068d303b6fe54884dd903905f16914a3ba",
+      "sourceNormalBytesSha256": "6f9a5b89401d25399c0a76c8e718160ddac642e5cc898b510270e83848b1a4a9",
+      "indexValuesSha256": "6a4fe0f96e7d13218213f101fc2617ae786b9909a2714f43a6c35b43952b483c",
+      "sourceLineCount": 3
+    },
+    {
+      "frame": 15,
+      "t": 0.5172413793103449,
+      "vertices": 17790,
+      "triangles": 35576,
+      "sourceFileSha256": "2410d9fc43524a4e829de45f64fd946e2916a5e5f44e3a102a4f25ddeb6e942b",
+      "sourcePositionBytesSha256": "d8c230c1e05928099e44ea417ab8e23ba642c55558ec70620f4c72146a738d08",
+      "sourceNormalBytesSha256": "dba33086a2ae42cfc53a33f33e88c1c1d961924c3fcef6cd6a0ac4c9d0c75b40",
+      "indexValuesSha256": "671fd732474ced6f63909637a04c8cce8bf59c8bd0645572281f05201b16137e",
+      "sourceLineCount": 4
+    },
+    {
+      "frame": 29,
+      "t": 1.0,
+      "vertices": 46456,
+      "triangles": 92904,
+      "sourceFileSha256": "6324c3a0d50affaa5bb5bb2bd415202f017f5aba66610e11dc022526f095e214",
+      "sourcePositionBytesSha256": "59c9f2032a733f9f803bcc8fef4ef32c3ccfeac21f94b6a80ff8da60144a42f5",
+      "sourceNormalBytesSha256": "3307c74ab967a5c27edd515c2629e6ab8e282eb01bde08fd5982fbb91252eb21",
+      "indexValuesSha256": "0e54c75f8f318b5996a42310118849074c2cf32188bcf3fb2c074e34f697cec0",
+      "sourceLineCount": 11
+    }
+  ],
+  "displayTransform": {
+    "basis": [
+      [
+        -0.9701425001453319,
+        0.0,
+        0.24253562503633297
+      ],
+      [
+        -0.07940259890547474,
+        -0.9448909269751494,
+        -0.31761039562189897
+      ],
+      [
+        0.22916971156507793,
+        -0.3273853022358256,
+        0.9166788462603117
+      ]
+    ],
+    "projectedCentre": [
+      3119.068416596707,
+      3942.2745666009005,
+      -3881.8720625196142
+    ],
+    "isotropicScale": 55.33833088293886
+  },
+  "sourceCaptureManifestSha256": "f62dd057e665936fb14f76682897e31b1bb6dbf3771ff3583f951bc85eab9b31",
+  "sourceRepository": "https://github.com/wjason00/model-morpher",
+  "sourceCommit": "f14ee067ae183318c033a88ad313b0e36b03d445",
+  "atlas": {
+    "name": "Allen Mouse CCF via BrainGlobe",
+    "version": "1.2",
+    "resolutionMicrometres": [
+      25,
+      25,
+      25
+    ],
+    "credit": "Allen Institute",
+    "citation": "Wang et al 2020, https://doi.org/10.1016/j.cell.2020.04.007"
+  },
+  "limits": [
+    "Only saved frames0,15,29 available; never interpolate positions or invent point correspondence.",
+    "Full-resolution source vertices/normals and triangle index values retained exactly; no smoothing or decimation.",
+    "Only surface Polys are drawn; source auxiliary Lines not drawn.",
+    "Common approved display basis/centre/scale; not anatomically validated orientation or native physical relative size.",
+    "Geometric interpolation; not anatomy correspondence, registration, growth or development."
+  ],
+  "reuseScope": "Publication authorised by Jason on 4 November 2026; original Allen/BrainGlobe terms and attribution apply; no CC0 claim.",
+  "verification": {
+    "checkedUtc": "2026-11-01T19:01:10.823009+00:00",
+    "sourceVtpHashesMatchCaptureManifest": true,
+    "decodedOriginalPositionsNormalsAndIndexValuesHashExact": true,
+    "decodedJsChecks": "Node imported surface-data.js and rehashed sourcePositions/sourceNormals/indices against recorded source payload hashes for all3frames. All match.",
+    "allTrianglesRetained": true,
+    "allPositionsFinite": true,
+    "allIndicesWithinUint16AndVertexBounds": true,
+    "maximumTransformedNormalLengthError": 1.6703527139227958e-07,
+    "syntaxChecks": [
+      "node --check surface-viewer.js:exit0",
+      "node --check surface-data.js:exit0"
+    ],
+    "browserGpuChecked": false,
+    "scope": "Reproducible display export, not anatomical or scientific validation.",
+    "files": {
+      "surface-data.js": "53a0f3a407f12732b554ff08718eb8db91c2d7998d6951d11a9c115e7ca6e9ba",
+      "surface-viewer.js": "a98594486499a33ec3e720ec2b56a9140c10b58c7fe6f7ca3e399e54589c676f"
+    }
+  }
+}

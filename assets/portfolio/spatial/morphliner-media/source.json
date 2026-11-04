@@ -1,0 +1,43 @@
+{
+  "source_path": "morphliner-demo.mp4",
+  "source_sha256": "fbdddd1d75f8e9291ce2747161d6794cb7cea28078f5aec41014301622d1ca5d",
+  "source_size_bytes": 680663,
+  "source_duration_seconds": 6.5,
+  "source_video": {
+    "index": 0,
+    "codec_name": "h264",
+    "codec_type": "video",
+    "width": 1920,
+    "height": 1080,
+    "r_frame_rate": "30/1"
+  },
+  "provenance": "Frames extracted from the existing public recording. These are not inferred editor keyframes and are not a new render.",
+  "extraction": "ffmpeg accurate output seeking after input; one JPEG at each requested timestamp; Lanczos scale to 320x180; JPEG q:v 5",
+  "outputs": [
+    {
+      "file": "frame-050.jpg",
+      "requested_timestamp_seconds": 0.5,
+      "width": 320,
+      "height": 180,
+      "size_bytes": 4443,
+      "sha256": "cb89042b8a9768ec13d87bc38e949cd6049204b217593c277beff2f73e2fdef1"
+    },
+    {
+      "file": "frame-325.jpg",
+      "requested_timestamp_seconds": 3.25,
+      "width": 320,
+      "height": 180,
+      "size_bytes": 4464,
+      "sha256": "935ccc65cc93a1a8cc207b3f13a90f824bab7483ff61239b5192797b2cfee5b2"
+    },
+    {
+      "file": "frame-575.jpg",
+      "requested_timestamp_seconds": 5.75,
+      "width": 320,
+      "height": 180,
+      "size_bytes": 5841,
+      "sha256": "5b748ab5dc4b15e25ce32e7fa448a2e5337e6af754a5219fd953a59c3447d714"
+    }
+  ],
+  "total_jpeg_size_bytes": 14748
+}

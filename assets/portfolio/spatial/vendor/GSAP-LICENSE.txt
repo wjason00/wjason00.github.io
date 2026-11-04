@@ -1,0 +1,14 @@
+GSAP 3.13.0 package license notice
+
+Standard 'no charge' license: https://gsap.com/standard-license.
+
+/*!
+ * GSAP 3.13.0
+ * https://gsap.com
+ * 
+ * @license Copyright 2025, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license.
+ * @author: Jack Doyle, jack@greensock.com
+ */
+
+The npm package does not include a separate full LICENSE file. This file preserves the package license declaration and distributed bundle notice; the linked license contains the full terms. This is not an MIT license declaration.

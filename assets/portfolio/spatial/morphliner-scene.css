@@ -1,0 +1,37 @@
+/* Morphliner: the real export and three stills, on the shared paper workspace. */
+.portal-cinema.morphliner-study{background:var(--p-paper,#eeece6);color:var(--p-ink,#20282a);padding-block:clamp(3rem,7vw,7rem);font-family:inherit}
+.morphliner-study [hidden]{display:none!important}
+.morphliner-study .morphliner-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34rem);gap:1.5rem clamp(2rem,5vw,5rem);align-items:end;max-width:76rem;margin:0 auto clamp(1.75rem,3vw,3rem)}
+.portal-cinema.morphliner-study .portal-title{font-size:clamp(2.5rem,5.5vw,5.5rem);line-height:.98;letter-spacing:-.055em;font-weight:600;overflow-wrap:anywhere}
+.morphliner-study .morphliner-intro{font-size:clamp(1.08rem,1.5vw,1.24rem);line-height:1.5;max-width:46ch;margin:0}
+.morphliner-study .morphliner-workspace{max-width:76rem;margin-inline:auto;background:#f7f6f2;border:1px solid var(--p-rule,#c0c8c2);border-radius:10px;overflow:hidden}
+.morphliner-study .morphliner-film{margin:0}
+.morphliner-study .morphliner-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:none;object-fit:contain;background:#20282a}
+.morphliner-study .morphliner-film figcaption{display:block;color:var(--p-muted,#596563);padding:.85rem clamp(1rem,2.5vw,1.75rem);font-size:.95rem;line-height:1.45}
+.morphliner-study .morphliner-inspect{display:flex;align-items:center;gap:1rem 2rem;padding:1rem clamp(1rem,2.5vw,1.75rem) 1.25rem;border-top:1px solid var(--p-rule,#c0c8c2)}
+.morphliner-study .morphliner-filmstrip{display:flex;flex:0 1 27rem;min-width:0;gap:.65rem}
+.morphliner-study .morphliner-filmstrip button{display:flex;flex:1 1 0;flex-direction:column;gap:.45rem;min-width:44px;min-height:44px;padding:0 0 .55rem;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--p-muted,#596563);font:inherit;font-size:.95rem;line-height:1.3;font-variant-numeric:tabular-nums;text-align:left;cursor:pointer}
+.morphliner-study .morphliner-filmstrip img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--p-rule,#c0c8c2)}
+.morphliner-study .morphliner-filmstrip button:hover{color:var(--p-blue,#324cc2);border-bottom-color:var(--p-rule,#c0c8c2)}
+.morphliner-study .morphliner-filmstrip button[aria-pressed="true"]{color:var(--p-blue,#324cc2);border-bottom-color:var(--p-blue,#324cc2);font-weight:600}
+.morphliner-study .morphliner-filmstrip button[aria-pressed="true"] img{border-color:var(--p-blue,#324cc2)}
+.morphliner-study .morphliner-inspect-note{flex:1;font-size:.95rem;line-height:1.45;color:var(--p-muted,#596563);max-width:30ch;margin:0}
+.morphliner-study .morphliner-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,28rem);align-items:start;gap:1.5rem 3rem;max-width:76rem;margin:1.5rem auto 0}
+.morphliner-study .portal-links{gap:.25rem 1.5rem}
+.morphliner-study .portal-links a{display:inline-flex;align-items:center;min-height:44px}
+.morphliner-study .morphliner-editor{border-top:1px solid var(--p-rule,#c0c8c2)}
+.morphliner-study .morphliner-editor summary{padding:.7rem 0;min-height:48px;font-size:1.05rem;font-weight:600;line-height:1.4;cursor:pointer}
+.morphliner-study .morphliner-editor img{display:block;width:100%;height:auto;margin:.5rem 0 0}
+.morphliner-study .morphliner-editor p{font-size:.95rem;line-height:1.45;margin:.7rem 0 0;color:var(--p-muted,#596563)}
+.portal-cinema.morphliner-study :focus-visible{outline:3px solid var(--p-blue,#324cc2);outline-offset:4px}
+.morphliner-study .morphliner-filmstrip button:focus-visible{outline-offset:2px}
+@media(max-width:1000px){
+ .morphliner-study .morphliner-head{grid-template-columns:minmax(0,1fr);gap:1rem}
+ .morphliner-study .morphliner-intro{max-width:52ch}
+}
+@media(max-width:760px){
+ .morphliner-study .morphliner-inspect{flex-direction:column;align-items:stretch;gap:.65rem}
+ .morphliner-study .morphliner-filmstrip{flex-basis:auto;max-width:27rem}
+ .morphliner-study .morphliner-inspect-note{max-width:none}
+ .morphliner-study .morphliner-foot{grid-template-columns:minmax(0,1fr);gap:1rem}
+}

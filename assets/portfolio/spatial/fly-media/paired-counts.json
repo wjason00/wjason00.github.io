@@ -1,0 +1,92 @@
+[
+  {
+    "gain": 0.8,
+    "seed": 0,
+    "intact": 49,
+    "cut": 24
+  },
+  {
+    "gain": 0.8,
+    "seed": 1,
+    "intact": 31,
+    "cut": 16
+  },
+  {
+    "gain": 0.8,
+    "seed": 2,
+    "intact": 36,
+    "cut": 19
+  },
+  {
+    "gain": 0.8,
+    "seed": 3,
+    "intact": 25,
+    "cut": 12
+  },
+  {
+    "gain": 0.8,
+    "seed": 4,
+    "intact": 33,
+    "cut": 21
+  },
+  {
+    "gain": 1.0,
+    "seed": 0,
+    "intact": 67,
+    "cut": 50
+  },
+  {
+    "gain": 1.0,
+    "seed": 1,
+    "intact": 52,
+    "cut": 47
+  },
+  {
+    "gain": 1.0,
+    "seed": 2,
+    "intact": 65,
+    "cut": 51
+  },
+  {
+    "gain": 1.0,
+    "seed": 3,
+    "intact": 58,
+    "cut": 37
+  },
+  {
+    "gain": 1.0,
+    "seed": 4,
+    "intact": 68,
+    "cut": 45
+  },
+  {
+    "gain": 1.2,
+    "seed": 0,
+    "intact": 76,
+    "cut": 61
+  },
+  {
+    "gain": 1.2,
+    "seed": 1,
+    "intact": 64,
+    "cut": 52
+  },
+  {
+    "gain": 1.2,
+    "seed": 2,
+    "intact": 77,
+    "cut": 54
+  },
+  {
+    "gain": 1.2,
+    "seed": 3,
+    "intact": 80,
+    "cut": 56
+  },
+  {
+    "gain": 1.2,
+    "seed": 4,
+    "intact": 75,
+    "cut": 50
+  }
+]

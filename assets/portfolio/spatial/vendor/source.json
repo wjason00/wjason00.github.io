@@ -1,0 +1,28 @@
+{
+  "name": "gsap",
+  "version": "3.13.0",
+  "retrievedUtc": "2026-11-02T12:51:12.344487+00:00",
+  "packageSource": "https://registry.npmjs.org/gsap/-/gsap-3.13.0.tgz",
+  "repository": "https://github.com/greensock/GSAP",
+  "retrieval": "npm pack gsap@3.13.0 --ignore-scripts; copied only package/dist/gsap.min.js",
+  "packageIntegrity": "sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==",
+  "packageIntegrityVerified": true,
+  "packageSha1": "597d4e019a2bb487785387d91296adebf92db9dd",
+  "licenseDeclaration": "Standard 'no charge' license: https://gsap.com/standard-license.",
+  "licenseNotice": "GSAP-LICENSE.txt",
+  "fullLicenseFileInPackage": false,
+  "files": {
+    "gsap.min.js": {
+      "bytes": 72435,
+      "sha256": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6"
+    },
+    "GSAP-LICENSE.txt": {
+      "sha256": "3ae9843f2252e822456c12d431feadd7a9dfef098046d29d42fb18b12563fc7b"
+    }
+  },
+  "intendedConsumer": "portal.js: classic script element loads local UMD distribution, then window.gsap",
+  "runtimeClaim": "3 November Chrome verified GSAP3.13.0, one classic script and native EEG-click tween settling; output/gsap-repair-20261103/. Full rendered acceptance remains separate.",
+  "packageManagerInstall": false,
+  "vendoredRuntimeDependency": true,
+  "globalInstall": false
+}
