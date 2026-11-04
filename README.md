@@ -4,6 +4,12 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
+## Journey layer - 4 November 2026
+
+Released at Jason's request as a one-time exception to the writer and merge policy, recorded in the shared decisions log. `assets/portfolio/journey/` adds a full-screen stage to each project on the homepage, driven by scrolling through its real artefact. It is progressive: without JavaScript, with reduced motion, or if GSAP or ScrollTrigger fails to load, the published page stands. The accepted hero is unchanged.
+
+Keep each limitation visible inside its stage, keep evidence on opaque sheets, and do not animate data values. `tests/portfolio-journey.spec.mjs` guards these. Frame derivation and hashes are in `assets/portfolio/journey/source.json`; vendored versions are in `vendor/source.json`.
+
 ## Homepage release - 4 November 2026
 
 Jason approved this release, including a one-time Codex writer/PR-merge exception
