@@ -1,0 +1,103 @@
+/* Fly study: one instrument plate. Real skeletons beside the paired result, sharing a neuron key and gain control. */
+.fly-study{--fly-paper:#eeece6;--fly-plate:#f7f6f2;--fly-ink:#20282a;--fly-muted:#525e5c;--fly-rule:#c3cbc5;--fly-grid:#e2e4de;--fly-violet:#6a68d8;--fly-teal:#087d78;--fly-blue:#324cc2;background:var(--fly-paper);color:var(--fly-ink);font-family:inherit}
+.fly-study h3,.fly-study h4,.fly-study p,.fly-study ul,.fly-study figure,.fly-study table{margin:0}
+.fly-study ul{padding:0;list-style:none}
+.fly-study :focus-visible{outline:3px solid var(--fly-blue);outline-offset:4px}
+
+/* Header: compact title, the exact claim and limit beside it. */
+.fly-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,34rem);grid-template-areas:"kicker kicker" "title claim";gap:.9rem clamp(1.5rem,4vw,4rem);align-items:end;margin-bottom:clamp(1.5rem,3vw,2.5rem)}
+.fly-head .portal-kicker{grid-area:kicker;font-size:1rem;font-weight:600;line-height:1.3}
+.fly-study .fly-title{grid-area:title;font-size:clamp(2.4rem,4.6vw,4.6rem);font-weight:600;line-height:.92;letter-spacing:-.05em}
+.fly-claim{grid-area:claim;display:grid;gap:.9rem}
+.fly-claim>p:first-child{font-size:clamp(1.12rem,1.5vw,1.3rem);line-height:1.45;max-width:46ch}
+.fly-limit{font-size:.98rem;line-height:1.5;border-left:3px solid currentColor;padding:.15rem 0 .15rem 1rem;max-width:60ch}
+
+/* Stage: a single plate holding anatomy and result. */
+.fly-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);grid-template-areas:"bar bar" "anat result";background:var(--fly-plate);border:1px solid var(--fly-rule);border-radius:10px;overflow:hidden}
+.fly-bar{grid-area:bar;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 2rem;padding:.8rem clamp(1rem,2.4vw,1.75rem);border-bottom:1px solid var(--fly-rule)}
+.fly-neuron-key{display:flex;gap:1.6rem;font-size:1.05rem;font-weight:600}
+.fly-neuron-key li{display:flex;align-items:center;gap:.55rem}
+.fly-stroke{display:inline-block;width:1.9rem;height:3px;border-radius:2px;background:currentColor}
+.fly-neuron-key .is-roundup .fly-stroke{background:var(--fly-violet)}
+.fly-neuron-key .is-mn9 .fly-stroke{background:var(--fly-teal)}
+
+.fly-gain{display:flex;align-items:center;gap:.35rem}
+.fly-gain-label{font-size:1rem;color:var(--fly-muted);margin-right:.4rem}
+.fly-gain button{min-width:3.4rem;min-height:44px;padding:.35rem .85rem;border:1px solid var(--fly-ink);border-radius:999px;background:transparent;color:var(--fly-ink);font:inherit;font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;transition:background-color .15s,color .15s}
+.fly-gain button:hover{background:#e3e6e0}
+.fly-gain button[aria-pressed="true"]{background:var(--fly-ink);color:var(--fly-plate)}
+
+/* Anatomy: the portrait is the visual anchor. */
+.fly-anatomy{grid-area:anat;display:flex;flex-direction:column;padding:clamp(.75rem,2vw,1.5rem) clamp(1rem,2.4vw,1.75rem) clamp(1rem,2.4vw,1.75rem);border-right:1px solid var(--fly-rule)}
+.fly-plate{position:relative;aspect-ratio:570/480;width:100%;max-width:44rem;margin-inline:auto}
+.fly-plate img{display:block;width:100%;height:100%;object-fit:contain}
+.fly-anatomy figcaption{font-size:.93rem;line-height:1.5;color:var(--fly-muted);max-width:62ch;margin-top:.9rem}
+.fly-anatomy figcaption a{color:var(--fly-ink)}
+
+/* Result: large native SVG chart. */
+.fly-result{grid-area:result;display:flex;flex-direction:column;gap:1rem;padding:clamp(1rem,2.4vw,1.75rem)}
+.fly-result-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.6rem 1.5rem}
+.fly-result h4{font-size:clamp(1.25rem,1.8vw,1.55rem);font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.fly-legend{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;font-size:1rem}
+.fly-legend li{display:flex;align-items:center;gap:.45rem}
+.fly-mark-intact{fill:var(--fly-teal)}
+.fly-mark-cut{fill:var(--fly-plate);stroke:var(--fly-teal);stroke-width:2.5}
+.fly-chart{width:100%;min-height:12rem;display:flex;align-items:center;margin-block:1rem}
+.fly-fallback{display:block;max-width:100%;height:auto;margin-inline:auto;max-height:32rem}
+.fly-study.is-live .fly-fallback{display:none}
+.fly-chart svg{display:block;width:100%;height:auto;overflow:visible;font-family:inherit}
+.fly-chart .fly-grid{stroke:var(--fly-grid);stroke-width:1}
+.fly-chart .fly-axis{stroke:var(--fly-ink);stroke-width:1}
+.fly-chart .fly-tick{font-size:14px;fill:var(--fly-muted);font-variant-numeric:tabular-nums}
+.fly-chart .fly-axis-title{font-size:14px;fill:var(--fly-muted)}
+.fly-chart .fly-seed{font-size:15px;fill:var(--fly-ink);font-weight:600}
+.fly-chart .fly-link{stroke:var(--fly-ink);stroke-width:2;stroke-linecap:round;opacity:.55}
+.fly-chart .fly-val{font-size:16px;font-weight:600;fill:var(--fly-ink);font-variant-numeric:tabular-nums}
+.fly-chart .fly-val.is-cut{fill:var(--fly-muted);font-weight:400}
+.fly-result figcaption{font-size:.95rem;line-height:1.5;color:var(--fly-muted);max-width:64ch;border-top:1px solid var(--fly-rule);padding-top:.9rem}
+.fly-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Foot: inspectable data, original figures, links. */
+.fly-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:1rem 2.5rem;align-items:start;margin-top:1.75rem}
+.fly-disclosure{border-top:1px solid var(--fly-ink)}
+.fly-disclosure summary{font-size:1.1rem;font-weight:600;padding:.85rem 0;min-height:48px;cursor:pointer}
+.fly-table-wrap{overflow-x:auto;padding-bottom:.5rem}
+.fly-table{border-collapse:collapse;width:100%;min-width:18rem;font-size:1rem;font-variant-numeric:tabular-nums}
+.fly-table caption{text-align:left;font-size:.93rem;color:var(--fly-muted);padding-bottom:.5rem;caption-side:top}
+.fly-table th,.fly-table td{padding:.4rem .6rem;text-align:right;border-bottom:1px solid var(--fly-rule)}
+.fly-table thead th{font-weight:600;border-bottom-color:var(--fly-ink)}
+.fly-table tbody th{font-weight:400}
+.fly-table tbody tr:nth-child(5n) td,.fly-table tbody tr:nth-child(5n) th{border-bottom-color:var(--fly-muted)}
+.fly-originals{display:grid;gap:.5rem;padding-bottom:.75rem;font-size:1rem}
+.fly-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;font-size:1.05rem;font-weight:600;padding-top:.85rem}
+.fly-links a,.fly-originals a{color:inherit;text-underline-offset:.22em}
+
+/* Film: kept, collapsed, no autoplay. */
+.fly-film{margin-top:1.75rem;border-top:1px solid currentColor;padding-top:.2rem}
+.fly-film summary{font-size:1.2rem;font-weight:600;padding:1.1rem 0;min-height:52px;cursor:pointer}
+.fly-film summary span{font-weight:400;float:right}
+.fly-film figure{max-width:84rem;margin:1rem auto 0}
+.fly-film video{width:100%;height:auto;display:block;background:#111}
+.fly-film figcaption{font-size:.95rem;line-height:1.4;margin-top:.65rem;max-width:80ch}
+
+@media (max-width:900px){
+  .fly-head{grid-template-columns:1fr;grid-template-areas:"kicker" "title" "claim"}
+  .fly-stage{grid-template-columns:1fr;grid-template-areas:"bar" "anat" "result"}
+  .fly-anatomy{border-right:0;border-bottom:1px solid var(--fly-rule)}
+  .fly-foot{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .fly-bar{flex-direction:column;align-items:flex-start}
+  .fly-gain-label{margin-right:.2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .fly-gain button{transition:none}
+}
+
+.fly-disclosure>p{font-size:1rem;line-height:1.5;max-width:75ch;margin:.8rem 0}
+
+.fly-scale{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;font-size:14px;line-height:1.4;color:var(--fly-muted);margin:.5rem auto .1rem;width:100%;max-width:44rem}
+.fly-scale-measure{position:relative;display:flex;flex-direction:column;gap:.35rem;width:23.5764234051%;flex:none;white-space:nowrap}
+.fly-scale-line{display:block;width:100%;height:2px;background:currentColor}
+
+.fly-chart .fly-mark-cut.is-compact{stroke-width:1.5}

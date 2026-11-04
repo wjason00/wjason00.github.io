@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' 'sha256-FD10dhkTL3jFFuO6RkuK7LBkaHdGxteHUVxc/HJd5Lc='; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; script-src 'self' 'sha256-w5EvpgvhYBei78XcgBBG2DwyT/vqsiQ2MXmBuIe/b8E='; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; frame-src 'self'; connect-src 'none'"
     />
     <meta
       name="description"
@@ -132,6 +132,7 @@
         }
       }
     </script>
+    <link rel="stylesheet" href="./assets/portfolio/spatial/portal.css" />
   </head>
   <body class="xp">
     <a class="xp-skip" href="#main">Skip to main content</a>
@@ -220,293 +221,195 @@
         </div>
       </section>
 
-      <section class="work" id="projects" aria-labelledby="work-heading">
-        <header class="work__head">
-          <h2 id="work-heading">Work</h2>
-          <p>
-            Play the recordings here. Each project’s full method, sources and
-            limits are on the <a href="./work.html">full work page</a>.
-          </p>
-        </header>
+<section class="portal" id="projects" aria-labelledby="portal-title">
+  <header class="portal-opening">
+    <h2 id="portal-title"><span>Selected work.</span></h2>
+    <div class="portal-opening-foot"><p>Explore the things I build to understand brains, shapes and systems.</p><a href="#work-model-morpher">Start exploring <span aria-hidden="true">↘</span></a></div>
+  </header>
 
-        <article class="entry" id="work-model-morpher" data-scene-project="model-morpher" aria-labelledby="work-model-morpher-title">
-          <div class="entry__media morph-home" data-morph-entry>
-            <div class="morph-home__interactive">
-              <div class="morph-home__triptych" role="group" aria-label="Jump to start, middle or end saved surface">
-                <button class="morph-home__thumb" type="button" data-morph-frame="0" aria-current="false">
-                  <canvas data-morph-thumb="0" width="240" height="180" aria-hidden="true"></canvas>
-                  <span class="morph-home__thumb-step">0 · Start</span>
-                  <span class="morph-home__thumb-name">Dentate gyrus</span>
-                </button>
-                <button class="morph-home__thumb" type="button" data-morph-frame="15" aria-current="true">
-                  <canvas data-morph-thumb="15" width="240" height="180" aria-hidden="true"></canvas>
-                  <span class="morph-home__thumb-step">15 · Middle (15/29)</span>
-                  <span class="morph-home__thumb-name">Computed shape</span>
-                </button>
-                <button class="morph-home__thumb" type="button" data-morph-frame="29" aria-current="false">
-                  <canvas data-morph-thumb="29" width="240" height="180" aria-hidden="true"></canvas>
-                  <span class="morph-home__thumb-step">29 · End</span>
-                  <span class="morph-home__thumb-name">Whole mouse brain</span>
-                </button>
-              </div>
-              <div class="morph-home__stage">
-                <canvas
-                  class="morph-home__canvas"
-                  data-morph-canvas
-                  role="img"
-                  aria-label="Interactive 3D surface morph: 30 saved steps from a mouse dentate gyrus to a whole mouse brain. Drag or use arrow keys to rotate."
-                ></canvas>
-                <p class="morph-home__hud" aria-hidden="true">
-                  <span data-morph-badge>Step 15 of 0–29 · Middle · Computed shape</span>
-                  <span class="morph-home__hud-hint">Drag to turn</span>
-                </p>
-              </div>
-              <div class="morph-home__bar" role="group" aria-label="Scrub through the 30 saved surfaces">
-                <button class="morph-home__btn morph-home__btn--play" type="button" data-morph-play aria-pressed="false">Play</button>
-                <div class="morph-home__slider">
-                  <label class="xp-sr" for="home-morph-range">Scrub through 30 computed surfaces from dentate gyrus (0) to whole mouse brain (29)</label>
-                  <input
-                    id="home-morph-range"
-                    class="morph-home__range"
-                    data-morph-range
-                    type="range"
-                    min="0"
-                    max="29"
-                    step="1"
-                    value="15"
-                  />
-                  <output class="morph-home__out" for="home-morph-range" data-morph-output>15 / 29</output>
-                </div>
-                <button class="morph-home__btn" type="button" data-morph-reset>Reset view</button>
-                <p class="xp-sr" role="status" aria-live="polite" data-morph-live></p>
-              </div>
-            </div>
-            <details class="morph-home__recording" data-morph-recording open>
-              <summary>Watch the 5.5 s rendered mesh recording (MP4)</summary>
-              <video controls playsinline preload="none" width="1440" height="1080"
-                poster="./assets/portfolio/model-morpher.webp"
-                aria-label="Model Morpher recording: a dentate gyrus surface becoming a whole mouse-brain surface">
-                <source src="./assets/model-morpher/dentate-to-brain.mp4" type="video/mp4" />
-                <a href="./assets/model-morpher/dentate-to-brain.mp4">Open the Model Morpher recording (MP4)</a>
-              </video>
-            </details>
-          </div>
-          <div class="entry__text">
-            <h3 id="work-model-morpher-title">Model Morpher</h3>
-            <p class="entry__kind">Python 3D surface software, 30 saved steps &amp; 5.5 s recording</p>
-            <p>
-              How do you turn one 3D brain structure into another when their meshes
-              share no matching points? I built a Python prototype that turns two
-              surfaces into signed distance fields, blends them and extracts the
-              shapes in between, so the meshes can differ in vertex count or
-              topology. Scrub above to step from a mouse dentate gyrus to a whole
-              mouse brain (Allen Mouse Brain CCF meshes via BrainGlobe).
-            </p>
-            <p class="entry__limit">Geometric interpolation, not anatomical correspondence or development; each saved step is resampled independently, so points do not travel across frames.</p>
-            <p class="entry__actions">
-              <a class="entry__primary" href="./demos/model-morpher/" data-scene-project="model-morpher">Explore the 3D morph</a>
-              <a href="./work.html#model-morpher" data-scene-project="model-morpher">Full account</a>
-              <a href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">Source code</a>
-            </p>
-          </div>
-        </article>
+  <nav class="portal-wayfinder" aria-label="Selected projects">
+    <a href="#work-model-morpher">Morpher</a><a href="#work-morphliner">Morphliner</a><a href="#work-g27">EEG</a><a href="#work-fly">Fly circuit</a><a href="#work-morphbrain">MorphBrain</a>
+  </nav>
 
-        <article class="entry" id="work-morphliner" data-scene-project="morphliner" aria-labelledby="work-morphliner-title">
-          <div class="entry__media">
-            <video controls playsinline preload="none" width="1280" height="720"
-              poster="./assets/portfolio/morphliner-editor.jpg"
-              aria-label="Morphliner recording: the editor with a shoe scene and its camera timeline, then the 6.5 second animation it exported">
-              <source src="./assets/portfolio/morphliner-editor-export.mp4" type="video/mp4" />
-              <a href="./assets/portfolio/morphliner-editor-export.mp4">Open the Morphliner recording (MP4)</a>
-            </video>
-          </div>
-          <div class="entry__text">
-            <h3 id="work-morphliner-title">Morphliner</h3>
-            <p class="entry__kind">Browser 3D animation editor, 8.5 s recording</p>
-            <p>
-              A browser editor I built for arranging a 3D scene, setting camera
-              keyframes on a timeline and exporting the animation as video. The
-              recording opens on the editor, then plays the 6.5 s animation it
-              exported from that scene.
-            </p>
-            <p class="entry__limit">Prototype. The opening is a screenshot of the editor, not a live session; the rest is the exported video.</p>
-            <p class="entry__actions">
-              <a href="./work.html#morphliner" data-scene-project="morphliner">Full account</a>
-              <a href="https://morphliner.com/?utm_source=jason_portfolio&amp;utm_medium=project_link&amp;utm_campaign=morphliner_waitlist" target="_blank" rel="noreferrer">Visit Morphliner</a>
-            </p>
-          </div>
-        </article>
+  <article class="portal-scene portal-morpher" id="work-model-morpher" aria-labelledby="portal-morpher-title">
+    <div class="portal-morpher-head"><p class="portal-kicker">Geometry / Python</p><h3 class="portal-title" id="portal-morpher-title">Between<br>forms.</h3><p class="portal-project-name">Model Morpher</p></div>
+    <div class="portal-surface" data-surface>
+      <img class="portal-surface-poster" src="/assets/portfolio/model-morpher.webp" width="840" height="620" alt="Static preview from the saved Model Morpher rendering; this poster does not indicate the selected interactive frame.">
+      <canvas tabindex="-1" aria-label="Saved Model Morpher surface. Drag or use the arrow keys to rotate; Home resets the view."></canvas>
+      <span class="portal-drag-hint" aria-hidden="true">Drag to turn</span>
+      <div class="portal-surface-tools" hidden>
+        <div class="portal-frame-pick" role="group" aria-label="Saved surface"><button type="button" data-frame="0" aria-pressed="false"><span>Start</span><small>Frame 0</small></button><button type="button" data-frame="15" aria-pressed="true"><span>Middle</span><small>Frame 15</small></button><button type="button" data-frame="29" aria-pressed="false"><span>End</span><small>Frame 29</small></button></div>
+        <div class="portal-display"><button type="button" data-wire aria-pressed="false">Wireframe</button><button type="button" data-reset>Reset view</button></div>
+      </div>
+    </div>
+    <div class="portal-morpher-caption"><p data-surface-cap>Static saved rendering. The full sequence is in the recording.</p><p class="portal-limit">Geometric interpolation, not anatomical correspondence or development. Inspect shows three exact saved surfaces; the recording shows the whole sequence.</p></div>
+    <div class="portal-project-foot"><p>I built a Python tool that generates the shapes in between two meshes, even when their topology differs, by blending their signed distance fields. Here it runs from the dentate gyrus to the whole mouse brain, using the Allen Mouse CCF through BrainGlobe.</p><div class="portal-links"><a href="/work.html#model-morpher">Full account</a><a href="https://github.com/wjason00/model-morpher" target="_blank" rel="noreferrer">Code on GitHub</a></div></div>
+    <details class="portal-film-details"><summary>Watch the full sequence <span>5.5 s</span></summary><figure><video controls playsinline muted preload="none" width="1280" height="960" poster="/assets/portfolio/spatial/portal-media/morpher-middle.jpg" aria-label="Model Morpher recording: dentate gyrus to whole mouse brain, 5.5 seconds"><source src="/assets/model-morpher/dentate-to-brain.mp4" type="video/mp4"><a href="/assets/model-morpher/dentate-to-brain.mp4">Download the recording</a></video><figcaption>Full sequence, 5.5 s: dentate gyrus to whole mouse brain. Poster is a still from the recording at 2.67 s.</figcaption></figure></details>
+  </article>
 
-        <article class="entry" id="work-fly" data-scene-project="fly" aria-labelledby="work-fly-title">
-          <div class="entry__media">
-            <video controls playsinline muted preload="none" width="1280" height="720"
-              poster="./assets/portfolio/fly-preview-20261020.webp"
-              aria-label="Recorded illustrative 3D fly replay">
-              <source src="./assets/portfolio/fly-preview-20261020.mp4" type="video/mp4" />
-              <a href="./assets/portfolio/fly-preview-20261020.mp4">Open the fly replay (MP4)</a>
-            </video>
-          </div>
-          <div class="entry__text">
-            <h3 id="work-fly-title">Fly feeding circuit</h3>
-            <p class="entry__kind">Whole-brain fly model, 9 s replay</p>
-            <p>
-              In a 127,400-neuron implementation of a published fly model, cutting
-              Roundup’s outputs reduced spiking in motor neuron MN9 in all 15 paired comparisons. The replay shows simulated motor spikes on a 3D fly.
-            </p>
-            <p class="entry__limit">One motor neuron in a computational model. The replay’s movement is uncalibrated and illustrative, from a separate simulation archive.</p>
-            <p class="entry__actions">
-              <a href="./demos/fly/?v=20261020-network#body">Explore the 3D replay</a>
-              <a href="./work.html#fly-circuit" data-scene-project="fly">Read the study</a>
-            </p>
-          </div>
-        </article>
+  <article class="portal-scene portal-cinema morphliner-study" id="work-morphliner" aria-labelledby="portal-morphliner-title">
+  <header class="morphliner-head">
+    <h3 class="portal-title" id="portal-morphliner-title">Morphliner</h3>
+    <p class="morphliner-intro">A 3D editor in the browser. You place camera keyframes on a scene, and it exports the move as a video file. The film here is one of those exports.</p>
+  </header>
 
-        <article class="entry" id="work-morphbrain" data-scene-project="morphbrain" aria-labelledby="work-morphbrain-title">
-          <div class="entry__media entry__media--plate">
-            <a href="./demos/morphbrain/" aria-label="Try the live MorphBrain model">
-              <img src="./assets/portfolio/morphbrain-feature.svg" width="1000" height="760" loading="lazy" decoding="async"
-                alt="Contours of SHH and BMP within the model tissue, beside the same computed state's dorsal, intermediate and ventral positional identities." />
-            </a>
-          </div>
-          <div class="entry__text">
-            <h3 id="work-morphbrain-title">MorphBrain</h3>
-            <p class="entry__kind">Patterning model, runs in the browser</p>
-            <p>
-              Move or remove SHH and BMP sources and watch the regions the model
-              assigns change. I implemented the reaction–diffusion components and
-              compared signalling conditions.
-            </p>
-            <p class="entry__limit">Illustrative patterning; parameters are not calibrated, and the folding aim remains open.</p>
-            <p class="entry__actions">
-              <a class="entry__primary" href="./demos/morphbrain/">Try the model</a>
-              <a href="./work.html#morphbrain" data-scene-project="morphbrain">Full account</a>
-            </p>
-          </div>
-        </article>
+  <div class="morphliner-workspace">
+    <figure class="portal-film morphliner-film">
+      <video controls playsinline muted preload="none" width="1280" height="720" poster="/assets/portfolio/spatial/studio-media/morphliner-export.jpg" aria-label="Animation exported from Morphliner: the Trainer camera sequence, 6.5 seconds" data-morphliner-video>
+        <source src="/assets/portfolio/morphliner-demo.mp4" type="video/mp4">
+        <a href="/assets/portfolio/morphliner-demo.mp4">Download the exported film</a>
+      </video>
+      <figcaption>Exported film, 6.5 s: the Trainer camera sequence.</figcaption>
+    </figure>
 
-        <article class="entry entry--g27" id="work-g27" data-scene-project="g27" aria-labelledby="work-g27-title">
-          <div class="entry__text">
-            <div class="entry__intro">
-              <h3 id="work-g27-title">When does EEG imagery become decodable?</h3>
-              <p class="entry__kind">G27, a g.tec BR41N.IO team project · 3 participants, 6 sessions</p>
-              <p>
-                Participants imagined an instructed task while EEG was recorded. How
-                soon after the instruction can a decoder read it better than chance,
-                and does a short early calibration choose a better decoder for each
-                session? I contributed evaluation pull
-                requests and obtained and relayed the organisers’ scoring rules.
-              </p>
-            </div>
-            <p class="entry__actions">
-              <a href="./work.html#g27" data-scene-project="g27">Full account &amp; second figure</a>
-              <a href="./assets/portfolio/g27/timing-original.png">Open full-size PNG</a>
-            </p>
-          </div>
+    <div class="morphliner-inspect" data-morphliner-inspect hidden>
+      <div class="morphliner-filmstrip" role="group" aria-label="Pause the exported film at a saved still">
+        <button type="button" data-morphliner-time="0.5" aria-pressed="false" aria-label="Pause the exported film at 0.5 seconds">
+          <img src="/assets/portfolio/spatial/morphliner-media/frame-050.jpg" width="320" height="180" loading="lazy" decoding="async" alt="">
+          <span>0.5 s</span>
+        </button>
+        <button type="button" data-morphliner-time="3.25" aria-pressed="false" aria-label="Pause the exported film at 3.25 seconds">
+          <img src="/assets/portfolio/spatial/morphliner-media/frame-325.jpg" width="320" height="180" loading="lazy" decoding="async" alt="">
+          <span>3.25 s</span>
+        </button>
+        <button type="button" data-morphliner-time="5.75" aria-pressed="false" aria-label="Pause the exported film at 5.75 seconds">
+          <img src="/assets/portfolio/spatial/morphliner-media/frame-575.jpg" width="320" height="180" loading="lazy" decoding="async" alt="">
+          <span>5.75 s</span>
+        </button>
+      </div>
+      <p class="morphliner-inspect-note" role="status" data-morphliner-status>Select a still to pause the film at that moment.</p>
+    </div>
+  </div>
 
-          <div class="g27x" data-g27-explainer>
-            <div class="g27x__visual">
-              <figure class="g27x__plate">
-                <div class="g27x__plot">
-                  <a class="g27x__image-link" href="./assets/portfolio/g27/timing-original.png" aria-label="Open the unchanged team timing figure at full size">
-                    <img src="./assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" decoding="async"
-                      alt="Team figure: later training trials correct (%) against decision time from 0 to 8 s. A bold line stays near the 50% chance level until about 3 s, then rises to around 80%. Marked points: 82/120 at +3.5 s and 99/120 at +4.25 s." />
-                  </a>
-                  <div class="g27x__overlay" data-g27-overlay aria-hidden="true">
-                    <span class="g27x__overlay-tag">Separate x-axis guide</span>
-                    <div class="g27x__layer g27x__layer--step1">
-                      <div class="g27x__band g27x__band--ready"><span class="g27x__band-label">0–2 s · Get ready</span></div>
-                      <div class="g27x__band g27x__band--imagery"><span class="g27x__band-label g27x__band-label--bottom">2–3.5 s · Imagery</span></div>
-                      <div class="g27x__band g27x__band--feedback"><span class="g27x__band-label">From 3.5 s · Feedback may be on (assumed)</span></div>
-                    </div>
-                    <div class="g27x__layer g27x__layer--step2">
-                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">1 s window ending at decision time</span></div>
-                    </div>
-                    <div class="g27x__layer g27x__layer--step3">
-                      <div class="g27x__band g27x__band--chance-zone"><span class="g27x__band-label">Near 50% chance until ~3 s</span></div>
-                      <div class="g27x__band g27x__band--rise-zone"><span class="g27x__band-label">Rises to ~80% after ~3 s</span></div>
-                    </div>
-                    <div class="g27x__layer g27x__layer--step4">
-                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">82/120 (+3.5 s)</span></div>
-                      <div class="g27x__band g27x__band--window-425"><span class="g27x__band-label g27x__band-label--bottom">99/120 (+4.25 s: 3.25–4.25 s)</span></div>
-                      <div class="g27x__band g27x__band--overlap"></div>
-                    </div>
-                    <div class="g27x__layer g27x__layer--step5">
-                      <div class="g27x__band g27x__band--window-35"><span class="g27x__band-label">+3.5 s: 82/120 fixed CSP vs 75/120 selector</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="g27x__timeline" aria-label="Trial protocol timeline from 0 to 8 seconds">
-                  <p class="g27x__timeline-title">Trial protocol (0–8 s, aligned to chart x-axis)</p>
-                  <div class="g27x__bar">
-                    <div class="g27x__seg g27x__seg--ready"><strong>Get ready</strong><span>0–2 s</span></div>
-                    <div class="g27x__seg g27x__seg--imagery"><strong>Instructed imagery</strong><span>2–3.5 s</span></div>
-                    <div class="g27x__seg g27x__seg--feedback"><strong>Feedback may be on (start assumed)</strong><span>from 3.5 s</span></div>
-                  </div>
-                  <div class="g27x__ticks" aria-hidden="true">
-                    <span>0 s</span>
-                    <span>2 s cue (documented)</span>
-                    <span>3.5 s (assumed)</span>
-                    <span>8 s</span>
-                  </div>
-                  <ul class="g27x__legend">
-                    <li><strong>0–2 s:</strong> get ready</li>
-                    <li><strong>2 s:</strong> instruction appears (documented); <strong>2–3.5 s:</strong> instructed imagery</li>
-                    <li><strong>From 3.5 s:</strong> feedback may be on (start assumed, not recorded)</li>
-                  </ul>
-                </div>
-                <figcaption class="g27x__plate-foot">
-                  <p>Unchanged team figure from the G27 presentation (slide 6). Highlight bands are a separate overlay.</p>
-                  <a href="./assets/portfolio/g27/timing-original.png">Full size</a>
-                </figcaption>
-              </figure>
-            </div>
+  <div class="morphliner-foot">
+    <div class="portal-links">
+      <a href="https://morphliner.com/" target="_blank" rel="noreferrer">morphliner.com</a>
+      <a href="/work.html#morphliner">Full account</a>
+      <a href="/assets/portfolio/morphliner-demo.mp4" download>Download the film</a>
+    </div>
+    <details class="portal-editor morphliner-editor">
+      <summary>Inside the editor</summary>
+      <img src="/assets/portfolio/morphliner-editor.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="Screenshot of the Morphliner editor in a browser, with a 3D scene and camera keyframes.">
+      <p>The editor view is a screenshot, not a live editing session.</p>
+    </details>
+  </div>
+</article>
 
-            <div class="g27x__walk" role="region" aria-label="How to read the EEG timing figure">
-              <p class="g27x__kicker">How to read this figure · 5 steps</p>
-              <div class="g27x__controls" data-g27-controls>
-                <div class="g27x__pills" role="group" aria-label="Choose an explainer step">
-                  <button class="g27x__pill" type="button" data-g27-step="1" aria-current="step">1</button>
-                  <button class="g27x__pill" type="button" data-g27-step="2">2</button>
-                  <button class="g27x__pill" type="button" data-g27-step="3">3</button>
-                  <button class="g27x__pill" type="button" data-g27-step="4">4</button>
-                  <button class="g27x__pill" type="button" data-g27-step="5">5</button>
-                </div>
-                <div class="g27x__nav-row">
-                  <button class="g27x__nav-btn" type="button" data-g27-prev>Previous</button>
-                  <button class="g27x__nav-btn" type="button" data-g27-next>Next</button>
-                  <button class="g27x__all-btn" type="button" data-g27-all aria-pressed="false">All 5 steps</button>
-                </div>
-                <p class="xp-sr" role="status" aria-live="polite" data-g27-live></p>
-              </div>
+  <article class="portal-scene portal-eeg" id="work-g27" aria-labelledby="portal-eeg-title" data-window="35">
+    <header><p class="portal-kicker">EEG / team BCI project</p><h3 class="portal-title" id="portal-eeg-title">When does<br>the signal<br>become useful?</h3><p class="portal-eeg-question">When does EEG imagery become decodable?</p></header>
+    <div class="portal-eeg-body"><figure class="portal-eeg-figure"><img src="/assets/portfolio/g27/timing-original.png" width="1720" height="980" loading="lazy" decoding="async" alt="Team figure: later training trials correct, in percent, against decision time from 0 to 8 s. The line stays near 50% chance until about 3 s, then rises to around 80%. Marked points: 82/120 at +3.5 s and 99/120 at +4.25 s."><figcaption><span>The team's original timing figure</span><a href="/assets/portfolio/g27/timing-original.png" data-enlarge>Enlarge figure</a></figcaption></figure>
+    <div class="portal-window-pick" role="group" aria-label="Decision time" hidden><button type="button" data-window="35" aria-pressed="true"><strong>+3.5 s</strong><span>82/120</span></button><button type="button" data-window="425" aria-pressed="false"><strong>+4.25 s</strong><span>99/120</span></button></div>
+    <div class="portal-protocol" aria-label="Trial protocol, 0 to 8 seconds, with the selected one-second window"><div class="portal-protocol-track" aria-hidden="true"><span></span><span></span><span></span><i></i></div><ol><li>Get ready, 0–2 s</li><li>Imagery, 2–3.5 s</li><li>Feedback may be on from 3.5 s (assumed)</li></ol></div>
+    <p class="portal-window-note" aria-live="polite"><span data-window-note="35">The 1 s window 2.5–3.5 s ends where feedback is assumed to begin.</span><span data-window-note="425">The 1 s window 3.25–4.25 s overlaps the assumed feedback by 0.75 s.</span></p>
+    <p class="portal-limit">Both scores are from later training trials we had already inspected, with a separate fit for each shifted 1 s window. Not a held-out gain. 3 people, 6 sessions.</p></div>
+    <div class="portal-project-foot"><div><p>A team BCI project. I contributed evaluation pull requests and obtained and relayed the organisers' scoring rules. The figure is the team's, unchanged.</p><details class="portal-method-note"><summary>Selector result</summary><p>A selector choosing settings from the 60 calibration trials per session scored 75/120, below 82/120 for fixed CSP.</p></details></div><div class="portal-links"><a href="/work.html#g27">Methods and second figure</a><a href="/assets/portfolio/g27/timing-original.png">Full-size figure</a></div></div>
+  </article>
 
-              <ol class="g27x__steps">
-                <li class="g27x__step is-active" data-step="1">
-                  <h4 class="g27x__step-head"><span class="g27x__step-num">01</span><span class="g27x__step-title">What happens in one trial</span></h4>
-                  <p>From <strong>0–2 s</strong> the participant gets ready. At <strong>2 s</strong> the instruction appears (documented in the protocol), followed by <strong>2–3.5 s</strong> of instructed imagery. From <strong>3.5 s</strong> feedback may be on — that start time is assumed, not recorded in the data.</p>
-                </li>
-                <li class="g27x__step" data-step="2">
-                  <h4 class="g27x__step-head"><span class="g27x__step-num">02</span><span class="g27x__step-title">Decision time &amp; the 50% chance line</span></h4>
-                  <p>At any <strong>decision time</strong> on the horizontal axis, a decoder sees only the <strong>1 s</strong> of EEG ending at that moment. Each point along the curve is a separate decoder fitted to that shifted 1 s window. The horizontal dotted line at <strong>50%</strong> is chance.</p>
-                </li>
-                <li class="g27x__step" data-step="3">
-                  <h4 class="g27x__step-head"><span class="g27x__step-num">03</span><span class="g27x__step-title">Near chance until ~3 s, then ~80%</span></h4>
-                  <p>Scores stay near the <strong>50%</strong> chance line until about <strong>3 s</strong>, then rise to around <strong>80%</strong> once the 1 s window covers the instructed imagery period and beyond.</p>
-                </li>
-                <li class="g27x__step" data-step="4">
-                  <h4 class="g27x__step-head"><span class="g27x__step-num">04</span><span class="g27x__step-title">Why +4.25 s beats +3.5 s (and its limit)</span></h4>
-                  <p>Two points are marked: <strong>82/120</strong> at <strong>+3.5 s</strong> and <strong>99/120</strong> at <strong>+4.25 s</strong>. Because the +4.25 s window spans <strong>3.25–4.25 s</strong>, it overlaps the assumed <strong>3.5 s</strong> feedback start by <strong>0.75 s</strong> — so the later gain may partly reflect feedback.</p>
-                  <p class="g27x__step-note">Limit: both points were scored on already-inspected later training trials, making this a timing comparison rather than a held-out test gain.</p>
-                </li>
-                <li class="g27x__step" data-step="5">
-                  <h4 class="g27x__step-head"><span class="g27x__step-num">05</span><span class="g27x__step-title">Calibration result &amp; my role</span></h4>
-                  <p>In a separate check using <strong>60</strong> early calibration trials per session, choosing between CSP and Riemannian decoders scored <strong>75/120</strong> against <strong>82/120</strong> for fixed CSP — selection did not help.</p>
-                  <p class="g27x__step-note">Team project across <strong>3 participants</strong> and <strong>6 sessions</strong>. I contributed evaluation pull requests and obtained and relayed the organisers’ scoring rules.</p>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </article>
-      </section>
+  <article class="portal-scene portal-fly fly-study" id="work-fly" aria-labelledby="portal-fly-title">
+    <header class="fly-head">
+      <p class="portal-kicker">Whole-brain model / fly circuit</p>
+      <h3 class="portal-title fly-title" id="portal-fly-title">A connection.<br>A consequence.</h3>
+      <div class="fly-claim">
+        <p>In a published whole-brain fly model implementation, cutting Roundup's outputs reduced MN9 spiking in all 15 paired comparisons, 30 simulations in total.</p>
+        <p class="portal-limit fly-limit">A model simulation, not feeding behaviour and not an animal experiment.</p>
+      </div>
+    </header>
+
+    <div class="fly-stage">
+      <div class="fly-bar">
+        <ul class="fly-neuron-key" aria-label="Neuron colours">
+          <li class="is-roundup"><span class="fly-stroke" aria-hidden="true"></span>Roundup</li>
+          <li class="is-mn9"><span class="fly-stroke" aria-hidden="true"></span>MN9</li>
+        </ul>
+        <div class="fly-gain" role="group" aria-label="Recurrent gain" data-fly-gain hidden>
+          <span class="fly-gain-label" aria-hidden="true">Recurrent gain</span>
+          <button type="button" data-gain="0.8" aria-pressed="false">0.8</button>
+          <button type="button" data-gain="1.0" aria-pressed="true">1.0</button>
+          <button type="button" data-gain="1.2" aria-pressed="false">1.2</button>
+        </div>
+      </div>
+
+      <figure class="fly-anatomy">
+        <div class="fly-plate">
+          <img src="/assets/portfolio/spatial/fly-media/neuron-portrait-web.svg" width="570" height="480" loading="lazy" decoding="async" alt="Reconstructed skeletons of Roundup, in violet, and MN9, in teal, with every reconstructed edge drawn in a common source X–Z projection.">
+        </div>
+        <div class="fly-scale" aria-label="Scale bar: 50 micrometres; source X-Z projection"><span class="fly-scale-measure"><span class="fly-scale-line" aria-hidden="true"></span><span>50 &micro;m</span></span><span>Source X-Z projection</span></div>
+        <figcaption>Roundup and MN9 reconstructed neurons from FlyWire v630. Static source X-Z projection showing shape, not activity. <a href="#fly-neuron-sources">Sources and scope</a>.</figcaption>
+      </figure>
+
+      <figure class="fly-result" aria-labelledby="fly-result-title">
+        <div class="fly-result-head">
+          <h4 id="fly-result-title">MN9 spikes in one simulated second</h4>
+          <ul class="fly-legend" aria-label="Markers">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" class="fly-mark-intact"/></svg>Roundup intact</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" class="fly-mark-cut"/></svg>Roundup outputs cut</li>
+          </ul>
+        </div>
+        <div class="fly-chart" data-fly-chart>
+          <img class="fly-fallback" src="/assets/portfolio/fly-paired-comparison.svg" width="302" height="360" loading="lazy" decoding="async" alt="MN9 spiking with Roundup intact and with its outputs cut, for all 15 paired comparisons. Spiking is lower with the outputs cut in every pair.">
+        </div>
+        <p class="fly-sr" aria-live="polite" data-fly-status></p>
+        <figcaption>Each row is one pair: the same input seed (0–4) run twice, once intact and once with all of Roundup's outgoing weights set to zero and its incoming weights retained. Input seeds are simulation inputs, not animals. This is one model under one exploratory input regime, not biological validation. Full counts are in the table below.</figcaption>
+      </figure>
+    </div>
+
+    <div class="fly-foot">
+      <details class="fly-disclosure">
+        <summary>All 15 paired comparisons</summary>
+        <div class="fly-table-wrap">
+          <table class="fly-table">
+            <caption>MN9 spikes in one simulated second, Roundup intact and with its outputs cut.</caption>
+            <thead><tr><th scope="col">Recurrent gain</th><th scope="col">Input seed</th><th scope="col">Intact</th><th scope="col">Outputs cut</th></tr></thead>
+            <tbody>
+              <tr><td>0.8</td><th scope="row">0</th><td>49</td><td>24</td></tr>
+              <tr><td>0.8</td><th scope="row">1</th><td>31</td><td>16</td></tr>
+              <tr><td>0.8</td><th scope="row">2</th><td>36</td><td>19</td></tr>
+              <tr><td>0.8</td><th scope="row">3</th><td>25</td><td>12</td></tr>
+              <tr><td>0.8</td><th scope="row">4</th><td>33</td><td>21</td></tr>
+              <tr><td>1.0</td><th scope="row">0</th><td>67</td><td>50</td></tr>
+              <tr><td>1.0</td><th scope="row">1</th><td>52</td><td>47</td></tr>
+              <tr><td>1.0</td><th scope="row">2</th><td>65</td><td>51</td></tr>
+              <tr><td>1.0</td><th scope="row">3</th><td>58</td><td>37</td></tr>
+              <tr><td>1.0</td><th scope="row">4</th><td>68</td><td>45</td></tr>
+              <tr><td>1.2</td><th scope="row">0</th><td>76</td><td>61</td></tr>
+              <tr><td>1.2</td><th scope="row">1</th><td>64</td><td>52</td></tr>
+              <tr><td>1.2</td><th scope="row">2</th><td>77</td><td>54</td></tr>
+              <tr><td>1.2</td><th scope="row">3</th><td>80</td><td>56</td></tr>
+              <tr><td>1.2</td><th scope="row">4</th><td>75</td><td>50</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <details class="fly-disclosure" id="fly-neuron-sources">
+        <summary>Neuron sources and scope</summary>
+        <p><a href="/assets/portfolio/spatial/fly-media/neuron-portrait.svg">Download the labelled neuron figure</a></p>
+        <p>Exact saved Roundup (720575940623211725) and MN9 (720575940660219265) skeletons in shared source coordinates, with the existing 0.5 &micro;m display simplification. Every saved edge is retained. Source axes are not verified anatomical directions; no registration to the fly body is claimed. This is morphology, not activity, synapses or a signal route.</p>
+        <p>FlyWire Consortium / Schlegel et al. and Dorkenwald et al.; skeletons hosted by MRC LMB. FlyWire materialization 630, CC BY-NC 4.0. <a href="/demos/fly/">Source details in the explorer</a>.</p>
+      </details>
+      <details class="fly-disclosure">
+        <summary>Original figures</summary>
+        <ul class="fly-originals">
+          <li><a href="/assets/portfolio/fly-paired-comparison.svg">Original paired-comparison plot</a></li>
+          <li><a href="/assets/portfolio/fly-network-focus.svg">Original circuit schematic: outgoing edges cut, incoming retained</a></li>
+        </ul>
+      </details>
+      <div class="portal-links fly-links"><a href="/work.html#fly-circuit">Read the study</a><a href="/demos/fly/">Open the explorer</a></div>
+    </div>
+
+    <details class="portal-film-details fly-film"><summary>Separate illustrative replay <span>9.6 s</span></summary><figure><video controls playsinline muted preload="none" width="1280" height="720" poster="/assets/portfolio/fly-preview-20261020.webp" aria-label="Illustrative 3D fly replay, 9.6 seconds"><source src="/assets/portfolio/fly-preview-20261020.mp4" type="video/mp4"><a href="/assets/portfolio/fly-preview-20261020.mp4">Download the replay</a></video><figcaption>Illustrative, uncalibrated body movement from a separate archive, 9.6 s. Not synchronised with the 15 paired comparisons.</figcaption></figure></details>
+  </article>
+
+
+  <article class="portal-scene portal-brain" id="work-morphbrain" aria-labelledby="portal-brain-title">
+    <header><p class="portal-kicker">Patterning / interactive model</p><h3 class="portal-title" id="portal-brain-title">Change the source.<br>Explore the pattern.</h3><p class="portal-project-name">MorphBrain</p></header>
+    <figure class="portal-brain-state"><img src="/assets/portfolio/morphbrain-feature.svg" width="1000" height="760" loading="lazy" decoding="async" alt="Contours of the SHH and BMP fields in the model tissue, beside the dorsal, intermediate and ventral identities computed from the same state."><figcaption>One saved state: field contours and the regional identities computed from them.</figcaption></figure>
+    <div class="portal-brain-invitation"><p>A patterning model that runs in the browser. Move or remove the SHH and BMP sources, and the regional identities it assigns change.</p><div class="portal-links"><button type="button" data-load-brain hidden>Load the model here</button><a href="/demos/morphbrain/">Open full model</a><a href="/work.html#morphbrain">Full account</a></div></div>
+    <div class="portal-brain-live" data-brain-slot hidden></div><p class="portal-brain-restart" hidden>The model loads into this frame only when you ask. This preview restarts when you leave it. Open the full model to keep working separately.</p>
+    <p class="portal-limit">Illustrative patterning; parameters not calibrated. The folding aim remains open.</p>
+  </article>
+  <dialog class="portal-dialog" aria-label="Team timing figure, full size"><form method="dialog"><button type="submit">Close figure</button></form><p class="portal-dialog-hint" id="portal-figure-pan-hint">Scroll to inspect the full-size figure. Keyboard: Tab to the figure, then use arrow keys.</p><div class="portal-dialog-pan" role="region" tabindex="0" aria-label="Full-size team timing figure" aria-describedby="portal-figure-pan-hint"><img width="1720" height="980" alt="Team figure: later training trials correct against decision time, 0 to 8 s, with 82/120 marked at +3.5 s and 99/120 at +4.25 s."></div></dialog>
+</section>
+
 
       <section class="about" id="about" aria-labelledby="about-title">
         <div class="about__side">
@@ -553,5 +456,6 @@
         <a href="#top">Back to top</a>
       </nav>
     </footer>
+    <script type="module" src="./assets/portfolio/spatial/portal.js"></script>
   </body>
 </html>

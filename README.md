@@ -4,6 +4,18 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
+## Homepage release - 4 November 2026
+
+Jason approved this release, including a one-time Codex writer/PR-merge exception
+and the 40 MiB artifact cap. The usual Antigravity writer policy remains unchanged.
+The candidate presents five project scenes below the exact accepted atlas hero.
+Morphliner uses a shared paper workspace, its native 6.5-second export and three
+selectable actual movie stills. Fly uses the audited paired results and real neuron
+reconstructions; EEG supports original-size figure inspection. Full work accounts,
+recordings and demos are retained. Release validation and deployment evidence are
+recorded in the pull request. Physical-phone and scientific acceptance are separate.
+Provenance and licence notices accompany assets/portfolio/spatial/.
+
 ## Approved release candidate - 30 October 2026 (T-376)
 
 Jason approved the hero direction and, at 17:26 UTC, the project-figure version:

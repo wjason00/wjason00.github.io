@@ -1,0 +1,85 @@
+{
+  "source": "morphology-data.json",
+  "sourceSha256": "02c14df3a715be4ef6365fa8a8fe1520dc6dd5f1f8624cf49ec230efe0ec6b79",
+  "sourceLfSha256": "9d5f98861e6d61fe818f2d345a939f66deb9570f6da1d04801f1503554c02838",
+  "sourceProvenanceSha256": "15f2df055dbd0c0d209c46d1aee6d72ec95e8deb9d4d6da7ce684f8ec6920a52",
+  "materialization": 630,
+  "units": "nm",
+  "frame": "FlyWire source coordinates (identity transform)",
+  "sourceTransform": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "projection": "Orthographic source X-Z; X right, Z up. No anatomical direction label or registration to a body.",
+  "display": "One shared translation and isotropic scale, all edges and full selected coordinate range retained. No additional simplification/smoothing/crop. Line width is styling, not neurite diameter.",
+  "sourceSimplificationToleranceNm": 500,
+  "sourceCoordinateRoundingNm": 1,
+  "pixelsPerNm": 0.002687712268184817,
+  "projectedSourceBoundsNm": {
+    "minimum": [
+      430329.0,
+      37263.0
+    ],
+    "maximum": [
+      619718.0,
+      200971.0
+    ]
+  },
+  "neurons": [
+    {
+      "id": "720575940623211725",
+      "label": "Roundup",
+      "role": "intervention target",
+      "color": "#6A68D8",
+      "vertices": 5227,
+      "edges": 5226
+    },
+    {
+      "id": "720575940660219265",
+      "label": "MN9",
+      "role": "model readout",
+      "color": "#087D78",
+      "vertices": 9550,
+      "edges": 9549
+    }
+  ],
+  "scope": "Two exact ID-matched neuron reconstructions from the existing 55-neuron selected export, not a full-brain figure. Not activity, synapses, a signal route or the intact/cut model result.",
+  "license": "CC BY-NC 4.0",
+  "licenseUrl": "https://edit.flywire.ai/principles.html",
+  "attribution": "FlyWire Consortium / Schlegel et al., 2024, Nature; Dorkenwald et al., 2024, Nature. Precomputed skeletons hosted by MRC LMB, accessed via the dataset-630 endpoint documented by fafbseg.",
+  "upstream": "https://flyem.mrc-lmb.cam.ac.uk/flyconnectome/flywire_skeletons_630",
+  "sourceDocs": "https://fafbseg-py.readthedocs.io/en/latest/_modules/fafbseg/flywire/skeletonize.html#get_skeletons",
+  "webViewBox": [
+    40,
+    88,
+    570,
+    480
+  ],
+  "webScaleBarPercent": 23.576423405129972,
+  "webDisplay": "Empty label margins removed; all neurite paths and full selected coordinate extent retained. Text/50um scale rendered responsively in HTML.",
+  "files": {
+    "neuron-portrait.svg": {
+      "sha256": "bfb5e0e840647d93d74350b5433b4ad2ef6b922eb418990a3c7fa56f221dbd84",
+      "bytes": 491195
+    },
+    "neuron-portrait.png": {
+      "sha256": "b84dca9f7bba3d0561daa2e2ecdd5fd449d0c6239ec1abe33c1913f1f1f062c5",
+      "bytes": 251928
+    },
+    "neuron-portrait-web.svg": {
+      "sha256": "8424ecc82cfe6b03dc10454bad0f78c2a89890e1a961516665f2c2ed6feae93e",
+      "bytes": 490084
+    }
+  },
+  "generator": "python fly-media/render_neuron_portrait.py --source-dir PATH_TO_RELEASED_DEMOS_FLY"
+}

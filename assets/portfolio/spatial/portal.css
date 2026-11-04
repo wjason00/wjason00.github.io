@@ -1,0 +1,167 @@
+@import url("./fly-scene.css");
+@import url("./morphliner-scene.css");
+/* Portal is independent of the B stylesheet: a scroll-through project landscape. */
+.portal{--p-paper:#eeece6;--p-ink:#20282a;--p-blue:#324cc2;--p-soft:#dce3de;--p-muted:#596563;--p-rule:#c0c8c2;background:var(--p-paper);color:var(--p-ink);padding:0;overflow:clip;font-family:"Source Sans 3",sans-serif}
+.portal *,.portal *::before,.portal *::after{box-sizing:border-box}
+.portal h2,.portal h3,.portal p,.portal figure,.portal ol{margin:0}
+.portal a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+.portal a:hover{text-decoration-thickness:2px}
+.portal button{font:inherit;cursor:pointer}
+.portal :focus-visible{outline:3px solid var(--p-blue);outline-offset:5px}
+.portal [hidden]{display:none!important}
+.portal-opening{padding:clamp(2rem,4vw,4rem) clamp(1.25rem,5vw,6rem) 2rem;position:relative;display:flex;justify-content:space-between;gap:2rem;align-items:end}
+.portal-kicker{font-size:1rem;line-height:1.3;font-weight:600}
+.portal-opening h2{font-size:clamp(2.5rem,5vw,5rem);font-weight:600;line-height:.95;letter-spacing:-.055em;max-width:13ch;flex:none}
+.portal-opening h2 span{display:block}
+.portal-opening h2 span:nth-child(2){padding-left:13vw;color:var(--p-blue)}
+.portal-opening-foot{display:flex;justify-content:space-between;gap:2rem;align-items:end;max-width:40rem}
+.portal-opening-foot p{font-size:1.1rem;line-height:1.45;max-width:30ch}
+.portal-opening-foot a{font-size:1.1rem;font-weight:600;white-space:nowrap;text-decoration:none;display:flex;gap:2rem;align-items:center}
+.portal-opening-foot a span{font-size:2.5rem}
+.portal-wayfinder{position:sticky;top:4rem;z-index:5;display:flex;justify-content:center;gap:.3rem;padding:.65rem 1rem;background:var(--p-paper);border-block:1px solid var(--p-rule);overflow-x:auto;scrollbar-width:thin}
+.portal-wayfinder a{flex:none;font-size:1rem;font-weight:600;text-decoration:none;padding:.6rem 1.1rem;border-radius:30px;min-height:44px;white-space:nowrap;transition:background-color .18s,color .18s}
+.portal-wayfinder a:hover{background:#dce0d8}
+.portal-wayfinder a[aria-current="location"]{background:var(--p-ink);color:var(--p-paper)}
+.portal-scene{position:relative;scroll-margin-top:9rem;padding:clamp(3rem,7vw,7rem) clamp(1.25rem,5vw,6rem);isolation:isolate}
+.portal-title{font-size:clamp(3.2rem,8.8vw,9.5rem);font-weight:600;line-height:.87;letter-spacing:-.065em;text-wrap:balance}
+.portal-project-name{font-size:1.35rem;font-weight:600}
+.portal-limit{font-size:.98rem;line-height:1.5;max-width:75ch;border-left:3px solid currentColor;padding:.15rem 0 .15rem 1rem}
+.portal-links{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.5rem;font-size:1.05rem;font-weight:600}
+.portal-project-foot{display:grid;grid-template-columns:minmax(0,37rem) minmax(12rem,1fr);justify-content:space-between;align-items:start;gap:3rem;margin-top:2.5rem}
+.portal-project-foot>p,.portal-project-foot>div>p{font-size:1.18rem;line-height:1.55;max-width:52ch}
+.portal-project-foot .portal-links{justify-self:end}
+.portal-film-details{margin-top:2rem;border-top:1px solid currentColor;padding-top:.2rem}
+.portal-film-details summary{font-size:1.2rem;font-weight:600;padding:1.1rem 0;cursor:pointer;min-height:52px}
+.portal-film-details summary span{font-weight:400;float:right}
+.portal-film-details figure{max-width:84rem;margin:1rem auto 0}
+.portal-film-details video{width:100%;height:auto;display:block;background:#111}
+.portal-film-details figcaption{font-size:.95rem;line-height:1.4;margin-top:.65rem;max-width:80ch}
+
+/* Morpher: an object occupying the landscape, not a shared media card. */
+.portal-morpher{background:var(--p-soft);padding-top:4rem}
+.portal-morpher-head{position:relative;z-index:2;pointer-events:none;max-width:45%;padding-top:2rem}
+.portal-morpher-head .portal-title{margin:1.3rem 0 1.6rem;font-size:clamp(4rem,10.8vw,11.5rem)}
+.portal-surface{position:relative;min-height:clamp(28rem,61vw,58rem);margin-top:clamp(-24rem,-26vw,-8rem);margin-left:27%;background:transparent}
+.portal-surface-poster,.portal-surface canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.portal-surface-poster{padding:6%;mix-blend-mode:multiply}
+.portal-surface canvas{opacity:0;cursor:grab;touch-action:none}
+.portal-surface canvas:active{cursor:grabbing}
+.portal-surface.is-ready canvas{opacity:1}
+.portal-surface.is-ready .portal-surface-poster{visibility:hidden}
+.portal-drag-hint{display:none;position:absolute;right:5%;top:12%;font-size:.95rem;font-weight:600;pointer-events:none;padding:.5rem .9rem;border:1px solid #879790;border-radius:30px;background:var(--p-soft)}
+.portal-surface.is-ready .portal-drag-hint{display:block}
+.portal-surface-tools{position:absolute;left:0;right:0;bottom:.6rem;z-index:3;display:grid;gap:1rem}
+.portal-frame-pick{display:flex;gap:.3rem;border-bottom:1px solid #869890}
+.portal-frame-pick button{border:0;background:transparent;flex:1;text-align:left;padding:.7rem .8rem;color:var(--p-muted);position:relative;min-height:56px}
+.portal-frame-pick button span{font-size:1.25rem;font-weight:600;display:block}
+.portal-frame-pick button small{font-size:.85rem;display:block;margin-top:.1rem}
+.portal-frame-pick button::after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:3px;background:var(--p-ink);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.portal-frame-pick button[aria-pressed="true"]{color:var(--p-ink)}
+.portal-frame-pick button[aria-pressed="true"]::after{transform:scaleX(1)}
+.portal-display{display:flex;gap:.5rem;justify-content:end}
+.portal-display button{background:transparent;color:var(--p-ink);border:1px solid #879790;border-radius:30px;padding:.5rem 1rem;min-height:44px;font-size:.95rem}
+.portal-display button[aria-pressed="true"]{background:var(--p-ink);color:var(--p-paper)}
+.portal-morpher-caption{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1rem}
+.portal-morpher-caption>[data-surface-cap]{font-size:.95rem;color:#40544d;max-width:48ch;line-height:1.5}
+.portal-morpher .portal-project-foot{margin-top:3rem}
+.portal:not(.has-js) .portal-surface canvas{display:none}
+
+/* Morphliner: a movie, with the typography stretched around its frame. */
+.portal-cinema{background:#233b57;color:#f0f1ed;padding-top:clamp(4rem,8vw,8rem);padding-bottom:clamp(4rem,8vw,8rem)}
+.portal-cinema header{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(16rem,.8fr);gap:2rem 4rem;align-items:end}
+.portal-cinema header>.portal-kicker{grid-column:1/-1}
+.portal-cinema .portal-title{font-size:clamp(4rem,10vw,11rem)}
+.portal-cinema-intro{display:grid;gap:1rem;padding-bottom:.2rem}
+.portal-cinema-intro>p:last-child{font-size:1.18rem;line-height:1.5;max-width:31ch}
+.portal-film{margin:3rem calc(clamp(1.25rem,5vw,6rem)*-1) 0}
+.portal-film video{width:100%;height:auto;display:block;max-height:82vh;object-fit:contain;background:#0a111b}
+.portal-film figcaption{display:flex;justify-content:space-between;gap:1rem;padding:.8rem clamp(1.25rem,5vw,6rem);font-size:.95rem;line-height:1.4;color:#c5d2db}
+.portal-cinema-bottom{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem;align-items:start}
+.portal-editor summary{cursor:pointer;font-size:1.1rem;font-weight:600;min-height:44px}
+.portal-editor img{width:100%;height:auto;display:block;margin:1rem 0}
+.portal-editor p{font-size:.95rem;line-height:1.45;margin-top:.7rem}
+.portal-cinema :focus-visible{outline-color:#dce3a5}
+
+/* EEG: the unaltered source figure gets white space and one decision strip. */
+.portal-eeg{background:#f8f8f3}
+.portal-eeg header{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
+.portal-eeg header>.portal-kicker{grid-column:1/-1}
+.portal-eeg .portal-title{font-size:clamp(3.3rem,7.6vw,8rem)}
+.portal-eeg-question{max-width:15ch;font-size:clamp(1.5rem,3vw,3rem);line-height:1.08;padding-bottom:.2rem;color:var(--p-blue)}
+.portal-eeg-body{margin-top:3rem;max-width:90rem}
+.portal-eeg-figure{background:#fff}
+.portal-eeg-figure img{display:block;width:100%;height:auto;max-height:69vh;object-fit:contain;padding:clamp(.5rem,1.5vw,1.5rem)}
+.portal-eeg-figure figcaption{display:flex;gap:1rem;justify-content:space-between;padding:.7rem 1.2rem;font-size:.95rem;line-height:1.4}
+.portal-window-pick{display:flex;justify-content:end;margin:1.5rem 0;gap:.75rem}
+.portal-window-pick button{display:flex;gap:1.5rem;align-items:baseline;padding:.65rem 1rem;border:1px solid #a9b6c7;background:transparent;color:var(--p-ink);border-radius:4px;min-height:52px}
+.portal-window-pick strong{font-size:1.25rem}
+.portal-window-pick button span{font-size:1.6rem;font-variant-numeric:tabular-nums}
+.portal-window-pick button[aria-pressed="true"]{background:var(--p-blue);color:white;border-color:var(--p-blue)}
+.portal-protocol{margin-top:1rem}
+.portal-protocol-track{position:relative;height:.8rem;display:grid;grid-template-columns:25% 18.75% 56.25%;border:1px solid #a4b0b6}
+.portal-protocol-track span:nth-child(1){background:#e2e7e5}
+.portal-protocol-track span:nth-child(2){background:#c9d2f3;border-inline:1px solid #8d9db8}
+.portal-protocol-track span:nth-child(3){background:#f4f5f8}
+.portal-protocol-track i{position:absolute;top:-5px;bottom:-5px;left:31.25%;width:12.5%;border:2px solid var(--p-blue);background:rgba(50,76,194,.12)}
+.portal-eeg[data-window="425"] .portal-protocol-track i{left:40.625%}
+.portal-protocol ol{display:grid;grid-template-columns:25% 18.75% 56.25%;padding:0;list-style:none;font-size:.88rem;line-height:1.3;margin-top:.6rem}
+.portal-protocol li{padding-right:.75rem}
+.portal-window-note{font-size:1.05rem;line-height:1.45;margin-top:1.4rem!important;font-weight:600;max-width:65ch}
+.portal-window-note span{display:block}
+.portal.has-js .portal-eeg[data-window="35"] [data-window-note="425"],.portal.has-js .portal-eeg[data-window="425"] [data-window-note="35"]{display:none}
+.portal-eeg .portal-limit{margin-top:1.2rem;color:#475675}
+.portal-method-note{margin-top:1rem;font-size:1rem;line-height:1.5}
+.portal-method-note summary{cursor:pointer;min-height:40px;padding:.4rem 0}
+
+/* MorphBrain: a wide saved state becomes an invitation into the actual model. */
+.portal-brain{background:#d6e5d9}
+.portal-brain header{max-width:76rem}
+.portal-brain .portal-title{font-size:clamp(3.1rem,8.5vw,9rem);margin:1.5rem 0}
+.portal-brain-state{max-width:72rem;margin:2.5rem 0 2.5rem auto;background:#f5f8f3;border-radius:3px}
+.portal-brain-state img{width:100%;height:auto;display:block;max-height:72vh;object-fit:contain;padding:1rem}
+.portal-brain-state figcaption{font-size:.95rem;line-height:1.4;padding:.75rem 1.2rem}
+.portal-brain-invitation{display:grid;grid-template-columns:minmax(0,34rem) minmax(12rem,1fr);gap:3rem;align-items:start}
+.portal-brain-invitation>p{font-size:1.3rem;line-height:1.5}
+.portal-brain-invitation .portal-links{justify-content:end}
+.portal-brain-invitation button{background:var(--p-ink);border:0;color:#fff;border-radius:30px;min-height:48px;padding:.7rem 1.3rem;font-weight:600}
+.portal-brain-live{height:clamp(24rem,70vh,52rem);margin-top:2rem;background:white;position:relative}
+.portal-brain-live iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.portal-brain-restart{font-size:.95rem;line-height:1.45;margin-top:.75rem!important;max-width:75ch}
+.portal-brain>.portal-limit{margin-top:2rem}
+.portal-draft-note{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;padding:2rem clamp(1.25rem,5vw,6rem);background:var(--p-paper);font-size:.9rem;line-height:1.4;color:var(--p-muted)}
+.portal-draft-note p{margin-right:auto}
+.portal-dialog{width:min(96vw,110rem);max-height:94vh;border:0;border-radius:4px;padding:.8rem;background:white;color:var(--p-ink)}
+.portal-dialog::backdrop{background:rgba(16,25,32,.8)}
+.portal-dialog form{display:flex;justify-content:end;margin:0 0 .7rem}
+.portal-dialog button{font:inherit;background:var(--p-ink);color:white;border:0;border-radius:30px;padding:.6rem 1rem;min-height:44px;cursor:pointer}
+.portal .portal-dialog-hint{font-size:.875rem;line-height:1.4;margin:0 0 .75rem}
+.portal-dialog-pan{overflow:auto;max-width:100%;height:min(980px,calc(94vh - 10rem));overscroll-behavior:contain}
+.portal-dialog-pan:focus-visible{outline-offset:-3px}
+.portal-dialog img{width:1720px;max-width:none;height:auto;display:block}
+
+@media(max-width:1000px){
+ .portal-opening h2{font-size:clamp(2.5rem,5vw,4rem)}
+ .portal-morpher-head{max-width:60%}.portal-morpher-head .portal-title{font-size:clamp(4rem,11vw,8rem)}
+ .portal-surface{margin-top:-17rem;margin-left:24%;min-height:42rem}
+ .portal-cinema header{grid-template-columns:minmax(0,1fr) minmax(14rem,.7fr);gap:2rem}
+ .portal-project-foot{gap:2rem;grid-template-columns:minmax(0,1.7fr) minmax(10rem,1fr)}
+}
+@media(max-width:700px){
+ .portal-opening{padding-top:2.5rem;display:grid;gap:1rem}.portal-opening h2{font-size:clamp(2.5rem,10vw,4rem);letter-spacing:-.055em;line-height:.95}
+ .portal-opening h2 span:nth-child(2){padding-left:4vw}
+ .portal-opening-foot{display:flex;gap:1rem}.portal-opening-foot p{font-size:1rem;max-width:30ch}.portal-opening-foot a{justify-self:start;font-size:.95rem}.portal-opening-foot a span{font-size:1.7rem}
+ .portal-wayfinder{top:3.5rem;justify-content:start;padding:.45rem .7rem}.portal-wayfinder a{padding:.55rem .85rem;font-size:.9rem}
+ .portal-scene{scroll-margin-top:8rem;padding-top:3rem;padding-bottom:3rem}
+ .portal-morpher-head{max-width:none;padding-top:0}.portal-morpher-head .portal-title{font-size:clamp(4rem,17vw,7rem);margin:1rem 0}.portal-project-name{font-size:1.2rem}
+ .portal-surface{margin:0 -1rem;min-height:31rem}.portal-surface canvas,.portal-surface-poster{inset:0 0 5rem;height:calc(100% - 5rem)}
+ .portal-drag-hint{right:5%;top:9%;font-size:.8rem}.portal-surface-tools{left:1rem;right:1rem;bottom:0;gap:.5rem}.portal-frame-pick button{padding:.5rem;min-height:54px}.portal-frame-pick button span{font-size:1.05rem}
+ .portal-morpher-caption,.portal-project-foot,.portal-cinema header,.portal-cinema-bottom,.portal-eeg header,.portal-brain-invitation{grid-template-columns:minmax(0,1fr);gap:1.25rem}
+ .portal-morpher-caption{margin-top:1.5rem}.portal-project-foot{margin-top:1.5rem}.portal-project-foot .portal-links{justify-self:start}.portal-project-foot>p,.portal-project-foot>div>p{font-size:1.08rem}
+ .portal-cinema .portal-title{font-size:clamp(4rem,17vw,7rem)}.portal-cinema-intro>p:last-child{max-width:45ch;font-size:1.08rem}.portal-film{margin-top:2rem}.portal-film figcaption{display:grid;gap:.2rem}
+ .portal-eeg .portal-title{font-size:clamp(3.2rem,13.5vw,5rem)}.portal-eeg-question{font-size:1.5rem;max-width:26ch}.portal-eeg-body{margin-top:1.5rem}.portal-eeg-figure img{max-height:none;padding:.35rem}.portal-eeg-figure figcaption{font-size:.85rem;padding:.6rem;gap:.7rem}
+ .portal-window-pick{justify-content:start;gap:.5rem}.portal-window-pick button{flex:1;padding:.6rem .7rem;gap:.6rem;justify-content:space-between}.portal-window-pick strong{font-size:1rem}.portal-window-pick button span{font-size:1.25rem}.portal-protocol ol{font-size:.75rem;line-height:1.4}.portal-protocol li{padding-right:.35rem}
+
+ .portal-brain .portal-title{font-size:clamp(3rem,12vw,5.5rem)}.portal-brain-state{margin-block:1.5rem}.portal-brain-state img{padding:.3rem}.portal-brain-state figcaption{padding:.6rem;font-size:.85rem}.portal-brain-invitation>p{font-size:1.1rem}.portal-brain-invitation .portal-links{justify-content:start}.portal-brain-live{height:34rem}
+ .portal-draft-note{display:grid;gap:.5rem}
+}
+@media(prefers-reduced-motion:reduce){.portal *,.portal *::before,.portal *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

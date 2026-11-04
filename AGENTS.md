@@ -28,7 +28,7 @@ Google Antigravity is the only agent that writes to this repository.
 
 ## Stack
 - Static HTML, CSS and vanilla JavaScript. `scripts/build-site.mjs` builds `_site/` from an
-  allowlist, rejects prohibited files, enforces a 32 MiB budget and checks internal links.
+  allowlist, rejects prohibited files, enforces a 40 MiB budget and checks internal links.
 - `demos/morphbrain/` is a prebuilt bundle from another repository. Don't edit it.
 - Keep the current stack. Ask Jason before adding any dependency, framework, CDN, web font,
   analytics, tracker, cookie or third-party embed.
