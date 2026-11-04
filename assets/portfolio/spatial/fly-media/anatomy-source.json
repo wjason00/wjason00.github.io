@@ -69,16 +69,16 @@
   "webDisplay": "Empty label margins removed; all neurite paths and full selected coordinate extent retained. Text/50um scale rendered responsively in HTML.",
   "files": {
     "neuron-portrait.svg": {
-      "sha256": "bfb5e0e840647d93d74350b5433b4ad2ef6b922eb418990a3c7fa56f221dbd84",
-      "bytes": 491195
+      "sha256": "a3010e8849e7b633f4565beaac38381c71661e3248444dc96be3a3bd49d0b386",
+      "bytes": 490525
     },
     "neuron-portrait.png": {
       "sha256": "b84dca9f7bba3d0561daa2e2ecdd5fd449d0c6239ec1abe33c1913f1f1f062c5",
       "bytes": 251928
     },
     "neuron-portrait-web.svg": {
-      "sha256": "8424ecc82cfe6b03dc10454bad0f78c2a89890e1a961516665f2c2ed6feae93e",
-      "bytes": 490084
+      "sha256": "a5aed04eb0685d9d22afc36c2117efe1a9610e50ea0af1a8afd45475e042211f",
+      "bytes": 489991
     }
   },
   "generator": "python fly-media/render_neuron_portrait.py --source-dir PATH_TO_RELEASED_DEMOS_FLY"
