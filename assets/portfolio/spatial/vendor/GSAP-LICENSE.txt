@@ -1,12 +1,12 @@
-GSAP 3.13.0 package license notice
+GSAP 3.15.1 package license notice
 
 Standard 'no charge' license: https://gsap.com/standard-license.
 
 /*!
- * GSAP 3.13.0
+ * GSAP 3.15.1
  * https://gsap.com
  * 
- * @license Copyright 2025, GreenSock. All rights reserved.
+ * @license Copyright 2026, GreenSock. All rights reserved.
  * Subject to the terms at https://gsap.com/standard-license.
  * @author: Jack Doyle, jack@greensock.com
  */

@@ -2,8 +2,9 @@ import { expect, test } from '@playwright/test';
 
 async function openMorphliner(page) {
   await page.goto('/');
-  await page.getByRole('navigation', { name: 'Selected projects', exact: true })
-    .getByRole('link', { name: 'Morphliner', exact: true }).click();
+  // The chapter bar appears among the projects; from the top, visitors use the hero's list.
+  await page.getByRole('navigation', { name: 'Projects', exact: true })
+    .getByRole('link', { name: /^Morphliner/ }).click();
   await expect(page).toHaveURL(/\/#work-morphliner$/);
   const scene = page.locator('#work-morphliner');
   await expect(scene.locator('[data-morphliner-inspect]')).toBeVisible();

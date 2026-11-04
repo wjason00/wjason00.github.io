@@ -1,0 +1,19 @@
+{
+  "purpose": "Scroll-selected frames from existing public recordings. Scrolling picks a saved frame; nothing is interpolated or computed.",
+  "morpher": {
+    "source": "assets/model-morpher/dentate-to-brain.mp4",
+    "sourceSha256": "2d6818e6d06d3a22ac823d759197416bd89a394a82df2859d35500201849522c",
+    "derivation": "Every frame scaled to 1080 px wide. Background removed with a colour-distance alpha matte against the recording ground (239, 245, 243), soft threshold 7 to 23. WebP quality 52, alpha quality 45.",
+    "frames": 66,
+    "bytes": 834658,
+    "concatenatedSha256": "cf87007916f6e42494b8e80a83c967e0071d7bd03f901d6036a1e78725367565"
+  },
+  "morphliner": {
+    "source": "assets/portfolio/morphliner-demo.mp4",
+    "sourceSha256": "fbdddd1d75f8e9291ce2747161d6794cb7cea28078f5aec41014301622d1ca5d",
+    "derivation": "Every fourth frame scaled to 1200 px wide. WebP quality 58.",
+    "frames": 49,
+    "bytes": 721710,
+    "concatenatedSha256": "814ba105b978901818927b09ee452201a4002489f890545b1894795e2f651898"
+  }
+}
