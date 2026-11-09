@@ -10,8 +10,9 @@ every pull request.
 - One branch per task, named after the agent and the task (`antigravity/<task>`, `claude/<task>`
   or `codex/<task>`), created from the base the task names. Push that branch and open a draft
   pull request. Jason reviews and merges.
-- One agent per branch. Before starting, check the open pull requests and leave files that
-  another open branch is changing to that branch.
+- One agent per branch. Before starting, check the open pull requests. If another open branch
+  changes the same file, keep your edits clear of its changes and name the overlap in your
+  pull request.
 - Never push to `main`. Pushing to `main` deploys the live site through
   `.github/workflows/pages.yml`. Don't change that workflow, Pages settings or repository settings.
 - Don't delete, rebase or force-push other branches.
