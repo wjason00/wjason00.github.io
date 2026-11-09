@@ -38,6 +38,18 @@ Google Antigravity is the only agent that writes to this repository.
 - Existing contracts: `demos/fly/ux-sheet.html` (Fly explorer) and the
   "Content and accessibility contracts" section of `README.md`.
 
+## Visual design
+Jason requested: "Can you update similar to Motionsites from Lovable and communicate to all other websites and etc." He confirmed "Use the general MotionSites direction" and "Also restyle existing sites now", then rejected the first implementation: "This looks bad. I meant look at specific sites i.e. from Lovable, Framer, MotionSites, Awwwards." This means research concrete live examples from those sources and adapt a coherent composition; a platform name is not a style specification. The rejected slate-block portfolio is not an accepted design standard.
+
+Before designing, inspect and link specific rendered sites, including their imagery, spacing, type, navigation and phone behaviour. Name one primary reference and the particular decisions being transferred. Show a concrete composition with the actual project content early. Do not infer design quality from marketplace copy, a catalog screenshot, adjectives or another model's acceptance. Apply the resulting reference-led direction to existing sites within their functional and audience constraints; do not propagate a rejected implementation.
+
+- Start with the audience and one clear task. Build a deliberate composition around real project imagery, confident typography, generous spacing and a consistent small set of colours and surfaces. Avoid assembling unrelated cards, decorative gradients or repetitive effects. Adapt the visual language to the product rather than imposing one template on every site.
+- Use motion to explain orientation, selection or a meaningful change. Prefer one composed opening or a restrained response to navigation over an entrance animation on every block. Keep ordinary scrolling, keyboard operation, readable static content and a complete reduced-motion/no-script experience. Do not autoplay scientific footage or animate evidence values for decoration.
+- On research pages, keep the scene, result and essential interpretation limit available together. Distinguish illustrative movement from measured or simulated results. Optional technical detail can be disclosed; the question, contribution, result and next action remain visible.
+- Before release, inspect desktop and phone captures and exercise navigation, controls, loading/failure, reduced motion and no-script fallbacks. A screenshot or automated test does not establish reader comprehension. Preserve source attribution, data, scientific runtimes and existing audience/privacy constraints.
+
+This is a shared design preference for Codex, Claude and other project agents. Project entry points should link here and retain their own functional contracts. Propagating the preference does not itself restyle an existing app or authorise changing a local/private site's audience. The portfolio's concrete acceptance rules remain in its [UX sheet](C:/Users/jason/Documents/ChatGPT/portfolio-fly-demo-20261019/demos/fly/ux-sheet.html).
+
 ## Before calling a task done
 1. `npm ci`, then `npm run build`. It must pass with no link errors and stay under the budget.
 2. `node --test tests/*.test.*` passes.
