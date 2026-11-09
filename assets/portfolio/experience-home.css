@@ -384,6 +384,9 @@ h1, h2, h3, p { margin: 0; }
   .xp-bar__name { display: none; }
   .xp-bar__nav { gap: 0.9rem; margin-left: 0; }
   .xp-theme { margin-left: auto; }
+  /* Under 400 px Contact replaces About in the bar: both land in the About section, and four links
+     would push the theme button onto a second row. */
+  @media (max-width: 400px) { .xp-bar__nav a[href="#about"] { display: none; } }
   .atlas { height: auto; min-height: 0; max-height: none; overflow: visible; display: flex; flex-direction: column; }
   .atlas__stage { position: relative; inset: auto; height: clamp(18rem, 88vw, 26rem); min-height: 18rem; }
   .atlas__copy, .atlas__index, .atlas__foot { position: relative; inset: auto; transform: none; width: auto; max-width: none; padding: 0 var(--gutter); }

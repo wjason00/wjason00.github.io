@@ -2374,3 +2374,8 @@ html:not(.js) .compare-pair .comparison {
   .projects .project__identity h3 { font-size: 28px; }
   .demo-dialog__bar h2 span { display: block; margin-left: 0; margin-top: 4px; }
 }
+
+/* Cross-page transition between the home page (journey.css opts in) and this page. Off for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
