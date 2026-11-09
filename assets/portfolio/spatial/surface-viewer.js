@@ -60,7 +60,9 @@ export function mountSurfaceViewer(canvas,options={}) {
     const fragment=shader(gl.FRAGMENT_SHADER,`precision mediump float;uniform vec3 uColor;varying vec3 vNormal;varying vec3 vPosition;void main(){vec3 n=normalize(vNormal);vec3 light=normalize(vec3(-.38,.62,1.));float diffuse=max(0.,dot(n,light));float fill=max(0.,dot(n,normalize(vec3(.7,-.1,.4))));float rim=pow(1.-abs(n.z),3.);float spec=pow(max(0.,dot(reflect(-light,n),vec3(0.,0.,1.))),34.);vec3 shaded=uColor*(.13+.74*diffuse+.16*fill)+vec3(.21,.25,.23)*rim+vec3(.32)*spec;gl_FragColor=vec4(pow(clamp(shaded,0.,1.),vec3(.86)),1.);}`);
     program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));gl.deleteShader(vertex);gl.deleteShader(fragment);
     gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.clearColor(0,0,0,0);gl.disable(gl.CULL_FACE);
-    upload();canvas.tabIndex=0;canvas.style.touchAction='none';canvas.dataset.surfaceReady='true';
+    // On touch screens a vertical swipe scrolls the page and a sideways drag turns the surface,
+    // so a large surface never traps the reader mid-page.
+    upload();canvas.tabIndex=0;canvas.style.touchAction=win.matchMedia?.('(pointer: coarse)').matches?'pan-y':'none';canvas.dataset.surfaceReady='true';
     if(!canvas.hasAttribute('aria-label'))canvas.setAttribute('aria-label','Drag to rotate this saved geometric surface. Arrow keys rotate; Home resets the view.');
     on(canvas,'pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture?.(e.pointerId);canvas.focus({preventScroll:true});});
     on(canvas,'pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;yaw+=(e.clientX-drag.x)*.009;pitch=Math.max(-1.4,Math.min(1.4,pitch+(e.clientY-drag.y)*.009));drag.x=e.clientX;drag.y=e.clientY;request();});

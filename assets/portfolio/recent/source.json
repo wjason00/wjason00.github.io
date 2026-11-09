@@ -1,0 +1,11 @@
+{
+  "countermere-example.webp": {
+    "what": "Crop of the capture of the public example shown on countermere.com",
+    "source": "https://countermere.com/workspace.webp (public build of 5 November 2026)",
+    "source_sha256": "13ce4f50ca801eb525c4fa6c0f6aba247611750c91b8e674d5636913958d1804",
+    "crop_box_px": [236, 96, 1204, 768],
+    "encoding": "WebP, quality 80",
+    "sha256": "892fd2baec7291e2b7d4f074fe5663c6b70076eb6416ac5497ccaf05f449239c",
+    "owner": "Countermere (Jason Wang and co-founder); reused by its owner"
+  }
+}

@@ -7,6 +7,7 @@ import { positions } from '../brain-surface-data.js';
 const root = document.querySelector('.portal');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(pointer: fine)').matches;
+const narrow = matchMedia('(max-width: 800px)').matches;
 const here = new URL('./', import.meta.url).href;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const span = (t, a, b) => clamp((t - a) / (b - a));
@@ -17,6 +18,13 @@ function el(tag, className, attrs = {}) {
   if (className) node.className = className;
   for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
   return node;
+}
+// A stage's visual sits in a slot. On wide screens the slot has no box of its own; on phones it is
+// the row between the words and the controls, so the visual can never cover the text.
+function slot(media) {
+  const box = el('div', 'jr-slot');
+  box.append(media);
+  return box;
 }
 function loadScript(src) {
   return new Promise((resolve, reject) => {
@@ -99,7 +107,9 @@ class Film {
 }
 
 // The hero's own 4,096 points, entered by the camera. Interface artwork, as in the hero.
-function diveLayer(canvas) {
+// On phones the hero is not full-screen, so the points start partly visible: otherwise the opening
+// scrolls in as an empty screen.
+function diveLayer(canvas, floor = 0) {
   const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
   if (!gl) return null;
   const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
@@ -140,7 +150,7 @@ function diveLayer(canvas) {
     gl.viewport(0, 0, w, h); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
     const t = ease(p), light = span(p, .3, .5);
     gl.uniform1f(u('uZ'), 3.2 - 3.12 * Math.pow(span(p, 0, .66), 1.35));
-    gl.uniform1f(u('uAlpha'), span(p, 0, .1) * (1 - span(p, .54, .66)));
+    gl.uniform1f(u('uAlpha'), (floor + (1 - floor) * span(p, 0, .1)) * (1 - span(p, .54, .66)));
     gl.uniform1f(u('uYaw'), -.45 + 1.1 * t);
     gl.uniform1f(u('uPitch'), -.16 + .28 * t);
     gl.uniform1f(u('uScale'), 4 * Math.min(w, h) * .4 / (h / 2));
@@ -215,6 +225,11 @@ async function boot() {
   // The wayfinder floats over the stages instead of reserving a strip of the page.
   const way = el('div', 'jr-way'); root.prepend(way); way.append(nav);
 
+  // Height of the small viewport (100svh) in pixels. On phones a pin is the large viewport, so
+  // measuring the sheet's overlap with the pin's height would cut each stage's scroll short.
+  const probe = el('div', 'jr-probe', { 'aria-hidden': 'true' }); root.append(probe);
+  const small = () => probe.offsetHeight || innerHeight;
+
   const stages = [];
 
   // Opening: enter the hero's point surface.
@@ -223,7 +238,7 @@ async function boot() {
   [...opening.children].forEach(node => dive.copy.append(node));
   const diveCanvas = el('canvas', 'jr-gl', { 'aria-hidden': 'true' });
   dive.pin.append(diveCanvas, dive.copy); opening.append(dive.pin);
-  const drawDive = diveLayer(diveCanvas);
+  const drawDive = diveLayer(diveCanvas, narrow ? .6 : 0);
   dive.render = p => {
     drawDive?.(p);
     const dark = span(p, .34, .54);
@@ -237,7 +252,7 @@ async function boot() {
   // Model Morpher: the 5.5 s recording, dentate gyrus to whole brain.
   {
     const s = buildStage(scenes.morpher, { key: 'morpher', limit: '.portal-limit', head: [scenes.morpher.querySelector('.portal-morpher-head')] });
-    const canvas = el('canvas', 'jr-film', { 'aria-hidden': 'true' }); s.pin.prepend(canvas);
+    const canvas = el('canvas', 'jr-film', { 'aria-hidden': 'true' }); s.pin.prepend(slot(canvas));
     const wide = innerWidth > 800;
     const film = new Film(canvas, { dir: 'morpher', count: 66, fit: 'contain', alpha: true, anchor: wide ? 1 : .5, shift: wide ? .12 : 0 });
     s.load = () => film.load();
@@ -272,7 +287,7 @@ async function boot() {
     const figure = s.sheet.querySelector('.portal-eeg-figure'), img = figure.querySelector('img');
     const wrap = el('div', 'jr-reveal'), edge = el('i', 'jr-edge');
     img.loading = 'eager';
-    img.before(wrap); wrap.append(img, edge); s.pin.prepend(figure);
+    img.before(wrap); wrap.append(img, edge); s.pin.prepend(slot(figure));
     s.render = p => {
       const x = 8 + 92 * clamp(p / .92);
       img.style.clipPath = `inset(0 ${(100 - x).toFixed(2)}% 0 0)`;
@@ -285,7 +300,7 @@ async function boot() {
   // Fly: two reconstructed neurons approach their saved positions.
   {
     const s = buildStage(scenes.fly, { key: 'fly', head: [scenes.fly.querySelector('.fly-head')] });
-    const wrap = el('div', 'jr-neurons'); s.pin.prepend(wrap);
+    const wrap = el('div', 'jr-neurons'); s.pin.prepend(slot(wrap));
     let parts = null;
     s.load = async () => {
       if (parts) return;
@@ -308,7 +323,7 @@ async function boot() {
     const wrap = el('div', 'jr-fields');
     const field = el('img', 'is-field', { src: '/assets/portfolio/morphbrain-field.png', alt: '', decoding: 'async' });
     const regions = el('img', 'is-regions', { src: '/assets/portfolio/morphbrain-regions.png', alt: '', decoding: 'async' });
-    const edge = el('i', 'jr-edge'); wrap.append(field, regions, edge); s.pin.prepend(wrap);
+    const edge = el('i', 'jr-edge'); wrap.append(field, regions, edge); s.pin.prepend(slot(wrap));
     s.render = p => {
       const y = 100 * clamp((p - .1) / .74);
       regions.style.clipPath = `inset(${(100 - y).toFixed(2)}% 0 0 0)`;
@@ -333,7 +348,8 @@ async function boot() {
     nearby.observe(s.stage);
     ScrollTrigger.create({
       trigger: s.stage, start: 'top top',
-      end: () => `+=${Math.max(1, s.stage.offsetHeight - 2 * s.pin.offsetHeight)}`,
+      // The scrub ends where the next sheet, which overlaps the stage by 100svh, starts to rise.
+      end: () => `+=${Math.max(1, s.stage.offsetHeight - s.pin.offsetHeight - small())}`,
       onUpdate: self => { s.t = self.progress; },
       onToggle: self => { s.active = self.isActive; },
       onRefresh: self => { s.t = self.progress; }

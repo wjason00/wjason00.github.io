@@ -45,6 +45,7 @@
 .portal-surface-poster,.portal-surface canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .portal-surface-poster{padding:6%;mix-blend-mode:multiply}
 .portal-surface canvas{opacity:0;cursor:grab;touch-action:none}
+@media (pointer:coarse){.portal-surface canvas{touch-action:pan-y}}
 .portal-surface canvas:active{cursor:grabbing}
 .portal-surface.is-ready canvas{opacity:1}
 .portal-surface.is-ready .portal-surface-poster{visibility:hidden}

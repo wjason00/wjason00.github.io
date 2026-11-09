@@ -65,7 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261030-rebuild" />
+    <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261109-phone" />
     <link rel="stylesheet" href="./assets/portfolio/g27-explainer.css?v=20261030-morpher-eeg" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
@@ -132,8 +132,8 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="./assets/portfolio/spatial/portal.css" />
-    <link rel="stylesheet" href="./assets/portfolio/journey/journey.css" />
+    <link rel="stylesheet" href="./assets/portfolio/spatial/portal.css?v=20261109-phone" />
+    <link rel="stylesheet" href="./assets/portfolio/journey/journey.css?v=20261109-phone" />
   </head>
   <body class="xp">
     <a class="xp-skip" href="#main">Skip to main content</a>
@@ -201,7 +201,8 @@
             <button class="atlas__source-btn" type="button" popovertarget="atlas-source">About this surface</button>
           </p>
           <p class="atlas__help" id="scene-help">
-            Move over the surface, drag to turn it, or focus it and use the arrow keys. Home resets the view.
+            <span class="atlas__help-fine">Move over the surface, drag to turn it, or focus it and use the arrow keys. Home resets the view.</span>
+            <span class="atlas__help-touch">Drag sideways across the surface to turn it.</span>
           </p>
           <p class="atlas__readout" data-readout aria-live="off"><span data-readout-points>4,096 points</span> <span data-readout-view></span></p>
           <button class="atlas__reset" type="button" data-reset-scene>Reset view</button>
@@ -220,6 +221,67 @@
           <p><a href="./assets/portfolio/brain-surface-source.json">Sampling and source record (JSON)</a></p>
           <button type="button" popovertarget="atlas-source" popovertargetaction="hide">Close</button>
         </div>
+      </section>
+
+      <section class="recent" id="recent" aria-labelledby="recent-title">
+        <h2 id="recent-title">Recently</h2>
+        <ul class="recent__list">
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11-07">7–8 Nov 2026</time><span>Oxford Neurotech Hackathon, Medtech stream</span></p>
+            <h3>NeuroPersona</h3>
+            <p>
+              Built by a team of four. I worked on the avatar’s facial expression and gaze.
+            </p>
+            <ol class="recent__flow" aria-label="How the NeuroPersona demo works">
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 3-9 2 3h6"/></svg>
+                <b>Recorded activity</b>
+                <span>Motor cortex, one participant, from an archived recording</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6m0 0 5-5h7M9 12l5 5h7"/></svg>
+                <b>Two separate decodes</b>
+                <span>A word, and an attempted facial movement</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 3 3 5-6M15 9l5 5m0-5-5 5"/></svg>
+                <b>Confirm or reject</b>
+                <span>Keep the movement, or play the word with a neutral face</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.8 14.2c1.8 1.9 4.6 1.9 6.4 0"/></svg>
+                <b>Synthetic avatar</b>
+                <span>Says the word with the chosen face</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              A replay of archived public recordings (Willett et al., 2023), not live
+              decoding. The word and the smile come from separate trials composed for
+              playback, and the presenter operates Confirm and Reject manually. The portrait
+              is fictional, the smile is interpolated and the voice is a stand-in.
+            </p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026">2026</time><span>Building it with a co-founder</span></p>
+            <h3>Countermere</h3>
+            <figure class="recent__shot">
+              <a href="https://countermere.com/" target="_blank" rel="noreferrer">
+                <img src="./assets/portfolio/recent/countermere-example.webp" width="968" height="672" loading="lazy" decoding="async" alt="Capture of the Countermere example: a timeline of three NATO summit declarations, Vilnius 2023, Washington 2024 and The Hague 2025, beside the previous assessment and an updated assessment marked as an AI draft, with buttons to read each source." />
+              </a>
+              <figcaption>The public example on countermere.com.</figcaption>
+            </figure>
+            <p>
+              Countermere helps analysts update geopolitical assessments. It sets a new
+              statement against earlier evidence, drafts what changes and what holds, and
+              lets you check the sources.
+            </p>
+            <p class="recent__limit">
+              The public example is a development example, not a customer’s assessment.
+              It runs in your browser and makes no model call.
+            </p>
+            <p class="recent__links"><a href="https://countermere.com/" target="_blank" rel="noreferrer">countermere.com</a></p>
+          </li>
+        </ul>
       </section>
 
 <section class="portal" id="projects" aria-labelledby="portal-title">
@@ -457,7 +519,7 @@
         <a href="#top">Back to top</a>
       </nav>
     </footer>
-    <script type="module" src="./assets/portfolio/spatial/portal.js"></script>
-    <script type="module" src="./assets/portfolio/journey/journey.js"></script>
+    <script type="module" src="./assets/portfolio/spatial/portal.js?v=20261109-phone"></script>
+    <script type="module" src="./assets/portfolio/journey/journey.js?v=20261109-phone"></script>
   </body>
 </html>
