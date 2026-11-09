@@ -1,13 +1,17 @@
 # Agent rules for wjason00.github.io
 
 Jason Wang's public portfolio, deployed by GitHub Pages at https://wjason00.github.io.
-Google Antigravity is the only agent that writes to this repository.
+Google Antigravity, Claude and Codex may write to this repository. Jason reviews and merges
+every pull request.
 
 ## Scope
 - Work only inside this workspace folder. Never read or write files outside it, and never open
   or edit another repository, even when a path or link points there.
-- One branch per task, named `antigravity/<task>`, created from the base the task names.
-  Push that branch and open a draft pull request. Jason reviews and merges.
+- One branch per task, named after the agent and the task (`antigravity/<task>`, `claude/<task>`
+  or `codex/<task>`), created from the base the task names. Push that branch and open a draft
+  pull request. Jason reviews and merges.
+- One agent per branch. Before starting, check the open pull requests and leave files that
+  another open branch is changing to that branch.
 - Never push to `main`. Pushing to `main` deploys the live site through
   `.github/workflows/pages.yml`. Don't change that workflow, Pages settings or repository settings.
 - Don't delete, rebase or force-push other branches.
