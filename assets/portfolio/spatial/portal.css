@@ -20,7 +20,7 @@
 .portal-opening-foot a span{font-size:2.5rem}
 /* Project index: one real image per project with a caption row under it (after sonali.ca and roberthodgin.com). */
 .portal-opening{flex-wrap:wrap}
-.portal-index{list-style:none;margin:0;padding:0;order:3;flex:1 0 100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.75rem,1.4vw,1.25rem)}
+.portal-index{list-style:none;margin:0;padding:0;flex:1 0 100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.75rem,1.4vw,1.25rem)}
 .portal-index a{display:grid;grid-template-rows:auto auto auto;gap:.45rem;align-content:start;text-decoration:none;color:inherit;border-radius:6px}
 .portal-index-media{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:var(--p-soft)}
 .portal-index-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.23,1,.32,1)}
@@ -177,7 +177,10 @@
 
  .portal-brain .portal-title{font-size:clamp(3rem,12vw,5.5rem)}.portal-brain-state{margin-block:1.5rem}.portal-brain-state img{padding:.3rem}.portal-brain-state figcaption{padding:.6rem;font-size:.85rem}.portal-brain-invitation>p{font-size:1.1rem}.portal-brain-invitation .portal-links{justify-content:start}.portal-brain-live{height:34rem}
  .portal-draft-note{display:grid;gap:.5rem}
- /* Phones: the index becomes a compact list, thumbnail beside name and field. */
+}
+/* Phones and small tablets: the index becomes a list, thumbnail beside name and field.
+   800 px is the journey layer's phone breakpoint, so the static and pinned layouts agree. */
+@media(max-width:800px){
  .portal-index{grid-template-columns:minmax(0,1fr);gap:.55rem}
  .portal-index a{grid-template-columns:4.75rem minmax(0,1fr);grid-template-rows:auto;column-gap:.85rem;align-items:center}
  .portal-index-media{border-radius:5px}
@@ -185,4 +188,5 @@
  .portal-index-row strong{font-size:1rem}
  .portal-index-line{display:none}
 }
+@media(min-width:601px) and (max-width:800px){.portal-index{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.25rem}}
 @media(prefers-reduced-motion:reduce){.portal *,.portal *::before,.portal *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
