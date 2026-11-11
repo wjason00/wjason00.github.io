@@ -12,6 +12,10 @@ const here = new URL('./', import.meta.url).href;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const span = (t, a, b) => clamp((t - a) / (b - a));
 const ease = t => 1 - Math.pow(1 - t, 3);
+// Set once the visitor scrolls, taps or presses a key, from the first moment, so a link into
+// #projects never moves them after they have started moving themselves (see showIndex in boot).
+let visitorMoved = false;
+['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(type => addEventListener(type, () => { visitorMoved = true; }, { passive: true, capture: true }));
 
 function el(tag, className, attrs = {}) {
   const node = document.createElement(tag);
@@ -410,14 +414,13 @@ async function boot() {
 
   // A link into #projects lands while late fonts or images may still shift the layout above the
   // opening, so land again once they settle, unless the visitor has scrolled, tapped or pressed a key.
-  let holdIndex = location.hash === '#projects';
-  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(type => addEventListener(type, () => { holdIndex = false; }, { passive: true, capture: true }));
-  const settle = () => { ScrollTrigger.refresh(); if (holdIndex) showIndex(false); };
+  const openedAtIndex = location.hash === '#projects';
+  const settle = () => { ScrollTrigger.refresh(); if (openedAtIndex && !visitorMoved) showIndex(false); };
   document.fonts?.addEventListener?.('loadingdone', settle);
   addEventListener('load', settle);
   ScrollTrigger.refresh();
   // The layout has grown, so a link into the page must land where it was aimed.
-  if (location.hash === '#projects') showIndex(false);
+  if (openedAtIndex) { if (!visitorMoved) showIndex(false); }
   else if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'auto' });
   document.documentElement.dataset.journey = 'ready';
 }
