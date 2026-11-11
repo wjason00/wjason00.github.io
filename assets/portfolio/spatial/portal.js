@@ -68,7 +68,8 @@ if (root) {
   const frameButtons = Array.from(root.querySelectorAll('[data-frame]'));
   const wireButton = root.querySelector('[data-wire]');
   const tools = root.querySelector('.portal-surface-tools');
-  function surfaceReadyCaption() { surfaceCaption.textContent = frameNames[frame] + ': exact saved surface ' + frame + ' of 0–29. Drag or use the arrow keys to turn it.'; }
+  const coarse = window.matchMedia?.('(pointer: coarse)').matches;
+  function surfaceReadyCaption() { surfaceCaption.textContent = frameNames[frame] + ': exact saved surface ' + frame + ' of 0–29. ' + (coarse ? 'Drag sideways to turn it.' : 'Drag or use the arrow keys to turn it.'); }
   function releaseSurface() {
     surfaceToken++;
     if (viewer) { viewer.destroy(); viewer = null; }
