@@ -54,7 +54,8 @@
     ],
     "generator": "scripts/plot-fly-portfolio.py --input PATH/paired-results-v4.csv",
     "transformation": "Redraw all original counts on common 0\u201390 axes; no new fit or simulation.",
-    "limitation": "Exploratory model sensitivity; seeds are inputs, not animals. No biological or significance claim."
+    "limitation": "Exploratory model sensitivity; seeds are inputs, not animals. No biological or significance claim.",
+    "label_revision": "2026-11-11: simplified chart text. All 15 paired counts and marker positions agree with the original plot."
   },
   "files": {
     "assets/portfolio/fly-preview-20261020.mp4": {
@@ -66,8 +67,8 @@
       "sha256": "5a0f5a1f11975e19e2c10a53120616c93c6a0453cbb90904fc205d0650c992ff"
     },
     "assets/portfolio/fly-paired-comparison.svg": {
-      "bytes": 25397,
-      "sha256": "469f6cac420767eeb5460f8fe7fc94b24aea8f7bbbb5eea50b251626d9e6095f"
+      "bytes": 25412,
+      "sha256": "4f6bccb13131acfe6dfeff59fe4a4c3af70c857041520fa2f4878efc4585d49b"
     }
   }
 }
