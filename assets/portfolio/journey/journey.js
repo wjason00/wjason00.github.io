@@ -408,7 +408,13 @@ async function boot() {
     }
   }));
 
-  addEventListener('load', () => ScrollTrigger.refresh());
+  // A link into #projects lands while late fonts or images may still shift the layout above the
+  // opening, so land again once they settle, unless the visitor has scrolled, tapped or pressed a key.
+  let holdIndex = location.hash === '#projects';
+  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(type => addEventListener(type, () => { holdIndex = false; }, { passive: true, capture: true }));
+  const settle = () => { ScrollTrigger.refresh(); if (holdIndex) showIndex(false); };
+  document.fonts?.addEventListener?.('loadingdone', settle);
+  addEventListener('load', settle);
   ScrollTrigger.refresh();
   // The layout has grown, so a link into the page must land where it was aimed.
   if (location.hash === '#projects') showIndex(false);

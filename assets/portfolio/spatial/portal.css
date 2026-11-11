@@ -21,14 +21,17 @@
 /* Project index: one real image per project with a caption row under it (after sonali.ca and roberthodgin.com). */
 .portal-opening{flex-wrap:wrap}
 .portal-index{list-style:none;margin:0;padding:0;flex:1 0 100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.75rem,1.4vw,1.25rem)}
-.portal-index a{display:grid;grid-template-rows:auto auto auto;gap:.45rem;align-content:start;text-decoration:none;color:inherit;border-radius:6px}
+.portal-index a{display:grid;grid-template-rows:auto auto;gap:.5rem;align-content:start;text-decoration:none;color:inherit;border-radius:6px}
 .portal-index-media{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:var(--p-soft)}
 .portal-index-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.23,1,.32,1)}
 .portal-index a:hover img{transform:scale(1.035)}
-.portal-index-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;column-gap:.75rem;row-gap:.1rem}
-.portal-index-row strong{font-size:1.05rem;font-weight:600}
-.portal-index-row span{font-size:.85rem;color:var(--p-muted)}
-.portal-index-line{font-size:.92rem;line-height:1.38;color:var(--p-muted)}
+/* Caption: name with its year at the right (sonali.ca's caption row), the field under it. */
+.portal-index-text{display:grid;gap:.1rem;min-width:0}
+.portal-index-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.portal-index-row strong{font-size:1.05rem;font-weight:600;min-width:0}
+.portal-index-year{flex:none;font-size:.85rem;color:var(--p-muted);font-variant-numeric:tabular-nums}
+.portal-index-field{font-size:.85rem;color:var(--p-muted)}
+.portal-index-line{font-size:.92rem;line-height:1.38;color:var(--p-muted);margin-top:.3rem}
 .portal-index a:hover strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .portal-wayfinder{position:sticky;top:4rem;z-index:5;display:flex;justify-content:center;gap:.3rem;padding:.65rem 1rem;background:var(--p-paper);border-block:1px solid var(--p-rule);overflow-x:auto;scrollbar-width:thin}
 .portal-wayfinder a{flex:none;font-size:1rem;font-weight:600;text-decoration:none;padding:.6rem 1.1rem;border-radius:30px;min-height:44px;white-space:nowrap;transition:background-color .18s,color .18s}
@@ -184,7 +187,6 @@
  .portal-index{grid-template-columns:minmax(0,1fr);gap:.55rem}
  .portal-index a{grid-template-columns:4.75rem minmax(0,1fr);grid-template-rows:auto;column-gap:.85rem;align-items:center}
  .portal-index-media{border-radius:5px}
- .portal-index-row{display:grid;row-gap:.05rem}
  .portal-index-row strong{font-size:1rem}
  .portal-index-line{display:none}
 }

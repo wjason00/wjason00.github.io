@@ -64,7 +64,7 @@ html.lenis,html.lenis body{height:auto}
 .jr-dive .portal-index-media{max-height:24svh}
 .jr-dive .portal-index a{color:#e4efe8}
 .jr-dive .portal-index-media{background:rgba(228,239,232,.08)}
-.jr-dive .portal-index-row span,.jr-dive .portal-index-line{color:#a9beb4}
+.jr-dive .portal-index-year,.jr-dive .portal-index-field,.jr-dive .portal-index-line{color:#a9beb4}
 .jr-dive .portal-index a:focus-visible{outline-color:#e4efe8;outline-offset:4px}
 .jr-dive .portal-opening-foot{margin-top:clamp(1rem,3svh,1.6rem)}
 .has-journey .portal-opening + article{margin-top:-100svh;position:relative;z-index:2}
@@ -191,7 +191,7 @@ html.lenis,html.lenis body{height:auto}
   .jr-dive .portal-index{grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;margin-top:.7rem}
   .jr-dive .portal-index a{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;row-gap:.3rem;align-items:start}
   .jr-dive .portal-index-media{aspect-ratio:16/9;max-height:none}
-  .jr-dive .portal-index-row span{display:none}
+  .jr-dive .portal-index-year,.jr-dive .portal-index-field{display:none}
   .jr-dive .portal-index-row strong{font-size:.9rem;line-height:1.25}
   .jr-dive .portal-opening-foot{margin-top:.7rem}
 }
