@@ -29,6 +29,8 @@ export function initExplorer() {
   if (!tabs.length) return;
   const workspace = $('fly-explorer');
   workspace.classList.add('progressive-enabled');
+  const intro = document.querySelector('.project-intro p');
+  const circuitIntro = intro.textContent;
   const advancedToggle = $('advanced-toggle');
   const advanced = { connections: false, anatomy: false };
   const bodyFrame = $('body-frame');
@@ -79,7 +81,7 @@ export function initExplorer() {
     for (const panel of document.querySelectorAll('[data-explorer-panel]')) panel.hidden = panel.dataset.explorerPanel !== view;
     const body = view === 'body';
     document.querySelector('.project-intro h1').textContent = body ? 'Explore the fly’s motor activity' : 'The fly feeding circuit';
-    document.querySelector('.project-intro p').textContent = body ? 'Replay simulated motor spikes alongside an illustrative 3D fly.' : 'How does disconnecting Roundup, a feeding-circuit neuron, change motor output?';
+    intro.textContent = body ? 'Replay simulated motor spikes alongside an illustrative 3D fly.' : circuitIntro;
     $('paired-controls').hidden = body;
     $('paired-output').hidden = body;
     $('neuron-inspector').hidden = body;
