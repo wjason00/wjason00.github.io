@@ -173,16 +173,38 @@ if (canvas && probe) {
   });
 }
 
+/* Where the project list sits over the surface (wide and tall screens), keep the surface clear of
+   it. On phones the list follows the surface in the page, so nothing needs clearing. The 52 px gap
+   is the furthest a dot can travel from its place: the pointer's push (under 32 px), a click pulse
+   (15 px) and the dot's own radius. */
+let clearFrame = 0;
+function updateClearance() {
+  clearFrame = 0;
+  if (!scene?.setClear || !canvas || !index) return;
+  const list = index.querySelector('ul') ?? index;
+  if (getComputedStyle(index).position !== 'absolute') { scene.setClear(null); return; }
+  const c = canvas.getBoundingClientRect(), r = list.getBoundingClientRect();
+  const bar = document.querySelector('.xp-bar')?.getBoundingClientRect();
+  scene.setClear({
+    left: r.left - c.left, top: r.top - c.top, right: r.right - c.left, bottom: r.bottom - c.top,
+    gap: 52, top0: bar ? Math.max(0, bar.bottom - c.top) + 8 : 0,
+  });
+}
+function scheduleClearance() { if (!clearFrame) clearFrame = requestAnimationFrame(updateClearance); }
+window.addEventListener('resize', scheduleClearance, { passive: true });
+if (window.ResizeObserver && index) new ResizeObserver(scheduleClearance).observe(index);
+
 /* Scene */
 async function startScene() {
   if (!canvas) return;
   try {
-    const { mountScene } = await import('./brain-scene.js');
+    const { mountScene } = await import('./brain-scene.js?v=20261111-hero');
     scene = mountScene(canvas, {
       onReady({ pointCount }) {
         root.dataset.scene = 'ready';
         if (readoutPoints && pointCount) readoutPoints.textContent = `${pointCount.toLocaleString('en-GB')} points`;
         scene.setTheme(effectiveTheme());
+        updateClearance();
         updateReadout();
       },
       onInteraction({ type }) {

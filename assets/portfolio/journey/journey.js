@@ -12,6 +12,10 @@ const here = new URL('./', import.meta.url).href;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const span = (t, a, b) => clamp((t - a) / (b - a));
 const ease = t => 1 - Math.pow(1 - t, 3);
+// Set once the visitor scrolls, taps or presses a key, from the first moment, so a link into
+// #projects never moves them after they have started moving themselves (see showIndex in boot).
+let visitorMoved = false;
+['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(type => addEventListener(type, () => { visitorMoved = true; }, { passive: true, capture: true }));
 
 function el(tag, className, attrs = {}) {
   const node = document.createElement(tag);
@@ -245,7 +249,8 @@ async function boot() {
     dive.pin.style.setProperty('--dark', dark.toFixed(3));
     dive.copy.style.opacity = span(p, .62, .76).toFixed(3);
     dive.copy.style.transform = `translate3d(0,${((1 - ease(span(p, .62, .8))) * 28).toFixed(1)}px,0)`;
-    dive.copy.style.visibility = p > .6 ? 'visible' : 'hidden';
+    // Faded out, the copy stays readable by screen readers and reachable by keyboard; only pointers skip it.
+    dive.copy.style.pointerEvents = p > .6 ? 'auto' : 'none';
   };
   stages.push(dive);
 
@@ -346,7 +351,7 @@ async function boot() {
 
   stages.forEach(s => {
     nearby.observe(s.stage);
-    ScrollTrigger.create({
+    s.st = ScrollTrigger.create({
       trigger: s.stage, start: 'top top',
       // The scrub ends where the next sheet, which overlaps the stage by 100svh, starts to rise.
       end: () => `+=${Math.max(1, s.stage.offsetHeight - s.pin.offsetHeight - small())}`,
@@ -384,10 +389,39 @@ async function boot() {
     if (current) nav.scrollTo({ left: current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2, behavior: 'smooth' });
   }).observe(nav, { subtree: true, attributes: true, attributeFilter: ['aria-current'] });
 
-  addEventListener('load', () => ScrollTrigger.refresh());
+  // The project index sits at the end of the opening. Links to #projects, and keyboard focus moving
+  // into the index, go to the point where it is fully shown instead of the dark start of the dive.
+  const showIndex = smooth => {
+    if (!dive.st) return;
+    const top = dive.st.start + (dive.st.end - dive.st.start) * .82;
+    if (lenis) lenis.scrollTo(top, smooth ? { duration: 1 } : { immediate: true });
+    else scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+  };
+  dive.copy.addEventListener('focusin', event => {
+    if (event.target.matches(':focus-visible') && (dive.t < .62 || dive.t > .95)) showIndex(false);
+  });
+  document.querySelectorAll('a[href="#projects"]').forEach(link => link.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    showIndex(event.detail !== 0);
+    history.pushState(null, '', '#projects');
+    if (event.detail === 0) {
+      const heading = dive.copy.querySelector('h2');
+      heading.tabIndex = -1;
+      heading.focus({ preventScroll: true });
+    }
+  }));
+
+  // A link into #projects lands while late fonts or images may still shift the layout above the
+  // opening, so land again once they settle, unless the visitor has scrolled, tapped or pressed a key.
+  const openedAtIndex = location.hash === '#projects';
+  const settle = () => { ScrollTrigger.refresh(); if (openedAtIndex && !visitorMoved) showIndex(false); };
+  document.fonts?.addEventListener?.('loadingdone', settle);
+  addEventListener('load', settle);
   ScrollTrigger.refresh();
   // The layout has grown, so a link into the page must land where it was aimed.
-  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'auto' });
+  if (openedAtIndex) { if (!visitorMoved) showIndex(false); }
+  else if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'auto' });
   document.documentElement.dataset.journey = 'ready';
 }
 

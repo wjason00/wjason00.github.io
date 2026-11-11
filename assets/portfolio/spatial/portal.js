@@ -42,7 +42,7 @@ if (root) {
   window.addEventListener('scroll', scheduleWayfinder, { passive: true });
   window.addEventListener('resize', scheduleWayfinder);
   scheduleWayfinder();
-  navLinks.concat(Array.from(root.querySelectorAll('.portal-opening-foot a'))).forEach(link => {
+  navLinks.concat(Array.from(root.querySelectorAll('.portal-opening-foot a, .portal-index a'))).forEach(link => {
     link.addEventListener('click', event => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const target = document.getElementById(link.hash.slice(1));

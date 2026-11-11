@@ -18,6 +18,21 @@
 .portal-opening-foot p{font-size:1.1rem;line-height:1.45;max-width:30ch}
 .portal-opening-foot a{font-size:1.1rem;font-weight:600;white-space:nowrap;text-decoration:none;display:flex;gap:2rem;align-items:center}
 .portal-opening-foot a span{font-size:2.5rem}
+/* Project index: one real image per project with a caption row under it (after sonali.ca and roberthodgin.com). */
+.portal-opening{flex-wrap:wrap}
+.portal-index{list-style:none;margin:0;padding:0;flex:1 0 100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(.75rem,1.4vw,1.25rem)}
+.portal-index a{display:grid;grid-template-rows:auto auto;gap:.5rem;align-content:start;text-decoration:none;color:inherit;border-radius:6px}
+.portal-index-media{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:var(--p-soft)}
+.portal-index-media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.portal-index a:hover img{transform:scale(1.035)}
+/* Caption: name with its year at the right (sonali.ca's caption row), the field under it. */
+.portal-index-text{display:grid;gap:.1rem;min-width:0}
+.portal-index-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.portal-index-row strong{font-size:1.05rem;font-weight:600;min-width:0}
+.portal-index-year{flex:none;font-size:.85rem;color:var(--p-muted);font-variant-numeric:tabular-nums}
+.portal-index-field{font-size:.85rem;color:var(--p-muted)}
+.portal-index-line{font-size:.92rem;line-height:1.38;color:var(--p-muted);margin-top:.3rem}
+.portal-index a:hover strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .portal-wayfinder{position:sticky;top:4rem;z-index:5;display:flex;justify-content:center;gap:.3rem;padding:.65rem 1rem;background:var(--p-paper);border-block:1px solid var(--p-rule);overflow-x:auto;scrollbar-width:thin}
 .portal-wayfinder a{flex:none;font-size:1rem;font-weight:600;text-decoration:none;padding:.6rem 1.1rem;border-radius:30px;min-height:44px;white-space:nowrap;transition:background-color .18s,color .18s}
 .portal-wayfinder a:hover{background:#dce0d8}
@@ -141,6 +156,7 @@
 .portal-dialog img{width:1720px;max-width:none;height:auto;display:block}
 
 @media(max-width:1000px){
+ .portal-index{grid-template-columns:repeat(3,minmax(0,1fr))}
  .portal-opening h2{font-size:clamp(2.5rem,5vw,4rem)}
  .portal-morpher-head{max-width:60%}.portal-morpher-head .portal-title{font-size:clamp(4rem,11vw,8rem)}
  .portal-surface{margin-top:-17rem;margin-left:24%;min-height:42rem}
@@ -165,4 +181,14 @@
  .portal-brain .portal-title{font-size:clamp(3rem,12vw,5.5rem)}.portal-brain-state{margin-block:1.5rem}.portal-brain-state img{padding:.3rem}.portal-brain-state figcaption{padding:.6rem;font-size:.85rem}.portal-brain-invitation>p{font-size:1.1rem}.portal-brain-invitation .portal-links{justify-content:start}.portal-brain-live{height:34rem}
  .portal-draft-note{display:grid;gap:.5rem}
 }
+/* Phones and small tablets: the index becomes a list, thumbnail beside name and field.
+   800 px is the journey layer's phone breakpoint, so the static and pinned layouts agree. */
+@media(max-width:800px){
+ .portal-index{grid-template-columns:minmax(0,1fr);gap:.55rem}
+ .portal-index a{grid-template-columns:4.75rem minmax(0,1fr);grid-template-rows:auto;column-gap:.85rem;align-items:center}
+ .portal-index-media{border-radius:5px}
+ .portal-index-row strong{font-size:1rem}
+ .portal-index-line{display:none}
+}
+@media(min-width:601px) and (max-width:800px){.portal-index{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.25rem}}
 @media(prefers-reduced-motion:reduce){.portal *,.portal *::before,.portal *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

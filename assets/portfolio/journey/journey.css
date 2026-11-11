@@ -48,11 +48,25 @@ html.lenis,html.lenis body{height:auto}
 /* Opening: the camera enters the hero's surface */
 .has-journey .portal-opening{display:block;--len:210;padding:0;background:var(--deep)}
 .jr-dive .jr-pin{--dark:0;background:color-mix(in srgb,var(--deep) calc(var(--dark) * 100%),#eef3ef)}
-.jr-dive .jr-copy{inset:auto clamp(1.25rem,5vw,6rem) calc(12svh + var(--bar));color:#e4efe8;visibility:hidden;opacity:0}
+.jr-dive .jr-copy{inset:auto clamp(1.25rem,5vw,6rem) calc(12svh + var(--bar));color:#e4efe8;pointer-events:none;opacity:0}
+/* The copy stays in the accessibility tree while it is faded out; keyboard focus inside it shows it
+   on a dark ground at once (journey.js also scrolls to where it is fully shown). */
+.jr-dive .jr-copy:has(:focus-visible){opacity:1!important;transform:none!important}
+.jr-dive .jr-pin:has(:focus-visible){--dark:1!important}
 .jr-dive h2{font-size:clamp(3.4rem,13vw,15rem)!important;line-height:.9!important;letter-spacing:-.05em!important;max-width:none!important;font-weight:600;color:#e4efe8}
 .jr-dive .portal-opening-foot{max-width:none;justify-content:space-between;margin-top:1.6rem;gap:1.5rem}
 .jr-dive .portal-opening-foot p{font-size:clamp(1.1rem,1.6vw,1.4rem);max-width:34ch}
 .jr-dive .portal-opening-foot a{color:#e4efe8}
+/* Project index inside the opening: five real images with a caption row, so the screen before the
+   first stage shows the whole set. The headline gives up some size to make room for it. */
+.jr-dive h2{font-size:clamp(3rem,min(9.5vw,15svh),11rem)!important}
+.jr-dive .portal-index{margin-top:clamp(1rem,3.2svh,2.2rem);grid-template-columns:repeat(5,minmax(0,1fr))}
+.jr-dive .portal-index-media{max-height:24svh}
+.jr-dive .portal-index a{color:#e4efe8}
+.jr-dive .portal-index-media{background:rgba(228,239,232,.08)}
+.jr-dive .portal-index-year,.jr-dive .portal-index-field,.jr-dive .portal-index-line{color:#a9beb4}
+.jr-dive .portal-index a:focus-visible{outline-color:#e4efe8;outline-offset:4px}
+.jr-dive .portal-opening-foot{margin-top:clamp(1rem,3svh,1.6rem)}
 .has-journey .portal-opening + article{margin-top:-100svh;position:relative;z-index:2}
 
 /* Model Morpher */
@@ -156,6 +170,30 @@ html.lenis,html.lenis body{height:auto}
   .has-journey .fly-limit{font-size:.92rem;line-height:1.36}
   .has-journey .portal-brain .portal-title{font-size:clamp(2rem,8.6vw,3.4rem)}
   .has-journey .portal-eeg .portal-title{font-size:min(clamp(2.2rem,9vw,3.4rem),6svh)}
+  /* Opening on phones: a compact list that fits above the toolbar on short screens. */
+  .jr-dive .jr-copy{bottom:calc(6svh + var(--bar))}
+  .jr-dive h2{font-size:clamp(2.6rem,12vw,4rem)!important}
+  .jr-dive .portal-index{margin-top:.9rem;gap:.5rem;grid-template-columns:minmax(0,1fr)}
+  .jr-dive .portal-index a{grid-template-columns:min(4.75rem,8svh) minmax(0,1fr)}
+  .jr-dive .portal-opening-foot{margin-top:.9rem}
+  .jr-dive .portal-opening-foot p{font-size:1rem}
+}
+/* The pinned index must fit between the top of the screen and the bottom offset, so it sheds detail
+   as the screen gets shorter: the one-line descriptions, then the intro sentence, then (landscape
+   phones and very short windows) the field labels, keeping five small images with their names. */
+@media (min-width:601px) and (max-width:800px){.jr-dive .portal-index{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:1.25rem}}
+@media (max-width:1180px),(max-height:760px){.jr-dive .portal-index-line{display:none}}
+@media (max-height:640px){.jr-dive .portal-opening-foot p{display:none}}
+@media (max-width:800px) and (max-height:640px){.jr-dive .portal-index{gap:.35rem}}
+@media (max-height:500px){
+  .jr-dive .jr-copy{bottom:calc(5svh + var(--bar))}
+  .jr-dive h2{font-size:clamp(2rem,12svh,3rem)!important}
+  .jr-dive .portal-index{grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;margin-top:.7rem}
+  .jr-dive .portal-index a{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;row-gap:.3rem;align-items:start}
+  .jr-dive .portal-index-media{aspect-ratio:16/9;max-height:none}
+  .jr-dive .portal-index-year,.jr-dive .portal-index-field{display:none}
+  .jr-dive .portal-index-row strong{font-size:.9rem;line-height:1.25}
+  .jr-dive .portal-opening-foot{margin-top:.7rem}
 }
 
 @media (max-width:800px) and (max-height:700px){.has-journey .portal-eeg-question{display:none}}

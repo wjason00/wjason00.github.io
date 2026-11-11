@@ -81,6 +81,39 @@ export function mountScene(canvas, options = {}) {
     lastX: 0, lastY: 0, moved: 0 };
   let pulse = null, resizeObserver, intersectionObserver;
   const oldTouchAction = canvas?.style?.touchAction ?? '';
+  // Area the surface must stay clear of (the page's project list), in canvas pixels, and how far
+  // the surface can reach from its centre in any orientation, as a multiple of the camera radius:
+  // the projection of its enclosing sphere, so dragging or keyboard turns cannot reach the list.
+  let clear = null;
+  let reach = 1;
+
+  // Keep the surface clear of the list: move it beside or above the list only as far as needed,
+  // whichever keeps it larger, and shrink it only when moving alone would take it off the canvas.
+  function frame() {
+    const radius = Math.min(width, height) * cameraScale;
+    const centred = { radius, cx: width / 2, cy: height / 2 };
+    if (!clear) return centred;
+    const gap = clear.gap ?? 32;
+    const meets = f => f.cx + reach * f.radius > clear.left - gap && f.cx - reach * f.radius < clear.right + gap &&
+      f.cy + reach * f.radius > clear.top - gap && f.cy - reach * f.radius < clear.bottom + gap;
+    if (!meets(centred)) return centred;
+    const edge = Math.min(24, width * 0.03);
+    let r = radius, cx = Math.min(width / 2, clear.left - gap - reach * r);
+    if (cx - reach * r < edge) {
+      r = Math.max(0, (clear.left - gap - edge) / (2 * reach));
+      cx = edge + reach * r;
+    }
+    const beside = { radius: r, cx, cy: height / 2 };
+    const top = clear.top0 ?? 0;
+    let r2 = radius, cy = Math.min(height / 2, clear.top - gap - reach * r2);
+    if (cy - reach * r2 < top) {
+      r2 = Math.max(0, (clear.top - gap - top) / (2 * reach));
+      cy = top + reach * r2;
+    }
+    const above = { radius: r2, cx: width / 2, cy };
+    // Above keeps the surface centred, so it wins unless beside keeps it clearly larger.
+    return above.radius >= beside.radius * 0.95 ? above : beside;
+  }
 
   function notify(type) {
     options.onInteraction?.({ type, project, rotationX: pitch, rotationY: yaw });
@@ -201,7 +234,7 @@ export function mountScene(canvas, options = {}) {
     const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
     const cr = Math.cos(roll), sr = Math.sin(roll);
     const sampleStep = width < 600 ? 2 : 1;
-    const radius = Math.min(width, height) * cameraScale;
+    const { radius, cx: centreX, cy: centreY } = frame();
     const fieldRadius = clamp(Math.min(width, height) * 0.25, 75, 165);
     let influence = 0, settling = false;
     const accent = ACCENTS[project] ?? ACCENTS.overview;
@@ -212,8 +245,8 @@ export function mountScene(canvas, options = {}) {
       const ry = y * cp - rz * sp, depth = y * sp + rz * cp;
       const xx = rx * cr - ry * sr, yy = rx * sr + ry * cr;
       const perspective = 4 / (4 - depth);
-      const px = width / 2 + xx * radius * perspective;
-      const py = height / 2 - yy * radius * perspective;
+      const px = centreX + xx * radius * perspective;
+      const py = centreY - yy * radius * perspective;
       let dx = 0, dy = 0, light = 0;
       if (pointer.inside) {
         const vx = px - pointer.x, vy = py - pointer.y;
@@ -285,6 +318,11 @@ export function mountScene(canvas, options = {}) {
       pointer.inside = false; invalidate(); notify('reset');
     },
     setTheme(value) { theme = value === 'light' ? 'light' : 'dark'; colors = paletteFor(theme); invalidate(0); },
+    /** Keep the surface clear of a rectangle in canvas pixels ({ left, top, right, bottom, gap, top0 }), or null. */
+    setClear(rect) {
+      clear = rect && [rect.left, rect.top, rect.right, rect.bottom].every(Number.isFinite) ? { ...rect } : null;
+      invalidate(0);
+    },
     setReducedMotion(value) {
       reduced = Boolean(value); spinX = spinY = parallaxX = parallaxY = 0; pulse = null;
       invalidate(0);
@@ -316,6 +354,7 @@ export function mountScene(canvas, options = {}) {
     for (let i = 0; i < points.length; i += 3)
       surfaceRadius = Math.max(surfaceRadius, Math.hypot(points[i], points[i + 1], points[i + 2]));
     cameraScale = fitScaleForRadius(surfaceRadius);
+    reach = surfaceRadius * 4 / Math.sqrt(16 - surfaceRadius * surfaceRadius);
     offsets = new Float32Array(count * 2); projected = new Float32Array(count * 5);
     const media = win.matchMedia?.('(prefers-reduced-motion: reduce)');
     reduced = Boolean(media?.matches);
