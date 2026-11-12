@@ -51,6 +51,8 @@ for (const device of [
       const { height } = device.viewport;
       await page.goto('/');
       await ready(page);
+      // The opening's points are drawn with WebGL. Without it there is nothing to measure.
+      test.skip(!(await page.evaluate(() => Boolean(document.createElement('canvas').getContext('webgl')))), 'WebGL is not available in this browser');
       const top = await page.locator('.portal-opening').evaluate(node => Math.round(node.getBoundingClientRect().top + scrollY));
       const step = Math.round(height / 16);
       let run = 0, longest = 0;
