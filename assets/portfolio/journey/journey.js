@@ -111,8 +111,8 @@ class Film {
 }
 
 // The hero's own 4,096 points, entered by the camera. Interface artwork, as in the hero.
-// On phones the hero is not full-screen, so the points start partly visible: otherwise the opening
-// scrolls in as an empty screen.
+// The points start partly visible: the opening follows the Recently section, not the full-screen
+// hero, so with nothing drawn it scrolls in as an empty screen.
 function diveLayer(canvas, floor = 0) {
   const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
   if (!gl) return null;
@@ -242,7 +242,7 @@ async function boot() {
   [...opening.children].forEach(node => dive.copy.append(node));
   const diveCanvas = el('canvas', 'jr-gl', { 'aria-hidden': 'true' });
   dive.pin.append(diveCanvas, dive.copy); opening.append(dive.pin);
-  const drawDive = diveLayer(diveCanvas, narrow ? .6 : 0);
+  const drawDive = diveLayer(diveCanvas, .6);
   dive.render = p => {
     drawDive?.(p);
     const dark = span(p, .34, .54);
