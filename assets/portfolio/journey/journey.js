@@ -7,7 +7,6 @@ import { positions } from '../brain-surface-data.js';
 const root = document.querySelector('.portal');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(pointer: fine)').matches;
-const narrow = matchMedia('(max-width: 800px)').matches;
 const here = new URL('./', import.meta.url).href;
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const span = (t, a, b) => clamp((t - a) / (b - a));
@@ -113,7 +112,8 @@ class Film {
 // The hero's own 4,096 points, entered by the camera. Interface artwork, as in the hero.
 // The points start partly visible: the opening follows the Recently section, not the full-screen
 // hero, so with nothing drawn it scrolls in as an empty screen.
-function diveLayer(canvas, floor = 0) {
+function diveLayer(canvas) {
+  const floor = .6;
   const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
   if (!gl) return null;
   const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
@@ -242,7 +242,7 @@ async function boot() {
   [...opening.children].forEach(node => dive.copy.append(node));
   const diveCanvas = el('canvas', 'jr-gl', { 'aria-hidden': 'true' });
   dive.pin.append(diveCanvas, dive.copy); opening.append(dive.pin);
-  const drawDive = diveLayer(diveCanvas, .6);
+  const drawDive = diveLayer(diveCanvas);
   dive.render = p => {
     drawDive?.(p);
     const dark = span(p, .34, .54);

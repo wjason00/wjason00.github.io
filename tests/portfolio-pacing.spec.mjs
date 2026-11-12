@@ -1,9 +1,12 @@
 import { expect, test } from '@playwright/test';
 import zlib from 'node:zlib';
 
-const ready = page => page.waitForFunction(() => document.documentElement.dataset.journey === 'ready');
+const ready = async page => {
+  await page.waitForFunction(() => ['ready', 'failed'].includes(document.documentElement.dataset.journey));
+  expect(await page.evaluate(() => document.documentElement.dataset.journey), 'the journey layer started').toBe('ready');
+};
 
-// Share of a screenshot that differs from its most common tone. Near zero means an empty screen.
+// Share of a screenshot that differs from its most common tone. Zero means one flat tone.
 function ink(png) {
   const w = png.readUInt32BE(16), h = png.readUInt32BE(20), bpp = png[25] === 6 ? 4 : 3, stride = w * bpp;
   const parts = [];
@@ -24,7 +27,7 @@ function ink(png) {
     }
   }
   const tones = new Uint32Array(256), samples = [];
-  for (let y = 4; y < h; y += 8) for (let x = 4; x < w; x += 8) {
+  for (let y = 2; y < h; y += 4) for (let x = 2; x < w; x += 4) {
     const p = (y * w + x) * bpp, tone = Math.round((out[p] * 3 + out[p + 1] * 6 + out[p + 2]) / 10);
     tones[tone]++; samples.push(tone);
   }
@@ -33,21 +36,31 @@ function ink(png) {
 }
 
 // The opening follows the Recently section. If its points start invisible, the visitor scrolls
-// through an empty screen before anything happens.
-for (const viewport of [{ width: 1366, height: 768 }, { width: 390, height: 844 }]) {
-  test(`the opening never scrolls in as an empty screen at ${viewport.width}px`, async ({ page }) => {
-    await page.setViewportSize(viewport);
-    await page.goto('/');
-    await ready(page);
-    const top = await page.locator('.portal-opening').evaluate(node => Math.round(node.getBoundingClientRect().top + scrollY));
-    const step = Math.round(viewport.height / 16);
-    let run = 0, longest = 0;
-    for (let y = top - viewport.height; y <= top + viewport.height / 4; y += step) {
-      await page.evaluate(v => window.scrollTo(0, v), y);
-      await page.waitForTimeout(280);
-      run = ink(await page.screenshot()) < 0.012 ? run + step : 0;
-      longest = Math.max(longest, run);
-    }
-    expect(longest / viewport.height, 'longest stretch with a nearly empty screen, in screens').toBeLessThan(0.3);
+// through a blank screen before anything happens. A blank screen measures at most 0.1% ink here
+// and the opening's first frame about 1.5%, so 0.4% separates the two with room on both sides.
+const BLANK = 0.004;
+
+for (const device of [
+  { name: 'a 1366 x 768 desktop', viewport: { width: 1366, height: 768 }, isMobile: false, hasTouch: false },
+  { name: 'a 390 x 844 phone', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
+]) {
+  test.describe(`opening pacing on ${device.name}`, () => {
+    test.use({ viewport: device.viewport, isMobile: device.isMobile, hasTouch: device.hasTouch });
+    test('the opening never scrolls in as a blank screen', async ({ page }) => {
+      test.setTimeout(60_000);
+      const { height } = device.viewport;
+      await page.goto('/');
+      await ready(page);
+      const top = await page.locator('.portal-opening').evaluate(node => Math.round(node.getBoundingClientRect().top + scrollY));
+      const step = Math.round(height / 16);
+      let run = 0, longest = 0;
+      for (let y = top - height; y <= top + height / 4; y += step) {
+        await page.evaluate(v => window.scrollTo(0, v), y);
+        await page.waitForTimeout(280);
+        run = ink(await page.screenshot()) < BLANK ? run + step : 0;
+        longest = Math.max(longest, run);
+      }
+      expect(longest / height, 'longest run of blank screens, in screen heights').toBeLessThan(0.15);
+    });
   });
 }
