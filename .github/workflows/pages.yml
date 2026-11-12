@@ -32,7 +32,8 @@ jobs:
       - name: Check data, figures and replay modules
         run: node --test --test-concurrency=1 tests/*.test.* demos/fly/tests/*.test.mjs
       - name: Install Chromium for responsive checks
-        run: npx playwright install --with-deps chromium
+        # The runner image already has Chrome's system libraries; --with-deps also needs Ubuntu's package servers.
+        run: npx playwright install chromium
       - name: Check responsive layout
         env:
           PORTFOLIO_SITE_ROOT: _site
