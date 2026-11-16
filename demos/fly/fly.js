@@ -4,6 +4,11 @@ const data = window.FEEDING_DATA, $ = id => document.getElementById(id);
 const network = initNetwork();
 let cut = true, time = 1, playing = false, frame = 0, last = 0;
 const ns='http://www.w3.org/2000/svg', colors={intact:'#156b9a',cut:'#984176'};
+const strengthLabels = {
+  '0.8': '20% weaker connections (0.8×)',
+  '1': 'Original connection strength (1.0×)',
+  '1.2': '20% stronger connections (1.2×)',
+};
 const chart=$('chart');
 let layout;
 const x=t=>layout.left+t*(layout.right-layout.left), y=n=>layout.bottom-n/100*(layout.bottom-layout.top);
@@ -35,8 +40,12 @@ function render(){
  $('time').value=Math.round(time*1000);$('time-label').value=`${Math.round(time*1000)} ms`;
  const a=countThrough(pair.intact.spikes,time),b=countThrough(pair.cut.spikes,time);
  $('result').setAttribute('aria-live',playing?'off':'polite');
- $('result').textContent=`${cut?'Cut':'Kept'} selected · ${cut?b:a} MN9 spikes at ${Math.round(time*1000)} ms. Full simulated trial: ${pair.intact.count} kept, ${pair.cut.count} cut (${pair.intact.count-pair.cut.count} fewer after the cut).`;
- $('experiment-summary').textContent=`Simulation comparison · Gain ${Number($('gain').value).toFixed(1)}× · Seed ${$('seed').value} · Roundup outputs ${cut?'cut':'kept'}`;
+ $('result').textContent=`${cut?'Cut':'Kept'} selected · ${cut?b:a} MN9 spikes at ${Math.round(time*1000)} ms.`;
+ const pairSummary = $('pair-summary');
+ const summary = `In one simulated second, MN9 fired ${pair.intact.count} spikes with outputs kept and ${pair.cut.count} with outputs cut.`;
+ if (pairSummary.textContent !== summary) pairSummary.textContent = summary;
+ $('experiment-summary').textContent = `${strengthLabels[$('gain').value]} · Input schedule (seed ${$('seed').value})`;
+ $('paired-legend').dataset.selected = selected;
  $('play').textContent=playing?'Pause':time>=1?'Replay':'Play';
 }
 function pause(){playing=false;cancelAnimationFrame(frame);render();}
