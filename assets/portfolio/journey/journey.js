@@ -109,13 +109,50 @@ class Film {
   }
 }
 
+// Draw the same points and camera path when WebGL is unavailable or loses its context.
+// A canvas cannot change context type, so replace only this decorative canvas.
+function canvasDive(canvas) {
+  const replacement = canvas.cloneNode(false);
+  canvas.replaceWith(replacement);
+  const ctx = replacement.getContext('2d');
+  if (!ctx) return null;
+  replacement.dataset.renderer = 'canvas2d';
+  return p => {
+    const r = replacement.getBoundingClientRect(), dpr = Math.min(1.5, devicePixelRatio || 1);
+    const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
+    if (replacement.width !== w || replacement.height !== h) { replacement.width = w; replacement.height = h; }
+    ctx.clearRect(0, 0, w, h);
+    const t = ease(p), light = span(p, .3, .5), yaw = -.45 + 1.1 * t, pitch = -.16 + .28 * t;
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const z = 3.2 - 3.12 * Math.pow(span(p, 0, .66), 1.35), scale = 4 * Math.min(w, h) * .4 / (h / 2);
+    const alpha = (.6 + .4 * span(p, 0, .1)) * (1 - span(p, .54, .66));
+    const max = Math.max(70, Math.min(w, h) * .19);
+    ctx.fillStyle = `rgb(${(.063 + light * .78) * 255},${(.216 + light * .68) * 255},${(.184 + light * .72) * 255})`;
+    for (let i = 0; i < positions.length; i += 3) {
+      const ax = cy * positions[i] + sy * positions[i + 2], az = -sy * positions[i] + cy * positions[i + 2];
+      const ry = cp * positions[i + 1] - sp * az, rz = sp * positions[i + 1] + cp * az;
+      const d = z - rz;
+      if (d <= .02) continue;
+      const k = 1 / d, x = ax * k * scale / (w / h), y = ry * k * scale;
+      // WebGL clips point centres before rasterising their circles.
+      if (Math.abs(x) > 1 || Math.abs(y) > 1) continue;
+      const fade = span(d, .06, .55);
+      ctx.globalAlpha = fade * fade * (3 - 2 * fade) * alpha;
+      ctx.beginPath();
+      ctx.arc((.5 + .5 * x) * w, (.5 - .5 * y) * h, clamp(22 * dpr * k * k, 1, max) / 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  };
+}
+
 // The hero's own 4,096 points, entered by the camera. Interface artwork, as in the hero.
 // The points start partly visible: the opening follows the Recently section, not the full-screen
 // hero, so with nothing drawn it scrolls in as an empty screen.
-function diveLayer(canvas) {
+function diveLayer(canvas, onFailure) {
   const floor = .6;
   const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
-  if (!gl) return null;
+  if (!gl) return canvasDive(canvas);
   const shader = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
   const program = gl.createProgram();
   gl.attachShader(program, shader(gl.VERTEX_SHADER, `
@@ -138,7 +175,7 @@ function diveLayer(canvas) {
       gl_FragColor=vec4(uColor*a,a);
     }`));
   gl.linkProgram(program); gl.useProgram(program);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return canvasDive(canvas);
   const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
@@ -147,7 +184,17 @@ function diveLayer(canvas) {
   gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   const u = n => gl.getUniformLocation(program, n);
   const count = positions.length / 3;
+  canvas.dataset.renderer = 'webgl';
+  let fallback = null, lastProgress = 0;
+  canvas.addEventListener('webglcontextlost', event => {
+    event.preventDefault();
+    fallback = canvasDive(canvas);
+    if (fallback) fallback(lastProgress);
+    else onFailure();
+  }, { once: true });
   return p => {
+    lastProgress = p;
+    if (fallback) return fallback(p);
     const r = canvas.getBoundingClientRect(), dpr = Math.min(1.5, devicePixelRatio || 1);
     const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr);
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
@@ -242,15 +289,17 @@ async function boot() {
   [...opening.children].forEach(node => dive.copy.append(node));
   const diveCanvas = el('canvas', 'jr-gl', { 'aria-hidden': 'true' });
   dive.pin.append(diveCanvas, dive.copy); opening.append(dive.pin);
-  const drawDive = diveLayer(diveCanvas);
+  let drawDive;
+  try { drawDive = diveLayer(diveCanvas, () => { drawDive = null; dive.render(dive.cur); }); }
+  catch { drawDive = canvasDive(diveCanvas); }
   dive.render = p => {
     drawDive?.(p);
-    const dark = span(p, .34, .54);
+    const dark = drawDive ? span(p, .34, .54) : 1;
     dive.pin.style.setProperty('--dark', dark.toFixed(3));
-    dive.copy.style.opacity = span(p, .62, .76).toFixed(3);
+    dive.copy.style.opacity = drawDive ? span(p, .62, .76).toFixed(3) : '1';
     dive.copy.style.transform = `translate3d(0,${((1 - ease(span(p, .62, .8))) * 28).toFixed(1)}px,0)`;
     // Faded out, the copy stays readable by screen readers and reachable by keyboard; only pointers skip it.
-    dive.copy.style.pointerEvents = p > .6 ? 'auto' : 'none';
+    dive.copy.style.pointerEvents = !drawDive || p > .6 ? 'auto' : 'none';
   };
   stages.push(dive);
 

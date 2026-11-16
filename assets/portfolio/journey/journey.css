@@ -7,7 +7,7 @@
 }
 ::selection{background:#10372f;color:#eef3ef}
 html{scrollbar-color:#7d9a8e transparent}
-@view-transition{navigation:auto}
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 .portal button:active,.portal a:active{transform:scale(.97)}
 .portal button,.portal-links a{transition:transform .12s var(--ease-out),background-color .18s var(--ease-out),color .18s var(--ease-out)}
 
