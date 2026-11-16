@@ -67,6 +67,15 @@ for (const viewport of [{ width: 360, height: 800 }, { width: 844, height: 390 }
     await page.getByRole('button', { name: 'View Morphliner preview', exact: true }).click();
     await expectSelected(page, 'work-morphliner', 'Morphliner');
     await expect(page.getByRole('link', { name: 'Open Morphliner', exact: true })).toBeInViewport({ ratio: 1 });
+    if (viewport.width === 360) {
+      await page.getByRole('button', { name: 'View Fly circuit preview', exact: true }).click();
+      await expectSelected(page, 'work-fly', 'Fly circuit');
+      const imageBox = await page.locator('.exhibit-preview-frame').boundingBox();
+      expect(imageBox.width / imageBox.height, 'the phone preview follows the wide image rather than a tall empty frame').toBeCloseTo(16 / 9, 1);
+      const nameBox = await page.locator('.exhibit-preview-name').boundingBox();
+      const openBox = await page.locator('.exhibit-preview-open').boundingBox();
+      expect(Math.abs(nameBox.y + nameBox.height / 2 - openBox.y - openBox.height / 2)).toBeLessThan(3);
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
     expect(errors).toEqual([]);
   });

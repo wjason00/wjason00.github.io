@@ -83,7 +83,10 @@ function init(list) {
     });
     fallback.hidden = true;
     pImg.hidden = false;
-    if (r.w && r.h) { pImg.width = +r.w; pImg.height = +r.h; }
+    if (r.w && r.h) {
+      pImg.width = +r.w; pImg.height = +r.h;
+      frame.style.setProperty('--preview-aspect', `${r.w} / ${r.h}`);
+    }
     if (r.src) pImg.src = r.src; else pImg.dispatchEvent(new Event('error'));
     slot('field').textContent = r.field;
     slot('year').textContent = r.year;
