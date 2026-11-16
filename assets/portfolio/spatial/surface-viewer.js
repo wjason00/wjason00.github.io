@@ -1,10 +1,26 @@
 import {frames,metadata} from './surface-data.js';
 
+// One camera fit for the union of all saved frames. The orthographic projection
+// uses the same pixels per unit on both axes; no saved coordinates are changed.
+// Keeping the common origin also avoids recentering when a frame is selected.
+export function fitSavedSurfaceViewport(width,height,rotation) {
+  let extentX=0,extentY=0;
+  for(const {positions} of frames.values())for(let i=0;i<positions.length;i+=3){
+    const x=positions[i],y=positions[i+1],z=positions[i+2];
+    extentX=Math.max(extentX,Math.abs(rotation[0]*x+rotation[3]*y+rotation[6]*z));
+    extentY=Math.max(extentY,Math.abs(rotation[1]*x+rotation[4]*y+rotation[7]*z));
+  }
+  // NDC +/- .88 leaves 6% of the viewport clear at every edge, at every orbit.
+  const scale=.88*Math.min(width/Math.max(extentX,1e-6),height/Math.max(extentY,1e-6));
+  return [scale/width,scale/height];
+}
+
 // Display-only rotation of three unaltered saved triangle meshes.
 export function mountSurfaceViewer(canvas,options={}) {
   let gl,program,positionBuffer,normalBuffer,indexBuffer,edgeBuffer;
   let current=frames.has(Number(options.frame))?Number(options.frame):15;
   let yaw=0,pitch=0,wireframe=false,drag=null,dead=false,scheduled=0,observer;
+  let fitKey='',fitScale;
   const cleanups=[],buffers=[];
   const win=canvas.ownerDocument.defaultView;
   let resolveReady,rejectReady;
@@ -34,9 +50,11 @@ export function mountSurfaceViewer(canvas,options={}) {
     const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
     if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
     gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);
-    const f=frames.get(current),min=Math.min(w,h);
-    gl.uniformMatrix3fv(gl.getUniformLocation(program,'uRotation'),false,rotation());
-    gl.uniform2f(gl.getUniformLocation(program,'uScale'),.84*min/w,.84*min/h);
+    const f=frames.get(current),viewRotation=rotation(),nextFitKey=`${w}:${h}:${yaw}:${pitch}`;
+    // Cache across frame/wire changes: only resizing or orbiting changes framing.
+    if(nextFitKey!==fitKey){fitScale=fitSavedSurfaceViewport(w,h,viewRotation);fitKey=nextFitKey;}
+    gl.uniformMatrix3fv(gl.getUniformLocation(program,'uRotation'),false,viewRotation);
+    gl.uniform2f(gl.getUniformLocation(program,'uScale'),...fitScale);
     gl.uniform3fv(gl.getUniformLocation(program,'uColor'),color);
     for(const [name,buffer]of [['aPosition',positionBuffer],['aNormal',normalBuffer]]){
       const loc=gl.getAttribLocation(program,name);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.vertexAttribPointer(loc,3,gl.FLOAT,false,0,0);gl.enableVertexAttribArray(loc);

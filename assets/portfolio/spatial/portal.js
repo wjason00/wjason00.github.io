@@ -63,12 +63,43 @@ if (root) {
   const surfaceHost = root.querySelector('[data-surface]');
   const surfaceCaption = root.querySelector('[data-surface-cap]');
   let viewer = null, surfaceToken = 0, surfaceVisible = false, surfaceFailed = false;
+  let surfaceRequested = false, surfaceModulePromise = null;
   let frame = 15, wireframe = false;
   const frameNames = { 0: 'Start', 15: 'Middle', 29: 'End' };
   const frameButtons = Array.from(root.querySelectorAll('[data-frame]'));
   const wireButton = root.querySelector('[data-wire]');
   const tools = root.querySelector('.portal-surface-tools');
   const coarse = window.matchMedia?.('(pointer: coarse)').matches;
+  const staticCaption = surfaceCaption.textContent;
+  const inspectControls = document.createElement('div');
+  inspectControls.className = 'portal-inspect-controls';
+  const inspectButton = document.createElement('button');
+  inspectButton.type = 'button';
+  inspectButton.className = 'portal-inspect-trigger';
+  inspectButton.dataset.inspectSurface = '';
+  const closeInspectButton = document.createElement('button');
+  closeInspectButton.type = 'button';
+  closeInspectButton.className = 'portal-inspect-close';
+  closeInspectButton.dataset.closeSurface = '';
+  const inspectStatus = document.createElement('p');
+  inspectStatus.className = 'portal-inspect-status';
+  inspectStatus.setAttribute('role', 'status');
+  inspectStatus.setAttribute('aria-live', 'polite');
+  inspectControls.append(inspectButton, closeInspectButton, inspectStatus);
+  surfaceHost.appendChild(inspectControls);
+  function setSurfaceState(state, message = '') {
+    surfaceHost.dataset.surfaceState = state;
+    surfaceHost.classList.toggle('is-loading', state === 'loading');
+    inspectButton.disabled = state === 'loading';
+    inspectButton.hidden = state === 'ready' || state === 'paused';
+    inspectButton.textContent = state === 'loading' ? 'Loading 3D…' : state === 'error' ? 'Retry 3D' : 'Inspect in 3D';
+    inspectButton.setAttribute('aria-busy', String(state === 'loading'));
+    closeInspectButton.hidden = !surfaceRequested;
+    closeInspectButton.textContent = state === 'loading' ? 'Cancel loading' : 'Close 3D';
+    inspectStatus.textContent = message;
+    inspectStatus.hidden = !message;
+  }
+  setSurfaceState('idle');
   function surfaceReadyCaption() { surfaceCaption.textContent = frameNames[frame] + ': exact saved surface ' + frame + ' of 0–29. ' + (coarse ? 'Drag sideways to turn it.' : 'Drag or use the arrow keys to turn it.'); }
   function releaseSurface() {
     surfaceToken++;
@@ -79,30 +110,69 @@ if (root) {
     }
     surfaceHost.classList.remove('is-mounted', 'is-ready');
     tools.hidden = true;
+    surfaceCaption.textContent = staticCaption;
+    if (!surfaceFailed) setSurfaceState(surfaceRequested ? 'paused' : 'idle', surfaceRequested ? '3D inspection is paused while out of view.' : '');
   }
-  function failSurface(token) {
+  function failSurface(token, downloadFailed = false) {
     if (token !== surfaceToken) return;
     surfaceFailed = true;
+    surfaceRequested = false;
     releaseSurface();
     surfaceCaption.textContent = 'Static saved rendering. The interactive surface could not start in this browser; the recording still plays.';
+    setSurfaceState('error', downloadFailed ? 'The 3D download could not load. Retry, or reload this page if it remains unavailable.' : '3D inspection is unavailable. You can retry or watch the recording.');
   }
   function syncSurface() {
-    if (!surfaceVisible || document.hidden || surfaceFailed) { if (viewer || surfaceHost.classList.contains('is-mounted')) releaseSurface(); return; }
+    if (!surfaceRequested || !surfaceVisible || document.hidden || surfaceFailed) { if (viewer || surfaceHost.classList.contains('is-mounted')) releaseSurface(); return; }
     if (viewer || surfaceHost.classList.contains('is-mounted')) return;
     const token = ++surfaceToken;
+    let moduleLoaded = false;
     const canvas = surfaceHost.querySelector('canvas');
     surfaceHost.classList.add('is-mounted');
-    import('./surface-viewer.js').then(module => {
-      if (token !== surfaceToken) return null;
+    setSurfaceState('loading', 'Loading the saved surfaces. The static rendering stays visible until 3D is ready.');
+    surfaceCaption.textContent = 'Loading 3D inspection. ' + staticCaption;
+    // This is reached only after native button activation. A successful module
+    // stays cached for re-entry; no scroll, hover or hash event starts a download.
+    if (!surfaceModulePromise) surfaceModulePromise = import('./surface-viewer.js?v=20261116-framing').catch(error => {
+      surfaceModulePromise = null;
+      // Browsers may cache a failed ESM import. Retry is deliberate; the error
+      // message also offers a page reload rather than promising a fresh fetch.
+      throw error;
+    });
+    surfaceModulePromise.then(module => {
+      if (token !== surfaceToken || !surfaceRequested || !surfaceVisible || document.hidden) return null;
+      const rect = surfaceHost.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top >= innerHeight) {
+        surfaceVisible = false;
+        releaseSurface();
+        return null;
+      }
+      moduleLoaded = true;
       viewer = module.mountSurfaceViewer(canvas, { frame, color: '#687f70', onError: () => failSurface(token) });
       return viewer.ready;
     }).then(() => {
       if (token !== surfaceToken || !viewer) return;
       viewer.setFrame(frame); viewer.setWireframe(wireframe);
       surfaceHost.classList.add('is-ready'); tools.hidden = false; canvas.tabIndex = 0;
+      const moveFocus = document.activeElement === inspectButton;
+      setSurfaceState('ready');
       surfaceReadyCaption();
-    }).catch(() => failSurface(token));
+      if (moveFocus) canvas.focus({ preventScroll: true });
+    }).catch(() => failSurface(token, !moduleLoaded));
   }
+  inspectButton.addEventListener('click', () => {
+    surfaceRequested = true;
+    surfaceFailed = false;
+    // An activation can precede the observer's first callback.
+    const rect = surfaceHost.getBoundingClientRect();
+    surfaceVisible = rect.bottom > 0 && rect.top < innerHeight;
+    syncSurface();
+  });
+  closeInspectButton.addEventListener('click', () => {
+    surfaceRequested = false;
+    surfaceFailed = false;
+    releaseSurface();
+    inspectButton.focus({ preventScroll: true });
+  });
   frameButtons.forEach(button => button.addEventListener('click', () => {
     frame = Number(button.dataset.frame);
     frameButtons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
@@ -112,7 +182,7 @@ if (root) {
   wireButton.addEventListener('click', () => { wireframe = !wireframe; wireButton.setAttribute('aria-pressed', String(wireframe)); if (viewer) viewer.setWireframe(wireframe); });
   root.querySelector('[data-reset]').addEventListener('click', () => viewer?.resetView());
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { surfaceVisible = entries[entries.length - 1].isIntersecting; syncSurface(); }, { rootMargin: '150px 0px' }).observe(surfaceHost);
+    new IntersectionObserver(entries => { surfaceVisible = entries[entries.length - 1].isIntersecting; syncSurface(); }).observe(surfaceHost);
   } else { surfaceVisible = true; syncSurface(); }
 
   // The EEG source image is unchanged. Only the two recorded decision windows switch.
