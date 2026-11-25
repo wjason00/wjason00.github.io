@@ -43,3 +43,5 @@
 @media (max-width:640px){
   .portfolio-home .opening-nav{grid-template-columns:minmax(0,1fr)}
 }
+/* The supervised UCL role opens the research section. */
+.gallery-research .supervised-work{margin-top:clamp(1.5rem,3vw,2.5rem);margin-bottom:clamp(2.5rem,5vw,4.5rem);padding-bottom:clamp(1.5rem,3vw,2rem);border-bottom:1px solid var(--line)}
