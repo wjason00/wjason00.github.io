@@ -97,7 +97,9 @@ test('Morpher inspection is substantial and the EEG source stays unchanged besid
     await expect(surface.locator('[data-inspect-surface]')).toBeVisible();
 
     const source = page.locator('#sheet-eeg .exhibit-eeg-source');
-    const original = page.locator('.jr-eeg .jr-pin .portal-eeg-figure img');
+    const stage = page.locator('.jr-eeg .jr-pin');
+    await expect(stage.locator('.eeg-contribution')).toContainText("I contributed evaluation pull requests and obtained and relayed the organisers' scoring rules. The figure is the team's, unchanged.");
+    const original = stage.locator('.portal-eeg-figure img');
     const duplicate = source.locator('img');
     await source.scrollIntoViewIfNeeded();
     await expect(duplicate).toBeVisible();
