@@ -546,7 +546,8 @@
               <p>
                 The gallery separates the product render, editor screenshot
                 and exported sequence. The editor
-                uses React and three.js, with GPU and CPU fallback paths.
+                uses React and three.js. Exporting a generated mesh morph requires
+                WebGPU; the CPU path is not release-proven.
               </p>
               <p>
                 <a href="./assets/portfolio/morphliner-export.mp4"
