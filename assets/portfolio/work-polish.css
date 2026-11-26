@@ -73,7 +73,7 @@
   .portfolio-home .opening-nav a span,.portfolio-home .opening-nav small{grid-column:2}
 }
 
-/* Pass 2, 26 November 2026: the rest of the page joins the instrument.
+/* Extended instrument framing across research, study notes, roles and contact.
    The Model Morpher recording keeps its own light ground across the full stage width, as the
    white-backed plots do; the console around it supplies the dark frame. */
 .portfolio-home{--tick:color-mix(in srgb,var(--ink) 55%,transparent)}
