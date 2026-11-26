@@ -176,11 +176,11 @@ test('native home and work navigation retains cross-document transitions where s
   const supported = await page.evaluate(() => 'onpageswap' in window && 'CSSViewTransitionRule' in window);
   await page.locator('.xp-bar a[href="./work.html"]').click();
   await expect(page).toHaveURL(/\/work\.html$/);
-  await expect(page.locator('h1')).toContainText('Jason Wang');
+  await expect(page.locator('h1')).toHaveText('Research & software');
   if (supported) expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('lastPortfolioTransition')).active)).toBe(true);
   await page.locator('a.site-name').click();
   await expect(page).toHaveURL(/\/index\.html$/);
-  await expect(page.locator('h1')).toContainText('Jason Wang');
+  await expect(page.locator('h1')).toHaveText('Jason Wang');
   if (supported) expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('lastPortfolioTransition')).active)).toBe(true);
 });
 
@@ -192,7 +192,7 @@ test('reduced motion keeps a readable index and native home and work navigation'
   await expect(page.locator('.jr-stage')).toHaveCount(0);
   await page.locator('.xp-bar a[href="./work.html"]').click();
   await expect(page).toHaveURL(/\/work\.html$/);
-  await expect(page.locator('h1')).toContainText('Jason Wang');
+  await expect(page.locator('h1')).toHaveText('Research & software');
   expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('lastPortfolioTransition') || '{"active":false}').active)).toBe(false);
   await page.locator('a.site-name').click();
   await expect(page.locator('.portal-index a')).toHaveCount(5);

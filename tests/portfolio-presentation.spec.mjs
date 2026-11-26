@@ -4,7 +4,7 @@ for (const width of [1366, 390, 320]) {
   test(`work page keeps playable work and native research routes at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 800 ? 844 : 900 });
     await page.goto('/work.html');
-    const identity = page.getByRole('heading', { level: 1, name: 'Jason Wang', exact: true });
+    const identity = page.getByRole('heading', { level: 1, name: 'Research & software', exact: true });
     const specimen = page.locator('#opening-morpher');
     const video = specimen.getByLabel('Model Morpher prototype recording');
     await expect(identity).toBeInViewport();
@@ -15,13 +15,20 @@ for (const width of [1366, 390, 320]) {
     await expect(specimen.locator('figcaption')).toBeVisible();
     await expect(specimen.locator('#opening-morpher-limit')).toContainText(/Geometric interpolation, not anatomical correspondence or development/);
     const routes = page.getByRole('navigation', { name: 'Explore my work' });
-    for (const [label, href] of [['Research', '#selected-work'], ['Software', '#projects'], ['About', '#about']]) {
+    for (const [label, headerLabel, href] of [
+      ['Research', 'Research', '#selected-work'], ['Interactive tools', 'Software', '#projects'],
+    ]) {
       const route = routes.locator(`a[href="${href}"]`);
       await expect(route).toContainText(label);
       await expect(route).toBeInViewport();
       if (width < 800) expect((await route.boundingBox()).height).toBeGreaterThanOrEqual(44);
-      await expect(page.locator(`.site-nav a[href="${href}"]`)).toHaveText(label);
+      await expect(page.locator(`.site-nav a[href="${href}"]`)).toHaveText(headerLabel);
     }
+    const contactRoute = page.getByRole('navigation', { name: 'Portfolio and contact' })
+      .getByRole('link', { name: 'About & contact', exact: true });
+    await expect(contactRoute).toHaveAttribute('href', '#about');
+    await expect(contactRoute).toBeInViewport();
+    await expect(page.locator('.site-nav a[href="#about"]')).toHaveText('About');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.locator('#fly-study-details')).not.toHaveAttribute('open');
     const stage = page.locator('.project-gallery .hero__spotlight');

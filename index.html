@@ -65,7 +65,7 @@
     />
     <title>Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261111-hero" />
+    <link rel="stylesheet" href="./assets/portfolio/experience-home.css?v=20261126" />
     <link rel="stylesheet" href="./assets/portfolio/g27-explainer.css?v=20261030-morpher-eeg" />
     <!--
       Self-hosted under font-src 'self'; nothing is fetched from a CDN. crossorigin
@@ -94,7 +94,7 @@
       crossorigin
     />
     <script src="./theme.js"></script>
-    <script type="module" src="./assets/portfolio/experience-home.js?v=20261111-hero2"></script>
+    <script type="module" src="./assets/portfolio/experience-home.js?v=20261126"></script>
     <!--
       Structured data is inline, so the CSP above carries its sha256 hash.
       After editing this block, regenerate the hash with:
@@ -136,15 +136,16 @@
     <link rel="stylesheet" href="./assets/portfolio/journey/journey.css?v=20261116-motion" />
     <link rel="stylesheet" href="./assets/portfolio/polish.css?v=20261112" />
     <link rel="stylesheet" href="./assets/portfolio/project-exhibit.css?v=20261116" />
+    <link rel="stylesheet" href="./assets/portfolio/home-editorial.css?v=20261126" />
   </head>
   <body class="xp">
     <a class="xp-skip" href="#main">Skip to main content</a>
     <header class="xp-bar" id="top">
       <a class="xp-bar__name" href="#top">Jason Wang</a>
-      <nav class="xp-bar__nav" aria-label="Sections of this page">
-        <a href="#projects">Work</a>
+      <nav class="xp-bar__nav" aria-label="Main navigation">
+        <a href="#selected-portfolio">Work</a>
+        <a href="./work.html">Research</a>
         <a href="#about">About</a>
-        <a href="./work.html">Full work page</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="xp-theme" type="button" data-theme-toggle aria-label="Switch colour theme">
@@ -154,61 +155,57 @@
 
     <main id="main" tabindex="-1">
       <section class="atlas" aria-labelledby="home-title" data-atlas>
-        <div class="atlas__stage">
-          <img
-            class="atlas__fallback"
-            src="./assets/portfolio/brain-surface.svg"
-            alt="Points sampled from a week-36 fetal white-matter atlas surface, drawn as a static outline of the brain"
-            width="900"
-            height="900"
-          />
-          <canvas
-            id="portfolio-scene"
-            class="atlas__canvas"
-            tabindex="0"
-            role="img"
-            aria-label="Interactive atlas surface: 4,096 points from a week-36 fetal white-matter atlas"
-            aria-describedby="scene-help"
-          ></canvas>
-          <p class="atlas__probe" data-probe aria-hidden="true">Drag to turn</p>
-        </div>
-
         <div class="atlas__copy">
+          <p class="atlas__discipline">Neuroscience at UCL</p>
           <h1 id="home-title">Jason Wang</h1>
           <p class="atlas__lede">
-            Neuroscience student at UCL. I build models, signal analyses and
-            scientific software for looking at brains.
+            I build computational models and scientific software, and study how head anatomy affects EEG source estimates.
           </p>
+          <a class="atlas__work-link" href="#selected-portfolio">Explore selected work</a>
+
+          <nav class="atlas__index" aria-label="Projects">
+            <ul>
+              <li><a href="#work-model-morpher" data-scene-project="model-morpher"><span class="atlas__name">Model Morpher</span></a></li>
+              <li><a href="#work-morphliner" data-scene-project="morphliner"><span class="atlas__name">Morphliner</span></a></li>
+              <li><a href="#work-fly" data-scene-project="fly"><span class="atlas__name">Fly circuit</span></a></li>
+              <li><a href="#work-morphbrain" data-scene-project="morphbrain"><span class="atlas__name">MorphBrain</span></a></li>
+              <li><a href="#work-g27" data-scene-project="g27"><span class="atlas__name">EEG decoding</span></a></li>
+            </ul>
+          </nav>
         </div>
 
-        <nav class="atlas__index" aria-label="Projects">
-          <ul>
-            <li><a href="#work-model-morpher" data-scene-project="model-morpher"><span class="atlas__name">Model Morpher</span><span class="atlas__verb">Play</span></a></li>
-            <li><a href="#work-morphliner" data-scene-project="morphliner"><span class="atlas__name">Morphliner</span><span class="atlas__verb">Play</span></a></li>
-            <li><a href="#work-fly" data-scene-project="fly"><span class="atlas__name">Fly circuit</span><span class="atlas__verb">Play</span></a></li>
-            <li><a href="#work-morphbrain" data-scene-project="morphbrain"><span class="atlas__name">MorphBrain</span><span class="atlas__verb">Try</span></a></li>
-            <li><a href="#work-g27" data-scene-project="g27"><span class="atlas__name">EEG decoding</span><span class="atlas__verb">Figure</span></a></li>
-          </ul>
-          <div class="atlas__peek" data-peek aria-hidden="true">
-            <img data-peek-for="model-morpher" src="./assets/portfolio/model-morpher.webp" alt="" width="840" height="620" loading="lazy" decoding="async" />
-            <img data-peek-for="morphliner" src="./assets/portfolio/morphliner-poster.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
-            <img data-peek-for="fly" src="./assets/portfolio/fly-preview-20261020.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
-            <img data-peek-for="morphbrain" src="./assets/portfolio/morphbrain-feature.svg" alt="" width="1000" height="760" loading="lazy" decoding="async" />
-            <img data-peek-for="g27" src="./assets/portfolio/g27-peek.svg" alt="" width="640" height="480" loading="lazy" decoding="async" />
+        <div class="atlas__panel">
+          <div class="atlas__stage">
+            <img
+              class="atlas__fallback"
+              src="./assets/portfolio/brain-surface.svg"
+              alt="Points sampled from a week-36 fetal white-matter atlas surface, drawn as a static outline of the brain"
+              width="900"
+              height="900"
+            />
+            <canvas
+              id="portfolio-scene"
+              class="atlas__canvas"
+              tabindex="0"
+              role="img"
+              aria-label="Interactive atlas surface: 4,096 points from a week-36 fetal white-matter atlas"
+              aria-describedby="scene-help"
+            ></canvas>
+            <p class="atlas__probe" data-probe aria-hidden="true">Drag to turn</p>
           </div>
-        </nav>
 
-        <div class="atlas__foot">
-          <p class="atlas__caption">
-            <span>Interactive atlas surface study</span>
-            <button class="atlas__source-btn" type="button" popovertarget="atlas-source">About this surface</button>
-          </p>
-          <p class="atlas__help" id="scene-help">
-            <span class="atlas__help-fine">Move over the surface, drag to turn it, or focus it and use the arrow keys. Home resets the view.</span>
-            <span class="atlas__help-touch">Drag sideways across the surface to turn it.</span>
-          </p>
-          <p class="atlas__readout" data-readout aria-live="off"><span data-readout-points>4,096 points</span> <span data-readout-view></span></p>
-          <button class="atlas__reset" type="button" data-reset-scene>Reset view</button>
+          <div class="atlas__foot">
+            <p class="atlas__caption">
+              <span>Interactive atlas surface</span>
+              <button class="atlas__source-btn" type="button" popovertarget="atlas-source">About this surface</button>
+            </p>
+            <p class="atlas__help" id="scene-help">
+              <span class="atlas__help-fine">Drag to turn, or focus the surface and use the arrow keys. Home resets the view.</span>
+              <span class="atlas__help-touch">Drag sideways across the surface to turn it.</span>
+            </p>
+            <p class="atlas__readout" data-readout aria-live="off"><span data-readout-points>4,096 points</span> <span data-readout-view></span></p>
+            <button class="atlas__reset" type="button" data-reset-scene>Reset view</button>
+          </div>
         </div>
 
         <div class="atlas__source" id="atlas-source" popover>
@@ -226,70 +223,42 @@
         </div>
       </section>
 
-      <section class="recent" id="recent" aria-labelledby="recent-title">
-        <h2 id="recent-title">Recently</h2>
-        <ul class="recent__list">
-          <li class="recent__item">
-            <p class="recent__meta"><time datetime="2026-11-07">7–8 Nov 2026</time><span>Oxford Neurotech Hackathon, Medtech stream</span></p>
-            <h3>NeuroPersona</h3>
-            <p>
-              Built by a team of four. I worked on the avatar’s facial expression and gaze.
-            </p>
-            <ol class="recent__flow" aria-label="How the NeuroPersona demo works">
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 3-9 2 3h6"/></svg>
-                <b>Recorded activity</b>
-                <span>Motor cortex, one participant, from an archived recording</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6m0 0 5-5h7M9 12l5 5h7"/></svg>
-                <b>Two separate decodes</b>
-                <span>A word, and an attempted facial movement</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 3 3 5-6M15 9l5 5m0-5-5 5"/></svg>
-                <b>Confirm or reject</b>
-                <span>Keep the movement, or play the word with a neutral face</span>
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.8 14.2c1.8 1.9 4.6 1.9 6.4 0"/></svg>
-                <b>Synthetic avatar</b>
-                <span>Says the word with the chosen face</span>
-              </li>
-            </ol>
-            <p class="recent__limit">
-              A replay of archived public recordings (Willett et al., 2023), not live
-              decoding. The word and the smile come from separate trials composed for
-              playback, and the presenter operates Confirm and Reject manually. The portrait
-              is fictional, the smile is interpolated and the voice is a stand-in.
-            </p>
-          </li>
-          <li class="recent__item">
-            <p class="recent__meta"><time datetime="2026">2026</time><span>Development prototype</span></p>
-            <h3>Countermere</h3>
-            <figure class="recent__shot">
-              <a href="https://countermere.com/" target="_blank" rel="noreferrer">
-                <img src="./assets/portfolio/recent/countermere-example.webp" width="968" height="672" loading="lazy" decoding="async" alt="Capture of the Countermere example: a timeline of three NATO summit declarations, Vilnius 2023, Washington 2024 and The Hague 2025, beside the previous assessment and an updated assessment marked as an AI draft, with buttons to read each source." />
+      <section class="curated-work" id="selected-portfolio" aria-labelledby="curated-title">
+        <div class="curated-work__inner">
+          <header class="curated-work__heading">
+            <h2 id="curated-title">Selected work</h2>
+            <a href="#projects">All project demos</a>
+          </header>
+          <div class="curated-work__grid">
+            <article>
+              <a class="curated-project curated-project--editor" href="#work-morphliner">
+                <div class="curated-project__image">
+                  <img src="./assets/portfolio/morphliner-editor.jpg" alt="Morphliner’s scene preview, camera controls and keyframe timeline" width="1280" height="720" loading="lazy" decoding="async" />
+                </div>
+                <div class="curated-project__copy">
+                  <h3>Morphliner</h3>
+                  <p>Place camera keyframes in a 3D scene and export the move as a video.</p>
+                </div>
               </a>
-              <figcaption>The public example on countermere.com.</figcaption>
-            </figure>
-            <p>
-              Countermere helps analysts update geopolitical assessments. It sets a new
-              statement against earlier evidence, drafts what changes and what holds, and
-              lets you check the sources.
-            </p>
-            <p class="recent__limit">
-              The public example is a development example, not a customer’s assessment.
-              It runs in your browser and makes no model call.
-            </p>
-            <p class="recent__links"><a href="https://countermere.com/" target="_blank" rel="noreferrer">countermere.com</a></p>
-          </li>
-        </ul>
+            </article>
+            <article>
+              <a class="curated-project curated-project--model" href="#work-morphbrain">
+                <div class="curated-project__image">
+                  <img src="./assets/portfolio/morphbrain-feature.svg" alt="One simulated state with SHH and BMP signal contours beside the model’s assigned tissue regions" width="1000" height="760" loading="lazy" decoding="async" />
+                </div>
+                <div class="curated-project__copy">
+                  <h3>MorphBrain</h3>
+                  <p>Move or remove SHH and BMP sources to see how the model assigns tissue regions. Atlas-grounded 3D folding remains an aim.</p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
       </section>
 
 <section class="portal" id="projects" aria-labelledby="portal-title">
   <header class="portal-opening">
-    <h2 id="portal-title"><span>Selected work</span></h2>
+    <h2 id="portal-title"><span>Project demos</span></h2>
     <ul class="portal-index" aria-label="Projects on this page">
       <li><a href="#work-model-morpher"><span class="portal-index-media"><img src="/assets/portfolio/journey/morpher/f001.webp" alt="" width="1080" height="810" loading="lazy" decoding="async"></span><span class="portal-index-text"><span class="portal-index-row"><strong>Model Morpher</strong><span class="portal-index-year">2026</span></span><span class="portal-index-field">Geometry / Python</span><span class="portal-index-line">A Python tool that generates the shapes in between two meshes.</span></span></a></li>
       <li><a href="#work-morphliner"><span class="portal-index-media"><img src="/assets/portfolio/journey/morphliner/f025.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span><span class="portal-index-text"><span class="portal-index-row"><strong>Morphliner</strong><span class="portal-index-year">2026</span></span><span class="portal-index-field">3D editor / browser</span><span class="portal-index-line">You place camera keyframes on a scene, and it exports the move as a video file.</span></span></a></li>
@@ -484,6 +453,67 @@
   <dialog class="portal-dialog" aria-label="Team timing figure, full size"><form method="dialog"><button type="submit">Close figure</button></form><p class="portal-dialog-hint" id="portal-figure-pan-hint">Scroll to inspect the full-size figure. Keyboard: Tab to the figure, then use arrow keys.</p><div class="portal-dialog-pan" role="region" tabindex="0" aria-label="Full-size team timing figure" aria-describedby="portal-figure-pan-hint"><img width="1720" height="980" alt="Team figure: later training trials correct against decision time, 0 to 8 s, with 82/120 marked at +3.5 s and 99/120 at +4.25 s."></div></dialog>
 </section>
 
+
+      <section class="recent" id="recent" aria-labelledby="recent-title">
+        <h2 id="recent-title">Recently</h2>
+        <ul class="recent__list">
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11-07">7–8 Nov 2026</time><span>Oxford Neurotech Hackathon, Medtech stream</span></p>
+            <h3>NeuroPersona</h3>
+            <p>
+              Built by a team of four. I worked on the avatar’s facial expression and gaze.
+            </p>
+            <ol class="recent__flow" aria-label="How the NeuroPersona demo works">
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 3 12 3-9 2 3h6"/></svg>
+                <b>Recorded activity</b>
+                <span>Motor cortex, one participant, from an archived recording</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h6m0 0 5-5h7M9 12l5 5h7"/></svg>
+                <b>Two separate decodes</b>
+                <span>A word, and an attempted facial movement</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 12 3 3 5-6M15 9l5 5m0-5-5 5"/></svg>
+                <b>Confirm or reject</b>
+                <span>Keep the movement, or play the word with a neutral face</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.8 14.2c1.8 1.9 4.6 1.9 6.4 0"/></svg>
+                <b>Synthetic avatar</b>
+                <span>Says the word with the chosen face</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              A replay of archived public recordings (Willett et al., 2023), not live
+              decoding. The word and the smile come from separate trials composed for
+              playback, and the presenter operates Confirm and Reject manually. The portrait
+              is fictional, the smile is interpolated and the voice is a stand-in.
+            </p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026">2026</time><span>Development prototype</span></p>
+            <h3>Countermere</h3>
+            <figure class="recent__shot">
+              <a href="https://countermere.com/" target="_blank" rel="noreferrer">
+                <img src="./assets/portfolio/recent/countermere-example.webp" width="968" height="672" loading="lazy" decoding="async" alt="Capture of the Countermere example: a timeline of three NATO summit declarations, Vilnius 2023, Washington 2024 and The Hague 2025, beside the previous assessment and an updated assessment marked as an AI draft, with buttons to read each source." />
+              </a>
+              <figcaption>The public example on countermere.com.</figcaption>
+            </figure>
+            <p>
+              Countermere helps analysts update geopolitical assessments. It sets a new
+              statement against earlier evidence, drafts what changes and what holds, and
+              lets you check the sources.
+            </p>
+            <p class="recent__limit">
+              The public example is a development example, not a customer’s assessment.
+              It runs in your browser and makes no model call.
+            </p>
+            <p class="recent__links"><a href="https://countermere.com/" target="_blank" rel="noreferrer">countermere.com</a></p>
+          </li>
+        </ul>
+      </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
         <div class="about__side">

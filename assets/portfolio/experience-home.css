@@ -221,42 +221,9 @@ h1, h2, h3, p { margin: 0; }
   font-size: clamp(1.35rem, 2.3vw, 2.15rem); font-weight: 600;
   letter-spacing: -0.02em; line-height: 1.1;
 }
-.atlas__verb {
-  font-size: 0.95rem; color: var(--ink-muted);
-  border-bottom: 1px solid transparent;
-  transition: color 160ms linear, border-color 160ms linear;
-}
 .atlas__index a.is-current .atlas__name,
 .atlas__index a:hover .atlas__name,
 .atlas__index a:focus-visible .atlas__name { color: var(--accent-ink); }
-.atlas__index a.is-current .atlas__verb,
-.atlas__index a:hover .atlas__verb { color: var(--ink); border-color: var(--accent); }
-
-/* Preview that tilts with the pointer beside the index (pointer devices only). */
-.atlas__peek {
-  --tilt-x: 0deg; --tilt-y: 0deg; --peek-y: 0px;
-  position: absolute; right: calc(100% + 1.75rem); top: 0;
-  width: min(19rem, 22vw); aspect-ratio: 4 / 3;
-  display: none;
-  perspective: 900px;
-  pointer-events: none;
-  transform: translateY(var(--peek-y));
-  transition: transform 320ms var(--ease);
-}
-.atlas__peek img {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; border-radius: 3px;
-  background: var(--plate);
-  box-shadow: 0 1.5rem 3rem -1.25rem rgba(0, 0, 0, 0.55), 0 0 0 1px var(--rule);
-  opacity: 0; transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(0.96);
-  transition: opacity 200ms linear, transform 260ms var(--ease);
-}
-.atlas__peek img[data-peek-for="morphbrain"] { object-fit: contain; padding: 0.4rem; }
-.atlas__peek img[data-peek-for="g27"] { object-fit: cover; padding: 0; background: #0d1e19; }
-.atlas__peek img.is-shown { opacity: 1; transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1); }
-@media (hover: hover) and (pointer: fine) {
-  .js .atlas__peek { display: block; }
-}
 
 .atlas__foot {
   left: var(--gutter); right: var(--gutter); bottom: 1.25rem;

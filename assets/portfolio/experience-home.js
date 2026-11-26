@@ -33,7 +33,6 @@ routeLegacyHash();
 window.addEventListener('hashchange', routeLegacyHash);
 
 const reducedQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-const finePointer = window.matchMedia?.('(hover: hover) and (pointer: fine)');
 const reduced = () => Boolean(reducedQuery?.matches);
 
 const canvas = document.getElementById('portfolio-scene');
@@ -42,8 +41,6 @@ const readoutPoints = document.querySelector('[data-readout-points]');
 const readoutView = document.querySelector('[data-readout-view]');
 const index = document.querySelector('.atlas__index');
 const indexLinks = [...document.querySelectorAll('.atlas__index a[data-scene-project]')];
-const peek = document.querySelector('[data-peek]');
-const peekImages = peek ? [...peek.querySelectorAll('[data-peek-for]')] : [];
 
 let scene = null;
 let current = 'overview';
@@ -90,37 +87,12 @@ document.querySelector('[data-reset-scene]')?.addEventListener('click', () => {
   current = '';
   select('overview');
   scene?.reset();
-  hidePeek();
 });
 
-/* Index: magnetic pull and a tilting preview beside the hovered project. */
-function showPeek(link, event) {
-  if (!peek || !finePointer?.matches) return;
-  const id = link.dataset.sceneProject;
-  for (const img of peekImages) img.classList.toggle('is-shown', img.dataset.peekFor === id);
-  const peekHeight = peek.offsetHeight || 0;
-  const y = link.offsetTop + link.offsetHeight / 2 - peekHeight / 2;
-  peek.style.setProperty('--peek-y', `${Math.round(y)}px`);
-  if (event && !reduced()) {
-    const rect = link.getBoundingClientRect();
-    const nx = (event.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-    const ny = (event.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-    peek.style.setProperty('--tilt-y', `${(nx * 14).toFixed(2)}deg`);
-    peek.style.setProperty('--tilt-x', `${(-ny * 10).toFixed(2)}deg`);
-  } else {
-    peek.style.setProperty('--tilt-x', '0deg');
-    peek.style.setProperty('--tilt-y', '0deg');
-  }
-}
-function hidePeek() {
-  for (const img of peekImages) img.classList.remove('is-shown');
-}
-
+/* Keep the short project links responsive to pointer movement. */
 for (const link of indexLinks) {
   link.addEventListener('pointermove', event => {
-    if (event.pointerType === 'touch') return;
-    showPeek(link, event);
-    if (reduced()) return;
+    if (event.pointerType === 'touch' || reduced()) return;
     const rect = link.getBoundingClientRect();
     const dx = event.clientX - (rect.left + rect.width / 2);
     const dy = event.clientY - (rect.top + rect.height / 2);
@@ -131,12 +103,7 @@ for (const link of indexLinks) {
     link.style.setProperty('--mx', '0px');
     link.style.setProperty('--my', '0px');
   });
-  link.addEventListener('focus', () => showPeek(link));
 }
-index?.addEventListener('pointerleave', hidePeek);
-index?.addEventListener('focusout', event => {
-  if (!index.contains(event.relatedTarget)) hidePeek();
-});
 
 /* Readout and cursor probe report only the display view, never a fabricated signal. */
 const degrees = value => {
