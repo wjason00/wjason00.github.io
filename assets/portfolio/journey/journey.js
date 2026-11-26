@@ -47,31 +47,75 @@ function gsapReady() {
 
 // A real film as an image sequence. Scrolling picks the frame; nothing is interpolated.
 class Film {
-  constructor(canvas, { dir, count, fit, anchor = .5, shift = 0, alpha = false, zoom = 1, extend = false }) {
+  constructor(canvas, { dir, count, fit, poster, details, anchor = .5, shift = 0, alpha = false, zoom = 1, extend = false }) {
     Object.assign(this, { canvas, dir, count, fit, anchor, shift, alpha, zoom, extend });
     this.ctx = canvas.getContext('2d', { alpha });
     this.frames = new Array(count).fill(null);
     this.last = -1;
     this.started = false;
+    this.loading = false;
+    this.attempt = 0;
+    this.displayedIndex = null;
+    this.wrap = el('div', 'jr-film-wrap');
+    this.poster = el('img', 'jr-film-poster', { src: poster, alt: 'Still from the recording; scroll preview is loading.', decoding: 'async' });
+    this.status = el('div', 'jr-film-status', { role: 'status', 'aria-live': 'polite' });
+    this.message = el('span');
+    this.retry = el('button', 'jr-film-retry', { type: 'button' });
+    this.retry.textContent = 'Retry';
+    this.retry.addEventListener('click', () => this.load(true));
+    this.details = el('a', 'jr-film-details', { href: details });
+    this.details.textContent = 'Recording and details';
+    this.status.append(this.message, this.retry, this.details);
+    canvas.before(this.wrap);
+    this.wrap.append(this.poster, canvas, this.status);
+    // Visibility preserves the canvas box for measurement without its opaque backing
+    // hiding the saved poster before any real recording frame has been drawn.
+    canvas.style.visibility = 'hidden';
+    this.setState('loading');
   }
-  url(i) { return `${here}${this.dir}/f${String(i + 1).padStart(3, '0')}.webp`; }
+  setState(state) {
+    this.state = state;
+    this.wrap.dataset.state = state;
+    this.status.hidden = state === 'ready';
+    this.retry.hidden = state !== 'failed';
+    this.details.hidden = state !== 'failed';
+    this.message.textContent = state === 'failed' ? 'Preview unavailable. Showing the saved poster.' : 'Loading recording preview…';
+    this.poster.alt = state === 'failed' ? 'Still from the recording; the scroll preview is unavailable.' : 'Still from the recording; scroll preview is loading.';
+    this.onChange?.();
+  }
+  url(i) { return `${here}${this.dir}/f${String(i + 1).padStart(3, '0')}.webp${this.attempt ? `?retry=${this.attempt}` : ''}`; }
   async fetch(i) {
     if (this.frames[i]) return;
     const img = new Image();
     img.src = this.url(i);
-    try { await img.decode(); this.frames[i] = img; if (i === 0) this.onFirst?.(img); }
+    let timeout;
+    try {
+      await Promise.race([img.decode(), new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('Frame timed out')), 12000); })]);
+      this.frames[i] = img;
+      this.last = -1;
+      this.draw(this.progress || 0);
+    }
     catch { /* A missing frame falls back to its nearest neighbour. */ }
+    finally { clearTimeout(timeout); }
   }
   // Evenly spaced frames first, so a fast scroll always has something to show.
-  async load() {
-    if (this.started) return; this.started = true;
+  async load(retry = false) {
+    if (this.loading || (this.started && !retry)) return;
+    this.started = true; this.loading = true;
+    if (retry) this.attempt++;
+    if (this.displayedIndex === null) this.setState('loading');
+    if (!this.ctx) { this.loading = false; this.setState('failed'); return; }
+    // Retry missing frames only; successful frames remain available throughout.
+    const attempted = new Set([0]);
     await this.fetch(0); this.draw(this.progress || 0);
     for (const step of [16, 8, 4, 2, 1]) {
       const batch = [];
-      for (let i = 0; i < this.count; i += step) if (!this.frames[i]) batch.push(i);
+      for (let i = 0; i < this.count; i += step) if (!this.frames[i] && !attempted.has(i)) { batch.push(i); attempted.add(i); }
       for (let k = 0; k < batch.length; k += 6) await Promise.all(batch.slice(k, k + 6).map(i => this.fetch(i)));
       this.last = -1; this.draw(this.progress || 0);
     }
+    this.loading = false;
+    if (this.displayedIndex === null) this.setState('failed');
   }
   nearest(i) {
     for (let d = 0; d < this.count; d++) {
@@ -87,12 +131,12 @@ class Film {
   }
   draw(p) {
     this.progress = p;
+    if (!this.ctx) return;
     const i = Math.round(clamp(p) * (this.count - 1));
-    if (i === this.last) return;
     this.size();
+    if (i === this.last) return;
     const img = this.nearest(i);
-    if (!img) return;
-    this.last = this.frames[i] ? i : -1;
+    if (!img || !this.canvas.width || !this.canvas.height) return;
     const { width: W, height: H } = this.canvas, s = (this.fit === 'cover' ? Math.max : Math.min)(W / img.naturalWidth, H / img.naturalHeight) * this.zoom;
     const w = img.naturalWidth * s, h = img.naturalHeight * s;
     if (this.alpha) this.ctx.clearRect(0, 0, W, H);
@@ -106,6 +150,12 @@ class Film {
       this.ctx.filter = 'none';
     }
     this.ctx.drawImage(img, (W - w) * this.anchor + this.shift * W, (H - h) / 2, w, h);
+    this.last = this.frames[i] ? i : -1;
+    this.displayedIndex = this.frames.indexOf(img);
+    this.canvas.style.visibility = 'visible';
+    this.poster.hidden = true;
+    if (this.state !== 'ready') this.setState('ready');
+    else this.onChange?.();
   }
 }
 
@@ -308,11 +358,17 @@ async function boot() {
     const s = buildStage(scenes.morpher, { key: 'morpher', limit: '.portal-limit', head: [scenes.morpher.querySelector('.portal-morpher-head')] });
     const canvas = el('canvas', 'jr-film', { 'aria-hidden': 'true' }); s.pin.prepend(slot(canvas));
     const wide = innerWidth > 800;
-    const film = new Film(canvas, { dir: 'morpher', count: 66, fit: 'contain', alpha: true, anchor: wide ? 1 : .5, shift: wide ? .12 : 0 });
+    const film = new Film(canvas, {
+      dir: 'morpher', count: 66, fit: 'contain', alpha: true, anchor: wide ? 1 : .5, shift: wide ? .12 : 0,
+      poster: '/assets/portfolio/spatial/portal-media/morpher-middle.jpg', details: `#${s.sheet.id}`
+    });
+    film.onChange = () => {
+      s.clock.textContent = film.displayedIndex === null ? 'Poster preview · 5.5 s recording' : `${(film.displayedIndex / (film.count - 1) * 5.5).toFixed(1)} / 5.5 s of the recording`;
+    };
     s.load = () => film.load();
     s.render = p => {
       film.draw(p);
-      s.clock.textContent = `${(p * 5.5).toFixed(1)} / 5.5 s of the recording`;
+      film.onChange();
     };
     stages.push(s);
   }
@@ -322,14 +378,18 @@ async function boot() {
     const s = buildStage(scenes.morphliner, { key: 'morphliner', head: [scenes.morphliner.querySelector('.morphliner-head')] });
     const canvas = el('canvas', 'jr-film', { 'aria-hidden': 'true' }); s.pin.prepend(canvas);
     const tall = innerHeight > innerWidth;
-    const film = new Film(canvas, tall
-      ? { dir: 'morphliner', count: 49, fit: 'contain', zoom: 1.3, extend: true }
-      : { dir: 'morphliner', count: 49, fit: 'cover' });
+    const film = new Film(canvas, {
+      dir: 'morphliner', count: 49, poster: '/assets/portfolio/spatial/studio-media/morphliner-export.jpg', details: `#${s.sheet.id}`,
+      ...(tall ? { fit: 'contain', zoom: 1.3, extend: true } : { fit: 'cover' })
+    });
     film.bg = '#b4a998';
+    film.onChange = () => {
+      s.clock.textContent = film.displayedIndex === null ? 'Poster preview · 6.5 s exported film' : `${(film.displayedIndex / (film.count - 1) * 6.5).toFixed(1)} / 6.5 s of the exported film`;
+    };
     s.load = () => film.load();
     s.render = p => {
       film.draw(p);
-      s.clock.textContent = `${(p * 6.5).toFixed(1)} / 6.5 s of the exported film`;
+      film.onChange();
       s.copy.style.opacity = (1 - span(p, .72, .86)).toFixed(3);
     };
     stages.push(s);
