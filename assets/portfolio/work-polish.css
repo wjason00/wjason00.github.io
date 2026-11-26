@@ -81,10 +81,40 @@
 }
 
 /* The player: the site's pale green on its dark ground, not lilac. */
+.portfolio-home .work-stage .gallery {
+  box-shadow: 0 24px 56px -34px rgba(16, 55, 47, 0.36);
+}
+.portfolio-home .work-stage .gallery-tabs {
+  gap: 8px;
+  padding: 10px;
+}
+.portfolio-home .work-stage .gallery-tab {
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  background: rgba(228, 239, 232, 0.055);
+  border: 1px solid rgba(228, 239, 232, 0.14);
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.portfolio-home .work-stage .gallery-tab small {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(228, 239, 232, 0.1);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.portfolio-home .work-stage .gallery-tab:hover {
+  background: rgba(228, 239, 232, 0.12);
+  border-color: rgba(228, 239, 232, 0.28);
+}
 .portfolio-home .work-stage .gallery-tab[aria-selected="true"]{background:#e4efe8;border-color:#e4efe8;color:#10372f;transition:none}
+.portfolio-home .work-stage .gallery-tab[aria-selected="true"] small{background:rgba(16,55,47,0.1);color:#10372f}
 .portfolio-home .work-stage .video-play,.portfolio-home .work-stage .stage-try{background:#e4efe8;color:#10372f}
 .portfolio-home .work-stage .video-range{accent-color:#e4efe8}
 .portfolio-home .work-stage .gallery-tab:focus-visible,.portfolio-home .work-stage .gallery-panel:focus-visible,.portfolio-home .work-stage .video-play:focus-visible,.portfolio-home .work-stage .video-expand:focus-visible,.portfolio-home .work-stage .video-range:focus-visible,.portfolio-home .work-stage .stage-caption a:focus-visible,.portfolio-home .work-stage .media-switch button:focus-visible,.portfolio-home .work-stage .demo-chapters button:focus-visible,.portfolio-home .work-stage .stage-account>summary:focus-visible{outline-color:#f3d68a}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-home .work-stage .gallery-tab { transition: none; }
+}
 
 /* Research: a real section title, serif project titles, no running numbers. */
 .portfolio-home .gallery-research__heading {
