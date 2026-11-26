@@ -34,17 +34,17 @@
       content="Neuroscience undergraduate at UCL, interested in brain modelling, simulation and machine learning."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://wjason00.github.io/" />
+    <meta property="og:url" content="https://wjason00.github.io/work.html" />
     <meta
       property="og:image"
-      content="https://wjason00.github.io/assets/portfolio/model-morpher.webp"
+      content="https://wjason00.github.io/assets/og-portfolio.png?v=20261125-share"
     />
-    <meta property="og:image:type" content="image/webp" />
-    <meta property="og:image:width" content="840" />
-    <meta property="og:image:height" content="620" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="A 3D mesh rendered in Model Morpher, a project by Jason Wang"
+      content="Jason Wang, Neuroscience at UCL, with a point-cloud rendering of a fetal brain atlas surface"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
@@ -57,11 +57,11 @@
     />
     <meta
       name="twitter:image"
-      content="https://wjason00.github.io/assets/portfolio/model-morpher.webp"
+      content="https://wjason00.github.io/assets/og-portfolio.png?v=20261125-share"
     />
     <meta
       name="twitter:image:alt"
-      content="A 3D mesh rendered in Model Morpher, a project by Jason Wang"
+      content="Jason Wang, Neuroscience at UCL, with a point-cloud rendering of a fetal brain atlas surface"
     />
     <title>Work and research | Jason Wang | Neuroscience at UCL</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
@@ -237,7 +237,7 @@
               <summary>Methods &amp; sources</summary>
               <p>
                 Mesh repair → SDF sampling → interpolation → isosurface
-                extraction. CPU and conditional PyTorch/CUDA paths. Surface
+                extraction. Targets NVIDIA CUDA through PyTorch; the CPU fallback needs repair. Surface
                 quality depends on mesh repair and resolution; memory use grows
                 cubically with grid resolution.
               </p>
@@ -548,7 +548,8 @@
               <p>
                 The gallery separates the product render, editor screenshot
                 and exported sequence. The editor
-                uses React and three.js, with GPU and CPU fallback paths.
+                uses React and three.js. Exporting a generated mesh morph requires
+                WebGPU; the CPU path is not release-proven.
               </p>
               <p>
                 <a href="./assets/portfolio/morphliner-export.mp4"
@@ -704,7 +705,7 @@
             <p><strong>Calibration.</strong> With 60 early calibration trials per session, the selector scored 75/120 against 82/120 for fixed CSP. Selection did not beat the fixed decoder.</p>
             <p><strong>Timing.</strong> Each point in the timing figure is a separate fit on a causal one-second window ending at that decision time, shifted along the trial and scored on later training trials that we had already inspected. The marked points are 82/120 at +3.5&nbsp;s and 99/120 at +4.25&nbsp;s. Feedback onset was assumed, not recorded, and the trials were not held out, so the difference is a timing comparison, not a held-out gain. The data cover 3 participants and 6 sessions.</p>
             <p><strong>Electrode layout.</strong> The electrode mapping was inferred and its left–right orientation is unresolved. The layout figure compares two candidate layouts for each of 12 recording files from 3 participants, not 12 independent participants. Its fit is a negative rank correlation, not accuracy or probability.</p>
-            <p><strong>My part.</strong> I shared evaluation work through pull requests and obtained and relayed the organisers’ scoring rules, distinguishing their peak-time score from our fixed-time comparison. The figures are the G27 team’s, shown unchanged from the team presentation.</p>
+            <p><strong>My part.</strong> I shared evaluation work through <a href="https://github.com/ZyntZ/gtec-g27-data-stroke/pulls?q=is%3Apr+author%3Awjason00+is%3Amerged">pull requests</a> and obtained and relayed the organisers’ scoring rules, distinguishing their peak-time score from our fixed-time comparison. The figures are the G27 team’s, shown unchanged from the team presentation.</p>
             <p><a href="https://docs.google.com/presentation/d/1nk-tRbrmjyU5FfJhQrmNkPdnxmlSUcTThhmaOk1nU8k/present" target="_blank" rel="noreferrer">Team presentation</a> · <a href="./assets/portfolio/g27/source.json">Figure sources and checksums (JSON)</a></p>
           </details>
         </article>
