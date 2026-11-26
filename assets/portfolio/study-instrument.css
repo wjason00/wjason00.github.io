@@ -1,0 +1,74 @@
+/* Rare Errors instrument pass, 26 November 2026. Loaded after study.css, which stays byte-exact
+   because the results-preview receipt hashes it as a source of the seed colours. */
+
+/* Instrument pass, 26 November 2026: the home page's obsidian field and paper, Spectral for
+   display titles, DM Mono for eyebrows, readouts and controls, and 1px hairline plates.
+   Decoration only: no number, data script or chart colour (above) is changed here. */
+@font-face { font-family: Spectral; src: url("../fonts/spectral-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+:root {
+  --serif: Spectral, "Iowan Old Style", Georgia, serif;
+  --paper: #eef3ef; --ink: #10372f; --muted: #4a665c; --line: #c6d3cb; --soft: #e2ebe5; --card: #f8fbf8; --accent: #dfe9e3; --link: #1f5a4b;
+  --tick: rgba(16, 55, 47, .55);
+}
+:root[data-theme="dark"] {
+  --paper: #0e211c; --ink: #e4efe8; --muted: #9db6ac; --line: #2f4b42; --soft: #122924; --card: #0a1915; --accent: #cfe3d8; --link: #cfe6da;
+  --tick: rgba(228, 239, 232, .55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e211c; --ink: #e4efe8; --muted: #9db6ac; --line: #2f4b42; --soft: #122924; --card: #0a1915; --accent: #cfe3d8; --link: #cfe6da;
+    --tick: rgba(228, 239, 232, .55);
+  }
+}
+
+.study-intro h1, .study-results h2, .study-takeaway h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.03em; }
+.study-intro h1 { font-size: clamp(38px, 4.6vw, 64px); line-height: 1.02; }
+.study-category, .study-meta, .result-context, .saved-setting, .trial-cell h3, .result-overview > div > p:first-child, .metric .metric-range {
+  font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase;
+}
+.study-category { font-size: 12px; }
+.study-meta, .saved-setting, .result-context { font-size: 11px; }
+.trial-cell h3 { font-size: 11px; }
+.result-overview > div > p:first-child { font-size: 12px; }
+.metric .metric-range { font-size: 11px; text-transform: none; letter-spacing: .02em; }
+.trial-cell strong, .result-overview strong, .metric strong { font-family: var(--mono); font-weight: 400; letter-spacing: -.02em; }
+
+/* Setting bar: a ruled console with a tick at each end. */
+.trial-design { border-color: var(--line); background: var(--paper); }
+.trial-design::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 8px; pointer-events: none;
+  background: linear-gradient(var(--tick), var(--tick)) 0 0 / 1px 100%, linear-gradient(var(--tick), var(--tick)) 100% 0 / 1px 100%;
+  background-repeat: no-repeat;
+}
+.trial-design h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; }
+.count-controls button { border-radius: 2px; font-family: var(--mono); font-size: 15px; }
+.count-controls button[aria-pressed="true"] { font-weight: 400; }
+
+/* Allocation matrix and numeric overview: recessed plates with registration ticks. */
+.allocation, .result-overview { position: relative; border: 1px solid var(--line); border-radius: 2px; background: var(--card); }
+.allocation::after, .result-overview::after {
+  content: ""; position: absolute; inset: -1px; pointer-events: none; --t: 10px;
+  background:
+    linear-gradient(var(--tick), var(--tick)) 0 0 / var(--t) 1px, linear-gradient(var(--tick), var(--tick)) 0 0 / 1px var(--t),
+    linear-gradient(var(--tick), var(--tick)) 100% 0 / var(--t) 1px, linear-gradient(var(--tick), var(--tick)) 100% 0 / 1px var(--t),
+    linear-gradient(var(--tick), var(--tick)) 0 100% / var(--t) 1px, linear-gradient(var(--tick), var(--tick)) 0 100% / 1px var(--t),
+    linear-gradient(var(--tick), var(--tick)) 100% 100% / var(--t) 1px, linear-gradient(var(--tick), var(--tick)) 100% 100% / 1px var(--t);
+  background-repeat: no-repeat;
+}
+.trial-cell, .trial-cell:nth-child(even) { padding: 15px 18px 17px; }
+.trial-cell:nth-last-child(-n + 2) { border-bottom: 0; }
+.result-overview { gap: 0; padding: 0; }
+.result-overview > div { min-width: 0; padding: 16px 18px 18px; }
+.result-overview > div + div { border-left: 1px solid var(--line); }
+
+.study-depth summary { font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: -.01em; }
+.study-depth summary::before { font-family: var(--mono); }
+.study-depth figure img { border: 1px solid var(--line); }
+.diagnostics-link { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: .06em; text-transform: uppercase; }
+
+@media (max-width: 480px) {
+  .study-intro h1 { font-size: 38px; }
+  .trial-cell, .trial-cell:nth-child(even) { padding: 13px 12px 15px; }
+  .result-overview > div { padding: 13px 12px 15px; }
+  .study-depth summary { font-size: 17px; }
+}

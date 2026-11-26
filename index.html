@@ -136,6 +136,7 @@
     <link rel="stylesheet" href="./assets/portfolio/journey/journey.css?v=20261116-motion" />
     <link rel="stylesheet" href="./assets/portfolio/polish.css?v=20261112" />
     <link rel="stylesheet" href="./assets/portfolio/project-exhibit.css?v=20261116" />
+    <link rel="stylesheet" href="./assets/portfolio/instrument.css?v=20261126-pass2" />
   </head>
   <body class="xp">
     <a class="xp-skip" href="#main">Skip to main content</a>
@@ -283,6 +284,64 @@
               It runs in your browser and makes no model call.
             </p>
             <p class="recent__links"><a href="https://countermere.com/" target="_blank" rel="noreferrer">countermere.com</a></p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11-21">21–22 Nov 2026</time><span>SoTA Hackathon, London</span></p>
+            <h3>Depth-electrode placement</h3>
+            <p>
+              Team project testing whether choosing seven stereo-EEG shafts together covers
+              more simulated seizure sites than adding one shaft at a time on a published
+              head model.
+            </p>
+            <ol class="recent__flow" aria-label="What the depth-electrode project tested">
+              <li>
+                <b>Joint vs greedy search</b>
+                <span>3,270 vs 3,227 of 3,918 simulated sites covered by seven shafts, certified across 94,999 trajectories</span>
+              </li>
+              <li>
+                <b>Five-tissue GPU timing</b>
+                <span>16.6 s GPU vs 115.2 s CPU per head after model loading; 8.48 ms vs 57.88 ms coverage refinement</span>
+              </li>
+              <li>
+                <b>Recorded-seizure check</b>
+                <span>Tested the simple dipole field on four hidden shafts across two real seizures (HUP224)</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              Simulated coverage on one published Duke head model (Dessert et al., 2023), not
+              clinical planning. On the recorded HUP224 seizures, the simple dipole model
+              predicted hidden voltages worse than predicting zero; a five-tissue solve needs
+              its own test.
+            </p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11">Nov 2026 – present</time><span>University of Oxford (remote)</span></p>
+            <h3>DBS tractography review</h3>
+            <p>
+              Undergraduate Research Assistant, University of Oxford (remote). Co-authoring a
+              systematic review under Oxford supervision with UCLH consultant neurosurgeon
+              input on how tractography-mapped pathways relate to motor and non-motor deep
+              brain stimulation outcomes in Parkinson’s disease.
+            </p>
+            <ol class="recent__flow" aria-label="My part in the DBS tractography review">
+              <li>
+                <b>Primary-study verification</b>
+                <span>Independently checking included studies and proposing tracked revisions across the manuscript</span>
+              </li>
+              <li>
+                <b>Subgroup &amp; target audits</b>
+                <span>Audited dentato-rubro-thalamic tract (DRTT) tremor outcomes, mixed-diagnosis separation and STN study counts</span>
+              </li>
+              <li>
+                <b>Open synthesis steps</b>
+                <span>Updated database screening and study-level risk-of-bias appraisal remain with the author team</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              Draft manuscript under revision; not yet submitted or published. Independent
+              checks cover audited tables, abstracts and selected open-access full texts
+              rather than a completed peer-reviewed publication.
+            </p>
           </li>
         </ul>
       </section>
@@ -490,7 +549,7 @@
           <h2 id="about-title">About</h2>
           <ul class="about__facts">
             <li><span class="about__label">Studying</span>Neuroscience, UCL</li>
-            <li><span class="about__label">Research</span>Undergraduate research assistant, UCL</li>
+            <li><span class="about__label">Research</span>Undergraduate research assistant, UCL &amp; Oxford (remote)</li>
             <li><span class="about__label">Based in</span>London</li>
           </ul>
           <p class="about__links" id="contact">
@@ -507,6 +566,11 @@
             Fabrizi in UCL’s Medawar Pain and Somatosensory Labs, I work on EEG
             source modelling: relating models of brain activity to signals measured
             at the scalp.
+          </p>
+          <p>
+            Remotely, with the University of Oxford, I am co-authoring a draft systematic
+            review, currently under revision, of how tractography-mapped pathways relate
+            to deep brain stimulation outcomes in Parkinson’s disease.
           </p>
           <p>
             Also on the full work page: a synthetic study of
@@ -532,6 +596,6 @@
     </footer>
     <script type="module" src="./assets/portfolio/spatial/portal.js?v=20261116-inspection"></script>
     <script type="module" src="./assets/portfolio/journey/journey.js?v=20261116-exhibits"></script>
-    <script type="module" src="./assets/portfolio/project-index.js?v=20261116"></script>
+    <script type="module" src="./assets/portfolio/project-index.js?v=20261126"></script>
   </body>
 </html>
