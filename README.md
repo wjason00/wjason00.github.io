@@ -4,13 +4,78 @@ A static portfolio about brain modelling, simulation, machine learning and scien
 software, with routes for paid internships and research opportunities. Research
 questions, personal contributions and evidence lead each account.
 
-## Journey layer - 4 November 2026
+Live site: https://wjason00.github.io/. Rules for changing this repository are in
+[AGENTS.md](AGENTS.md). Jason reviews and merges every pull request.
+
+## Preview and check
+
+```powershell
+npm ci
+npm run build
+node scripts/serve-static.mjs _site 4187
+```
+
+Open `http://127.0.0.1:4187/`. The server supports byte-range requests for video seeking.
+`npm run build` creates a fresh `_site` from the publication allowlist, rejects prohibited
+files and artifacts at or above 40 MiB, verifies copied file hashes and checks all internal
+HTML links. Its manifest is saved to the ignored `output/release-manifest.json`.
+
+The same assembly command runs in `.github/workflows/pages.yml` before deployment.
+To check the assembled artifact's responsive layout:
+
+```powershell
+npx playwright install chromium
+$env:PORTFOLIO_SITE_ROOT = '_site'
+npm run test:layout
+```
+
+## Source map
+
+| File | Purpose |
+| --- | --- |
+| `index.html`, `styles.css` | Portfolio content and responsive layout |
+| `script.js` | Gallery, comparisons, video controls, shot selection, dialog and navigation |
+| `theme.js` | Applies a stored colour theme before first paint; intentionally render-blocking |
+| `rare-errors.html`, `assets/portfolio/study.css`, `assets/portfolio/study.js` | Saved-results study interface |
+| `assets/portfolio/rare-errors/` | Frozen metrics, configuration, provenance and original figures |
+| `scripts/portfolio-study.py` | Builds presentation data from hash-verified study outputs; runs no experiment |
+| `scripts/build-site.mjs` | Shared local and CI publication assembly |
+| `scripts/check-links.mjs` | Public HTML link and fragment verification |
+| `404.html`, `third-party-notices.html`, `licenses/` | Secondary pages and source/licence information |
+| `assets/portfolio/secondary.css` | Shared theme and source/recovery-page layout |
+| `demos/portfolio-draft/` | Separate scroll concept and three-direction contact sheet |
+
+The shell has no runtime dependency, analytics or external font requests. Fonts and
+the separate MorphBrain runtime are served locally. Source and data credits are in
+`third-party-notices.html` and `licenses/`.
+
+## Content and accessibility contracts
+
+- No JavaScript: project previews and native video controls remain available; inactive custom controls are hidden.
+- Keyboard: gallery tabs, saved-image reveal, video scrubbing, shot shortcuts and model dialog are operable.
+- Reduced motion and forced colours are supported. Theme choice persists between pages.
+- The study shows saved observations, not interpolated or newly fitted results.
+- Frozen study downloads retain their exact bytes in Git so published provenance hashes remain valid.
+- Videos do not autoplay. Hidden or offscreen videos pause, and only one video plays at a time.
+- The inline JSON-LD is covered by a CSP hash. After changing it, run `node scripts/csp-hash.mjs index.html`
+  and update the `script-src` hash. Do not weaken the CSP.
+- Only the named shell files and `assets/`, `demos/`, `licenses/` enter `_site`. Private notes, local captures,
+  build scripts and source maps are excluded. Keep restricted data and CV/resume PDFs out of the artifact.
+
+## History
+
+Dated build and review notes, newest first, followed by two earlier notes. They were written
+for the people reviewing at the time. Links to `127.0.0.1` open only on the computer that was
+serving the preview, and the Drive links open only for the reviewers. File counts and size
+budgets describe the release each note is dated to.
+
+### Journey layer - 4 November 2026
 
 Released at Jason's request as a one-time exception to the writer and merge policy, recorded in the shared decisions log. `assets/portfolio/journey/` adds a full-screen stage to each project on the homepage, driven by scrolling through its real artefact. It is progressive: without JavaScript, with reduced motion, or if GSAP or ScrollTrigger fails to load, the published page stands. The accepted hero is unchanged.
 
 Keep each limitation visible inside its stage, keep evidence on opaque sheets, and do not animate data values. `tests/portfolio-journey.spec.mjs` guards these. Frame derivation and hashes are in `assets/portfolio/journey/source.json`; vendored versions are in `vendor/source.json`.
 
-## Homepage release - 4 November 2026
+### Homepage release - 4 November 2026
 
 Jason approved this release, including a one-time Codex writer/PR-merge exception
 and the 40 MiB artifact cap. The usual Antigravity writer policy remains unchanged.
@@ -22,7 +87,7 @@ recordings and demos are retained. Release validation and deployment evidence ar
 recorded in the pull request. Physical-phone and scientific acceptance are separate.
 Provenance and licence notices accompany assets/portfolio/spatial/.
 
-## Approved release candidate - 30 October 2026 (T-376)
+### Approved release candidate - 30 October 2026 (T-376)
 
 Jason approved the hero direction and, at 17:26 UTC, the project-figure version:
 "This looks good. Can you finalise this?" The accepted homepage and Model Morpher
@@ -58,7 +123,7 @@ reuse, and the Morpher prototype manifest likewise records local scope. No
 public push or deployment has occurred in this finalisation. Original private
 data/code and unpublished UCL/EEG holds remain.
 
-## Accepted cursor-driven homepage - earlier local checkpoint, 30 October 2026
+### Accepted cursor-driven homepage - earlier local checkpoint, 30 October 2026
 
 The homepage is rebuilt with its own HTML, stylesheet and controller. A live
 atlas surface fills the opening: real cursor movement displaces/lights nearby
@@ -110,7 +175,7 @@ Current receipts: `output/rebuild-20261030/final-verification.json` and the
 local completion. Original figure/data restrictions and separate publication
 authority remain. Earlier directions below are dated history.
 
-## Project figure development - earlier local checkpoint, 30 October 2026 (T-374)
+### Project figure development - earlier local checkpoint, 30 October 2026 (T-374)
 
 Jason explicitly approved the cursor-driven hero as exactly the intended direction.
 The hero markup, CSS/controller and scene-engine hashes remain unchanged while
@@ -150,7 +215,7 @@ annotations/zoom around its native plots. A G27 numerical redraw requires matchi
 120-trial curve data; no curves/readouts will be invented from image pixels. Do
 not turn all projects into point clouds. The accepted hero remains the baseline.
 
-## Earlier local interactive work stage - 30 October 2026
+### Earlier local interactive work stage - 30 October 2026
 
 Jason rejected090be75 as static, with recordings less apparent, while retaining
 its clearer information/data. The new candidate puts a substantial playable
@@ -218,7 +283,7 @@ Oxford drafts stay in their existing owner. Earlier static candidates and their
 browser results remain dated history, not acceptance of this interaction pass.
 Public baseline remainsb150012; publication requires its own authority.
 
-## Professional focus - 23 October 2026
+### Professional focus - 23 October 2026
 
 MorphBrain and the g.tec BR41N.IO/G27 team evaluation now lead the selected work.
 MorphBrain keeps its molecular-patterning-to-growth-and-folding aim distinct from
@@ -234,7 +299,7 @@ personal contribution boundary explicit. Existing demos, scientific results, ass
 and runtime code are unchanged. Contact now includes paid internships, scientific
 software work and research. T-244 owns publication and verification.
 
-## Research gallery - 21 October 2026
+### Research gallery - 21 October 2026
 
 Jason selected draft C and authorised implementation with Fable figure refinement
 (T-210). This release uses the accepted ice-white/green composition, Spectral
@@ -264,7 +329,7 @@ Local Fable receipts, source audit, final captures and release verification live
 in `output/gallery-20261021/`. This section supersedes the earlier visual
 directions below. Next action: see T-210.
 
-## Specific-reference correction - 20 October 2026
+### Specific-reference correction - 20 October 2026
 
 Jason rejected the slate-panel composition and clarified that the direction must
 come from specific rendered sites. The 20 October [portfolio release](https://wjason00.github.io/?v=20261020-reference)
@@ -291,7 +356,7 @@ request also authorises local restyles of MorphBrain, Neuro and the LinkedIn
 editing desk, each adapted to its own function and preserved audience.
 Next action: see T-173.
 
-## MotionSites-inspired composition - 20 October 2026
+### MotionSites-inspired composition - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-motion) adopts the stronger
 composition discussed with Astra: a large research question, one continuous
@@ -322,7 +387,7 @@ verification belong in `output/motionsites-direction-20261020/`.
 and [phone preview](https://drive.google.com/file/d/10O2mxaQ78fBGvFA5CqQ0kYljmSnko34E/view?usp=drivesdk)
 are in the existing review folder. Next action: see T-173.
 
-## Reader orientation and previews - 20 October 2026
+### Reader orientation and previews - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-refinement) now provides
 direct research-area links before the long Fly account. A supported result
@@ -348,7 +413,7 @@ now covers research-area navigation, focused previews and playback fallback.
 and [phone preview](https://drive.google.com/file/d/12SUrJMlUPtArwWrxB54KfsPSFjMfzF9F/view?usp=drivesdk)
 are in the existing review folder. T-173 owns this portfolio pass.
 
-## Focused circuit figure - 20 October 2026
+### Focused circuit figure - 20 October 2026
 
 The [Fly project](https://wjason00.github.io/?v=20261020-network#fly-circuit)
 now pairs a focused network diagram with the unchanged 15-pair result chart.
@@ -384,7 +449,7 @@ are in the [existing review folder](https://drive.google.com/drive/folders/1qAYR
 No saved result, source export, renderer, geometry or movement rule changed.
 Next action: see T-173.
 
-## Public-facing copy - 20 October 2026
+### Public-facing copy - 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-public) now leads with
 research questions, contributions and findings. The homepage explains the Fly
@@ -414,7 +479,7 @@ The canonical UX sheet now makes public-facing clarity an explicit rule; the
 shared working-practices playbook records Jason's persistent instruction.
 Next action: see T-173.
 
-## Coherent project layout ? 20 October 2026
+### Coherent project layout ? 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-hierarchy) opens with
 Jason's name, factual UCL description and personally revised interests, followed
@@ -455,7 +520,7 @@ in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9
 The complete LinkedIn package remains local and owned by T-178. Next action:
 see T-173.
 
-## Personal wording — 20 October 2026
+### Personal wording — 20 October 2026
 
 The portfolio uses **Jason Wang** with the factual descriptor **Neuroscience at
 UCL**, consistently across the homepage, study, source/licence and recovery
@@ -472,7 +537,7 @@ voice reference; submission alone is not treated as proof of unaided authorship.
 The canonical UX sheet records this editorial rule for future changes.
 The build and 15 affected browser cases passed. Next action: see T-173.
 
-## Fly film and compact evidence — 20 October 2026
+### Fly film and compact evidence — 20 October 2026
 
 The [Fly project](https://wjason00.github.io/?v=20261020-fly-media#fly-visuals)
 now pairs a playable 9.6-second whole-fly/mouth-detail recording with a compact
@@ -508,7 +573,7 @@ in the [existing review folder](https://drive.google.com/drive/folders/1qAYROBX9
 The canonical UX sheet now requires these media boundaries and readable paired
 evidence alongside motion. Next action: see T-173.
 
-## Homepage disclosure — 20 October 2026
+### Homepage disclosure — 20 October 2026
 
 The [portfolio](https://wjason00.github.io/?v=20261020-portfolio) now has a
 shorter introduction and compact software accounts. Each project keeps its
@@ -537,7 +602,7 @@ in the [existing design review folder](https://drive.google.com/drive/folders/1q
 The complete LinkedIn package remains owned by T-178 in the Applications local-site
 record; no live profile edit is part of this release. Next action: see T-173.
 
-## Portfolio refinement — 19 October 2026
+### Portfolio refinement — 19 October 2026
 
 The homepage now puts a compact factual introduction and research before the
 software gallery. Each software project has one preview; the following project
@@ -565,7 +630,7 @@ The revised study's direct UI capture is saved in [Drive](https://drive.google.c
 in the [existing design review folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
 Next action: see T-173.
 
-## Fly explorer UX — 20 October 2026
+### Fly explorer UX — 20 October 2026
 
 The [Fly explorer](https://wjason00.github.io/demos/fly/?v=20261020-simple#body)
 keeps the principal visual and saved output together, with one Advanced control
@@ -582,7 +647,7 @@ interface changes should use it before release.
 Current verification: `output/fly-ux-20261020/verification.json`.
 Next action: see T-168.
 
-## Scroll-driven design draft — 19 October 2026
+### Scroll-driven design draft — 19 October 2026
 
 The separate [design draft](https://wjason00.github.io/demos/portfolio-draft/)
 and [contact sheet](https://wjason00.github.io/demos/portfolio-draft/contact-sheet.html)
@@ -607,7 +672,7 @@ motion respects [the user's reduced-motion preference](https://www.w3.org/WAI/WC
 The review image is also saved in [Drive](https://drive.google.com/file/d/1guH3L6ivqmfh1_vxgomrDJLNtosEBFQg/view),
 in the [design drafts folder](https://drive.google.com/drive/folders/1qAYROBX9B6551wrvwRYcYsuId50Du-4G).
 
-## Independent EEG project withheld — 17 October 2026
+### Independent EEG project withheld — 17 October 2026
 
 Jason asked to hold the cross-session/time-lagged EEG study from portfolio, CV and promotional use
 because he does not yet understand it. Its homepage entry, introductory claim and public aggregate
@@ -615,7 +680,7 @@ evidence have been removed; the build excludes its figure and CSV. Research sour
 receipts remain in Git and their private owners. Neonatal EEG source modelling, the fly study,
 MorphBrain, Model Morpher and Morphliner retain their existing scope. Next action: see T-113.
 
-## Research update — 15 October 2026
+### Research update — 15 October 2026
 
 The fly circuit and EEG normalization studies now lead the research section. Their
 questions, Jason's proposed/directed contribution, checked results and limitations
@@ -647,7 +712,7 @@ has its own [build and layout receipt](output/research-20261015/hemisphere-wordi
 the existing Claude review retains its original scope. This correction is included
 in the 15 October research update.
 
-## Portfolio release — 12 October 2026
+### Portfolio release — 12 October 2026
 
 This iteration gives the synthetic dPCA study a full visual feature,
 clarifies its ground-truth metrics, and provides a direct CV-request route. Morphliner
@@ -665,7 +730,7 @@ Publication was authorised on 12 October 2026. The live URL is
 [wjason00.github.io](https://wjason00.github.io/); GitHub Pages deploys `main` through
 the checked workflow below. T-065 and the local release receipts record deployment verification.
 
-## Explore
+### Explore (earlier note)
 
 - **Research:** MorphBrain and G27 lead; Fly and the synthetic dPCA methods study retain their complete supporting accounts, figures and scientific limits. The UCL research-assistant role remains described at the level of EEG source modelling; the held independent EEG study is excluded.
 - **Rare-error study:** six saved trial allocations, five noise seeds, an explicit zero-error non-fit,
@@ -677,62 +742,7 @@ the checked workflow below. T-065 and the local release receipts record deployme
   A complete nine-second 720p Free export remains linked in the project notes.
 - **Contact:** public UCL email, CV by request, GitHub and LinkedIn. No CV PDF is published.
 
-## Preview and check
-
-```powershell
-npm ci
-npm run build
-node scripts/serve-static.mjs _site 4187
-```
-
-Open `http://127.0.0.1:4187/`. The server supports byte-range requests for video seeking.
-`npm run build` creates a fresh `_site` from the publication allowlist, rejects prohibited
-files and artifacts at or above 32 MiB, verifies copied file hashes and checks all internal
-HTML links. Its manifest is saved to the ignored `output/release-manifest.json`.
-
-The same assembly command runs in `.github/workflows/pages.yml` before deployment.
-To check the assembled artifact's responsive layout:
-
-```powershell
-npx playwright install chromium
-$env:PORTFOLIO_SITE_ROOT = '_site'
-npm run test:layout
-```
-
-## Source map
-
-| File | Purpose |
-| --- | --- |
-| `index.html`, `styles.css` | Portfolio content and responsive layout |
-| `script.js` | Gallery, comparisons, video controls, shot selection, dialog and navigation |
-| `theme.js` | Applies a stored colour theme before first paint; intentionally render-blocking |
-| `rare-errors.html`, `assets/portfolio/study.css`, `assets/portfolio/study.js` | Saved-results study interface |
-| `assets/portfolio/rare-errors/` | Frozen metrics, configuration, provenance and original figures |
-| `scripts/portfolio-study.py` | Builds presentation data from hash-verified study outputs; runs no experiment |
-| `scripts/build-site.mjs` | Shared local and CI publication assembly |
-| `scripts/check-links.mjs` | Public HTML link and fragment verification |
-| `404.html`, `third-party-notices.html`, `licenses/` | Secondary pages and source/licence information |
-| `assets/portfolio/secondary.css` | Shared theme and source/recovery-page layout |
-| `demos/portfolio-draft/` | Separate scroll concept and three-direction contact sheet |
-
-The shell has no runtime dependency, analytics or external font requests. Fonts and
-the separate MorphBrain runtime are served locally. Source and data credits are in
-`third-party-notices.html` and `licenses/`.
-
-## Content and accessibility contracts
-
-- No JavaScript: project previews and native video controls remain available; inactive custom controls are hidden.
-- Keyboard: gallery tabs, saved-image reveal, video scrubbing, shot shortcuts and model dialog are operable.
-- Reduced motion and forced colours are supported. Theme choice persists between pages.
-- The study shows saved observations, not interpolated or newly fitted results.
-- Frozen study downloads retain their exact bytes in Git so published provenance hashes remain valid.
-- Videos do not autoplay. Hidden or offscreen videos pause, and only one video plays at a time.
-- The inline JSON-LD is covered by a CSP hash. After changing it, run `node scripts/csp-hash.mjs index.html`
-  and update the `script-src` hash. Do not weaken the CSP.
-- Only the named shell files and `assets/`, `demos/`, `licenses/` enter `_site`. Private notes, local captures,
-  build scripts and source maps are excluded. Keep restricted data and CV/resume PDFs out of the artifact.
-
-## Local verification record
+### Local verification record (earlier note)
 
 The assembled candidate passed four responsive-layout tests, 72 homepage/player checks,
 27 study checks, seven final mobile/forced-colour checks and ten build-boundary checks.
