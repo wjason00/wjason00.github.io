@@ -174,8 +174,9 @@ test('native home and work navigation retains cross-document transitions where s
   await recordTransitions(page);
   await page.goto('/');
   const supported = await page.evaluate(() => 'onpageswap' in window && 'CSSViewTransitionRule' in window);
-  await page.locator('.xp-bar a[href="./work.html"]').click();
-  await expect(page).toHaveURL(/\/work\.html$/);
+  await page.locator('.xp-bar').getByRole('link', { name: 'Research', exact: true }).click();
+  await expect(page).toHaveURL(/\/work\.html#selected-work$/);
+  await expect(page.getByRole('heading', { name: 'Selected research' })).toBeInViewport();
   await expect(page.locator('h1')).toHaveText('Research & software');
   if (supported) expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('lastPortfolioTransition')).active)).toBe(true);
   await page.locator('a.site-name').click();
@@ -190,8 +191,24 @@ test('reduced motion keeps a readable index and native home and work navigation'
   await page.goto('/');
   await expect(page.locator('.portal-index a')).toHaveCount(5);
   await expect(page.locator('.jr-stage')).toHaveCount(0);
-  await page.locator('.xp-bar a[href="./work.html"]').click();
-  await expect(page).toHaveURL(/\/work\.html$/);
+  for (const width of [320, 360, 390, 1280]) {
+    await page.setViewportSize({ width, height: 800 });
+    const linksAndButton = await page.locator('.xp-bar a:visible, .xp-bar button:visible').evaluateAll(elements =>
+      elements.map(element => {
+        const { x, y, width, height } = element.getBoundingClientRect();
+        return { x, right: x + width, centre: y + height / 2 };
+      })
+    );
+    expect(linksAndButton.length).toBeGreaterThanOrEqual(4);
+    for (const { x, right, centre } of linksAndButton) {
+      expect(x).toBeGreaterThanOrEqual(0);
+      expect(right).toBeLessThanOrEqual(width);
+      expect(centre).toBeCloseTo(linksAndButton[0].centre, 0);
+    }
+  }
+  await page.locator('.xp-bar').getByRole('link', { name: 'Research', exact: true }).click();
+  await expect(page).toHaveURL(/\/work\.html#selected-work$/);
+  await expect(page.getByRole('heading', { name: 'Selected research' })).toBeInViewport();
   await expect(page.locator('h1')).toHaveText('Research & software');
   expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('lastPortfolioTransition') || '{"active":false}').active)).toBe(false);
   await page.locator('a.site-name').click();
