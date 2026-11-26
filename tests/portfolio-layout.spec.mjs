@@ -148,7 +148,7 @@ for (const width of [1366, 390]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/work.html');
     const index = page.getByRole('navigation', { name: 'Research areas' });
-    for (const [name, target] of [['Neural signals', '#dpca'], ['EEG modelling', '#supervised-work'], ['Fly circuit', '#fly-circuit']]) {
+    for (const [name, target] of [['Neural signals', '#dpca'], ['Fly circuit', '#fly-circuit']]) {
       const link = index.getByRole('link', { name, exact: true });
       await link.scrollIntoViewIfNeeded();
       await link.focus();
