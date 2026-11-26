@@ -2241,6 +2241,7 @@ html:not(.js) .compare-pair .comparison {
 .fly-project-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 28px; }
 .research-feature--result .fly-project-heading h3 { margin: 0; font-size: 32px; letter-spacing: -.03em; }
 .fly-project-heading p { flex: 1; min-width: 260px; font-size: 16px; line-height: 1.5; color: var(--muted); }
+.fly-study-intro { max-width: 76ch; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
 .fly-media { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 32px; align-items: start; scroll-margin-top: calc(var(--header-height) + 20px); }
 .fly-media figure { margin: 0; min-width: 0; }
 .fly-media h4, .fly-replay-preview h4 { margin: 0 0 10px; font-size: 17px; font-weight: 600; line-height: 1.4; }

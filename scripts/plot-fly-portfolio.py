@@ -25,6 +25,7 @@ ARCHIVE = ROOT / "demos/fly/archive.js"
 OUTPUT = ROOT / "assets/portfolio/fly-paired-comparison.svg"
 RECEIPT = ROOT / "output/fly-figure-20261020/plot-receipt.json"
 GAINS = (0.8, 1.0, 1.2)
+GAIN_LABELS = ("Connections 20% weaker", "Original connection strength", "Connections 20% stronger")
 INK, MUTED, GRID = "#24333d", "#5e6d77", "#e1e6e8"
 INTACT, CUT = "#176c72", "#b95726"
 
@@ -64,14 +65,14 @@ def main() -> None:
     fig.patch.set_facecolor("#ffffff")
     fig.subplots_adjust(left=.17, right=.965, top=.735, bottom=.125, hspace=.66)
     fig.text(.045, .952, "Does cutting Roundup change MN9?", fontsize=12.3, weight="semibold")
-    fig.text(.045, .899, "Saved model output · 5 input seeds", fontsize=10.8, color=MUTED)
+    fig.text(.045, .899, "Same sugar input within each pair", fontsize=10.8, color=MUTED)
     legend_handles = [plt.Line2D([], [], marker="o", linestyle="none", color=INTACT, markersize=5.6),
                       plt.Line2D([], [], marker="s", linestyle="none", color=CUT, markersize=5.1)]
     fig.legend(legend_handles, ["Intact", "Outgoing weights cut"], loc="upper left",
                bbox_to_anchor=(.031, .878), frameon=False, ncol=1, borderaxespad=0,
                handletextpad=.45, labelspacing=.35, fontsize=10.8)
     plotted = []
-    for ax, gain in zip(axes, GAINS):
+    for ax, gain, label in zip(axes, GAINS, GAIN_LABELS):
         ax.set_xlim(0, 90)
         ax.set_ylim(-.55, 4.55)
         ax.invert_yaxis()
@@ -84,7 +85,7 @@ def main() -> None:
         for spine in ax.spines.values():
             spine.set_visible(False)
         ax.axvline(0, color="#bbc7cc", linewidth=.8)
-        ax.text(0, 1.14, f"Recurrent gain {gain:.1f}×", transform=ax.transAxes,
+        ax.text(0, 1.14, label, transform=ax.transAxes,
                 fontsize=10.8, weight="semibold")
         for seed in range(5):
             intact, cut = points[(gain, seed)]
@@ -93,7 +94,7 @@ def main() -> None:
             ax.scatter([intact], [seed], s=29, marker="o", color=INTACT, edgecolors="white", linewidths=.45, zorder=3, gid=gid+"-intact")
             ax.scatter([cut], [seed], s=25, marker="s", color=CUT, edgecolors="white", linewidths=.45, zorder=4, gid=gid+"-cut")
             plotted.append({"gain": gain, "seed": seed, "intact": intact, "silenced": cut, "svg_pair_id": gid})
-    fig.text(.025, .457, "Input seed", rotation=90, va="center", color=MUTED, fontsize=10.8)
+    fig.text(.025, .457, "Input schedule", rotation=90, va="center", color=MUTED, fontsize=10.8)
     axes[-1].set_xlabel("MN9 spikes in one second", labelpad=9, fontsize=10.8)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUTPUT, format="svg", metadata={"Date": None,
