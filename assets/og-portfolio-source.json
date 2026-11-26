@@ -1,0 +1,16 @@
+{
+  "title": "Portfolio share card",
+  "file": "assets/og-portfolio.png",
+  "width": 1200,
+  "height": 630,
+  "bytes": 142843,
+  "sha256": "123c23ab551785319c7d070cb7e8d3210efad0b27bc4efb5d45ca04b834fc040",
+  "generator": "scripts/portfolio-social-preview.mjs",
+  "source": {
+    "text": "index.html (home hero sentence)",
+    "style": "assets/portfolio/experience-home.css (dark palette, Source Sans 3 and DM Mono)",
+    "renderer": "assets/portfolio/brain-scene.js (overview, at rest)",
+    "surface": "assets/portfolio/brain-surface-source.json"
+  },
+  "method": "Playwright captures a local HTML composition using the existing atlas renderer and all 4,096 saved points."
+}

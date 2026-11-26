@@ -21,7 +21,9 @@ if (!block) throw new Error(`No inline JSON-LD block found in ${target}`);
 
 JSON.parse(block[1]);
 
-const digest = createHash('sha256').update(block[1], 'utf8').digest('base64');
+// HTML parsing normalizes line endings before CSP checks inline script text.
+const scriptText = block[1].replace(/\r\n?/g, '\n');
+const digest = createHash('sha256').update(scriptText, 'utf8').digest('base64');
 const directive = `'sha256-${digest}'`;
 
 const updated = source.replace(
