@@ -112,8 +112,16 @@ h1, h2, h3, p { margin: 0; }
 .xp-skip:focus { top: 1rem; }
 
 /* Top bar */
+.xp-header { position: relative; }
+.xp-announcement {
+  padding: 0.625rem var(--gutter);
+  border-bottom: 1px solid var(--rule);
+  background: var(--ground-raised);
+  color: var(--ink);
+  text-align: center;
+}
 .xp-bar {
-  position: absolute; inset: 0 0 auto; z-index: 20;
+  position: absolute; inset: 100% 0 auto; z-index: 20;
   display: flex; align-items: center; gap: 1.5rem;
   padding: 0.75rem var(--gutter);
   pointer-events: none;
@@ -405,7 +413,7 @@ h1, h2, h3, p { margin: 0; }
 /* Small screens: the name first, then the surface, its controls and the index in the flow.
    The page heading sits directly under the bar, so the bar drops its own copy of the name. */
 @media (max-width: 720px) {
-  .xp-bar { position: relative; flex-wrap: wrap; gap: 0 1rem; background: var(--ground); }
+  .xp-bar { position: relative; inset: auto; flex-wrap: wrap; gap: 0 1rem; background: var(--ground); }
   .xp-bar__name { display: none; }
   .xp-bar__nav { gap: 0.9rem; margin-left: 0; }
   .xp-theme { margin-left: auto; }
