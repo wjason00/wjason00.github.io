@@ -43,3 +43,95 @@
 @media (max-width:640px){
   .portfolio-home .opening-nav{grid-template-columns:minmax(0,1fr)}
 }
+
+/* Instrument pass, 26 November 2026: the home page's obsidian field, hairlines and mono indices.
+   Dark mode moves to the home page's ground; light mode keeps the paper. */
+:root[data-theme="dark"]{--paper:#0e211c;--soft:#122924;--card:#0a1915;--line:#2f4b42}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0e211c;--soft:#122924;--card:#0a1915;--line:#2f4b42}}
+
+/* Contents row: numbered stops on a hairline. */
+.portfolio-home .opening-nav{counter-reset:stop}
+.portfolio-home .opening-nav a{counter-increment:stop;transition:border-color .16s linear}
+.portfolio-home .opening-nav a::before{content:counter(stop,decimal-leading-zero) " /" / "";display:block;margin-bottom:.45rem;font:400 .72rem/1 var(--mono);letter-spacing:.1em;color:var(--muted)}
+.portfolio-home .opening-nav a:hover,.portfolio-home .opening-nav a:focus-visible{border-top-color:var(--ink)}
+
+/* The stage: one console with a hairline edge, square tabs and mono action badges. */
+.portfolio-home .work-stage{--stage:#0b1b17;--stage-rule:rgba(228,239,232,.15)}
+.portfolio-home .work-stage .gallery{border:1px solid var(--stage-rule);border-radius:4px}
+.portfolio-home .work-stage .gallery-tabs{counter-reset:tab;gap:4px;padding:6px}
+.portfolio-home .work-stage .gallery-tab{counter-increment:tab;align-items:center;gap:12px;border-radius:2px}
+.portfolio-home .work-stage .gallery-tab::before{content:counter(tab,decimal-leading-zero) / "";font:400 12px/1 var(--mono);letter-spacing:.08em;color:var(--stage-muted)}
+.portfolio-home .work-stage .gallery-tab strong{margin-right:auto}
+.portfolio-home .work-stage .gallery-tab small{padding:5px 8px;border:1px solid var(--stage-rule);border-radius:2px;font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.portfolio-home .work-stage .gallery-tab:hover{border-color:var(--stage-rule)}
+.portfolio-home .work-stage .gallery-tab[aria-selected="true"]::before,.portfolio-home .work-stage .gallery-tab[aria-selected="true"] small{color:#163a31;border-color:rgba(22,58,49,.35)}
+.portfolio-home .work-stage .video-play,.portfolio-home .work-stage .video-expand,.portfolio-home .work-stage .stage-try,.portfolio-home .work-stage .media-switch button,.portfolio-home .work-stage .demo-chapters button{border-radius:2px}
+.portfolio-home .work-stage .video-time{font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+@media (max-width:640px){
+  .portfolio-home .opening-nav a{display:grid;grid-template-columns:2.6rem minmax(0,1fr)}
+  .portfolio-home .opening-nav a::before{grid-row:1/span 2;margin:0;line-height:1.5rem}
+  .portfolio-home .opening-nav a span,.portfolio-home .opening-nav small{grid-column:2}
+}
+
+/* Extended instrument framing across research, study notes, roles and contact.
+   The Model Morpher recording keeps its own light ground across the full stage width, as the
+   white-backed plots do; the console around it supplies the dark frame. */
+.portfolio-home{--tick:color-mix(in srgb,var(--ink) 55%,transparent)}
+.portfolio-home .work-stage .opening-recording{border-bottom:1px solid var(--stage-rule)}
+
+/* Square, mono controls everywhere on the page. */
+.portfolio-home .gallery-action{min-height:46px;padding:0 1.2rem;border-radius:2px;font:400 .8rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.portfolio-home .gallery-action::after{content:"\2192" / "";margin-left:.6rem}
+.portfolio-home #g27 .gallery-action{min-height:44px;padding:0;background:none;color:var(--ink);font:400 16px/1.4 var(--display);letter-spacing:0;text-transform:none}
+.portfolio-home #g27 .gallery-action::after{content:none}
+.portfolio-home .case-row{font:400 .78rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.portfolio-home .research-index{gap:6px;padding-top:4px;counter-reset:area}
+.portfolio-home .research-index a{counter-increment:area;display:inline-flex;align-items:center;gap:.55rem;min-height:40px;padding:0 .85rem;border:1px solid var(--line);border-radius:2px;color:var(--ink);font:400 .76rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:border-color .16s linear,background-color .16s linear}
+.portfolio-home .research-index a::before{content:counter(area,decimal-leading-zero) / "";color:var(--muted)}
+.portfolio-home .research-index a:hover,.portfolio-home .research-index a:focus-visible{border-color:var(--ink);background:var(--soft)}
+.portfolio-home .contact__links{gap:.55rem}
+.portfolio-home .contact__links a{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;border:1px solid var(--line);border-radius:2px;font:400 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.portfolio-home .contact__links a:not([href^="mailto"])::after{content:"\2197" / "";margin-left:.5rem;color:var(--muted)}
+.portfolio-home .contact__links a:hover{border-color:var(--ink);background:var(--soft)}
+.portfolio-home .research-item__kind,.portfolio-home .research-item__scope{font:400 .74rem/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* G27 results: each count is a readout in a recessed plate, not a loose number. */
+.portfolio-home .g27-result{padding:14px 16px 16px;border:1px solid var(--line);border-radius:2px;background:var(--card)}
+.portfolio-home .g27-result h4{font:400 .74rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* Study notes: each disclosure is a recessed plate with a mono index. */
+.portfolio-home .research{counter-reset:study}
+.portfolio-home .study-reading{counter-increment:study;margin-top:12px;border:1px solid var(--line);border-radius:2px;background:var(--card)}
+.portfolio-home .study-reading>summary{align-items:center;gap:18px;padding-inline:20px;font:400 clamp(1.25rem,1.9vw,1.6rem)/1.25 var(--serif);letter-spacing:-.01em}
+.portfolio-home .study-reading>summary::before{content:counter(study,decimal-leading-zero) / "";flex:none;font:400 .74rem/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+.portfolio-home .study-reading>summary::after{margin-left:auto;font:400 1.2rem/1 var(--mono)}
+.portfolio-home .study-reading>summary:hover{background:var(--soft)}
+.portfolio-home .study-reading>.research-feature{margin-inline:20px;border-top:1px solid var(--line)}
+
+/* Research roles: two dossier cards with registration ticks. */
+.portfolio-home .supervised-work{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.portfolio-home .supervised-work>h2{grid-column:1/-1;max-width:none;margin-bottom:8px}
+.portfolio-home .supervised-work .research-item{position:relative;display:flex;flex-direction:column;gap:6px;padding:22px 24px 24px;border:1px solid var(--line);border-radius:2px;background:var(--card)}
+.portfolio-home .supervised-work .research-item+.research-item{padding-left:24px;border-left:1px solid var(--line)}
+.portfolio-home .supervised-work .research-item h3{margin:0 0 6px;font:400 clamp(1.45rem,2.2vw,1.9rem)/1.1 var(--serif);letter-spacing:-.02em}
+.portfolio-home .supervised-work .research-item p{max-width:62ch;margin:0;font-size:16px;line-height:1.55;color:var(--ink)}
+.portfolio-home .supervised-work .research-item .research-item__kind{max-width:none;margin:0 0 4px;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:.72rem;color:var(--muted)}
+.portfolio-home .supervised-work .research-item .research-item__status{margin-top:10px;padding-left:.8rem;border-left:2px solid var(--muted);font-size:15px;color:var(--muted)}
+.portfolio-home .supervised-work .research-item::before{content:"";position:absolute;inset:-1px;pointer-events:none;--t:10px;
+  background:
+    linear-gradient(var(--tick),var(--tick)) 0 0/var(--t) 1px,linear-gradient(var(--tick),var(--tick)) 0 0/1px var(--t),
+    linear-gradient(var(--tick),var(--tick)) 100% 0/var(--t) 1px,linear-gradient(var(--tick),var(--tick)) 100% 0/1px var(--t),
+    linear-gradient(var(--tick),var(--tick)) 0 100%/var(--t) 1px,linear-gradient(var(--tick),var(--tick)) 0 100%/1px var(--t),
+    linear-gradient(var(--tick),var(--tick)) 100% 100%/var(--t) 1px,linear-gradient(var(--tick),var(--tick)) 100% 100%/1px var(--t);
+  background-repeat:no-repeat}
+
+.portfolio-home .contact__body p+p{margin-top:1rem}
+.portfolio-home .site-footer a{font:400 .74rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+
+@media (max-width:760px){
+  .portfolio-home .supervised-work{grid-template-columns:minmax(0,1fr)}
+  .portfolio-home .study-reading>summary{padding-inline:16px}
+  .portfolio-home .study-reading>.research-feature{margin-inline:16px}
+  .portfolio-home .supervised-work .research-item{padding:18px 18px 20px}
+  .portfolio-home .supervised-work .research-item+.research-item{padding-left:18px}
+}

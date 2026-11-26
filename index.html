@@ -136,6 +136,7 @@
     <link rel="stylesheet" href="./assets/portfolio/journey/journey.css?v=20261116-motion" />
     <link rel="stylesheet" href="./assets/portfolio/polish.css?v=20261112" />
     <link rel="stylesheet" href="./assets/portfolio/project-exhibit.css?v=20261116" />
+    <link rel="stylesheet" href="./assets/portfolio/instrument.css?v=20261126" />
   </head>
   <body class="xp">
     <a class="xp-skip" href="#main">Skip to main content</a>
@@ -289,6 +290,61 @@
               It runs in your browser and makes no model call.
             </p>
             <p class="recent__links"><a href="https://countermere.com/" target="_blank" rel="noreferrer">countermere.com</a></p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11-21">21–22 Nov 2026</time><span>SoTA Hackathon, London</span></p>
+            <h3>Depth-electrode placement</h3>
+            <p>
+              Team project exploring whether optimising stereo-EEG depth-electrode layouts
+              jointly improves simulated seizure coverage over greedy one-shaft-at-a-time
+              selection.
+            </p>
+            <ol class="recent__flow" aria-label="What the depth-electrode project explored">
+              <li>
+                <b>Joint trajectory search</b>
+                <span>Compared globally optimised multi-shaft layouts against sequential greedy placement on an open head model</span>
+              </li>
+              <li>
+                <b>Accelerated forward modelling</b>
+                <span>Built a GPU five-tissue head pipeline and fast coverage search to explore layouts interactively</span>
+              </li>
+              <li>
+                <b>Recorded-seizure check</b>
+                <span>Evaluated a simplified dipole forward model against held-out depth contacts from recorded focal seizures</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              Exploratory hackathon prototype on one published head model (Dessert et al.,
+              2023), not clinical planning; full multi-tissue validation on recorded seizures
+              remains open.
+            </p>
+          </li>
+          <li class="recent__item">
+            <p class="recent__meta"><time datetime="2026-11">Nov 2026 – present</time><span>University of Oxford (remote)</span></p>
+            <h3>DBS tractography review</h3>
+            <p>
+              Undergraduate research assistant contributing remotely to a systematic review
+              with the University of Oxford, with UCLH clinical input, on how
+              tractography-mapped white-matter pathways relate to deep brain stimulation
+              outcomes in Parkinson’s disease.
+            </p>
+            <ol class="recent__flow" aria-label="Focus of the DBS tractography review">
+              <li>
+                <b>Pathway–outcome mapping</b>
+                <span>Synthesising how structural connectivity across target tracts relates to clinical stimulation response</span>
+              </li>
+              <li>
+                <b>Motor &amp; non-motor endpoints</b>
+                <span>Comparing subthalamic and cerebellothalamic pathways across tremor, motor and non-motor outcomes</span>
+              </li>
+              <li>
+                <b>Cross-study synthesis</b>
+                <span>Comparing cohort definitions, targeting methods and outcome measures across published DBS studies</span>
+              </li>
+            </ol>
+            <p class="recent__limit">
+              Ongoing systematic review; manuscript in preparation and not yet published.
+            </p>
           </li>
         </ul>
       </section>
@@ -496,7 +552,7 @@
           <h2 id="about-title">About</h2>
           <ul class="about__facts">
             <li><span class="about__label">Studying</span>Neuroscience, UCL</li>
-            <li><span class="about__label">Research</span>Undergraduate research assistant, UCL</li>
+            <li><span class="about__label">Research</span>Undergraduate research assistant, UCL &amp; Oxford (remote)</li>
             <li><span class="about__label">Based in</span>London</li>
           </ul>
           <p class="about__links" id="contact">
@@ -513,6 +569,11 @@
             Fabrizi in UCL’s Medawar Pain and Somatosensory Labs, I work on EEG
             source modelling: relating models of brain activity to signals measured
             at the scalp.
+          </p>
+          <p>
+            Remotely, with the University of Oxford, I contribute to a systematic review
+            on how tractography-mapped pathways relate to deep brain stimulation outcomes
+            in Parkinson’s disease.
           </p>
           <p>
             Also on the full work page: a synthetic study of
@@ -538,6 +599,6 @@
     </footer>
     <script type="module" src="./assets/portfolio/spatial/portal.js?v=20261116-inspection"></script>
     <script type="module" src="./assets/portfolio/journey/journey.js?v=20261116-exhibits"></script>
-    <script type="module" src="./assets/portfolio/project-index.js?v=20261116"></script>
+    <script type="module" src="./assets/portfolio/project-index.js?v=20261126"></script>
   </body>
 </html>

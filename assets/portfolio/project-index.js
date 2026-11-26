@@ -40,11 +40,12 @@ function init(list) {
   preview.id = 'exhibit-preview';
   preview.innerHTML =
     '<div class="exhibit-preview-frame">' +
+      '<p class="exhibit-preview-hud"><span data-x="index"></span>' +
+        '<span class="exhibit-preview-meta"><span data-x="field"></span><span data-x="year"></span></span></p>' +
       '<img class="exhibit-preview-img" alt="" decoding="async">' +
       '<p class="exhibit-preview-fallback" hidden></p>' +
     '</div>' +
     '<figcaption class="exhibit-preview-text">' +
-      '<span class="exhibit-preview-meta"><span data-x="field"></span><span data-x="year"></span></span>' +
       '<strong class="exhibit-preview-name" data-x="name"></strong>' +
       '<span class="exhibit-preview-line" data-x="line"></span>' +
       '<a class="exhibit-preview-open" href="#projects"></a>' +
@@ -88,6 +89,8 @@ function init(list) {
       frame.style.setProperty('--preview-aspect', `${r.w} / ${r.h}`);
     }
     if (r.src) pImg.src = r.src; else pImg.dispatchEvent(new Event('error'));
+    const pad = n => String(n).padStart(2, '0');
+    slot('index').textContent = `${pad(i + 1)} / ${pad(rows.length)}`;
     slot('field').textContent = r.field;
     slot('year').textContent = r.year;
     slot('name').textContent = r.name;

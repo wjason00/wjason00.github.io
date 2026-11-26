@@ -206,3 +206,46 @@
 @media (forced-colors: active) {
   .secondary-page .recovery-home { border-color: ButtonText; background: ButtonFace; color: ButtonText; }
 }
+
+/* Instrument pass, 26 November 2026: the home page's obsidian field and paper, Spectral for
+   page titles, DM Mono for eyebrows and indices, 1px hairlines. Wording and links unchanged. */
+@font-face { font-family: Spectral; src: url("../fonts/spectral-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+:root {
+  --serif: Spectral, "Iowan Old Style", Georgia, serif;
+  --paper: #eef3ef; --ink: #10372f; --muted: #4a665c; --line: #c6d3cb; --soft: #e2ebe5; --card: #f8fbf8; --accent: #dfe9e3; --link: #1f5a4b;
+  --tick: rgba(16, 55, 47, .55);
+}
+:root[data-theme="dark"] {
+  --paper: #0e211c; --ink: #e4efe8; --muted: #9db6ac; --line: #2f4b42; --soft: #122924; --card: #0a1915; --accent: #cfe3d8; --link: #cfe6da;
+  --tick: rgba(228, 239, 232, .55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e211c; --ink: #e4efe8; --muted: #9db6ac; --line: #2f4b42; --soft: #122924; --card: #0a1915; --accent: #cfe3d8; --link: #cfe6da;
+    --tick: rgba(228, 239, 232, .55);
+  }
+}
+
+.secondary-page .legal-page h1,
+.secondary-page .error-page h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 4.8vw, 64px); letter-spacing: -.035em; line-height: 1.02; }
+.secondary-page .source-inventory h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; }
+.secondary-page .page-context,
+.secondary-page .section-context,
+.secondary-page .source-index > p,
+.secondary-page .legal-page__back { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* The page opens on a ruled rail with a tick at each end. */
+.secondary-page .secondary-intro { position: relative; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.secondary-page .secondary-intro::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; pointer-events: none;
+  background: linear-gradient(var(--tick), var(--tick)) 0 0 / 1px 100%, linear-gradient(var(--tick), var(--tick)) 100% 0 / 1px 100%;
+  background-repeat: no-repeat;
+}
+
+/* Contents: a numbered mono index. */
+.secondary-page .source-index ul { counter-reset: src; gap: 0; border-top: 1px solid var(--line); }
+.secondary-page .source-index li { counter-increment: src; border-bottom: 1px solid var(--line); }
+.secondary-page .source-index li a { display: flex; gap: 10px; width: auto; padding: 8px 0; }
+.secondary-page .source-index li a::before { content: counter(src, decimal-leading-zero) / ""; flex: none; padding-top: 2px; font: 400 11px/1.4 var(--mono); letter-spacing: .06em; color: var(--muted); }
+.secondary-page .boundary-note { border-left-color: var(--muted); }
+.secondary-page .source-downloads a { font-family: var(--mono); font-size: 13px; letter-spacing: .02em; }
